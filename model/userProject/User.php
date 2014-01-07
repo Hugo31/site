@@ -21,8 +21,8 @@ class User implements IDataBase{
     }
     
     /**
-     * Ajoute à la base de donnée un utilisateur.
-     * @param User $object L'utilisateur à rajouter. 
+     * Add an user to the database
+     * @param User $object The user to add
      */
     public static function addDB($object) {
         $bdd = Database::connect();
@@ -38,8 +38,8 @@ class User implements IDataBase{
     }
 
     /**
-     * Donne un utilisateur issus de la base de donnée.
-     * @param int $id L'identifiant de l'utilisateur à obtenir.
+     * Get an user from the database using his login
+     * @param int $id Login of the user wanted
      */
     public static function getDB($id) {
         $bdd = Database::connect();
@@ -53,8 +53,8 @@ class User implements IDataBase{
         
 
     /**
-     * Modifie un utilisateur dans la base de donnée
-     * @param User $object L'utilisateur à modifier
+     * Modify user data in the database
+     * @param User $object The user to modify
      */
     public static function modifyDB($object) {
         $bdd = Database::connect();
@@ -68,20 +68,19 @@ class User implements IDataBase{
             'mail' => $object->getMail(),
             'logo' => $object->getLogo()
             ));
-        
     }
 
     /**
-     * Supprime de la base de donnée l'utilisateur passé en paramètre.
-     * @param User $object L'utilisateur à supprimer de la base de donnée.
+     * Delete the given user from the database
+     * @param User $object The user to delete
      */
     public static function removeDB($object) {
         $bdd = Database::connect();
-        
+        //update some table using the user reference that we still want in the DB ; point to the default user "undefined"
         $bdd->exec('UPDATE DesignPattern SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
         $bdd->exec('UPDATE Conflit SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
         $bdd->exec('UPDATE Solution SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
-        
+        //delete
         $bdd->exec('DELETE FROM NoteDesignPattern WHERE login = \''.$object->getLogin().'\''); //delete user notes on dp
         $bdd->exec('DELETE FROM CommentDesignPattern WHERE login = \''.$object->getLogin().'\''); //delete user comments
         $bdd->exec('DELETE FROM Project WHERE login = \''.$object->getLogin().'\''); //delete user projects
