@@ -1,5 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
+
 class User implements IDataBase{
     
     private $login;
@@ -38,18 +40,17 @@ class User implements IDataBase{
     /**
      * Donne un utilisateur issus de la base de donnée.
      * @param int $id L'identifiant de l'utilisateur à obtenir.
-     * @param NULL $typeTable = NULL ici.
      */
     public static function getDB($id) {
         $bdd = Database::connect();
         
-        $reponse = $bdd->query('SELECT * FROM User WHERE login = '.$id.'');
+        $reponse = $bdd->query('SELECT * FROM User WHERE login = \''.$id.'\'');
         $donnees = $reponse->fetch();
-
         $user = new User($id, $donnees['pwd'], $donnees['lastname'], $donnees['firstname'], $donnees['mail'], $donnees['logo']);
         $reponse->closeCursor();
         return $user;
     }
+        
 
     /**
      * Modifie un utilisateur dans la base de donnée
@@ -80,6 +81,7 @@ class User implements IDataBase{
         $bdd->exec('UPDATE DesignPattern SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
         $bdd->exec('UPDATE Conflit SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
         $bdd->exec('UPDATE Solution SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
+        
         $bdd->exec('DELETE FROM NoteDesignPattern WHERE login = \''.$object->getLogin().'\''); //delete user notes on dp
         $bdd->exec('DELETE FROM CommentDesignPattern WHERE login = \''.$object->getLogin().'\''); //delete user comments
         $bdd->exec('DELETE FROM Project WHERE login = \''.$object->getLogin().'\''); //delete user projects

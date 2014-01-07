@@ -112,20 +112,30 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
     
     
-    public static function addImage($object, $lien) {
-        
+    public static function addImage($object, $link) {
+        $bdd = Database::connect();
+        $champ = 'idDesignPattern, link';
+        $value = ''.$object->getID().', \''.$link.'\'';
+        $bdd->exec('INSERT INTO ImageDesignPattern('.$champ.') VALUES('.$value.')');
     }
 
     public static function addSource($object, $author, $link) {
-        
+        $bdd = Database::connect();
+        $champ = 'idDesignPattern, author, link';
+        $value = ''.$object->getID().', \''.$author.'\', \''.$link.'\'';
+        $bdd->exec('INSERT INTO Source('.$champ.') VALUES('.$value.')');
     }
 
     public static function removeImage($img) {
-        
+        $bdd = Database::connect();
+        $cond = 'idImage = '.$img.'';
+        $bdd->exec('DELETE FROM ImageDesignPattern WHERE '.$cond.')');
     }
 
     public static function removeSource($src) {
-        
+        $bdd = Database::connect();
+        $cond = 'idSource = '.$src.'';
+        $bdd->exec('DELETE FROM Source WHERE '.$cond.')');
     }
 
     public function getID(){
