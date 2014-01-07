@@ -10,7 +10,7 @@ class User implements IDataBase{
     
     
     public function __construct(){
-        //ta mamansss
+        //ta mamansssssssdzdezfgfergrtht
     }
     
     /**
