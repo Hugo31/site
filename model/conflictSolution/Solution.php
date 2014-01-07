@@ -21,7 +21,10 @@ class Solution implements IDataBase, IComment, INote{
     }
 
     public static function addComment($object, $user, $comment) {
-        
+        $bdd = Database::connect();
+        $champ = 'login, idSolution, date, comment';
+        $value = '\''.$user->getLogin().'\', '.$object->getID().', NOW(), \''.$comment.'\'';
+        $bdd->exec('INSERT INTO CommentSolution('.$champ.') VALUES('.$value.')');
     }
 
     public static function addNote($object, $user, $note) {
@@ -29,7 +32,8 @@ class Solution implements IDataBase, IComment, INote{
     }
 
     public static function removeComment($idComment) {
-        
+        $bdd = Database::connect();
+        $bdd->exec('DELETE FROM CommentSolution WHERE idComment = \''.$idComment.'\'');
     }
 
     public static function removeNote($object, $user) {
