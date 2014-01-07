@@ -1,8 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/model/interfaceDB/IDataBaseSort.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/interfaceDB/ILink.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/sortTable/ESortTable.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBaseSort.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/ILink.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 
 class SortTable implements IDataBaseSort, ILink{
     private $sortType;
