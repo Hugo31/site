@@ -2,7 +2,7 @@
 
 interface IImage {
     
-    public static function addImage($object, $lien);
+    public static function addImage($object, $link);
     
     public static function removeImage($img);
 }
