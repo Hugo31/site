@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBaseSort.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/ILink.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
@@ -98,27 +99,27 @@ class Project implements IDataBase, ILink{
     }
 
     public function getID(){
-        return $this->$idProject;
+        return $this->idProject;
     }
 
     public function setID($_idProject) {
-        $this->$idProject = $_idProject;
+        $this->idProject = $_idProject;
     }
     
     public function getNameProject(){
-        return $this->$name;
+        return $this->name;
     }
 
     public function setNameProject($_name) {
-        $this->$name = $_name;
+        $this->name = $_name;
     }
     
     public function getDescriptionProject(){
-        return $this->$description;
+        return $this->description;
     }
 
     public function setDescriptionProject($_description) {
-        $this->$description = $_description;
+        $this->description = $_description;
     }
     
     public function getLogin(){
