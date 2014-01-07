@@ -5,6 +5,12 @@ model :
     Créer Classe User.php
     Créer Classe Project.php
 
+ctrl :
+
+    tout a faire 
+    eh oh quoi
+    n'importe nawak ofet
+
 test :
     Créer page de test : 
         ajouterCommentaire.php
