@@ -10,6 +10,7 @@ ctrl :
     tout a faire 
     eh oh quoi
     n'importe nawak ofet
+    ohhlaaa
 
 test :
     Créer page de test : 
