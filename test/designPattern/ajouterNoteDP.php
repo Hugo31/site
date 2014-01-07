@@ -1,5 +1,5 @@
 <?php
-    //header('Location: ../pagetestdp.php'); 
+    header('Location: ../pagetestdp.php'); 
     require_once($_SERVER['DOCUMENT_ROOT']."/site/model/designPattern/DesignPattern.php");
     require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userProject/User.php");
     if(isset($_POST['user']) and isset($_POST['designPattern']) and isset($_POST['note'])){
