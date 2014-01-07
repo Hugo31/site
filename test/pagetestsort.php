@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/model/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 require_once("./functionForTest.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/sortTable/ESortTable.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
 ?>
 <!DOCTYPE html>
 <html>

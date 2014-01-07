@@ -1,6 +1,6 @@
 <?php
     header('Location: ../pagetestuser.php'); 
-    require_once($_SERVER['DOCUMENT_ROOT']."/model/Database.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
     $bdd = Database::connect();
     if(isset($_POST['loginUser']) AND isset($_POST['pwdUser'])){
         $value = '\''.$_POST['loginUser'].'\', \''.$_POST['pwdUser'].'\', \''.$_POST['lastnameUser'].'\', ';

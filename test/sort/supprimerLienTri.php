@@ -1,7 +1,7 @@
 <?php
     header('Location: ../pagetestsort.php'); 
-    require_once($_SERVER['DOCUMENT_ROOT']."/model/designPattern/DesignPattern.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/model/sortTable/SortTable.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/model/designPattern/DesignPattern.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/SortTable.php");
     if(isset($_POST['triTable']) and isset($_POST['designPattern'])){
         $chaine = explode("-", $_POST['triTable']);
         
