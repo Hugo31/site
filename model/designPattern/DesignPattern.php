@@ -108,7 +108,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     public static function removeNote($object, $user) {
         $bdd = Database::connect();
         $cond = 'login = \''.$user->getLogin().'\' AND idDesignPattern = '.$object->getID().'';
-        $bdd->exec('DELETE FROM CommentDesignPattern WHERE '.$cond.')');
+        $bdd->exec('DELETE FROM NoteDesignPattern WHERE '.$cond.')');
     }
     
     
