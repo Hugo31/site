@@ -107,7 +107,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     public static function addComment($object, $user, $comment) {
         $bdd = Database::connect();
         $champ = 'login, idDesignPattern, date, comment';
-        $value = '\''.$user->getLogin().'\', '.$object->getID().', NOW(), \''.$comment.'';
+        $value = '\''.$user->getLogin().'\', '.$object->getID().', NOW(), \''.$comment.'\'';
         $bdd->exec('INSERT INTO CommentDesignPattern('.$champ.') VALUES('.$value.')');
     }
 
