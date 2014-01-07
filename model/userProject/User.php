@@ -1,5 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
+
 class User implements IDataBase{
     
     private $login;
@@ -38,18 +40,17 @@ class User implements IDataBase{
     /**
      * Donne un utilisateur issus de la base de donnée.
      * @param int $id L'identifiant de l'utilisateur à obtenir.
-     * @param NULL $typeTable = NULL ici.
      */
     public static function getDB($id) {
         $bdd = Database::connect();
         
-        $reponse = $bdd->query('SELECT * FROM User WHERE login = '.$id.'');
+        $reponse = $bdd->query('SELECT * FROM User WHERE login = \''.$id.'\'');
         $donnees = $reponse->fetch();
-
         $user = new User($id, $donnees['pwd'], $donnees['lastname'], $donnees['firstname'], $donnees['mail'], $donnees['logo']);
         $reponse->closeCursor();
         return $user;
     }
+        
 
     /**
      * Modifie un utilisateur dans la base de donnée

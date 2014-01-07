@@ -30,8 +30,23 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userProject/User.php");
         
         <h2>Supprimer un utilisateur</h2>
         <form method="post" action="user/supprimerUser.php">
+        <p>
+            <?php
+                echo '<select name="login" id="login">';
+                $bdd = Database::connect();
+                $reponse = $bdd->query('SELECT * FROM User');
+                while ($donnees = $reponse->fetch()){
+                    echo '<option value="'.$donnees['login'].'">';
+                    echo $donnees['login'];
+                    echo '</option>';
+                }
+                echo '</select><br/>';
+                $reponse->closeCursor();
+            ?>
             <input type="submit" value="Supprimer"/>
-    	</form>
+        </p>
+        </form>
+        
         
         <h2>Liste utilisateurs</h2>
         <?php
