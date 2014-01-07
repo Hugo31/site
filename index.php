@@ -5,7 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/model/Database.php");
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Page de test User et Design Pattern</title>
+        <title>Page de test</title>
         <meta charset="UTF-8">
     </head>
     <body>
