@@ -190,25 +190,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Conflict` (
   `idConflict` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(100) NULL,
   `login` VARCHAR(30) NOT NULL,
-  `idDesignPattern1` INT NOT NULL,
-  `idDesignPattern2` INT NOT NULL,
   PRIMARY KEY (`idConflict`),
   INDEX `fk_Conflit_User1_idx` (`login` ASC),
-  INDEX `fk_Conflit_DesignPattern1_idx` (`idDesignPattern1` ASC),
-  INDEX `fk_Conflit_DesignPattern2_idx` (`idDesignPattern2` ASC),
   CONSTRAINT `fk_Conflit_User1`
     FOREIGN KEY (`login`)
     REFERENCES `mydb`.`User` (`login`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Conflit_DesignPattern1`
-    FOREIGN KEY (`idDesignPattern1`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Conflit_DesignPattern2`
-    FOREIGN KEY (`idDesignPattern2`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -501,6 +487,30 @@ CREATE TABLE IF NOT EXISTS `mydb`.`SystemDesignPattern` (
   CONSTRAINT `fk_DesignPattern_has_Systeme_Systeme1`
     FOREIGN KEY (`idSystem`)
     REFERENCES `mydb`.`System` (`idSystem`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`ConflictDesignPattern`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`ConflictDesignPattern` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`ConflictDesignPattern` (
+  `idConflict` INT NOT NULL,
+  `idDesignPattern` INT NOT NULL,
+  INDEX `fk_ConflictDesignPattern_Conflict1_idx` (`idConflict` ASC),
+  INDEX `fk_ConflictDesignPattern_DesignPattern1_idx` (`idDesignPattern` ASC),
+  PRIMARY KEY (`idConflict`, `idDesignPattern`),
+  CONSTRAINT `fk_ConflictDesignPattern_Conflict1`
+    FOREIGN KEY (`idConflict`)
+    REFERENCES `mydb`.`Conflict` (`idConflict`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ConflictDesignPattern_DesignPattern1`
+    FOREIGN KEY (`idDesignPattern`)
+    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

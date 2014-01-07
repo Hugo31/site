@@ -16,6 +16,9 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <a href="test/pagetestsort.php">Page de test table de tri</a><br/>
         <a href="test/pagetestimgsrc.php">Page de test Image et Source</a><br/>
         <a href="test/pagetestcomnote.php">Page de test comment et note</a><br/>
+        <a href="test/pagetestconflict.php">Page de test conflict</a><br/>
+        <a href="test/pagetestsolution.php">Page de test solution</a><br/>
+        
 
     </body>
 </html>
