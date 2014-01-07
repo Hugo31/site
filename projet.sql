@@ -52,10 +52,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mydb`.`ImageDesignPattern` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`ImageDesignPattern` (
-  `idImageDesignPattern` INT NOT NULL AUTO_INCREMENT,
+  `idImage` INT NOT NULL AUTO_INCREMENT,
   `idDesignPattern` INT NOT NULL,
   `link` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`idImageDesignPattern`),
+  PRIMARY KEY (`idImage`),
   INDEX `fk_ImageDesignPattern_DesignPattern_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_ImageDesignPattern_DesignPattern`
     FOREIGN KEY (`idDesignPattern`)
@@ -188,6 +188,7 @@ DROP TABLE IF EXISTS `mydb`.`Conflict` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Conflict` (
   `idConflict` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(100) NULL,
   `login` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`idConflict`),
