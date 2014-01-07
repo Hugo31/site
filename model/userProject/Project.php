@@ -61,7 +61,8 @@ class Project implements IDataBase, ILink{
         $rqt->execute(array(
             'name' => $object->getNameProject(),
             'description' => $object->getDescriptionProject(),
-            'login' => $object->getLogin()
+            'login' => $object->getLogin(),
+            'idProject' => $object->getID()
             ));
     }
 
