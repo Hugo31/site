@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`CommentDesignPattern` (
   `comment` VARCHAR(100) NULL,
   INDEX `fk_User_has_DesignPattern_DesignPattern2_idx` (`idDesignPattern` ASC),
   INDEX `fk_User_has_DesignPattern_User2_idx` (`login` ASC),
-  PRIMARY KEY (`idCommentaire`),
+  PRIMARY KEY (`idComment`),
   CONSTRAINT `fk_User_has_DesignPattern_User2`
     FOREIGN KEY (`login`)
     REFERENCES `mydb`.`User` (`login`)
