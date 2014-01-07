@@ -36,15 +36,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
 
     public static function addDB($object){
         $bdd = Database::connect();
-        $reponse = $bdd->query('SELECT COUNT(*) AS nbr FROM User WHERE login = \''.$object->getLogin().'\'');
-        $donnees = $reponse->fetch();
-        if($donnees['nbr'] == 0){
-            //Erreur à traiter...
-            $reponse->closeCursor(); // Termine le traitement de la requête
-            return;
-        }
-        $reponse->closeCursor(); // Termine le traitement de la requête
-
+        
         $champ = 'name, what, whenAndHow, layout, copy, implementation, target, login';
         $value = '\''.$object->getNameDP().'\', \''.$object->getWhat().'\', \''.$object->getWhenAndHow().'\', \''.$object->getLayout().'\', ';
         $value .= '\''.$object->getCopy().'\', \''.$object->getImplementation().'\', \''.ETarget::getNameEnum($object->getTarget()).'\', \''.$object->getLogin().'\'';
@@ -54,17 +46,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
 
     public static function modifyDB($object){
         $bdd = Database::connect();
-
-        //Vérifier que le login est valable
-        $reponse = $bdd->query('SELECT COUNT(*) AS nbr FROM User WHERE login = \''.$object->getLogin().'\'');
-        $donnees = $reponse->fetch();
-        if($donnees['nbr'] == 0){
-            //Erreur à traiter...
-            $reponse->closeCursor(); // Termine le traitement de la requête
-            return;
-        }
-        $reponse->closeCursor(); // Termine le traitement de la requête
-
+        
         $requete = 'name = \''.$object->getNameDP().'\', what = \''.$object->getWhat().'\', whenAndHow = \''.$object->getWhenAndHow().'\', ';
         $requete .= 'layout = \''.$object->getLayout().'\', copy = \''.$object->getCopy().'\', implementation = \''.$object->getImplementation().'\', ';
         $requete .= 'target = \''.ETarget::getNameEnum($object->getTarget()).'\', login = \''.$object->getLogin().'\'';
@@ -159,10 +141,6 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
 
     public function setNameDP($_name) {
-        if (!is_string($_name)) {
-            $this->nameDP = "";
-            return;
-        }
         $this->nameDP = $_name;
     }
 
@@ -171,10 +149,6 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
 
     public function setWhat($_what) {
-        if (!is_string($_what)) {
-            $this->what = "";
-            return;
-        }
         $this->what = $_what;
     }
 
@@ -183,10 +157,6 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
 
     public function setWhenAndHow($_whenAndHow) {
-        if (!is_string($_whenAndHow)) {
-            $this->whenAndHow = "";
-            return;
-        }
         $this->whenAndHow = $_whenAndHow;
     }
 
@@ -195,10 +165,6 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
 
     public function setLayout($_layout) {
-        if (!is_string($_layout)) {
-            $this->layout = "";
-            return;
-        }
         $this->layout = $_layout;
     }
 
@@ -207,10 +173,6 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
 
     public function setCopy($_copy){
-        if (!is_string($_copy)) {
-            $this->copy = "";
-            return;
-        }
         $this->copy = $_copy;
     }
 
@@ -219,10 +181,6 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
 
     public function setImplementation($_implementation){
-        if (!is_string($_implementation)) {
-            $this->implementation = "";
-            return;
-        }
         $this->implementation = $_implementation;
     }
 
@@ -231,10 +189,6 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
 
     public function setTarget($_target) {
-        if(!ETarget::isValidValue($_target)){  
-            $this->target = ETarget::Designer;
-            return;
-        }
         $this->target = $_target;
     }
 
@@ -243,10 +197,6 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
 
     public function setLogin($_login){
-        if (!is_string($_login)) {
-            $this->login = "";
-            return;
-        }
         $this->login = $_login;
     }
 
