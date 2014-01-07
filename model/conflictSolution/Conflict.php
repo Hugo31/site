@@ -80,16 +80,30 @@ class Conflict implements IDataBase, IComment, ILink {
 
     /**
      * Ajoute un commentaire à un conflict.
-     * @param type $object
-     * @param type $user
-     * @param type $comment
+     * @param Conflict $object Le conflit auquel serapporte le commentaire.
+     * @param User $user L'utilisateur ayant posté.
+     * @param String $comment Le commentaire à ajouter.
      */
     public static function addComment($object, $user, $comment) {
         $bdd = Database::connect();
+        $rqt = $bdd->prepare('INSERT INTO CommentConflict (login, idConflict, date, comment) VALUES(:login, :idConflict, :date, :comment)');
+        $rqt->execute(array(
+            'login' => $user->getLogin(),
+            'idConflict' => $object->getID(),
+            'date' => 'NOW()',
+            'comment' => $comment
+            ));
+        $object->setID((int)$bdd->lastInsertId());
     }
 
+    /**
+     * Supprime un commentaire d'un conflict.
+     * @param CommentDesignPattern $object Le commentaire àsupprimer du conflit.
+     */
     public static function removeComment($idComment) {
+        $bdd = Database::connect();
         
+        $bdd->exec('DELETE FROM CommentDesignPattern WHERE idComment = \''.$idComment.'\'');
     }
     
     /**
