@@ -10,8 +10,7 @@ ctrl :
     tout a faire 
     eh oh quoi
     n'importe nawak ofet
-    gregyurgfeutgf
-    rovet
+    
 test :
     Créer page de test : 
         ajouterCommentaire.php
