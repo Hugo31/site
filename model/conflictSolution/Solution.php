@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/model/interfaceDB/IDataBase.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/commentNote/IComment.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/commentNote/INote.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/commentNote/IComment.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/commentNote/INote.php");
 class Solution implements IDataBase, IComment, INote{
     
     public static function addDB($object) {

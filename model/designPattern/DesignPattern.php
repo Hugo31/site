@@ -1,11 +1,11 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/model/interfaceDB/IDataBase.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/commentNote/IComment.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/commentNote/INote.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/imageSource/IImage.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/imageSource/ISource.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/designPattern/ETarget.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/model/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/commentNote/IComment.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/commentNote/INote.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/imageSource/IImage.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/imageSource/ISource.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/designPattern/ETarget.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 
 class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
 {

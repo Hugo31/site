@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/model/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 ?>
 <!DOCTYPE html>
 <html>
