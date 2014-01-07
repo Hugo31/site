@@ -101,7 +101,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     public static function addNote($object, $user, $note) {
         $bdd = Database::connect();
         $champ = 'login, idDesignPattern, note';
-        $value = '\''.$user->getLogin().'\', '.$object->getID().', \''.$note.'';
+        $value = '\''.$user->getLogin().'\', '.$object->getID().', '.$note.'';
         $bdd->exec('INSERT INTO NoteDesignPattern('.$champ.') VALUES('.$value.')');
     }
 
@@ -199,7 +199,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
 
     public function setTarget($_target) {
-        $this->target = $_target;
+        $this->target = ETarget::getValueEnum($_target);
     }
 
     public function getLogin(){
