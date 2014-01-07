@@ -8,7 +8,7 @@ class Database {
      */
     public static function connect(){ 
         try{ 
-            return new PDO('mysql:host=localhost;dbname=mydb', 'rootn', 'root'); 
+            return new PDO('mysql:host=localhost;dbname=mydb', 'root', 'root'); 
         } catch (Exception $e){ 
             die('Erreur : ' . $e->getMessage()); 
         } 
