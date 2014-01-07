@@ -26,13 +26,13 @@ class User implements IDataBase{
         $bdd = Database::connect();
         $req = $bdd->prepare('INSERT INTO User(login, pwd, lastname, firstname, mail, logo) VALUES(:login, :pwd, :lastname, :firstname, :mail, :logo)');
         $req->execute(array(
-                'login' => $this->getLogin(),
-                'pwd' => $this->getPwd(),
-                'lastname' => $this->getLastName(),
-                'firstname' => $this->getFirstName(),
-                'mail' => $this->getMail(),
-                'logo' => $this->getLogo()
-                ));
+            'login' => $object->getLogin(),
+            'pwd' => $object->getPwd(),
+            'lastname' => $object->getLastName(),
+            'firstname' => $object->getFirstName(),
+            'mail' => $object->getMail(),
+            'logo' => $object->getLogo()
+            ));
     }
 
     /**
@@ -41,7 +41,14 @@ class User implements IDataBase{
      * @param NULL $typeTable = NULL ici.
      */
     public static function getDB($id) {
+        $bdd = Database::connect();
         
+        $reponse = $bdd->query('SELECT * FROM User WHERE login = '.$id.'');
+        $donnees = $reponse->fetch();
+
+        $user = new User($id, $donnees['pwd'], $donnees['lastname'], $donnees['firstname'], $donnees['mail'], $donnees['logo']);
+        $reponse->closeCursor();
+        return $user;
     }
 
     /**
@@ -49,6 +56,17 @@ class User implements IDataBase{
      * @param User $object L'utilisateur à modifier
      */
     public static function modifyDB($object) {
+        $bdd = Database::connect();
+        
+        $req = $bdd->prepare('UPDATE User SET pwd = :pwd, lastname = :lastname, firstname = :firstname, mail = :mail, logo = :logo WHERE login = :login');
+        $req->execute(array(
+            'login' => $object->getLogin(),
+            'pwd' => $object->getPwd(),
+            'lastname' => $object->getLastName(),
+            'firstname' => $object->getFirstName(),
+            'mail' => $object->getMail(),
+            'logo' => $object->getLogo()
+            ));
         
     }
 
@@ -57,7 +75,18 @@ class User implements IDataBase{
      * @param User $object L'utilisateur à supprimer de la base de donnée.
      */
     public static function removeDB($object) {
+        $bdd = Database::connect();
         
+        $bdd->exec('UPDATE DesignPattern SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
+        $bdd->exec('UPDATE Conflit SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
+        $bdd->exec('UPDATE Solution SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
+        $bdd->exec('DELETE FROM NoteDesignPattern WHERE login = \''.$object->getLogin().'\''); //delete user notes on dp
+        $bdd->exec('DELETE FROM CommentDesignPattern WHERE login = \''.$object->getLogin().'\''); //delete user comments
+        $bdd->exec('DELETE FROM Project WHERE login = \''.$object->getLogin().'\''); //delete user projects
+        $bdd->exec('DELETE FROM CommentConflit WHERE login = \''.$object->getLogin().'\''); //delete user comments on conflicts
+        $bdd->exec('DELETE FROM CommentSolution WHERE login = \''.$object->getLogin().'\''); //delete user comments on solutions
+        $bdd->exec('DELETE FROM NoteSolution WHERE login = \''.$object->getLogin().'\''); //delete user notes on solutions
+        $bdd->exec('DELETE FROM User WHERE login = \''.$object->getLogin().'\''); //delete User
     }
     
     public function getLogin(){
