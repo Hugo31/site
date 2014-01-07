@@ -36,14 +36,21 @@ class Solution implements IDataBase, IComment, INote {
         $reponse = $bdd->exec('SELECT * FROM Solution WHERE idSolution = ' . $id . '');
         $donnees = $reponse->fetch();
 
-        $solution = new Solution($donnees['idSolution'], $donnees['comment'], $donnees['codeSolution'], 
-                $donnees['date'], $donnees['idConflict'], $donnees['login']);
+        $solution = new Solution($id, $donnees['comment'], $donnees['codeSolution'], $donnees['date'], $donnees['idConflict'], $donnees['login']);
         $reponse->closeCursor();
         return $solution;
     }
 
     public static function modifyDB($object) {
-        
+        $bdd = Database::connect();
+
+        $reponse = $bdd->prepare('UPDATE Solution SET comment = :comment, codeSolution = :codeSolution, '
+                . 'date = NOW(), login = :login WHERE idSolution = ' . $this->getID() . '');
+        $reponse->execute(array(
+            'comment' => $object->getComment(),
+            'codeSolution' => $object->getCodeSolution(),
+            'login' => $object->getLogin(),
+        ));
     }
 
     public static function removeDB($object) {
