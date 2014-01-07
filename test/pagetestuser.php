@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userProject/User.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,6 +32,20 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <form method="post" action="user/supprimerUser.php">
             <input type="submit" value="Supprimer"/>
     	</form>
+        
+        <h2>Liste utilisateurs</h2>
+        <?php
+            $bdd = Database::connect();
+        
+            $reponse = $bdd->query('SELECT * FROM User');
+            while( $data = $reponse->fetch()){
+                $user = User::getDB($data['login']);
+                echo $user->getFirstName();
+                echo " ";
+                echo $user->getLastName();
+                echo "<br>";
+            }
+        ?>
         
     </body>
 </html>
