@@ -129,13 +129,13 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     public static function removeImage($img) {
         $bdd = Database::connect();
         $cond = 'idImage = '.$img.'';
-        $bdd->exec('DELETE FROM ImageDesignPattern WHERE '.$cond.')');
+        $bdd->exec('DELETE FROM ImageDesignPattern WHERE '.$cond.'');
     }
 
     public static function removeSource($src) {
         $bdd = Database::connect();
         $cond = 'idSource = '.$src.'';
-        $bdd->exec('DELETE FROM Source WHERE '.$cond.')');
+        $bdd->exec('DELETE FROM Source WHERE '.$cond.'');
     }
 
     public function getID(){

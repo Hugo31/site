@@ -8,6 +8,8 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <title></title>
     </head>
     <body>
+        <a href="../index.php">Retour vers l'index</a>
+        
         <h2>Ajouter une image</h2>
         <form method="post" action="imageSource/ajouterImage.php">
         <p>
