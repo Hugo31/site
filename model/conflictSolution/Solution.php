@@ -24,7 +24,8 @@ class Solution implements IDataBase, IComment, INote {
 
     public static function addDB($object) {
         $bdd = Database::connect();
-        $rqt = $bdd->prepare('INSERT INTO Solution (comment, codeSolution, date, idConflit, login) VALUES(:comment, :codeSolution, NOW(), :idConflit, :login)');
+        $rqt = $bdd->prepare('INSERT INTO Solution (comment, codeSolution, date, idConflit, login) '
+                            .'VALUES(:comment, :codeSolution, NOW(), :idConflit, :login)');
         $rqt->execute(array(
             'comment' => $object->getComment(),
             'codeSolution' => $object->getCodeSolution(),
