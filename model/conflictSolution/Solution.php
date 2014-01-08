@@ -24,10 +24,13 @@ class Solution implements IDataBase, IComment, INote {
 
     public static function addDB($object) {
         $bdd = Database::connect();
-        $champ = 'comment, codeSolution, date, idConflit, login';
-        $value = '\'' . $object->getComment() . '\', \'' . $object->getCodeSolution() . '\'';
-        $value .= ', NOW(), ' . $object->getIDConflict() . ', \'' . $object->getLogin() . '\'';
-        $bdd->exec('INSERT INTO Solution(' . $champ . ') VALUES(' . $value . ')');
+        $rqt = $bdd->prepare('INSERT INTO Solution (comment, codeSolution, date, idConflit, login) VALUES(:comment, :codeSolution, NOW(), :idConflit, :login)');
+        $rqt->execute(array(
+            'comment' => $object->getComment(),
+            'codeSolution' => $object->getCodeSolution(),
+            'idConflict' => $object->getIDConflict(),
+            'login' => $object->getLogin()
+            ));
         $object->setID((int) $bdd->lastInsertId());
     }
 
