@@ -7,6 +7,6 @@
         
         $cf = Conflict::getDB($chaine[1]);
         $dp = DesignPattern::getDB($chaine[0]);
-        SortTable::removeLink($dp, $cf);
+        Conflict::removeLink($dp, $cf);
     }
 ?>

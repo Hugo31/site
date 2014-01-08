@@ -109,8 +109,8 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
                 $bdd = Database::connect();
                 $reponse = $bdd->query('SELECT idDesignPattern, idConflict FROM ConflictDesignPattern');
                 while ($donnees = $reponse->fetch()){
-                    echo '<option value="'.$donnees['idDesignPattern'].'-'.$donnees['Conflict'].'">';
-                    echo $donnees['idDesignPattern'].'-'.$donnees['Conflict'];
+                    echo '<option value="'.$donnees['idDesignPattern'].'-'.$donnees['idConflict'].'">';
+                    echo $donnees['idDesignPattern'].'-'.$donnees['idConflict'];
                     echo '</option>';
                 }
                 echo '</select><br/>';

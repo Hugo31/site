@@ -1,5 +1,5 @@
 <?php
-    header('Location: ../pagetestsort.php'); 
+    //header('Location: ../pagetestsort.php'); 
     require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/SortTable.php");
     if(isset($_POST['nameST']) and isset($_POST['listePossiblite']) and isset($_POST['descriptionST'])){
         
