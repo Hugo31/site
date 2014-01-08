@@ -24,7 +24,7 @@ class Project implements IDataBase, ILink{
      * @param Project $object Le projet à ajouter.
      */
     public static function addDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO project (name, description, login) VALUES(:name, :description, :login)');
         $rqt->execute(array(
             'name' => $object->getNameProject(),
@@ -40,7 +40,7 @@ class Project implements IDataBase, ILink{
      * @param NULL $typeTable = NULL ici.
      */
     public static function getDB($id) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $reponse = $bdd->query('SELECT * FROM Project WHERE idProject = '.$id.'');
         $donnees = $reponse->fetch();
@@ -55,7 +55,7 @@ class Project implements IDataBase, ILink{
      * @param Project $object Le projet à modifier.
      */
     public static function modifyDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $rqt = $bdd->prepare('UPDATE Project SET name = :name, description = :description, login = :login WHERE idProject = :idProject');
         $rqt->execute(array(
@@ -71,7 +71,7 @@ class Project implements IDataBase, ILink{
      * @param Project $object Le projet à supprimer.
      */
     public static function removeDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $bdd->exec('DELETE FROM ProjectDesignPattern WHERE idProject = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM Project WHERE idProject = \''.$object->getID().'\'');
@@ -83,7 +83,7 @@ class Project implements IDataBase, ILink{
      * @param Project $sort Le projet où l'on va ajouter un design pattern.
      */
     public static function addLink($tableToSort, $sort) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $bdd->exec('INSERT INTO ProjectDesignPattern (idProject, idDesignPattern) VALUES ('.$sort->getID().', '.$tableToSort->getID().')');
     }
@@ -94,7 +94,7 @@ class Project implements IDataBase, ILink{
      * @param Project $sort Le projet où l'on va supprimer un design pattern.
      */
     public static function removeLink($tableToSort, $sort) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $bdd->exec('DELETE FROM ProjectDesignPattern WHERE idProject = '.$sort->getID().' and idDesignPattern = '.$tableToSort->getID());
     }

@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 function getAllSortTable(){
-    $bdd = Database::connect();
+    $bdd = Database::getConnection();
     $reponse = $bdd->query('SELECT idSystem, name FROM System');
     while ($donnees = $reponse->fetch()){
         echo '<option value="System-'.$donnees['idSystem'].'">';
@@ -42,7 +42,7 @@ function getAllSortTable(){
 
 
 function getAllSortTableAssociation(){
-    $bdd = Database::connect();
+    $bdd = Database::getConnection();
     $reponse = $bdd->query('SELECT idSystem, idDesignPattern FROM SystemDesignPattern');
     while ($donnees = $reponse->fetch()){
         echo '<option value="System-'.$donnees['idSystem'].'-'.$donnees['idDesignPattern'].'">';

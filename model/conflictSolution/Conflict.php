@@ -25,7 +25,7 @@ class Conflict implements IDataBase, IComment, ILink {
      * @param Conflict $object Le conflit à ajouter.
      */
     public static function addDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO conflict (name, description, login) VALUES(:name, :description, :login)');
         $rqt->execute(array(
             'name' => $object->getNameConflict(),
@@ -41,7 +41,7 @@ class Conflict implements IDataBase, IComment, ILink {
      * @param NULL $typeTable = NULL ici.
      */
     public static function getDB($id) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $reponse = $bdd->query('SELECT * FROM Conflict WHERE idConflict = '.$id.'');
         $donnees = $reponse->fetch();
@@ -56,7 +56,7 @@ class Conflict implements IDataBase, IComment, ILink {
      * @param Project $object Le conflit à modifier.
      */
     public static function modifyDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, login = :login WHERE idConflict = :idConflict');
         $rqt->execute(array(
@@ -72,7 +72,7 @@ class Conflict implements IDataBase, IComment, ILink {
      * @param Project $object Le projet à supprimer.
      */
     public static function removeDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $bdd->exec('DELETE FROM CommentConflict WHERE idConflict = \''.$object->getID().'\''); // comment du conflit
         $bdd->exec('DELETE FROM ConflictDesignPattern WHERE idConflict = \''.$object->getID().'\''); //conflit entre les design pattern
@@ -86,7 +86,7 @@ class Conflict implements IDataBase, IComment, ILink {
      * @param String $comment Le commentaire à ajouter.
      */
     public static function addComment($object, $user, $comment) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO CommentConflict (login, idConflict, date, comment) VALUES(:login, :idConflict, :date, :comment)');
         $rqt->execute(array(
             'login' => $user->getLogin(),
@@ -102,7 +102,7 @@ class Conflict implements IDataBase, IComment, ILink {
      * @param CommentDesignPattern $object Le commentaire àsupprimer du conflit.
      */
     public static function removeComment($idComment) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $bdd->exec('DELETE FROM CommentDesignPattern WHERE idComment = \''.$idComment.'\'');
     }
@@ -113,7 +113,7 @@ class Conflict implements IDataBase, IComment, ILink {
      * @param Conflict $sort Le conflit où l'on va ajouter un design pattern.
      */
     public static function addLink($tableToSort, $sort) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $bdd->exec('INSERT INTO ConflictDesignPattern (idConflict, idDesignPattern) VALUES ('.$sort->getID().', '.$tableToSort->getID().')');
     }
@@ -124,7 +124,7 @@ class Conflict implements IDataBase, IComment, ILink {
      * @param Conflict $sort Le conflit où l'on va supprimer un design pattern.
      */
     public static function removeLink($tableToSort, $sort) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $bdd->exec('DELETE FROM ConflictDesignPattern WHERE idConflict = '.$sort->getID().' and idDesignPattern = '.$tableToSort->getID());
     }

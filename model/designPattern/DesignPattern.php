@@ -35,26 +35,47 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
 
     public static function addDB($object){
-        $bdd = Database::connect();
-        
-        $champ = 'name, what, whenAndHow, layout, copy, implementation, target, login';
-        $value = '\''.$object->getNameDP().'\', \''.$object->getWhat().'\', \''.$object->getWhenAndHow().'\', \''.$object->getLayout().'\', ';
-        $value .= '\''.$object->getCopy().'\', \''.$object->getImplementation().'\', \''.ETarget::getNameEnum($object->getTarget()).'\', \''.$object->getLogin().'\'';
-        $bdd->exec('INSERT INTO DesignPattern('.$champ.') VALUES('.$value.')');
-        $object->setID((int)$bdd->lastInsertId()); 
+        $bdd = Database::getConnection();
+        $rqt = $bdd->prepare('INSERT INTO DesignPattern (name, what, whenAndHow, layout, copy, implementation, target, login) '
+                            .'VALUES(:name, :what, :whenAndHow, :layout, :copy, :implementation, :target, :login)');
+        $reussie = $rqt->execute(array(
+            'name' => $object->getNameDP(),
+            'what' => $object->getWhat(),
+            'whenAndHow' => $object->getWhenAndHow(),
+            'layout' => $object->getLayout(),
+            'copy' => $object->getCopy(),
+            'implementation' => $object->getImplementation(),
+            'target' => ETarget::getNameEnum($object->getTarget()),
+            'login' => $object->getLogin()
+            ));
+        if($reussie == true){
+            $object->setID((int)$bdd->lastInsertId()); 
+        }
+        return $reussie;
     }
 
     public static function modifyDB($object){
-        $bdd = Database::connect();
-        
-        $requete = 'name = \''.$object->getNameDP().'\', what = \''.$object->getWhat().'\', whenAndHow = \''.$object->getWhenAndHow().'\', ';
-        $requete .= 'layout = \''.$object->getLayout().'\', copy = \''.$object->getCopy().'\', implementation = \''.$object->getImplementation().'\', ';
-        $requete .= 'target = \''.ETarget::getNameEnum($object->getTarget()).'\', login = \''.$object->getLogin().'\'';
-        $bdd->exec('UPDATE DesignPattern SET '.$requete.' WHERE idDesignPattern = '.$object->getID().'');
+        $bdd = Database::getConnection();
+        $req = $bdd->prepare('UPDATE DesignPattern SET '
+                            .'name = :name, what = :what, whenAndHow = :whenAndHow, layout = :layout, '
+                            .'copy = :copy, implementation = :implementation, target = :target, login = :login '
+                            .'WHERE idDesignPattern = :idDesignPattern');
+        $reussie = $req->execute(array(
+            'name' => $object->getNameDP(),
+            'what' => $object->getWhat(),
+            'whenAndHow' => $object->getWhenAndHow(),
+            'layout' => $object->getLayout(),
+            'copy' => $object->getCopy(),
+            'implementation' => $object->getImplementation(),
+            'target' => ETarget::getNameEnum($object->getTarget()),
+            'login' => $object->getLogin(),
+            'idDesignPattern' => $object->getID()
+            ));
+        return $reussie;
     }
 
     public static function removeDB($object){
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         //Spprimer les occurences de : 
         $bdd->exec('DELETE FROM SystemDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM PlatformDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
@@ -73,7 +94,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
 
     public static function getDB($id){
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $reponse = $bdd->query('SELECT * FROM DesignPattern WHERE idDesignPattern = '.$id.'');
         $donnees = $reponse->fetch();
 
@@ -87,55 +108,72 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     }
     
     public static function addComment($object, $user, $comment) {
-        $bdd = Database::connect();
-        $champ = 'login, idDesignPattern, date, comment';
-        $value = '\''.$user->getLogin().'\', '.$object->getID().', NOW(), \''.$comment.'\'';
-        $bdd->exec('INSERT INTO CommentDesignPattern('.$champ.') VALUES('.$value.')');
+        $bdd = Database::getConnection();
+        $rqt = $bdd->prepare('INSERT INTO CommentDesignPattern (login, idDesignPattern, date, comment) '
+                            .'VALUES(:login, :idDesignPattern, NOW(), :comment)');
+        $reussie = $rqt->execute(array(
+            'login' => $user->getLogin(),
+            'idDesignPattern' => $object->getID(),
+            'comment' => $comment
+            ));
+        return $reussie;
     }
 
     public static function removeComment($idComment) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM CommentDesignPattern WHERE idComment = \''.$idComment.'\'');
     }
     
     public static function addNote($object, $user, $note) {
-        $bdd = Database::connect();
-        $champ = 'login, idDesignPattern, note';
-        $value = '\''.$user->getLogin().'\', '.$object->getID().', '.$note.'';
-        $bdd->exec('INSERT INTO NoteDesignPattern('.$champ.') VALUES('.$value.')');
+        $bdd = Database::getConnection();
+        $rqt = $bdd->prepare('INSERT INTO NoteDesignPattern (login, idDesignPattern, note) '
+                            .'VALUES(:login, :idDesignPattern, :note)');
+        $reussie = $rqt->execute(array(
+            'login' => $user->getLogin(),
+            'idDesignPattern' => $object->getID(),
+            'note' => $note
+            ));
+        return $reussie;
     }
 
     public static function removeNote($object, $user) {
-        $bdd = Database::connect();
-        $cond = 'login = \''.$user->getLogin().'\' AND idDesignPattern = '.$object->getID().'';
-        $bdd->exec('DELETE FROM NoteDesignPattern WHERE '.$cond.'');
+        $bdd = Database::getConnection();
+        $bdd->exec('DELETE FROM NoteDesignPattern WHERE '
+                    .'login = \''.$user->getLogin().'\' AND idDesignPattern = '.$object->getID().'');
     }
     
     
     public static function addImage($object, $link) {
-        $bdd = Database::connect();
-        $champ = 'idDesignPattern, link';
-        $value = ''.$object->getID().', \''.$link.'\'';
-        $bdd->exec('INSERT INTO ImageDesignPattern('.$champ.') VALUES('.$value.')');
+        $bdd = Database::getConnection();
+        $rqt = $bdd->prepare('INSERT INTO ImageDesignPattern (idDesignPattern, link) '
+                            .'VALUES(:idDesignPattern, :link)');
+        $reussie = $rqt->execute(array(
+            'idDesignPattern' => $object->getID(),
+            'link' => $link
+            ));
+        return $reussie;
     }
 
     public static function addSource($object, $author, $link) {
-        $bdd = Database::connect();
-        $champ = 'idDesignPattern, author, link';
-        $value = ''.$object->getID().', \''.$author.'\', \''.$link.'\'';
-        $bdd->exec('INSERT INTO Source('.$champ.') VALUES('.$value.')');
+        $bdd = Database::getConnection();
+        $rqt = $bdd->prepare('INSERT INTO Source (idDesignPattern, author, link) '
+                            .'VALUES(:idDesignPattern, :author, :link)');
+        $reussie = $rqt->execute(array(
+            'idDesignPattern' => $object->getID(),
+            'author' => $author,
+            'link' => $link
+            ));
+        return $reussie;
     }
 
     public static function removeImage($img) {
-        $bdd = Database::connect();
-        $cond = 'idImage = '.$img.'';
-        $bdd->exec('DELETE FROM ImageDesignPattern WHERE '.$cond.'');
+        $bdd = Database::getConnection();
+        $bdd->exec('DELETE FROM ImageDesignPattern WHERE idImage = '.$img.'');
     }
 
     public static function removeSource($src) {
-        $bdd = Database::connect();
-        $cond = 'idSource = '.$src.'';
-        $bdd->exec('DELETE FROM Source WHERE '.$cond.'');
+        $bdd = Database::getConnection();
+        $bdd->exec('DELETE FROM Source WHERE idSource = '.$src.'');
     }
 
     public function getID(){

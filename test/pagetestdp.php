@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
+$bdd = Database::getConnection();
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
             <input type="radio" name="targetDP" value="Evaluator" id="evaluator" /> <label for="evaluator">Evaluator</label><br />
             <?php
                 echo '<select name="user" id="user">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT login, firstname, lastname FROM User');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['login'].'">';
@@ -39,7 +40,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
             <p>
             <?php
                 echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'">';
@@ -58,7 +59,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <p>
             <?php
                 echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'">';
@@ -77,7 +78,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <p>
             <?php
                 echo '<select name="user" id="user">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT login, firstname, lastname FROM User');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['login'].'">';
@@ -89,7 +90,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
             ?>
             <?php
                 echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'">';
@@ -110,7 +111,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <p>
             <?php
                 echo '<select name="comment" id="comment">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT idComment, idDesignPattern, login FROM CommentDesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idComment'].'">';
@@ -130,7 +131,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <p>
             <?php
                 echo '<select name="user" id="user">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT login, firstname, lastname FROM User');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['login'].'">';
@@ -142,7 +143,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
             ?>
             <?php
                 echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'">';
@@ -162,8 +163,8 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <form method="post" action="designPattern/supprimerNoteDP.php">
         <p>
             <?php
+            
                 echo '<select name="note" id="note">';
-                $bdd = Database::connect();
                 $reponse = $bdd->query('SELECT idDesignPattern, login FROM NoteDesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'-'.$donnees['login'].'">';

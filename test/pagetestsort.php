@@ -68,7 +68,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
             </select><br/>
             <?php
                 echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::connect();
+                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'">';

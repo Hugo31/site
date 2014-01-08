@@ -23,7 +23,7 @@ class Solution implements IDataBase, IComment, INote {
     }
 
     public static function addDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO Solution (comment, codeSolution, date, idConflit, login) '
                             .'VALUES(:comment, :codeSolution, NOW(), :idConflit, :login)');
         $rqt->execute(array(
@@ -36,7 +36,7 @@ class Solution implements IDataBase, IComment, INote {
     }
 
     public static function getDB($id) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $reponse = $bdd->exec('SELECT * FROM Solution WHERE idSolution = ' . $id . '');
         $donnees = $reponse->fetch();
 
@@ -46,7 +46,7 @@ class Solution implements IDataBase, IComment, INote {
     }
 
     public static function modifyDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
 
         $reponse = $bdd->prepare('UPDATE Solution SET comment = :comment, codeSolution = :codeSolution, '
                 . 'date = NOW(), login = :login WHERE idSolution = ' . $this->getID() . '');
@@ -62,7 +62,7 @@ class Solution implements IDataBase, IComment, INote {
     }
 
     public static function addComment($object, $user, $comment) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $champ = 'login, idSolution, date, comment';
         $value = '\'' . $user->getLogin() . '\', ' . $object->getID() . ', NOW(), \'' . $comment . '\'';
         $bdd->exec('INSERT INTO CommentSolution(' . $champ . ') VALUES(' . $value . ')');
@@ -73,7 +73,7 @@ class Solution implements IDataBase, IComment, INote {
     }
 
     public static function removeComment($idComment) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM CommentSolution WHERE idComment = \'' . $idComment . '\'');
     }
 

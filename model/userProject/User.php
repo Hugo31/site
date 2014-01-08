@@ -25,7 +25,7 @@ class User implements IDataBase{
      * @param User $object L'utilisateur à rajouter. 
      */
     public static function addDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $req = $bdd->prepare('INSERT INTO User(login, pwd, lastname, firstname, mail, logo) VALUES(:login, :pwd, :lastname, :firstname, :mail, :logo)');
         $req->execute(array(
             'login' => $object->getLogin(),
@@ -42,7 +42,7 @@ class User implements IDataBase{
      * @param int $id L'identifiant de l'utilisateur à obtenir.
      */
     public static function getDB($id) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $reponse = $bdd->query('SELECT * FROM User WHERE login = \''.$id.'\'');
         $donnees = $reponse->fetch();
@@ -57,7 +57,7 @@ class User implements IDataBase{
      * @param User $object L'utilisateur à modifier
      */
     public static function modifyDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $req = $bdd->prepare('UPDATE User SET pwd = :pwd, lastname = :lastname, firstname = :firstname, mail = :mail, logo = :logo WHERE login = :login');
         $req->execute(array(
@@ -76,7 +76,7 @@ class User implements IDataBase{
      * @param User $object L'utilisateur à supprimer de la base de donnée.
      */
     public static function removeDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         
         $bdd->exec('UPDATE DesignPattern SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
         $bdd->exec('UPDATE Conflit SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');

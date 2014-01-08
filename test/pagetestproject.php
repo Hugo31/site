@@ -23,7 +23,7 @@
         <form method="post" action="project/modifierProject.php">
             <?php
                 echo '<select name="project" id="project">';
-                $bdd = Database::connect();
+                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT idProject,name FROM Project');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idProject'].'">';
@@ -40,7 +40,7 @@
         <form method="post" action="project/supprimerProject.php">
             <?php
                 echo '<select name="project" id="project">';
-                $bdd = Database::connect();
+                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT idProject,name FROM Project');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idProject'].'">';
