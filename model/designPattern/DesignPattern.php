@@ -20,6 +20,14 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     private $target;
     private $login;
 
+    /**
+     * Construit un design pattern.
+     * @param int $_id L'identifiant du design pattern.
+     * @param string $_name Le nom.
+     * @param string $_what L'attribut what.
+     * @param ETarget $_target La cible, c'est à dire "Designer" ou "Evaluator".
+     * @param string $_login Le login du posteur.
+     */
     public function __construct($_id, $_name, $_what, $_target, $_login)
     {
         $this->setID($_id);
@@ -34,6 +42,11 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
 
     }
 
+    /**
+     * Ajoute à la base de donnée un design pattern passé en paramètre.
+     * @param DesignPattern $object Le design pattern à sauvegarder.
+     * @return bool True si l'ajout à réussi, False sinon.
+     */
     public static function addDB($object){
         $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO DesignPattern (name, what, whenAndHow, layout, copy, implementation, target, login) '
@@ -54,6 +67,11 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         return $reussie;
     }
 
+    /**
+     * Modifie un design pattern de la base de donnée.
+     * @param DesignPattern $object Le nouveau design pattern à modifier avec un identifiant valide.
+     * @return bool True si la modification a réussi, False sinon.
+     */
     public static function modifyDB($object){
         $bdd = Database::getConnection();
         $req = $bdd->prepare('UPDATE DesignPattern SET '
@@ -74,6 +92,10 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         return $reussie;
     }
 
+    /**
+     * Supprime de la base de donnée un design pattern.
+     * @param DesignPattern $object Le design pattern à supprimer.
+     */
     public static function removeDB($object){
         $bdd = Database::getConnection();
         //Spprimer les occurences de : 
@@ -93,6 +115,11 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         $bdd->exec('DELETE FROM DesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
     }
 
+    /**
+     * Donne un design pattern selon son identifiant dans la base de donnée.
+     * @param int $id L'identifiant du design pattern.
+     * @return \DesignPattern Le design pattern issus de la base de donnée.
+     */
     public static function getDB($id){
         $bdd = Database::getConnection();
         $reponse = $bdd->query('SELECT * FROM DesignPattern WHERE idDesignPattern = '.$id.'');
@@ -107,6 +134,13 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         return $dp;
     }
     
+    /**
+     * Ajoute un commentaire à un design pattern.
+     * @param DesignPattern $object Le design pattern à commenter.
+     * @param User $user L'utilisateur qui commente.
+     * @param string $comment Le commentaire fournit par l'utilisateur.
+     * @return bool True si l'ajout a réussi, False sinon.
+     */
     public static function addComment($object, $user, $comment) {
         $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO CommentDesignPattern (login, idDesignPattern, date, comment) '
@@ -119,11 +153,22 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         return $reussie;
     }
 
+    /**
+     * Supprime un commentaire pour un design pattern.
+     * @param int $idComment L'identifiant du commentaire.
+     */
     public static function removeComment($idComment) {
         $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM CommentDesignPattern WHERE idComment = \''.$idComment.'\'');
     }
     
+    /**
+     * Ajoute une note à un design pattern.
+     * @param DesignPattern $object Le design pattern à commenter.
+     * @param User $user L'utilisateur qui commente.
+     * @param int $note La note de l'utilisateur.
+     * @return bool True si l'ajout a réussi, False sinon.
+     */
     public static function addNote($object, $user, $note) {
         $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO NoteDesignPattern (login, idDesignPattern, note) '
@@ -136,13 +181,23 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         return $reussie;
     }
 
+    /**
+     * Supprime une note de la base de donnée.
+     * @param DesignPattern $object Le design pattern concerné.
+     * @param User $user L'utilisateur concerné.
+     */
     public static function removeNote($object, $user) {
         $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM NoteDesignPattern WHERE '
                     .'login = \''.$user->getLogin().'\' AND idDesignPattern = '.$object->getID().'');
     }
     
-    
+    /**
+     * Ajoute une image au design pattern.
+     * @param DesignPattern $object Le design pattern concerné.
+     * @param string $link Le lien de l'image.
+     * @return bool True si l'ajout a réussi, False sinon.
+     */
     public static function addImage($object, $link) {
         $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO ImageDesignPattern (idDesignPattern, link) '
@@ -154,6 +209,13 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         return $reussie;
     }
 
+    /**
+     * Ajoute une source au design pattern.
+     * @param DesignPattern $object Le design pattern concerné.
+     * @param string $author L'auteur de l'image.
+     * @param string $link Le lien de l'image.
+     * @return bool True si l'ajout a réussi, False sinon.
+     */
     public static function addSource($object, $author, $link) {
         $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO Source (idDesignPattern, author, link) '
@@ -166,11 +228,19 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         return $reussie;
     }
 
+    /**
+     * Supprime une image.
+     * @param int $img L'identifiant de l'image.
+     */
     public static function removeImage($img) {
         $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM ImageDesignPattern WHERE idImage = '.$img.'');
     }
 
+    /**
+     * Supprime une source.
+     * @param int $src L'identifant de la source.
+     */
     public static function removeSource($src) {
         $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM Source WHERE idSource = '.$src.'');
