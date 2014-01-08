@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userProject/User.php");
+$bdd = Database::getConnection();
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,7 +29,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userProject/User.php");
         <p>
             <?php
                 echo '<select name="login" id="login">';
-                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT * FROM User');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['login'].'">';
@@ -47,7 +47,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userProject/User.php");
         <p>
             <?php
                 echo '<select name="login" id="login">';
-                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT * FROM User');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['login'].'">';
@@ -64,7 +63,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userProject/User.php");
         
         <h2>Liste utilisateurs</h2>
         <?php
-            $bdd = Database::getConnection();
+            
         
             $reponse = $bdd->query('SELECT * FROM User');
             while( $data = $reponse->fetch()){

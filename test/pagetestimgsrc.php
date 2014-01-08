@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
+$bdd = Database::getConnection();
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <p>
             <?php
                 echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::getConnection();
+                
                 $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'">';
@@ -36,7 +37,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <p>
             <?php
                 echo '<select name="image" id="image">';
-                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT idImage, link FROM ImageDesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idImage'].'">';
@@ -55,7 +55,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <p>
             <?php
                 echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'">';
@@ -78,7 +77,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <p>
             <?php
                 echo '<select name="source" id="source">';
-                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT idSource, author FROM Source');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idSource'].'">';
