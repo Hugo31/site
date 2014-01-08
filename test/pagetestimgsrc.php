@@ -80,7 +80,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
                 $reponse = $bdd->query('SELECT idSource, author FROM Source');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idSource'].'">';
-                    echo $donnees['Author'];
+                    echo $donnees['author'];
                     echo '</option>';
                 }
                 echo '</select><br/>';
