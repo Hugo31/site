@@ -69,5 +69,55 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
             <input type="submit" value="Supprimer"/>
         </p>
         </form>
+        
+        <h2>Ajouter lien</h2>
+        <form method="post" action="conflictsolution/ajouterLienConflict.php">
+        <p>
+            <?php
+                echo '<select name="conflict" id="conflict">';
+                $bdd = Database::connect();
+                $reponse = $bdd->query('SELECT idConflict, name FROM Conflict');
+                while ($donnees = $reponse->fetch()){
+                    echo '<option value="'.$donnees['idConflict'].'">';
+                    echo $donnees['name'];
+                    echo '</option>';
+                }
+                echo '</select><br/>';
+                $reponse->closeCursor();
+         
+                echo '<select name="designPattern" id="designPattern">';
+                $bdd = Database::connect();
+                $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
+                while ($donnees = $reponse->fetch()){
+                    echo '<option value="'.$donnees['idDesignPattern'].'">';
+                    echo $donnees['name'];
+                    echo '</option>';
+                }
+                echo '</select><br/>';
+                $reponse->closeCursor();
+            ?>
+            <input type="submit" value="Ajouter"/>
+        </p>
+        </form>
+        
+        <h2>Supprimer lien</h2>
+        <form method="post" action="conflictsolution/supprimerLienConflict.php">
+        <p>
+            
+            <?php
+                echo '<select name="conflictDP" id="conflictDP">';
+                $bdd = Database::connect();
+                $reponse = $bdd->query('SELECT idDesignPattern, idConflict FROM ConflictDesignPattern');
+                while ($donnees = $reponse->fetch()){
+                    echo '<option value="'.$donnees['idDesignPattern'].'-'.$donnees['Conflict'].'">';
+                    echo $donnees['idDesignPattern'].'-'.$donnees['Conflict'];
+                    echo '</option>';
+                }
+                echo '</select><br/>';
+                $reponse->closeCursor();
+            ?>
+            <input type="submit" value="Supprimer"/>
+        </p>
+        </form>
     </body>
 </html>

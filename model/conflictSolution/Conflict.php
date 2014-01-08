@@ -4,6 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/commentNote/IComment.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBaseSort.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/ILink.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 
 class Conflict implements IDataBase, IComment, ILink {
     
@@ -57,12 +58,12 @@ class Conflict implements IDataBase, IComment, ILink {
     public static function modifyDB($object) {
         $bdd = Database::connect();
         
-        $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, login = :login WHERE idProject = :idProject');
+        $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, login = :login WHERE idConflict = :idConflict');
         $rqt->execute(array(
             'name' => $object->getNameConflict(),
             'description' => $object->getDescriptionConflict(),
             'login' => $object->getLogin(),
-            'idProject' => $object->getID()
+            'idConflict' => $object->getID()
             ));
     }
 
