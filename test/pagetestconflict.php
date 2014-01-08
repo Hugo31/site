@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
+$bdd = Database::getConnection();
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
             <textarea name="desc" id="desc"></textarea><br/>
             <?php
                 echo '<select name="user" id="user">';
-                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT login, firstname, lastname FROM User');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['login'].'">';
@@ -37,7 +37,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
             <p>
             <?php
                 echo '<select name="conflict" id="conflict">';
-                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT idConflict, name FROM Conflict');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idConflict'].'">';
@@ -56,7 +55,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <p>
             <?php
                 echo '<select name="conflict" id="conflict">';
-                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT idConflict, name FROM Conflict');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idConflict'].'">';
@@ -75,7 +73,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <p>
             <?php
                 echo '<select name="conflict" id="conflict">';
-                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT idConflict, name FROM Conflict');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idConflict'].'">';
@@ -86,7 +83,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
                 $reponse->closeCursor();
          
                 echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::getConnection();
                 $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'">';
@@ -106,7 +102,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
             
             <?php
                 echo '<select name="conflictDP" id="conflictDP">';
-                $bdd = Database::getConnection();
+                
                 $reponse = $bdd->query('SELECT idDesignPattern, idConflict FROM ConflictDesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'-'.$donnees['idConflict'].'">';
