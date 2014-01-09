@@ -5,13 +5,11 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 
 class SortTable implements IDataBase, ILink{
-    private $sortType;
     private $idSortTable;
     private $name;
     private $description;
     
-    public function __construct($_sortType, $_idSort, $_name, $_description = ""){
-        $this->sortType = $_sortType;
+    public function __construct($_idSort, $_name, $_description = ""){
         $this->idSortTable = $_idSort;
         $this->name = $_name;
         $this->description = $_description;
@@ -70,6 +68,14 @@ class SortTable implements IDataBase, ILink{
             ));
         
     }
+
+    public static function removeLink($tableToSort, $sort){
+        $bdd = Database::getConnection();
+        $table = ESortTable::getNameEnum($sort->sortType);
+        $cond = 'idDesignPattern = '.$tableToSort->getID().' AND id'.$table.' = '.$sort->getID().'';
+        
+        $bdd->exec('DELETE FROM '.$table.'DesignPattern WHERE '.$cond.'');
+    }
     
     public static function addLinkProperty($tableToSort, $sort, $note){
         $bdd = Database::getConnection();
@@ -80,14 +86,6 @@ class SortTable implements IDataBase, ILink{
             'idSort' => $sort->getID(), 
             'note' => $note
             ));
-    }
-
-    public static function removeLink($tableToSort, $sort){
-        $bdd = Database::getConnection();
-        $table = ESortTable::getNameEnum($sort->sortType);
-        $cond = 'idDesignPattern = '.$tableToSort->getID().' AND id'.$table.' = '.$sort->getID().'';
-        
-        $bdd->exec('DELETE FROM '.$table.'DesignPattern WHERE '.$cond.'');
     }
 
     public function getID(){
@@ -103,10 +101,6 @@ class SortTable implements IDataBase, ILink{
     }
 
     public function setName($_name) {
-        if (!is_string($_name)) {
-            $this->name = "";
-            return;
-        }
         $this->name = $_name;
     }
     
@@ -115,10 +109,6 @@ class SortTable implements IDataBase, ILink{
     }
 
     public function setDescription($_description) {
-        if (!is_string($_description)) {
-            $this->description = "";
-            return;
-        }
         $this->description = $_description;
     }
 }

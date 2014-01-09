@@ -1,6 +1,6 @@
 <?php 
 
-interface IDataBase extends IDatabaseMini
+interface IDataBase
 {
     /**
      * Méthode d'ajout d'un objet à la base de donnée.
