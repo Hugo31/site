@@ -17,6 +17,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     private $layout;
     private $copy;
     private $implementation;
+    private $nbUsage;
     private $target;
     private $login;
 
@@ -28,7 +29,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
      * @param ETarget $_target La cible, c'est à dire "Designer" ou "Evaluator".
      * @param string $_login Le login du posteur.
      */
-    public function __construct($_id, $_name, $_what, $_target, $_login)
+    public function __construct($_id, $_name, $_what, $_nbUsage, $_target, $_login)
     {
         $this->setID($_id);
         $this->setNameDP($_name);
@@ -37,6 +38,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         $this->setLayout("");
         $this->setCopy("");
         $this->setImplementation("");
+        $this->setNbUsage($_nbUsage);
         $this->setTarget($_target);
         $this->setLogin($_login);
 
@@ -49,8 +51,8 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
      */
     public static function addDB($object){
         $bdd = Database::getConnection();
-        $rqt = $bdd->prepare('INSERT INTO DesignPattern (name, what, whenAndHow, layout, copy, implementation, target, login) '
-                            .'VALUES(:name, :what, :whenAndHow, :layout, :copy, :implementation, :target, :login)');
+        $rqt = $bdd->prepare('INSERT INTO DesignPattern (name, what, whenAndHow, layout, copy, implementation, nbUsage, target, login) '
+                            .'VALUES(:name, :what, :whenAndHow, :layout, :copy, :implementation, :nbUsage, :target, :login)');
         $reussie = $rqt->execute(array(
             'name' => $object->getNameDP(),
             'what' => $object->getWhat(),
@@ -58,6 +60,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
             'layout' => $object->getLayout(),
             'copy' => $object->getCopy(),
             'implementation' => $object->getImplementation(),
+            'nbUsage' => $object->getNbUsage(),
             'target' => ETarget::getNameEnum($object->getTarget()),
             'login' => $object->getLogin()
             ));
@@ -76,7 +79,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         $bdd = Database::getConnection();
         $req = $bdd->prepare('UPDATE DesignPattern SET '
                             .'name = :name, what = :what, whenAndHow = :whenAndHow, layout = :layout, '
-                            .'copy = :copy, implementation = :implementation, target = :target, login = :login '
+                            .'copy = :copy, implementation = :implementation, nbUsage = :nbUsage, target = :target, login = :login '
                             .'WHERE idDesignPattern = :idDesignPattern');
         $reussie = $req->execute(array(
             'name' => $object->getNameDP(),
@@ -85,6 +88,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
             'layout' => $object->getLayout(),
             'copy' => $object->getCopy(),
             'implementation' => $object->getImplementation(),
+            'nbUsage' => $object->getNbUsage(),
             'target' => ETarget::getNameEnum($object->getTarget()),
             'login' => $object->getLogin(),
             'idDesignPattern' => $object->getID()
@@ -125,7 +129,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         $reponse = $bdd->query('SELECT * FROM DesignPattern WHERE idDesignPattern = '.$id.'');
         $donnees = $reponse->fetch();
 
-        $dp = new DesignPattern($donnees['idDesignPattern'], $donnees['name'], $donnees['what'], ETarget::getValueEnum($donnees['target']), $donnees['login']);
+        $dp = new DesignPattern($donnees['idDesignPattern'], $donnees['name'], $donnees['what'], $donnees['nbUsage'], ETarget::getValueEnum($donnees['target']), $donnees['login']);
         $dp->setWhenAndHow($donnees['whenAndHow']);
         $dp->setLayout($donnees['layout']);
         $dp->setCopy($donnees['copy']);
@@ -300,6 +304,14 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
 
     public function setImplementation($_implementation){
         $this->implementation = $_implementation;
+    }
+    
+    public function getNbUsage(){
+        return $this->nbUsage;
+    }
+
+    public function setNbUsage($_nbUsage){
+        $this->nbUsage = $_nbUsage;
     }
 
     public function getTarget(){

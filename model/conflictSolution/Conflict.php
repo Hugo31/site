@@ -10,12 +10,14 @@ class Conflict implements IDataBase, IComment, ILink {
     private $idConflict;
     private $name;
     private $description;
+    private $typeConflict;
     private $login;
     
-    public function __construct($_idConflict, $_name, $_description, $_login){
+    public function __construct($_idConflict, $_name, $_description, $_typeConflict, $_login){
         $this->setID($_idConflict);
         $this->setNameConflict($_name);
         $this->setDescriptionConflict($_description);
+        $this->setTypeConflict($_typeConflict);
         $this->setLogin($_login);
     }
     
@@ -25,10 +27,11 @@ class Conflict implements IDataBase, IComment, ILink {
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $rqt = $bdd->prepare('INSERT INTO conflict (name, description, login) VALUES(:name, :description, :login)');
+        $rqt = $bdd->prepare('INSERT INTO conflict (name, description, type, login) VALUES(:name, :description, :type, :login)');
         $rqt->execute(array(
             'name' => $object->getNameConflict(),
             'description' => $object->getDescriptionConflict(),
+            'type' => $object->getTypeConflict(),
             'login' => $object->getLogin()
             ));
         $object->setID((int)$bdd->lastInsertId()); 
@@ -45,22 +48,23 @@ class Conflict implements IDataBase, IComment, ILink {
         $reponse = $bdd->query('SELECT * FROM Conflict WHERE idConflict = '.$id.'');
         $donnees = $reponse->fetch();
 
-        $conflict = new Conflict($id, $donnees['name'], $donnees['description'], $donnees['login']);
+        $conflict = new Conflict($id, $donnees['name'], $donnees['description'], $donnees['type'], $donnees['login']);
         $reponse->closeCursor();
         return $conflict;
     }
 
     /**
      * Modifie un conflit dans la base de données.
-     * @param Project $object Le conflit à modifier.
+     * @param Conflict $object Le conflit à modifier.
      */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
         
-        $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, login = :login WHERE idConflict = :idConflict');
+        $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, type = :type, login = :login WHERE idConflict = :idConflict');
         $rqt->execute(array(
             'name' => $object->getNameConflict(),
             'description' => $object->getDescriptionConflict(),
+            'type' => $object->getTypeConflict(),
             'login' => $object->getLogin(),
             'idConflict' => $object->getID()
             ));
@@ -68,7 +72,7 @@ class Conflict implements IDataBase, IComment, ILink {
 
     /**
      * Supprimer un conflit de la base de données.
-     * @param Project $object Le projet à supprimer.
+     * @param Conflict $object Le projet à supprimer.
      */
     public static function removeDB($object) {
         $bdd = Database::getConnection();
@@ -150,6 +154,14 @@ class Conflict implements IDataBase, IComment, ILink {
 
     public function setDescriptionConflict($_description) {
         $this->description = $_description;
+    }
+    
+    public function getTypeConflict(){
+        return $this->typeConflict;
+    }
+
+    public function setTypeConflict($_typeConflict) {
+        $this->typeConflict = $_typeConflict;
     }
     
     public function getLogin(){
