@@ -58,7 +58,11 @@ class Solution implements IDataBase, IComment, INote {
     }
 
     public static function removeDB($object) {
+        $bdd = Database::getConnection();
         
+        $bdd->exec('DELETE FROM CommentSolution WHERE idSolution = \''.$object->getID().'\'');
+        $bdd->exec('DELETE FROM NoteSolution WHERE idSolution = \'' . $object->getID() . '\'');
+        $bdd->exec('DELETE FROM Solution WHERE idSolution = \''.$object->getID().'\'');
     }
 
     public static function addComment($object, $user, $comment) {
@@ -69,7 +73,10 @@ class Solution implements IDataBase, IComment, INote {
     }
 
     public static function addNote($object, $user, $note) {
-        
+        $bdd = Database::getConnection();   
+        $champ = 'login, idSolution, note';
+        $value = '\'' . $user->getLogin() . '\', ' . $object->getID() . '\'' . $note . '\'';
+        $bdd->exec('INSERT INTO NoteSolution(' . $champ . ') VALUES(' . $value . ')');
     }
 
     public static function removeComment($idComment) {
@@ -78,7 +85,9 @@ class Solution implements IDataBase, IComment, INote {
     }
 
     public static function removeNote($object, $user) {
-        
+        $bdd = Database::getConnection();
+        $bdd->exec('DELETE FROM NoteSolution WHERE idSolution = ' . $object->getID() 
+                . 'AND login = \'' . $user->getLogin() . '\'');
     }
 
     public function getID() {
