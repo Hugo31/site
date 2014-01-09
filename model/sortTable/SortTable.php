@@ -1,10 +1,10 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBaseSort.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/ILink.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 
-class SortTable implements IDataBaseSort, ILink{
+class SortTable implements IDataBase, ILink{
     private $sortType;
     private $idSortTable;
     private $name;
@@ -28,7 +28,7 @@ class SortTable implements IDataBaseSort, ILink{
         
     }
 
-    public static function getDB($id, $typeTable = NULL) { //$table doit etre de type ESortTable
+    public static function getDB($id, $typeTable = NULL) { 
         $bdd = Database::getConnection();
         $table = ESortTable::getNameEnum($typeTable);
         
@@ -69,6 +69,17 @@ class SortTable implements IDataBaseSort, ILink{
             'idSort' => $sort->getID()
             ));
         
+    }
+    
+    public static function addLinkProperty($tableToSort, $sort, $note){
+        $bdd = Database::getConnection();
+        $table = ESortTable::getNameEnum($sort->sortType);
+        $req = $bdd->prepare('INSERT INTO '.$table.'DesignPattern (idDesignPattern, id'.$table.', note) VALUES (:idDP, :idSort, :note)');
+        $req->execute(array(
+            'idDP' => $tableToSort->getID(),
+            'idSort' => $sort->getID(), 
+            'note' => $note
+            ));
     }
 
     public static function removeLink($tableToSort, $sort){
