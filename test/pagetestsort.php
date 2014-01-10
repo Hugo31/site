@@ -1,7 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 require_once("./functionForTest.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
 $bdd = Database::getConnection();
 ?>
 <!DOCTYPE html>
