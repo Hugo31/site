@@ -36,6 +36,7 @@ $bdd = Database::getConnection();
     <body> 
         A REFAIRE
         <a href="../index.php">Retour vers l'index</a>
+        
         <h2>Ajouter un tri</h2>
         <form method="post" action="sort/ajouterTriTable.php">
         <p>
