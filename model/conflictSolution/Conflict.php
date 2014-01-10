@@ -40,7 +40,6 @@ class Conflict implements IDataBase, IComment, ILink {
     /**
      * Donne un conflit issu de la base de données.
      * @param int $id L'identifiant du conflit dans la base de données.
-     * @param NULL $typeTable = NULL ici.
      */
     public static function getDB($id) {
         $bdd = Database::getConnection();
