@@ -1,33 +1,33 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBaseSort.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/ILink.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 
-class SortTable implements IDataBaseSort, ILink{
-    private $sortType;
+class SortTable implements IDataBase, ILink{
     private $idSortTable;
     private $name;
     private $description;
     
-    public function __construct($_sortType, $_idSort, $_name, $_description = ""){
-        $this->sortType = $_sortType;
+    public function __construct($_idSort, $_name, $_description = ""){
         $this->idSortTable = $_idSort;
         $this->name = $_name;
         $this->description = $_description;
     }
     
     public static function addDB($object) {
-        $bdd = Database::connect();
-        $champ = 'name, description';
-        $value = '\''.$object->getName().'\', \''.$object->getDescription().'\'';
-        $bdd->exec('INSERT INTO '.ESortTable::getNameEnum($object->sortType).'('.$champ.') VALUES('.$value.')');
+        $bdd = Database::getConnection();
+        $req = $bdd->prepare('INSERT INTO '.ESortTable::getNameEnum($object->sortType).' (name, description) VALUES(:name, :description)');
+        $req->execute(array(
+            'name' => $object->getName(),
+            'description' => $object->getDescription()
+            ));
         $object->setID((int)$bdd->lastInsertId()); 
         
     }
 
-    public static function getDB($id, $typeTable = NULL) { //$table doit etre de type ESortTable
-        $bdd = Database::connect();
+    public static function getDB($id, $typeTable = NULL) { 
+        $bdd = Database::getConnection();
         $table = ESortTable::getNameEnum($typeTable);
         
         $reponse = $bdd->query('SELECT * FROM '.$table.' WHERE id'.$table.' = '.$id.'');
@@ -39,15 +39,19 @@ class SortTable implements IDataBaseSort, ILink{
     }
 
     public static function modifyDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $table = ESortTable::getNameEnum($object->sortType);
-        $requete = 'name = \''.$object->getName().'\', description = \''.$object->getDescription().'\'';
-        $bdd->exec('UPDATE '.$table.' SET '.$requete.' WHERE id'.$table.' = '.$object->getID().'');
-    
+        $req = $bdd->prepare('UPDATE '.$table.' SET name = :name, description = :description WHERE id'.$table.' = :id');
+        $req->execute(array(
+            'name' => $object->getName(),
+            'description' => $object->getDescription(),
+            'id' => $object->getID()
+            ));
+        
     }
 
     public static function removeDB($object) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $table = ESortTable::getNameEnum($object->sortType);
         //Spprimer les occurences de : 
         $bdd->exec('DELETE FROM '.$table.'DesignPattern WHERE id'.$table.' = \''.$object->getID().'\'');
@@ -55,19 +59,33 @@ class SortTable implements IDataBaseSort, ILink{
     }
 
     public static function addLink($tableToSort, $sort){
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $table = ESortTable::getNameEnum($sort->sortType);
-        $values = ''.$tableToSort->getID().', '.$sort->getID().'';
+        $req = $bdd->prepare('INSERT INTO '.$table.'DesignPattern (idDesignPattern, id'.$table.') VALUES (:idDP, :idSort)');
+        $req->execute(array(
+            'idDP' => $tableToSort->getID(),
+            'idSort' => $sort->getID()
+            ));
         
-        $bdd->exec('INSERT INTO '.$table.'DesignPattern (idDesignPattern, id'.$table.') VALUES ('.$values.')');
     }
 
     public static function removeLink($tableToSort, $sort){
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $table = ESortTable::getNameEnum($sort->sortType);
         $cond = 'idDesignPattern = '.$tableToSort->getID().' AND id'.$table.' = '.$sort->getID().'';
         
         $bdd->exec('DELETE FROM '.$table.'DesignPattern WHERE '.$cond.'');
+    }
+    
+    public static function addLinkProperty($tableToSort, $sort, $note){
+        $bdd = Database::getConnection();
+        $table = ESortTable::getNameEnum($sort->sortType);
+        $req = $bdd->prepare('INSERT INTO '.$table.'DesignPattern (idDesignPattern, id'.$table.', note) VALUES (:idDP, :idSort, :note)');
+        $req->execute(array(
+            'idDP' => $tableToSort->getID(),
+            'idSort' => $sort->getID(), 
+            'note' => $note
+            ));
     }
 
     public function getID(){
@@ -83,10 +101,6 @@ class SortTable implements IDataBaseSort, ILink{
     }
 
     public function setName($_name) {
-        if (!is_string($_name)) {
-            $this->name = "";
-            return;
-        }
         $this->name = $_name;
     }
     
@@ -95,10 +109,6 @@ class SortTable implements IDataBaseSort, ILink{
     }
 
     public function setDescription($_description) {
-        if (!is_string($_description)) {
-            $this->description = "";
-            return;
-        }
         $this->description = $_description;
     }
 }

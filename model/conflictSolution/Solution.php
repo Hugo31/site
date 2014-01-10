@@ -23,51 +23,71 @@ class Solution implements IDataBase, IComment, INote {
     }
 
     public static function addDB($object) {
-        $bdd = Database::connect();
-        $champ = 'comment, codeSolution, date, idConflit, login';
-        $value = '\'' . $object->getComment() . '\', \'' . $object->getCodeSolution() . '\'';
-        $value .= ', NOW(), ' . $object->getIDConflict() . ', \'' . $object->getLogin() . '\'';
-        $bdd->exec('INSERT INTO Solution(' . $champ . ') VALUES(' . $value . ')');
+        $bdd = Database::getConnection();
+        $rqt = $bdd->prepare('INSERT INTO Solution (comment, codeSolution, date, idConflit, login) '
+                            .'VALUES(:comment, :codeSolution, NOW(), :idConflit, :login)');
+        $rqt->execute(array(
+            'comment' => $object->getComment(),
+            'codeSolution' => $object->getCodeSolution(),
+            'idConflict' => $object->getIDConflict(),
+            'login' => $object->getLogin()
+            ));
         $object->setID((int) $bdd->lastInsertId());
     }
 
     public static function getDB($id) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $reponse = $bdd->exec('SELECT * FROM Solution WHERE idSolution = ' . $id . '');
         $donnees = $reponse->fetch();
 
-        $solution = new Solution($donnees['idSolution'], $donnees['comment'], $donnees['codeSolution'], 
-                $donnees['date'], $donnees['idConflict'], $donnees['login']);
+        $solution = new Solution($id, $donnees['comment'], $donnees['codeSolution'], $donnees['date'], $donnees['idConflict'], $donnees['login']);
         $reponse->closeCursor();
         return $solution;
     }
 
     public static function modifyDB($object) {
-        
+        $bdd = Database::getConnection();
+
+        $reponse = $bdd->prepare('UPDATE Solution SET comment = :comment, codeSolution = :codeSolution, '
+                . 'date = NOW(), login = :login WHERE idSolution = ' . $this->getID() . '');
+        $reponse->execute(array(
+            'comment' => $object->getComment(),
+            'codeSolution' => $object->getCodeSolution(),
+            'login' => $object->getLogin(),
+        ));
     }
 
     public static function removeDB($object) {
+        $bdd = Database::getConnection();
         
+        $bdd->exec('DELETE FROM CommentSolution WHERE idSolution = \''.$object->getID().'\'');
+        $bdd->exec('DELETE FROM NoteSolution WHERE idSolution = \'' . $object->getID() . '\'');
+        $bdd->exec('DELETE FROM Solution WHERE idSolution = \''.$object->getID().'\'');
     }
 
     public static function addComment($object, $user, $comment) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $champ = 'login, idSolution, date, comment';
         $value = '\'' . $user->getLogin() . '\', ' . $object->getID() . ', NOW(), \'' . $comment . '\'';
         $bdd->exec('INSERT INTO CommentSolution(' . $champ . ') VALUES(' . $value . ')');
     }
 
     public static function addNote($object, $user, $note) {
-        
+        $bdd = Database::getConnection();   
+        $champ = 'login, idSolution, note';
+        $value = '\'' . $user->getLogin() . '\', ' . $object->getID() . '\'' . $note . '\'';
+        $bdd->exec('INSERT INTO NoteSolution(' . $champ . ') VALUES(' . $value . ')');
     }
 
     public static function removeComment($idComment) {
-        $bdd = Database::connect();
+        $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM CommentSolution WHERE idComment = \'' . $idComment . '\'');
     }
 
     public static function removeNote($object, $user) {
-        
+        $bdd = Database::getConnection();
+        $bdd->exec('DELETE FROM NoteSolution WHERE idSolution = ' . $object->getID() 
+                . 'AND login = \'' . $user->getLogin() . '\'');
     }
 
     public function getID() {

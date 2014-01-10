@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
+$bdd = Database::getConnection();
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
             <input type="radio" name="targetDP" value="Evaluator" id="evaluator" /> <label for="evaluator">Evaluator</label><br />
             <?php
                 echo '<select name="user" id="user">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT login, firstname, lastname FROM User');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['login'].'">';
@@ -39,7 +40,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
             <p>
             <?php
                 echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'">';
@@ -58,7 +59,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <p>
             <?php
                 echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'">';
@@ -68,6 +69,112 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
                 echo '</select><br/>';
                 $reponse->closeCursor();
             ?>
+            <input type="submit" value="Supprimer"/>
+        </p>
+        </form>
+        
+        <h2>Ajouter un commentaire</h2>
+        <form method="post" action="designPattern/ajouterCommentaireDP.php">
+        <p>
+            <?php
+                echo '<select name="user" id="user">';
+                
+                $reponse = $bdd->query('SELECT login, firstname, lastname FROM User');
+                while ($donnees = $reponse->fetch()){
+                    echo '<option value="'.$donnees['login'].'">';
+                    echo $donnees['firstname'].' - '.$donnees['lastname'];
+                    echo '</option>';
+                }
+                echo '</select><br/>';
+                $reponse->closeCursor();
+            ?>
+            <?php
+                echo '<select name="designPattern" id="designPattern">';
+                
+                $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
+                while ($donnees = $reponse->fetch()){
+                    echo '<option value="'.$donnees['idDesignPattern'].'">';
+                    echo $donnees['name'];
+                    echo '</option>';
+                }
+                echo '</select><br/>';
+                $reponse->closeCursor();
+            ?>
+            <label for="comment">Comment :</label>
+            <textarea name="comment" id="comment"></textarea><br/>
+            <input type="submit" value="Ajouter"/>
+        </p>
+        </form>
+        
+        <h2>Supprimer un commentaire</h2>
+        <form method="post" action="designPattern/supprimerCommentaireDP.php">
+        <p>
+            <?php
+                echo '<select name="comment" id="comment">';
+                
+                $reponse = $bdd->query('SELECT idComment, idDesignPattern, login FROM CommentDesignPattern');
+                while ($donnees = $reponse->fetch()){
+                    echo '<option value="'.$donnees['idComment'].'">';
+                    echo $donnees['idDesignPattern'].' - '.$donnees['login'];
+                    echo '</option>';
+                }
+                echo '</select><br/>';
+                $reponse->closeCursor();
+            ?>
+            
+            <input type="submit" value="Supprimer"/>
+        </p>
+        </form>
+        
+        <h2>Ajouter une note</h2>
+        <form method="post" action="designPattern/ajouterNoteDP.php">
+        <p>
+            <?php
+                echo '<select name="user" id="user">';
+                
+                $reponse = $bdd->query('SELECT login, firstname, lastname FROM User');
+                while ($donnees = $reponse->fetch()){
+                    echo '<option value="'.$donnees['login'].'">';
+                    echo $donnees['firstname'].' - '.$donnees['lastname'];
+                    echo '</option>';
+                }
+                echo '</select><br/>';
+                $reponse->closeCursor();
+            ?>
+            <?php
+                echo '<select name="designPattern" id="designPattern">';
+                
+                $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
+                while ($donnees = $reponse->fetch()){
+                    echo '<option value="'.$donnees['idDesignPattern'].'">';
+                    echo $donnees['name'];
+                    echo '</option>';
+                }
+                echo '</select><br/>';
+                $reponse->closeCursor();
+            ?>
+            <label for="note">Note : </label>
+            <input type="number" name="note" id="note"/><br/>
+            <input type="submit" value="Ajouter"/>
+        </p>
+        </form>
+        
+        <h2>Supprimer une note</h2>
+        <form method="post" action="designPattern/supprimerNoteDP.php">
+        <p>
+            <?php
+            
+                echo '<select name="note" id="note">';
+                $reponse = $bdd->query('SELECT idDesignPattern, login FROM NoteDesignPattern');
+                while ($donnees = $reponse->fetch()){
+                    echo '<option value="'.$donnees['idDesignPattern'].'-'.$donnees['login'].'">';
+                    echo $donnees['idDesignPattern'].' - '.$donnees['login'];
+                    echo '</option>';
+                }
+                echo '</select><br/>';
+                $reponse->closeCursor();
+            ?>
+            
             <input type="submit" value="Supprimer"/>
         </p>
         </form>

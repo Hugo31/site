@@ -2,6 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 require_once("./functionForTest.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
+$bdd = Database::getConnection();
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,7 +69,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
             </select><br/>
             <?php
                 echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::connect();
+                
                 $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
                 while ($donnees = $reponse->fetch()){
                     echo '<option value="'.$donnees['idDesignPattern'].'">';
@@ -87,21 +88,10 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
         <p>
             <select name="triTable" id="triTable">
             <?php
-            getAllSortTable();
+            getAllSortTableAssociation();
             ?>
             </select><br/>
-            <?php
-                echo '<select name="designPattern" id="designPattern">';
-                $bdd = Database::connect();
-                $reponse = $bdd->query('SELECT idDesignPattern, name FROM DesignPattern');
-                while ($donnees = $reponse->fetch()){
-                    echo '<option value="'.$donnees['idDesignPattern'].'">';
-                    echo $donnees['name'];
-                    echo '</option>';
-                }
-                echo '</select><br/>';
-                $reponse->closeCursor();
-            ?>
+            
             <input type="submit" value="Supprimer"/>
         </p>
         </form>
