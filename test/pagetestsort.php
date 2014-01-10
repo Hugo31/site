@@ -1,7 +1,30 @@
 <?php
+/*
+ * <?php
+ 
+$postdata = http_build_query(
+   array(
+      'var1' => 'du contenu',
+      'var2' => 'doh'
+   )
+);
+ 
+$opts = array('http' =>
+   array(
+      'method'  => 'POST',
+      'header'  => 'Content-type: application/x-www-form-urlencoded',
+      'content' => $postdata
+   )
+);
+ 
+$context  = stream_context_create($opts);
+ 
+$result = file_get_contents('http://example.com/submit.php', false, $context);
+ 
+?>
+ */
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 require_once("./functionForTest.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
 $bdd = Database::getConnection();
 ?>
 <!DOCTYPE html>
