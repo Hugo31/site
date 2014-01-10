@@ -165,7 +165,8 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
      */
     public static function removeComment($idComment) {
         $bdd = Database::getConnection();
-        $bdd->exec('DELETE FROM CommentDesignPattern WHERE idComment = \''.$idComment.'\'');
+        $nbLine = $bdd->exec('DELETE FROM CommentDesignPattern WHERE idComment = \''.$idComment.'\'');
+        return $nbLine > 0;
     }
     
     /**
@@ -194,8 +195,9 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
      */
     public static function removeNote($object, $user) {
         $bdd = Database::getConnection();
-        $bdd->exec('DELETE FROM NoteDesignPattern WHERE '
+        $nbLine = $bdd->exec('DELETE FROM NoteDesignPattern WHERE '
                     .'login = \''.$user->getLogin().'\' AND idDesignPattern = '.$object->getID().'');
+        return $nbLine > 0;
     }
     
     /**
@@ -240,7 +242,8 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
      */
     public static function removeImage($img) {
         $bdd = Database::getConnection();
-        $bdd->exec('DELETE FROM ImageDesignPattern WHERE idImage = '.$img.'');
+        $nbLine = $bdd->exec('DELETE FROM ImageDesignPattern WHERE idImage = '.$img.'');
+        return $nbLine > 0;
     }
 
     /**
@@ -249,7 +252,8 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
      */
     public static function removeSource($src) {
         $bdd = Database::getConnection();
-        $bdd->exec('DELETE FROM Source WHERE idSource = '.$src.'');
+        $nbLine = $bdd->exec('DELETE FROM Source WHERE idSource = '.$src.'');
+        return $nbLine > 0;
     }
 
     public function getID(){

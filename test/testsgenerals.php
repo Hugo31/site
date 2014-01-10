@@ -1,6 +1,12 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userProject/User.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/designPattern/DesignPattern.php");
+
+function writeTest($msgBefore, $var, $msgAfter){
+    echo $msgBefore;
+    var_dump($var);
+    echo $msgAfter."<br/>";
+}
 /*
  * doit inclure tout les tests de base sur la bd
  */
@@ -8,60 +14,42 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/designPattern/DesignPattern.
 $user1 = new User("bobRobBG", "mypwd", "Bob", "Robert", "robert.bob@gmail.com", "");
 $user2 = new User("brianKitchen", "mypwd", "Brian", "Bro", "brian.bro@gmail.com", "");
 
-echo "Ajout de l'user1 : ";
-var_dump(User::addDB($user1));
-echo "<br/>";
-echo "Ajout de l'user2 : ";
-var_dump(User::addDB($user2));
-echo "<br/>";
+writeTest("Ajout de l'user1 : ", User::addDB($user1), "");
+writeTest("Ajout de l'user2 : ", User::addDB($user2), "");
 
 $user3 = User::getDB("bobRobBG");
 $user4 = User::getDB("brianKitchen");
 $user3->setFirstName("BobBrian");
 $user4->setMail("bro@gmail.com");
 
-echo "Modification de l'user3 alias user1 : ";
-var_dump(User::modifyDB($user3));
-echo "<br/>";
-echo "Modification de l'user4 alias user2 : ";
-var_dump(User::modifyDB($user4));
-echo "<br/>";
-
-
+writeTest("Modification de l'user3 alias user1 : ", User::modifyDB($user3), "");
+writeTest("Modification de l'user4 alias user2 : ", User::modifyDB($user4), "");
 
 $dp1 = new DesignPattern(0, "Multi-Step", "Produit un design", "BROO", "Designer", "bobRobBG");
 $dp2 = new DesignPattern(0, "BackTracker", "Produit un design", 0, "Designer", "bobRobBG");
 
-echo "Ajout du dp1";
-var_dump(DesignPattern::addDB($dp1));
-echo "<br/>";
-echo "Ajout du dp2";
-var_dump(DesignPattern::addDB($dp2));
-echo "<br/>";
+writeTest("Ajout du dp1", DesignPattern::addDB($dp1), "");
+writeTest("Ajout du dp2", DesignPattern::addDB($dp2), "");
 
 $dp3 = DesignPattern::getDB($dp1->getID());
 $dp4 = DesignPattern::getDB($dp2->getID());
 $dp3->setWhat("Méthode pour guider l'utilisateur");
 $dp4->setLayout("C'est un layout");
 
-echo "Modification de dp3 alias dp1 : ";
-var_dump(DesignPattern::modifyDB($dp3));
-echo "<br/>";
-echo "Modification de dp4 alias dp2 : ";
-var_dump(DesignPattern::modifyDB($dp4));
-echo "<br/>";
+writeTest("Modification de dp3 alias dp1 : ", DesignPattern::modifyDB($dp3), "");
+writeTest("Modification de dp4 alias dp2 : ", DesignPattern::modifyDB($dp4), "");
+
+writeTest("Ajout d'un com : ", DesignPattern::addComment($dp1, $user1, "C'est le premier commentaire"), "");
+writeTest("Ajout d'un com : ", DesignPattern::addComment($dp1, $user2, "C'est le deuxième commentaire"), "");
+//Pour tester la suppresion d'un com, faudra passer par une autre méthode
+writeTest("Ajout d'une note : ", DesignPattern::addNote($dp1, $user1, 10), "");
+writeTest("Fake Ajout d'une note : ", DesignPattern::addNote($dp1, $user1, 10), " = FALSE");
+writeTest("Suppr d'une note : ", DesignPattern::removeNote($dp1, $user1), "");
 
 
-echo "Suppression de dp1 : ";
-var_dump(DesignPattern::removeDB($dp1));
-echo "<br/>";
-echo "Suppression de dp2 : ";
-var_dump(DesignPattern::removeDB($dp2));
-echo "<br/>";
-echo "Suppression de user1 : ";
-var_dump(User::removeDB($user1));
-echo "<br/>";
-echo "Suppression de user2 : ";
-var_dump(User::removeDB($user2));
-echo "<br/>";
+writeTest("Suppression de dp1 : ", DesignPattern::removeDB($dp1), "");
+writeTest("Suppression de dp2 : ", DesignPattern::removeDB($dp2), "");
+writeTest("Suppression de user1 : ", User::removeDB($user1), "");
+writeTest("Suppression de user2 : ", User::removeDB($user2), "");
+
 ?>
