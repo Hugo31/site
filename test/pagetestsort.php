@@ -34,7 +34,7 @@ $bdd = Database::getConnection();
         <title></title>
     </head>
     <body> 
-        A REFAIRE
+        A REFAIRE / NON fonctionnel
         <a href="../index.php">Retour vers l'index</a>
         
         <h2>Ajouter un tri</h2>
