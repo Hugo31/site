@@ -19,6 +19,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <a href="test/pagetestconflict.php">Page de test conflict</a><br/>
         <a href="test/pagetestsolution.php">Page de test solution</a><br/>
         
-
+        <a href="test/testsgenerals.php">Page de tests générals</a><br/>
     </body>
 </html>

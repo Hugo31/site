@@ -27,7 +27,7 @@ class User implements IDataBase{
     public static function addDB($object) {
         $bdd = Database::getConnection();
         $req = $bdd->prepare('INSERT INTO User(login, pwd, lastname, firstname, mail, logo) VALUES(:login, :pwd, :lastname, :firstname, :mail, :logo)');
-        $req->execute(array(
+        $reussie = $req->execute(array(
             'login' => $object->getLogin(),
             'pwd' => $object->getPwd(),
             'lastname' => $object->getLastName(),
@@ -35,6 +35,7 @@ class User implements IDataBase{
             'mail' => $object->getMail(),
             'logo' => $object->getLogo()
             ));
+        return $reussie;
     }
 
     /**
@@ -46,6 +47,7 @@ class User implements IDataBase{
         
         $reponse = $bdd->query('SELECT * FROM User WHERE login = \''.$id.'\'');
         $donnees = $reponse->fetch();
+        
         $user = new User($id, $donnees['pwd'], $donnees['lastname'], $donnees['firstname'], $donnees['mail'], $donnees['logo']);
         $reponse->closeCursor();
         return $user;
@@ -60,7 +62,7 @@ class User implements IDataBase{
         $bdd = Database::getConnection();
         
         $req = $bdd->prepare('UPDATE User SET pwd = :pwd, lastname = :lastname, firstname = :firstname, mail = :mail, logo = :logo WHERE login = :login');
-        $req->execute(array(
+        $reussie = $req->execute(array(
             'login' => $object->getLogin(),
             'pwd' => $object->getPwd(),
             'lastname' => $object->getLastName(),
@@ -68,7 +70,7 @@ class User implements IDataBase{
             'mail' => $object->getMail(),
             'logo' => $object->getLogo()
             ));
-        
+        return $reussie;
     }
 
     /**
@@ -88,7 +90,9 @@ class User implements IDataBase{
         $bdd->exec('DELETE FROM CommentConflit WHERE login = \''.$object->getLogin().'\''); //delete user comments on conflicts
         $bdd->exec('DELETE FROM CommentSolution WHERE login = \''.$object->getLogin().'\''); //delete user comments on solutions
         $bdd->exec('DELETE FROM NoteSolution WHERE login = \''.$object->getLogin().'\''); //delete user notes on solutions
-        $bdd->exec('DELETE FROM User WHERE login = \''.$object->getLogin().'\''); //delete User
+        $nbLine = $bdd->exec('DELETE FROM User WHERE login = \''.$object->getLogin().'\''); //delete User
+        
+        return $nbLine > 0;
     }
     
     public function getLogin(){

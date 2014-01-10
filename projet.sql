@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`DesignPattern` (
   `layout` VARCHAR(100) NULL,
   `copy` VARCHAR(100) NULL,
   `implementation` VARCHAR(100) NULL,
+  `nbUsage` INT NULL,
   `target` ENUM('Designer','Evaluator') NOT NULL,
   `login` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`idDesignPattern`),
@@ -190,6 +191,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Conflict` (
   `idConflict` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(100) NULL,
+  `type` VARCHAR(45) NULL,
   `login` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`idConflict`),
   INDEX `fk_Conflit_User1_idx` (`login` ASC),
@@ -405,6 +407,7 @@ DROP TABLE IF EXISTS `mydb`.`PropertyDesignPattern` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`PropertyDesignPattern` (
   `idDesignPattern` INT NOT NULL,
   `idProperty` INT NOT NULL,
+  `note` INT NULL,
   PRIMARY KEY (`idDesignPattern`, `idProperty`),
   INDEX `fk_DesignPattern_has_Propertie_Propertie1_idx` (`idProperty` ASC),
   INDEX `fk_DesignPattern_has_Propertie_DesignPattern1_idx` (`idDesignPattern` ASC),
@@ -512,6 +515,30 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ConflictDesignPattern` (
   CONSTRAINT `fk_ConflictDesignPattern_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
     REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`ComponentRelatedDesignPattern`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`ComponentRelatedDesignPattern` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`ComponentRelatedDesignPattern` (
+  `idDesignPattern` INT NOT NULL,
+  `idComponent` INT NOT NULL,
+  INDEX `fk_ComponentRelatedDesignPattern_DesignPattern1_idx` (`idDesignPattern` ASC),
+  INDEX `fk_ComponentRelatedDesignPattern_Component1_idx` (`idComponent` ASC),
+  PRIMARY KEY (`idDesignPattern`, `idComponent`),
+  CONSTRAINT `fk_ComponentRelatedDesignPattern_DesignPattern1`
+    FOREIGN KEY (`idDesignPattern`)
+    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ComponentRelatedDesignPattern_Component1`
+    FOREIGN KEY (`idComponent`)
+    REFERENCES `mydb`.`Component` (`idComponent`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

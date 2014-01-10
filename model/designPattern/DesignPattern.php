@@ -67,6 +67,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         if($reussie == true){
             $object->setID((int)$bdd->lastInsertId()); 
         }
+        
         return $reussie;
     }
 
@@ -116,7 +117,8 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
         $bdd->exec('DELETE FROM CommentDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
 
 
-        $bdd->exec('DELETE FROM DesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
+        $nbReussie = $bdd->exec('DELETE FROM DesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
+        return $nbReussie > 0;
     }
 
     /**
