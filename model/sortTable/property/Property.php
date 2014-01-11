@@ -1,12 +1,25 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/property/ILinkProperty.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/SortTable.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 class Property extends SortTable implements IDataBase, ILinkProperty{
     
+    /**
+     * Construit une propriété
+     * @param int $_idSort L'identifiant dans la base de donnée.
+     * @param string $_name Le nom de la propriété.
+     * @param string $_description La description de la propriété (Optionnel)
+     */
     public function __construct($_idSort, $_name, $_description = ""){
         parent::__construct($_idSort, $_name, $_description);
     }
     
+    /**
+     * Ajoute à la base de donnée une propriété passé en paramètre.
+     * @param Property $object La propriété à sauvegarder.
+     * @return bool True si l'ajout à réussi, False sinon.
+     */
     public static function addDB($object) {
         $bdd = Database::getConnection();
         $req = $bdd->prepare('INSERT INTO Property (name, description) VALUES(:name, :description)');

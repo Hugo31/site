@@ -124,7 +124,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     /**
      * Donne un design pattern selon son identifiant dans la base de donnée.
      * @param int $id L'identifiant du design pattern.
-     * @return \DesignPattern Le design pattern issus de la base de donnée.
+     * @return DesignPattern Le design pattern issus de la base de donnée.
      */
     public static function getDB($id){
         $bdd = Database::getConnection();

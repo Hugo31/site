@@ -1,11 +1,25 @@
 <?php
-
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/ILink.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/SortTable.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 class System extends SortTable implements IDataBase, ILink{
     
+    /**
+     * Construit un système
+     * @param int $_idSort L'identifiant dans la base de donnée.
+     * @param string $_name Le nom du système.
+     * @param string $_description La description du système (Optionnel)
+     */
     public function __construct($_idSort, $_name, $_description = ""){
         parent::__construct($_idSort, $_name, $_description);
     }
     
+    /**
+     * Ajoute à la base de donnée un système passé en paramètre.
+     * @param System $object Le système à sauvegarder.
+     * @return bool True si l'ajout à réussi, False sinon.
+     */
     public static function addDB($object) {
         $bdd = Database::getConnection();
         $req = $bdd->prepare('INSERT INTO System (name, description) VALUES(:name, :description)');
@@ -17,6 +31,11 @@ class System extends SortTable implements IDataBase, ILink{
         
     }
 
+    /**
+     * Donne un système selon son identifiant dans la base de donnée.
+     * @param int $id L'identifiant du système.
+     * @return System Le système issus de la base de donnée.
+     */
     public static function getDB($id) { 
         $bdd = Database::getConnection();
         $reponse = $bdd->query('SELECT * FROM System WHERE idSystem = '.$id.'');
