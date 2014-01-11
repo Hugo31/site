@@ -45,6 +45,11 @@ class Component extends SortTable implements IDataBase, ILinkComponent{
         return $st;
     }
 
+    /**
+     * Modifie un composant de la base de donnée.
+     * @param Component $object Le nouveau composant à modifier avec un identifiant valide.
+     * @return bool True si la modification a réussi, False sinon.
+     */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
         $req = $bdd->prepare('UPDATE Component SET name = :name, description = :description WHERE idComponent = :id');
@@ -55,6 +60,11 @@ class Component extends SortTable implements IDataBase, ILinkComponent{
             ));
     }
 
+    /**
+     * Supprime de la base de donnée un composant.
+     * @param Composant $object Le composant à supprimer.
+     * @return bool True si la suppression a réussi, False sinon.
+     */
     public static function removeDB($object) {
         $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM ComponentDesignPattern WHERE idComponent = \''.$object->getID().'\'');

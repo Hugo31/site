@@ -100,6 +100,7 @@ class DesignPattern implements IDataBase, IComment, INote, IImage, ISource
     /**
      * Supprime de la base de donnée un design pattern.
      * @param DesignPattern $object Le design pattern à supprimer.
+     * @return bool True si la suppression a réussi, False sinon.
      */
     public static function removeDB($object){
         $bdd = Database::getConnection();

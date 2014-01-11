@@ -64,6 +64,11 @@ class Category extends SortTable implements IDataBase, ILink{
             ));
     }
 
+    /**
+     * Supprime de la base de donnée une catégorie.
+     * @param Category $object La categorie à supprimer.
+     * @return bool True si la suppression a réussi, False sinon.
+     */
     public static function removeDB($object) {
         $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM CategoryDesignPattern WHERE idCategory = \''.$object->getID().'\'');

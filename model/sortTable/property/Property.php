@@ -31,6 +31,11 @@ class Property extends SortTable implements IDataBase, ILinkProperty{
         
     }
 
+    /**
+     * Donne une propriété selon son identifiant dans la base de donnée.
+     * @param int $id L'identifiant de la propriété.
+     * @return Property La propriété issus de la base de donnée.
+     */
     public static function getDB($id) { 
         $bdd = Database::getConnection();
         $reponse = $bdd->query('SELECT * FROM Property WHERE idProperty = '.$id.'');
@@ -40,6 +45,11 @@ class Property extends SortTable implements IDataBase, ILinkProperty{
         return $st;
     }
 
+    /**
+     * Modifie une propriété de la base de donnée.
+     * @param Property $object La nouvelle propriété à modifier avec un identifiant valide.
+     * @return bool True si la modification a réussi, False sinon.
+     */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
         $req = $bdd->prepare('UPDATE Property SET name = :name, description = :description WHERE idProperty = :id');
@@ -50,6 +60,11 @@ class Property extends SortTable implements IDataBase, ILinkProperty{
             ));
     }
 
+    /**
+     * Supprime de la base de donnée une propriété.
+     * @param Property $object La propriété à supprimer.
+     * @return bool True si la suppression a réussi, False sinon.
+     */
     public static function removeDB($object) {
         $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM PropertyDesignPattern WHERE idProperty = \''.$object->getID().'\'');

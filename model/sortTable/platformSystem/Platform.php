@@ -45,6 +45,11 @@ class Platform extends SortTable implements IDataBase, ILink{
         return $st;
     }
 
+    /**
+     * Modifie une plateforme de la base de donnée.
+     * @param Platform $object La nouvelle plateforme à modifier avec un identifiant valide.
+     * @return bool True si la modification a réussi, False sinon.
+     */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
         $req = $bdd->prepare('UPDATE Platform SET name = :name, description = :description WHERE idPlatform = :id');
@@ -55,6 +60,11 @@ class Platform extends SortTable implements IDataBase, ILink{
             ));
     }
 
+    /**
+     * Supprime de la base de donnée une plateforme.
+     * @param Platform $object La plateforme à supprimer.
+     * @return bool True si la suppression a réussi, False sinon.
+     */
     public static function removeDB($object) {
         $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM PlatformDesignPattern WHERE idPlatform = \''.$object->getID().'\'');

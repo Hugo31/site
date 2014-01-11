@@ -45,6 +45,11 @@ class System extends SortTable implements IDataBase, ILink{
         return $st;
     }
 
+    /**
+     * Modifie un système de la base de donnée.
+     * @param System $object Le nouveau système à modifier avec un identifiant valide.
+     * @return bool True si la modification a réussi, False sinon.
+     */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
         $req = $bdd->prepare('UPDATE System SET name = :name, description = :description WHERE idSystem = :id');
@@ -55,6 +60,11 @@ class System extends SortTable implements IDataBase, ILink{
             ));
     }
 
+    /**
+     * Supprime de la base de donnée un système.
+     * @param System $object Le système à supprimer.
+     * @return bool True si la suppression a réussi, False sinon.
+     */
     public static function removeDB($object) {
         $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM SystemDesignPattern WHERE idSystem = \''.$object->getID().'\'');
