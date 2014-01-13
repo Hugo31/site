@@ -20,5 +20,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <a href="test/pagetestsolution.php">Page de test solution</a><br/>
         
         <a href="test/testsgenerals.php">Page de tests générals</a><br/>
+        
+        <a href="testJQuery/testjquery1.php">Test jquery</a><br/>
     </body>
 </html>
