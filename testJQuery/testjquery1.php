@@ -52,6 +52,15 @@
         <form id="formtest" method="post" action="testpage.php">
             <input type="submit" value="Envoyer" />
         </form>
+        <form id="formtest2" method="post" action="testpage2.php"><label>Non fonctionnel</label>
+            <input type="text" value="Category" name ="table"/>
+            <input type="text" value="1|2|3|4" name="id"/>
+            <input type="submit" value="Test implode_explode" />
+        </form>
+        <form id="formtest3" method="post" action="testpage2.php">
+            
+            <input type="submit" value="Test fat requete search" />
+        </form>
         
         <div class="rating-box" style="width: 25%"> 
             <div class="score-container"> 
@@ -126,9 +135,9 @@
                 $('#text').mouseenter(function(){
                     $(this).css('background-color','#f00');
                 });
-                $(':input').change(function(){
+                /*$(':input').change(function(){
                     alert($(this).val());
-                });
+                });*/
                 //Sample de code pour faire du post en ajax.
                 $('#formtest').submit(function(){
                     $.post("testpage.php", {table: "Category", nom: "test", description: "description"}, 
@@ -139,6 +148,30 @@
                             else{
                                 $('body').prepend("Il y a eu un problème :(");
                             }
+                        });
+        
+                    
+                    return false;
+                });
+                $('#formtest2').submit(function(){
+                    $.post("testpage2.php", {table: $("#formtest2 input[name=table]").val(), id: $("#formtest2 input[name=id]").val()}, 
+                        function(data) {
+                            $('body').prepend(data);
+                            
+                        });
+        
+                    
+                    return false;
+                });
+                $('#formtest3').submit(function(){
+                    $.post("testpage2.php", {
+                            idCategory: "1|2|3", 
+                            idProperty: "4|5"
+                        },
+                    
+                        function(data) {
+                            $('body').prepend(data);
+                            
                         });
         
                     
