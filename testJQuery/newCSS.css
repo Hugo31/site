@@ -1,0 +1,87 @@
+.rating-box {
+    border-radius: 2px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    background: none repeat scroll 0% 0% rgb(255, 255, 255);
+    margin-bottom: 50px;
+    margin-right: 7px;
+    white-space: nowrap;
+}
+
+.rating-box .score-container {
+    padding: 20px;
+    text-align: center;
+    width: 160px;
+}
+
+.rating-box .score-container, .rating-box .rating-histogram {
+    -moz-box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.rating-box {
+    white-space: nowrap;
+}
+
+.rating-box .rating-histogram {
+    padding: 20px 20px 20px 30px;
+}
+.rating-box .rating-histogram {
+    width: 170px;
+}
+
+.score-container .score {
+    color: rgb(51, 51, 51);
+    font-size: 64px;
+    font-weight: 100;
+    line-height: 64px;
+}
+
+.score-container .reviews-stats {
+    color: rgb(141, 141, 141);
+}
+
+.rating-box .rating-bar-container {
+    color: rgb(115, 115, 115);
+    height: 23px;
+    font-weight: 400;
+    position: relative;
+    width: 100%;
+}
+
+.rating-bar-container.five .bar {
+    background: none repeat scroll 0% 0% rgb(136, 177, 49);
+}
+.rating-bar-container.four .bar {
+    background: none repeat scroll 0% 0% rgb(153, 204, 0);
+}
+.rating-bar-container.three .bar {
+    background: none repeat scroll 0% 0% rgb(255, 207, 2);
+}
+.rating-bar-container.two .bar {
+    background: none repeat scroll 0% 0% rgb(255, 159, 2);
+}
+.rating-bar-container.one .bar {
+    background: none repeat scroll 0% 0% rgb(255, 111, 49);
+}
+
+
+.rating-box .bar-number {
+    color: rgb(51, 51, 51);
+    left: 5px;
+    position: absolute;
+    top: 4px;
+}
+.rating-bar-container .bar {
+    opacity: 0.8;
+    transition: width 0.25s ease 0s;
+    display: inline-block;
+    height: 100%;
+}
+
+.rating-box .bar-label {
+    left: -30px;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 4px;
+}
