@@ -5,14 +5,16 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/SortTable.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 class Platform extends SortTable implements IDataBase, ILink{
     
+    private $icon;
     /**
      * Construit une plateforme
      * @param int $_idSort L'identifiant dans la base de donnée.
      * @param string $_name Le nom de la plateforme.
      * @param string $_description La description de la plateforme (Optionnel)
      */
-    public function __construct($_idSort, $_name, $_description = ""){
+    public function __construct($_idSort, $_name, $_description, $_icon){
         parent::__construct($_idSort, $_name, $_description);
+        $icon = $_icon;
     }
     
     /**
@@ -22,10 +24,11 @@ class Platform extends SortTable implements IDataBase, ILink{
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('INSERT INTO Platform (name, description) VALUES(:name, :description)');
+        $req = $bdd->prepare('INSERT INTO Platform (name, description, icon) VALUES(:name, :description, :icon)');
         $req->execute(array(
             'name' => $object->getName(),
-            'description' => $object->getDescription()
+            'description' => $object->getDescription(), 
+            'icon' => $object->getIcone()
             ));
         $object->setID((int)$bdd->lastInsertId()); 
         
@@ -40,7 +43,7 @@ class Platform extends SortTable implements IDataBase, ILink{
         $bdd = Database::getConnection();
         $reponse = $bdd->query('SELECT * FROM Platform WHERE idPlatform = '.$id.'');
         $donnees = $reponse->fetch();
-        $st = new Platform($donnees['idPlatform'], $donnees['name'], $donnees['description']);
+        $st = new Platform($donnees['idPlatform'], $donnees['name'], $donnees['description'], $donnees['icon']);
         $reponse->closeCursor();
         return $st;
     }
@@ -52,10 +55,11 @@ class Platform extends SortTable implements IDataBase, ILink{
      */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('UPDATE Platform SET name = :name, description = :description WHERE idPlatform = :id');
+        $req = $bdd->prepare('UPDATE Platform SET name = :name, description = :description, icon = :icon WHERE idPlatform = :id');
         $req->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),
+            'icon' => $object->getIcon(),
             'id' => $object->getID()
             ));
     }
@@ -83,6 +87,14 @@ class Platform extends SortTable implements IDataBase, ILink{
     public static function removeLink($tableToSort, $sort){
         $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM PlatformDesignPattern WHERE idDesignPattern = '.$tableToSort->getID().' AND idPlatform = '.$sort->getID().'');
+    }
+    
+    public function setIcon($_icon){
+        $icon = $_icon; 
+    }
+    
+    public function getIcon() {
+        return $icon;
     }
 }
 

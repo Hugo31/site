@@ -10,13 +10,15 @@ class Conflict implements IDataBase, IComment, ILink {
     private $name;
     private $description;
     private $typeConflict;
+    private $date;
     private $login;
     
-    public function __construct($_idConflict, $_name, $_description, $_typeConflict, $_login){
+    public function __construct($_idConflict, $_name, $_description, $_typeConflict, $_date, $_login){
         $this->setID($_idConflict);
         $this->setNameConflict($_name);
         $this->setDescriptionConflict($_description);
         $this->setTypeConflict($_typeConflict);
+        $this->setDateConflict($_date);
         $this->setLogin($_login);
     }
     
@@ -26,7 +28,7 @@ class Conflict implements IDataBase, IComment, ILink {
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $rqt = $bdd->prepare('INSERT INTO conflict (name, description, type, login) VALUES(:name, :description, :type, :login)');
+        $rqt = $bdd->prepare('INSERT INTO conflict (name, description, type, date, login) VALUES(:name, :description, :type, NOW(), :login)');
         $rqt->execute(array(
             'name' => $object->getNameConflict(),
             'description' => $object->getDescriptionConflict(),
@@ -46,7 +48,7 @@ class Conflict implements IDataBase, IComment, ILink {
         $reponse = $bdd->query('SELECT * FROM Conflict WHERE idConflict = '.$id.'');
         $donnees = $reponse->fetch();
 
-        $conflict = new Conflict($id, $donnees['name'], $donnees['description'], $donnees['type'], $donnees['login']);
+        $conflict = new Conflict($id, $donnees['name'], $donnees['description'], $donnees['type'], $donnees['date'], $donnees['login']);
         $reponse->closeCursor();
         return $conflict;
     }
@@ -58,11 +60,12 @@ class Conflict implements IDataBase, IComment, ILink {
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
         
-        $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, type = :type, login = :login WHERE idConflict = :idConflict');
+        $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, type = :type, date = :date, login = :login WHERE idConflict = :idConflict');
         $rqt->execute(array(
             'name' => $object->getNameConflict(),
             'description' => $object->getDescriptionConflict(),
             'type' => $object->getTypeConflict(),
+            'date' => $object->getDateConflict(),
             'login' => $object->getLogin(),
             'idConflict' => $object->getID()
             ));
@@ -160,6 +163,14 @@ class Conflict implements IDataBase, IComment, ILink {
 
     public function setTypeConflict($_typeConflict) {
         $this->typeConflict = $_typeConflict;
+    }
+    
+    public function getDateConflict(){
+        return $this->date;
+    }
+
+    public function setDateConflict($_date) {
+        $this->date = $_date;
     }
     
     public function getLogin(){

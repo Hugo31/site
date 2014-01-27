@@ -1,0 +1,4 @@
+Ont été rajoutés : 
+    Un champ date dans Conflit, à ajouter au model.
+    Un champ icone dans System, à ajouter au model. FAIT à TEST
+    Un champ icone dans Platform, à ajouter au model. FAIT à TEST

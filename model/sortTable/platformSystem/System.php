@@ -4,15 +4,16 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/ILink.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/SortTable.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 class System extends SortTable implements IDataBase, ILink{
-    
+    private $icon;
     /**
      * Construit un système
      * @param int $_idSort L'identifiant dans la base de donnée.
      * @param string $_name Le nom du système.
      * @param string $_description La description du système (Optionnel)
      */
-    public function __construct($_idSort, $_name, $_description = ""){
+    public function __construct($_idSort, $_name, $_description, $_icon){
         parent::__construct($_idSort, $_name, $_description);
+        $icon = $_icon;
     }
     
     /**
@@ -22,10 +23,11 @@ class System extends SortTable implements IDataBase, ILink{
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('INSERT INTO System (name, description) VALUES(:name, :description)');
+        $req = $bdd->prepare('INSERT INTO System (name, description, icon) VALUES(:name, :description, icon)');
         $req->execute(array(
             'name' => $object->getName(),
-            'description' => $object->getDescription()
+            'description' => $object->getDescription(), 
+            'icon' => $object->getIcone()
             ));
         $object->setID((int)$bdd->lastInsertId()); 
         
@@ -40,7 +42,7 @@ class System extends SortTable implements IDataBase, ILink{
         $bdd = Database::getConnection();
         $reponse = $bdd->query('SELECT * FROM System WHERE idSystem = '.$id.'');
         $donnees = $reponse->fetch();
-        $st = new System($donnees['idSystem'], $donnees['name'], $donnees['description']);
+        $st = new System($donnees['idSystem'], $donnees['name'], $donnees['description'], $donnees['icon']);
         $reponse->closeCursor();
         return $st;
     }
@@ -52,10 +54,11 @@ class System extends SortTable implements IDataBase, ILink{
      */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('UPDATE System SET name = :name, description = :description WHERE idSystem = :id');
+        $req = $bdd->prepare('UPDATE System SET name = :name, description = :description, icon = :icon WHERE idSystem = :id');
         $req->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),
+            'icon' => $object->getIcon(),
             'id' => $object->getID()
             ));
     }
@@ -83,6 +86,14 @@ class System extends SortTable implements IDataBase, ILink{
     public static function removeLink($tableToSort, $sort){
         $bdd = Database::getConnection();
         $bdd->exec('DELETE FROM SystemDesignPattern WHERE idDesignPattern = '.$tableToSort->getID().' AND idSystem = '.$sort->getID().'');
+    }
+    
+    public function setIcon($_icon){
+        $icon = $_icon; 
+    }
+    
+    public function getIcon() {
+        return $icon;
     }
 }
 
