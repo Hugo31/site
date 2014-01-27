@@ -57,7 +57,7 @@
             <input type="text" value="1|2|3|4" name="id"/>
             <input type="submit" value="Test implode_explode" />
         </form>
-        <form id="formtest3" method="post" action="testpage2.php">
+        <form id="formtest3" method="post" action="testpage3.php">
             
             <input type="submit" value="Test fat requete search" />
         </form>
@@ -142,7 +142,7 @@
                 $('#formtest').submit(function(){
                     $.post("testpage.php", {table: "Category", nom: "test", description: "description"}, 
                         function(data) {
-                            if(data == true){
+                            if(data === true){
                                 $('body').prepend("Ok c'est ajouter ;)");
                             }
                             else{
@@ -166,13 +166,15 @@
                 $('#formtest3').submit(function(){
                     $.post("testpage2.php", {
                             idCategory: "1|2|3", 
-                            idProperty: "4|5"
-                        },
+                            idProperty: "4|5", 
+                            target: "Designer"
+                    },
                     
-                        function(data) {
-                            $('body').prepend(data);
-                            
-                        });
+                    function(data) {
+                        $('body').prepend(data);
+                        $('#formtest3').prepend('<input type="text" name="request" value=\'' + data + '\'/>');
+                        
+                    });
         
                     
                     return false;

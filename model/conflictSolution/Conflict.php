@@ -2,7 +2,6 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDataBase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/commentNote/IComment.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/ILink.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/sortTable/ESortTable.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 
 class Conflict implements IDataBase, IComment, ILink {
