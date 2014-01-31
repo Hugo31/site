@@ -36,9 +36,14 @@
         </ul>
         <div style="display: block;">
             <a href="#" onclick="return hidecomment(this)" style="text-decoration:none;">[-]</a>Le bloc à cacher
-            <p>
+            <p style="padding-left: 20px;">
                 TEST1<br/>
                 TEST2<br/>
+                <a href="#" onclick="return hidecomment(this)" style="text-decoration:none;padding-left:20px;">[-]</a> Un sous bloc
+                <p>
+                    TEST3<br/>
+                    TEST4<br/>
+                </p>
             </p>
         </div>
         <div style="display: block;">
