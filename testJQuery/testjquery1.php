@@ -39,8 +39,8 @@
             <p style="padding-left: 20px;">
                 TEST1<br/>
                 TEST2<br/>
-                <a href="#" onclick="return hidecomment(this)" style="text-decoration:none;padding-left:20px;">[-]</a> Un sous bloc
-                <p>
+                <a href="#" onclick="return hidecomment(this)" style="text-decoration:none;padding-left:20px;">[-]</a> <span>Un sous bloc</span>
+                <p style="padding-left: 20px;">
                     TEST3<br/>
                     TEST4<br/>
                 </p>
