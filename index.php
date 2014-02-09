@@ -22,5 +22,8 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
         <a href="test/testsgenerals.php">Page de tests générals</a><br/>
         
         <a href="testJQuery/testjquery1.php">Test jquery</a><br/>
+        <?php
+            include($_SERVER['DOCUMENT_ROOT']."/site/view/search/viewSearch.php");
+        ?>
     </body>
 </html>

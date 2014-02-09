@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
         <link rel="stylesheet" href="newCSS.css" />
         <title></title>
     </head>
