@@ -1,5 +1,5 @@
 
-function runEffect() {
-        $('#search_bar_advanced').toggle('blind');
+function runEffect($identifiant) {
+        $($identifiant).toggle('blind');
 }
     
