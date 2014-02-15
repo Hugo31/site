@@ -3,8 +3,11 @@
 class ToolKitDisplay {
     
     public static function displayCheckBoxCriteria($criteria, $dataToDisplay){
+        $i = 0;
         foreach($dataToDisplay as $row){
-            echo "<input type=\"checkbox\" name=\"".$criteria.$row["id"]."\" value=\"".$row["id"]."\">".$row["name"]."<br>";
+            echo "<input type=\"checkbox\" name=\"id".$criteria.$i."\" value=\"".$row["id"]."\">".$row["name"]."<br>";
+            $i++;
+            
         }
     }
 }
