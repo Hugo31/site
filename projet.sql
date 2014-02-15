@@ -29,11 +29,11 @@ DROP TABLE IF EXISTS `mydb`.`DesignPattern` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`DesignPattern` (
   `idDesignPattern` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `what` VARCHAR(100) NOT NULL,
-  `whenAndHow` VARCHAR(100) NULL,
-  `layout` VARCHAR(100) NULL,
-  `copy` VARCHAR(100) NULL,
-  `implementation` VARCHAR(100) NULL,
+  `what` TEXT NOT NULL,
+  `whenAndHow` TEXT NULL,
+  `layout` TEXT NULL,
+  `copy` TEXT NULL,
+  `implementation` TEXT NULL,
   `nbUsage` INT NULL,
   `target` ENUM('Designer','Evaluator') NOT NULL,
   `login` VARCHAR(30) NOT NULL,
@@ -190,8 +190,9 @@ DROP TABLE IF EXISTS `mydb`.`Conflict` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`Conflict` (
   `idConflict` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
-  `description` VARCHAR(100) NULL,
+  `description` TEXT NULL,
   `type` VARCHAR(45) NULL,
+  `date` DATETIME NULL,
   `login` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`idConflict`),
   INDEX `fk_Conflit_User1_idx` (`login` ASC),
@@ -237,8 +238,8 @@ DROP TABLE IF EXISTS `mydb`.`Solution` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Solution` (
   `idSolution` INT NOT NULL AUTO_INCREMENT,
-  `comment` VARCHAR(100) NULL,
-  `codeSolution` VARCHAR(100) NULL,
+  `comment` TEXT NULL,
+  `codeSolution` TEXT NULL,
   `date` DATETIME NOT NULL,
   `idConflict` INT NOT NULL,
   `login` VARCHAR(30) NOT NULL,
@@ -319,6 +320,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Platform` (
   `idPlatform` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(100) NULL,
+  `icon` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idPlatform`))
 ENGINE = InnoDB;
 
@@ -332,6 +334,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`System` (
   `idSystem` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(100) NULL,
+  `icon` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idSystem`))
 ENGINE = InnoDB;
 

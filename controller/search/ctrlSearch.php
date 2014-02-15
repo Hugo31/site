@@ -9,26 +9,15 @@ $session = Session::getInstance();
 
 if(isset($_POST['search_type_table'])){
     if($_POST['search_type_table'] == "Conflict"){
-        $session->query = ToolKitSearch::searchConflict();
+        $session->query = ToolKitSearch::searchConflict($_POST);
     }
     else{
         if($_POST['search_type_table'] == "DesignPattern"){
-            if(isset($_POST['idCategory'])){
-                $nbElem = $_POST['idCategory'];
-                //echo $nbElem;
-                $_POST['idCategory'] = "";
-                for($i = 0; $i < $nbElem; $i++){
-                    if(isset($_POST['idCategory'.$i])){
-                        $_POST['idCategory'] .= $_POST['idCategory'.$i]."|";
-                    }
-                    
-                }
-            }
             //echo "CAT".$_POST['idCategory']."CAT";
             $session->query = ToolKitSearch::searchDP($_POST);
         }
         else{
-            $session->query = ToolKitSearch::searchSolution();
+            $session->query = ToolKitSearch::searchSolution($_POST);
         }
     }
 }

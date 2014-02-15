@@ -1,6 +1,20 @@
 <?php
 
 class ToolKitSQL {
+    public static function generateCriteriaLine(&$values, $name){
+        if(isset($values[$name])){
+            $nbElem = $values[$name];
+            //echo $nbElem;
+            $values[$name] = "";
+            for($i = 0; $i < $nbElem; $i++){
+                if(isset($values[$name.$i])){
+                    $values[$name] .= $values[$name.$i]."|";
+                }
+
+            }
+        }
+    }
+    
     public static function generateCriteriaQuery($nameCat, $acronym, $cdt, &$requete, &$cond, $results){
         if(isset($results)){
             $var = explode("|", $results); //Le dernier résultat de var n'est pas à prendre
