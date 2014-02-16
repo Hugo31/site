@@ -12,12 +12,19 @@ $bdd = Database::getConnection();
         <title></title>
     </head>
     <body>
+        <!--include header-->
+        <!--include nav-->
         <?php
-        echo $session->query;
-        $result = $bdd->query($session->query);
-        foreach($result as $row){
-            echo "NOM : ".$row['name'];
-        }
+            include($_SERVER['DOCUMENT_ROOT']."/site/view/search/viewSearch.php");
         ?>
+        
+        
+        <?php
+            $result = $bdd->query($session->query);
+            foreach($result as $row){
+                echo "NOM : ".$row['name'];
+            }
+        ?>
+        <!--include footer-->
     </body>
 </html>
