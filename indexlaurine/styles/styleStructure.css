@@ -1,6 +1,6 @@
 /* ------------------------------ COULEURS --------------------------------- */
 
-/* Général */
+/* Gï¿½nï¿½ral */
 body {
 	color: #373F42;
 	background: #f7f7f7 url('../img/structure/bg04.png');
@@ -17,7 +17,7 @@ body {
 	height:80px;
 	margin:0 auto;
 	float:center;
-	padding:10px;
+	padding:10px 10px 10px 0px;
 }
 
 #navigation {
@@ -28,8 +28,8 @@ body {
 }
 
 #menu {
-	padding-top:15px;
-	height:25px;
+	padding-top:30px;
+	height:40px;
 }
 
 #menu a{
@@ -87,7 +87,7 @@ input.signupfooter{
 
 /* Bloc central contenant #search et #contenu */
 #centre {
-	background: url('../img/structure/colonnes.png') repeat-y; 
+	background: url('../img/structure/colonnes_nv2.png') repeat-y; 
 }
 
 /* Contenu principal */
@@ -113,7 +113,7 @@ input.signupfooter{
 }
 
 #footercontent {
-	width:1014px;
+	width:1024px;
 	margin:0 auto;
 	padding:0 auto;
 	height:230px;
@@ -134,7 +134,7 @@ body {
 	margin: 0 auto;
 }
 
-/* En-tête */
+/* En-tï¿½te */
 #header {
 	min-width:1024px;
 	height : 100px;
@@ -150,14 +150,14 @@ body {
 
 /* recherche */
 #search {
-	width: 180px;
+	width: 160px;
 	float: left;
 	padding: 10px 20px 10px 20px;
 }
 
 /* Contenu */
 #contenu {
-	margin-left: 190px; /* decalage par rapport à search */
+	margin-left: 210px; /* decalage par rapport ï¿½ search */
 	padding: 10px 20px 10px 20px;
 }
 #contenu > :first-child {
