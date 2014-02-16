@@ -10,4 +10,8 @@ class ToolKitDisplay {
             
         }
     }
+    
+    public static function displayGenericBox(){
+        
+    }
 }
