@@ -45,7 +45,7 @@ INSERT INTO `user`(`login`, `pwd`, `lastname`, `firstname`, `mail`, `logo`) VALU
 
 INSERT INTO `designpattern`(`name`, `what`, `whenAndHow`, `layout`, `copy`, `implementation`, `target`, `login`) VALUES ('design1','dp de test','when and how','layout','copy','implementation','target', 'blondie');
 
-INSERT INTO `imagedesignpattern`(`idDesignPattern`, `link`) VALUES (1,'link...');
+INSERT INTO `imagedesignpattern`(`idDesignPattern`, `link`) VALUES (2,'link...');
 
 INSERT INTO `conflict`(`name`, `description`, `type`, `login`) VALUES ('conflit 1','1er conflit de test','type?','blondie');
 

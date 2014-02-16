@@ -44,7 +44,9 @@ class ToolKitSearch {
     }
     
     public static function searchSolution(){
-        
+        $requete = "SELECT DISTINCT s.idSolution, s.comment FROM Solution s WHERE name LIKE \"%".$values['search_keywords']."%\"";
+    
+        return $requete;
     }
 }
 

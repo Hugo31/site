@@ -9,14 +9,16 @@ $session = Session::getInstance();
 
 if(isset($_POST['search_type_table'])){
     if($_POST['search_type_table'] == "Conflict"){
+        $session->typeQuery = "Conflict";
         $session->query = ToolKitSearch::searchConflict($_POST);
     }
     else{
         if($_POST['search_type_table'] == "DesignPattern"){
-            //echo "CAT".$_POST['idCategory']."CAT";
+            $session->typeQuery = "DesignPattern";
             $session->query = ToolKitSearch::searchDP($_POST);
         }
         else{
+            $session->typeQuery = "Solution";
             $session->query = ToolKitSearch::searchSolution($_POST);
         }
     }
