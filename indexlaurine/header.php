@@ -18,6 +18,7 @@
 
         <link rel="stylesheet" type="text/css" href="styles/styleBase.css" media="all" />
         <link rel="stylesheet" type="text/css" href="styles/styleStructure.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="styles/stylePlus.css" media="screen" />
     </head>
 
     <body>
@@ -41,7 +42,7 @@
                             <a href="#">News</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="#">My current Design Pattern (0)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="#">Existing Projects</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#">Contact</a>
+                            <a href="contact.php">Contact</a>
                         </nav>
                     </div>
                 </div>
