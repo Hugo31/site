@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDisplay.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 $session = Session::getInstance();
 $bdd = Database::getConnection();
@@ -24,6 +25,8 @@ $bdd = Database::getConnection();
             foreach($result as $row){
                 echo "NOM : ".$row['name'];
             }
+            
+            ToolKitDisplay::displayGenericBox("Design Pattern", $result);
         ?>
         <!--include footer-->
     </body>
