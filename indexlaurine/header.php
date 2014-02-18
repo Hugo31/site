@@ -30,18 +30,18 @@
                     <img src="./img/header/logo_modif_gris.png" style="height:80px">
                     <div id="navigation">
                         <div style="height:40px">
-                            <form id="loginForm2" action="#">
+                            <form id="loginForm2" action="verifCo.php">
                                 <input value="Username" id="inpUsernameEmail" class="texte" type="text">
                                 <input value="Password" id="inpPasswordPlaceholder" class="texte" type="text">
-                                <input value="SIGN IN" class="signin" type="button">
+                                <input value="SIGN IN" type="submit" class="signin" >
                                 <input value="SIGN UP" type="button" class="signup">
                             </form>
                         </div>
                         <nav id="menu">
                             <a href="home.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#">News</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#">My current Design Pattern (0)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="#">Existing Projects</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="news.php">News</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="currentDP.php">My current Design Pattern (0)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="existingProjects.php">Existing Projects</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="contact.php">Contact</a>
                         </nav>
                     </div>
