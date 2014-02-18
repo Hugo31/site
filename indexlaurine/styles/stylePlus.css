@@ -1,0 +1,25 @@
+#formulaireContact {
+    padding : 10px;   
+}
+
+#subject {
+   font-family: 'YanoneKaffeesatz-Light';
+}
+
+#getintouch {
+     margin-top:20px;
+     margin-left:10px;
+     padding:10px;
+     width:200px;
+     float:left;
+     height:500px;
+     background:#eee;
+     color: #555;
+}
+
+#getintouch ul li ul li{
+    list-style-type: circle;                /* style de la puce */
+    list-style-position : outside;          /* position de la puce */
+    color : #546B76;
+    margin-left : -10px;
+}

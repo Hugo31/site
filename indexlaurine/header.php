@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +38,7 @@
                             </form>
                         </div>
                         <nav id="menu">
-                            <a href="#">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="home.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="#">News</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="#">My current Design Pattern (0)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="#">Existing Projects</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
