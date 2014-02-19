@@ -1,0 +1,78 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 19 févr. 2014, 18:32:03
+    Author     : loicviguier
+*/
+
+
+/* Partie à ajouter au CSS styleStructure.css */
+
+/* ------------------------------ COULEURS --------------------------------- */
+
+form input {
+    outline: none;
+    height:24px;
+    border-radius: 4px;
+    padding: 0px 7px;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+    margin-top: 4px;
+    padding: 10px 5px 10px 32px;    
+    border: 1px solid rgb(178, 178, 178);
+    box-sizing : content-box;
+    border-radius: 3px;
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+}
+
+form input:active,
+form input:focus {
+    border: 1px solid #96A9B5;
+    background: #f5f5f5;   
+    box-shadow: 0px 1px 4px 0px rgba(157, 157, 157, 0.9) inset;
+} 
+
+form label {
+    font-size: 1.4em;
+    font-weight: normal;
+    color: #96A9B5;
+    font-family: 'YanoneKaffeesatz-Regular';
+}
+
+form ::-webkit-input-placeholder  { 
+    color: rgb(190, 188, 188); 
+    font-style: italic;
+}
+
+form input.signupform{
+    width: 130px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0px 7px;
+    border: 1px solid #7A1F0A;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    text-shadow: 0px 1px 1px #8E2A04;
+    background-color: #FF4C00;
+    box-shadow: 0px 1px 1px #000;
+    color: #FFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size:1.4em;
+    -webkit-box-reflect: below 0 linear-gradient(transparent 40%, rgba(0,0,0,.15));
+}
+
+form input.signupform:hover {
+    background: #E54400;
+}
+
+/* --------------------------- POSITIONNEMENT ------------------------------ */
+
+form {
+    text-align: center;
+}
+
+
+/* Fin de la partie à ajouter */
