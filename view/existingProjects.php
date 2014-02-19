@@ -1,6 +1,6 @@
 <?php
-    include('header.php');   
-    include('search.php');   
+    include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
+    include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');      
 ?>
 
 <section id="contenu">
@@ -8,5 +8,5 @@
 </section>
 
 <?php
-    include('footer.php');   
+    include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/footer.php');  
 ?>

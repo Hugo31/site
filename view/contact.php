@@ -1,7 +1,7 @@
 <?php
 
-include('header.php');
-include('search.php');
+include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
+include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');   
 /* Si l'utilisateur a bien entré un code */
 if (!empty($_REQUEST['userCode'])) {
 
@@ -121,5 +121,5 @@ if (!empty($_REQUEST['userCode'])) {
 
 <?php
 
-include('footer.php');
+include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/footer.php');  
 ?>
