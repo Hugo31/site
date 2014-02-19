@@ -1,6 +1,6 @@
 <?php
-    include('/view/structure/header.php');   
-    include('/view/structure/search.php');   
+    include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
+    include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');   
 ?>
 
 <section id="contenu">
