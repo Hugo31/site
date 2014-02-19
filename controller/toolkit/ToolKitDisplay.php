@@ -4,12 +4,29 @@ class ToolKitDisplay {
     
     public static function displayCheckBoxCriteria($criteria, $dataToDisplay){
         $i = 0;
+        echo "<ul id=\"search_sort_".$criteria."\">\n";
         foreach($dataToDisplay as $row){
-            echo "<input type=\"checkbox\" name=\"id".$criteria.$i."\" value=\"".$row["id"]."\">".$row["name"]."<br>";
+            echo "<li>\n";
+            echo "<input class=\"classic\" type=\"checkbox\" name=\"id".$criteria.$i."\" value=\"".$row["id"]."\">";
+            echo "<label>".$row["name"]."</label><br>";
+            echo "</li>\n";
             $i++;
-            
         }
+        echo "</ul>\n";
     }
+    
+    
+    public static function displayCheckboxesComplete($bdd, $criteria){
+        echo "<li>\n";
+        $req = "SELECT COUNT(*) AS nb FROM ".$criteria;
+        $data = $bdd->query($req);
+        echo "<a href=\"#\" onclick=\"runEffect('#search_sort_".$criteria."'); return false;\">[+]</a>";
+        echo "<input class=\"tri-state\" type=\"checkbox\" name=\"idCategory\" value=\"".$data->fetch()["nb"]."\"/>";
+        echo "<label>".$criteria."</label>";
+        ToolKitDisplay::displayCheckBoxCriteria($criteria, $bdd->query("SELECT id".$criteria." AS id, name FROM ".$criteria.""));
+        echo "</li>\n";
+    }
+    
     
     public static function displayGenericBox($type, $dataToDisplay){
         $i = 0;

@@ -1,45 +1,35 @@
 
-function runEffect($identifiant) {
-        $($identifiant).toggle('blind');
+function runEffect(identifiant) {
+        $(identifiant).toggle('blind');
+        
+        if($(identifiant).text() == "[+]"){
+            $(identifiant).text("[-]");
+        }
+        else{
+            if($(identifiant).text() == "[-]"){
+                $(identifiant).text("[+]");
+            }
+            
+        }
 }
     
-function enableTriStateCheckBox(checkbox){
-    // Apparently click is better chan change? Cuz IE?
-    $(checkbox).change(function(e) {
-        var checked = $(this).prop("checked"),
-        container = $(this).parent(),
-        siblings = container.siblings();
-
-        container.find('input[type="checkbox"]').prop({
-            indeterminate: false,
-            checked: checked
-        });
-        checkSiblings(container, checked);
+function enableTriStateCheckBox(object){
+    container = object.parent();
+    var value = object.prop("checked");
+    container.find("ul>li>:checkbox").each(function(e){
+        $(this).prop("checked", value);
     });
 }
 
-function checkSiblings(el, checked) {
-    var parent = el.parent().parent(),
-    all = true;
-
-    el.siblings().each(function() {
-        return all = ($(this).children('input[type="checkbox"]').prop("checked") === checked);
+function enableCheckBoxChild(object){
+    var nbCheck = 0;
+    container = object.parent().parent();
+    container.find(".classic").each(function(e){
+        if($(this).prop("checked")){ nbCheck += 1; }
     });
-
-    if (all && checked) {
-        parent.children('input[type="checkbox"]').prop({
-            indeterminate: false,
-            checked: checked
-        });
-        checkSiblings(parent);
-    } else if (all && !checked) {
-        parent.children('input[type="checkbox"]').prop("checked", checked);
-        parent.children('input[type="checkbox"]').prop("indeterminate", (parent.find('input[type="checkbox"]:checked').length > 0));
-        checkSiblings(parent, checked);
-    } else {
-        el.parents("li").children('input[type="checkbox"]').prop({
-            indeterminate: true,
-            checked: false
-        });
-    }
+    container = container.parent();
+    container.find(".tri-state").each(function(e){
+        $(this).prop("checked", nbCheck > 0);
+        $(this).prop("indeterminate", (nbCheck > 0) && (nbCheck < $(this).prop("value")));
+    });
 }

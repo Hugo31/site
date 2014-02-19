@@ -12,24 +12,24 @@ class ToolKitSearch {
         $requete = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what FROM DesignPattern dp";
         $cond = "";
         if(isset($values['idCategory'])){
-            ToolKitSQL::generateCriteriaLine($values, "idCategory");
-            ToolKitSQL::generateCriteriaQuery("Category", "cdp", "OR", $requete, $cond, $values['idCategory']);
+            ToolKitSQL::generateCriteriaLine($values, "idCategory", "cat");
+            ToolKitSQL::generateCriteriaQuery("Category", "cdp", "OR", $requete, $cond, $values['cat']);
         }
         if(isset($values['idComponent'])){
-            ToolKitSQL::generateCriteriaLine($values, "idComponent");
-            ToolKitSQL::generateCriteriaQuery("Component", "cpdp", "AND", $requete, $cond, $values['idComponent']);
+            ToolKitSQL::generateCriteriaLine($values, "idComponent", "comp");
+            ToolKitSQL::generateCriteriaQuery("Component", "cpdp", "AND", $requete, $cond, $values['comp']);
         }
         if(isset($values['idPaltform'])){
-            ToolKitSQL::generateCriteriaLine($values, "idPlatform");
-            ToolKitSQL::generateCriteriaQuery("Platform", "plt", "OR", $requete, $cond, $values['idPlatform']);
+            ToolKitSQL::generateCriteriaLine($values, "idPlatform", "plat");
+            ToolKitSQL::generateCriteriaQuery("Platform", "plt", "OR", $requete, $cond, $values['plat']);
         }
         if(isset($values['idProperty'])){
-            ToolKitSQL::generateCriteriaLine($values, "idProperty");
-            ToolKitSQL::generateCriteriaQuery("Property", "prt", "AND", $requete, $cond, $values['idProperty']);
+            ToolKitSQL::generateCriteriaLine($values, "idProperty", "prop");
+            ToolKitSQL::generateCriteriaQuery("Property", "prt", "AND", $requete, $cond, $values['prop']);
         }
         if(isset($values['idSystem'])){
-            ToolKitSQL::generateCriteriaLine($values, "idSystem");
-            ToolKitSQL::generateCriteriaQuery("System", "sys", "OR", $requete, $cond, $values['idSystem']);
+            ToolKitSQL::generateCriteriaLine($values, "idSystem", "syst");
+            ToolKitSQL::generateCriteriaQuery("System", "sys", "OR", $requete, $cond, $values['syst']);
         }
         
         $requete .= " WHERE target = \"".$values['search_type_designpattern_target']. "\"";

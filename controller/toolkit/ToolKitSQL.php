@@ -1,14 +1,14 @@
 <?php
 
 class ToolKitSQL {
-    public static function generateCriteriaLine(&$values, $name){
+    public static function generateCriteriaLine(&$values, $name, $newName){
         if(isset($values[$name])){
             $nbElem = $values[$name];
             //echo $nbElem;
-            $values[$name] = "";
+            $values[$newName] = "";
             for($i = 0; $i < $nbElem; $i++){
                 if(isset($values[$name.$i])){
-                    $values[$name] .= $values[$name.$i]."|";
+                    $values[$newName] .= $values[$name.$i]."|";
                 }
 
             }
