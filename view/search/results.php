@@ -27,11 +27,9 @@ $bdd = Database::getConnection();
         <?php
             echo $session->query."<br>";
             $result = $bdd->query($session->query);
-            foreach($result as $row){
-                echo "NOM : ".$row['name']."<br>";
-            }
             
-            ToolKitDisplay::displayGenericBox("Design Pattern", $result);
+            
+            ToolKitDisplay::displayGenericBox($session->typeQuery, $result);
         ?>
         <!--include footer-->
     </body>
