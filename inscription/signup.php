@@ -3,7 +3,10 @@
     include('search.php');
 ?>
 
+<!-- ligne a inclure dans le <head></head> -->
+<link rel="stylesheet" type="text/css" href="styles/styleForm.css" />
 <script type="text/javascript" src="signupcontrol.js"></script>
+<!-- ************************************* -->
 
 <section id="contenu">
     <h1>Sign up</h1>
