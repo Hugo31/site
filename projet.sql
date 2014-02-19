@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`DesignPattern` (
   `nbComments` INT NULL,
   `nbRates` INT NULL,
   `rate` DOUBLE NULL,
+  `date` DATETIME NULL,
   `target` ENUM('Designer','Evaluator') NOT NULL,
   `login` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`idDesignPattern`),
