@@ -29,31 +29,25 @@ class ToolKitDisplay {
     
     
     public static function displayGenericBox($type, $dataToDisplay){
-        $i = 0;
-        echo "<article>";
-        echo "<header>";
-        echo "<a href=\"details.php?type=designpattern?id=5\">Nom</a>";
-        echo "<img src=\"XXXX\" alt=\"\"/>";
-        echo " </header>";
-        echo "<article id=\"what\">";
-        echo "Ceci est le what d'un design pattern.";
-       
-        echo "</article>";
-        echo "<aside>";
-        echo "<div id=\"note\">NOTE</div>";
-        echo "<div id=\"otherInfo\">20 notes<br>10coms</div>";
-        echo "</aside>";
-        echo "<summary><a href=\"#\">Plus d'info</a></summary>";
-        echo "<details><!-- Remplit par JS lors de click sur plus d'info -->Info complémentaires</details>";
-        echo "</article>";
+        if($type == "Conflict"){
+            ToolKitDisplay::displayConflictBox($dataToDisplay);
+        }
+        else{
+            if($type == "DesignPattern"){
+                ToolKitDisplay::displayDesignPatternBox($dataToDisplay);
+            }
+            else{
+                ToolKitDisplay::displaySolutionBox($dataToDisplay);
+            }
+        }
     }
     
     public static function displayConflictBox($dataToDisplay){
         foreach($dataToDisplay as $row){
-            echo "<article id=\"article_".$row['id']."\">";
+            echo "<article id=\"article_".$row['idConflict']."\">";
             echo "<header>";
-            echo "<a href=\"details.php?type=Conflict&id=".$row['id']."\">".$row['name']."</a>";
-            //Requete pour choper tout les systems et tout les platform
+            echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\">".$row['name']."</a>";
+            
             echo "</header>";
             echo "<article>".$row['description']."</article>";
             
@@ -63,11 +57,34 @@ class ToolKitDisplay {
     }
     
     public static function displayDesignPatternBox($dataToDisplay){
-        
+        foreach($dataToDisplay as $row){
+            echo "<article id=\"article_".$row['idDesignPattern']."\">";
+            echo "<header>";
+            echo "<a href=\"details.php?type=DesignPattern&id=".$row['idDesignPattern']."\">".$row['name']."</a>";
+            //Requete pour avoir toutes les images de system et platform.
+            echo "</header>";
+            echo "<article>".$row['what']."</article>";
+            echo "<aside>";
+            echo "<div id=\"note\">NOTE</div>";
+            echo "<div id=\"otherInfo\">20 notes<br>10coms</div>";
+            echo "</aside>";
+            echo "<summary><a href=\"#\">See more</a></summary>";
+            echo "<details></details>";
+            echo "</article>";
+        }
     }
     
     public static function displaySolutionBox($dataToDisplay){
-        
+        foreach($dataToDisplay as $row){
+            echo "<article id=\"article_".$row['idSolution']."\">";
+            echo "<header>";
+            echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\">".$row['name']."</a>";
+            echo "</header>";
+            echo "<article>".$row['comment']."</article>";
+            echo "<summary><a href=\"#\">See more</a></summary>";
+            echo "<details></details>";
+            echo "</article>";
+        }
     }
     
     

@@ -2,8 +2,10 @@
 
 class ToolKitSearch {
     public static function searchConflict($values){
-        $requete = "SELECT DISTINCT c.idConflict, c.name FROM Conflict c WHERE name LIKE \"%".$values['search_keywords']."%\"";
-    
+        $requete = "SELECT DISTINCT c.idConflict, c.name, c.description FROM Conflict c ";
+        if($values['search_keywords'] != ""){
+            $requete .= " WHERE name LIKE \"%".$values['search_keywords']."%\"";
+        }
         return $requete;
     }
     
