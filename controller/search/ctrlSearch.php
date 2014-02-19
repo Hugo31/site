@@ -25,5 +25,5 @@ if(isset($_POST['search_type_table'])){
 }
 
 
-header("Location: /site/view/search/results.php");
+header("Location: /site/view/results.php");
 ?>
