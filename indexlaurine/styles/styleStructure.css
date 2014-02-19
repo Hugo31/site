@@ -87,7 +87,7 @@ input.signupfooter{
 
 /* Bloc central contenant #search et #contenu */
 #centre {
-	background: url('../img/structure/colonnes_nv2.png') repeat-y; 
+	background: url('../img/structure/col.png') repeat-y; 
 }
 
 /* Contenu principal */
@@ -159,6 +159,7 @@ body {
 #contenu {
 	margin-left: 210px; /* decalage par rapport � search */
 	padding: 10px 20px 10px 20px;
+        min-height :600px;
 }
 #contenu > :first-child {
 	margin-top: 10px;

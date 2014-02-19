@@ -12,6 +12,8 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDisplay.
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/site/javascript/toolkit.js"></script>
+        
+        
         <a href="test/pagetestuser.php">Page de test user</a><br/>
         <a href="test/pagetestdp.php">Page de test Design Pattern</a><br/>
         <a href="test/pagetestproject.php">Page de test projet</a><br/>

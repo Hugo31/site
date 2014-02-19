@@ -16,27 +16,26 @@
                     <div style="width:146px;height:230px;float:left;margin-right:4px;padding:0px 10px 0px 10px;">
                         <center><h4>Sitemap</h4></center>
                         <ul>
-                            <li><a>Home</a></li>
-                            <li><a>My current Design Pattern (0)</a></li>
-                            <li><a>Existing Projects</a></li>
-                            <li><a>Contact</a></li>
+                            <li><a href="home.php">Home</a></li>
+                            <li><a href="currentDP.php">My current Design Pattern (0)</a></li>
+                            <li><a href="existingProjects.php">Existing Projects</a></li>
+                            <li><a href="contact.php">Contact</a></li>
                         </ul>
                     </div>
                     <div style="width:146px;height:230px;float:left;margin-right:4px;padding:0px 10px 0px 10px;">
                         <center><h4>Design Patterns</h4></center>
                         <ul>
-                            <li><a>News</a></li>
-                            <li><a>Most used</a></li>
-                            <li><a>Most popular</a></li>
+                            <li href="news.php"><a>News</a></li>
+                            <li href=""><a>Most used</a></li>
+                            <li href=""><a>Most popular</a></li>
                         </ul>	
                     </div>
                     <div style="width:146px;height:230px;float:left;padding:0px 10px 0px 10px;margin-right:4px;">
                         <center><h4>Information</h4></center>
                         <ul>
-                            <li><a>Developers</a></li>
-                            <li><a>Report a problem</a></li>
-                            <li><a>Legal notice</a></li>
-                            <li><a>Sitemap</a></li>
+                            <li href="reportProblem.php"><a>Report a problem</a></li>
+                            <li href="legalNotice.php"><a>Legal notice</a></li>
+                            <li href="sitemap.php"><a>Sitemap</a></li>
                         </ul>
                     </div>
                     <div style="width:146px;float:left;padding-top:60px;text-align:center">

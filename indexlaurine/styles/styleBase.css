@@ -16,7 +16,7 @@
 	font-style: normal;
 }
 
-/* --- STYLES DE BASE POUR LE TEXTE ET LES PRINCIPAUX ÉLÉMENTS --- */
+/* --- STYLES DE BASE POUR LE TEXTE ET LES PRINCIPAUX ï¿½Lï¿½MENTS --- */
 
 /* Page */
 html {
@@ -37,7 +37,7 @@ h4 {font-size: 1.3em;font-weight: normal;color: #546B76;font-family: 'YanoneKaff
 
 /* Listes */
 ul, ol {
-	/* nécessaire pour homogénéiser sur tt les navigateurs */
+	/* nï¿½cessaire pour homogï¿½nï¿½iser sur tt les navigateurs */
 	margin: .75em 0 .75em 24px;
 	padding: 0; 
 }
