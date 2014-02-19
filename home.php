@@ -35,5 +35,5 @@
 </section>
 
 <?php
-    include('/view/structure/footer.php');   
+    include($_SERVER['DOCUMENT_ROOT'].'/view/structure/footer.php');   
 ?>
