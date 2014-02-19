@@ -14,6 +14,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDisplay.
         <script type="text/javascript" src="/site/javascript/toolkit.js"></script>
         
         
+        <a href="indexlaurine/home.php">Index laurine</a><br/><br/>
         <a href="test/pagetestuser.php">Page de test user</a><br/>
         <a href="test/pagetestdp.php">Page de test Design Pattern</a><br/>
         <a href="test/pagetestproject.php">Page de test projet</a><br/>
