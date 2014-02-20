@@ -11,7 +11,7 @@ class ToolKitSearch {
     
     public static function searchDP($values){
         //header("Location: ../index.php");
-        $requete = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what FROM DesignPattern dp";
+        $requete = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments FROM DesignPattern dp";
         $cond = "";
         if(isset($values['idCategory'])){
             ToolKitSQL::generateCriteriaLine($values, "idCategory", "cat");

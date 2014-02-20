@@ -1,5 +1,5 @@
 <?php
-
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 class ToolKitDisplay {
     
     public static function displayCheckBoxCriteria($criteria, $dataToDisplay){
@@ -57,16 +57,27 @@ class ToolKitDisplay {
     }
     
     public static function displayDesignPatternBox($dataToDisplay){
+        $bdd = Database::getConnection();
         foreach($dataToDisplay as $row){
             echo "<article id=\"article_".$row['idDesignPattern']."\">";
             echo "<header>";
             echo "<a href=\"details.php?type=DesignPattern&id=".$row['idDesignPattern']."\">".$row['name']."</a>";
-            //Requete pour avoir toutes les images de system et platform.
+            $reqSystem = "SELECT icon FROM System s, SystemDesignPattern sdp "
+                    ."WHERE sdp.idDesignPattern=".$row['idDesignPattern']." AND s.idSystem = sdp.idSystem";
+            foreach($bdd->query($reqSystem) as $img){
+                echo "<img src=\"".$img['icon']."\" alt=\"\"/>";
+            }
+            
+            $reqPlatform = "SELECT icon FROM Platform s, PlatformDesignPattern sdp "
+                    ."WHERE sdp.idDesignPattern=".$row['idDesignPattern']." AND s.idSystem = sdp.idSystem";
+            foreach($bdd->query($reqSystem) as $img){
+                echo "<img src=\"".$img['icon']."\" alt=\"\"/>";
+            }
             echo "</header>";
             echo "<article>".$row['what']."</article>";
             echo "<aside>";
-            echo "<div id=\"note\">NOTE</div>";
-            echo "<div id=\"otherInfo\">20 notes<br>10coms</div>";
+            echo "<div id=\"note\">".$row['rate']."</div>";
+            echo "<div id=\"otherInfo\">".$row['nbRates']." notes<br>".$row['nbComments']." coms</div>";
             echo "</aside>";
             echo "<summary><a href=\"#\">See more</a></summary>";
             echo "<details></details>";
