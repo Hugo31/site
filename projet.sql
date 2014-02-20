@@ -539,17 +539,17 @@ DROP TABLE IF EXISTS `mydb`.`ComponentRelatedDesignPattern` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`ComponentRelatedDesignPattern` (
   `idDesignPattern` INT NOT NULL,
-  `idComponent` INT NOT NULL,
+  `idComponentRelated` INT NOT NULL,
   INDEX `fk_ComponentRelatedDesignPattern_DesignPattern1_idx` (`idDesignPattern` ASC),
-  INDEX `fk_ComponentRelatedDesignPattern_Component1_idx` (`idComponent` ASC),
-  PRIMARY KEY (`idDesignPattern`, `idComponent`),
+  INDEX `fk_ComponentRelatedDesignPattern_Component1_idx` (`idComponentRelated` ASC),
+  PRIMARY KEY (`idDesignPattern`, `idComponentRelated`),
   CONSTRAINT `fk_ComponentRelatedDesignPattern_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
     REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ComponentRelatedDesignPattern_Component1`
-    FOREIGN KEY (`idComponent`)
+    FOREIGN KEY (`idComponentRelated`)
     REFERENCES `mydb`.`Component` (`idComponent`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
