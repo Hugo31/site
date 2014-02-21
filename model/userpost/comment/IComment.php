@@ -1,15 +1,14 @@
 <?php
-
-interface IComment {
+interface IComment{
     /**
      * Méthode d'ajout d'un commentaire à un objet.
      */
-    public static function addComment($object, $user, $comment);
+    public function addComment($user, $comment);
     
     /**
      * Méthode de suppresion d'un commentaire d'un objet.
      */
-    public static function removeComment($idComment);
+    public function removeComment($idComment);
     
 }
 ?>

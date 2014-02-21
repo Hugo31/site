@@ -42,14 +42,13 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
         $reponse = $bdd->exec('SELECT * FROM Solution WHERE idSolution = ' . $id . '');
         $donnees = $reponse->fetch();
 
-        $solution = new Solution($id, $donnees['comment'], $donnees['codeSolution'], $donnees['date'], $donnees['idConflict'], $donnees['login']);
-        $solution->setNbComments($donnees['nbComments']);
-        $solution->setNbRates($donnees['nbRates']);
-        $solution->setRate($donnees['rate']);
+        $solution = new Solution($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['comment'], $donnees['codeSolution'], $donnees['idConflict']);
+        $solution->getFromDB($donnees);
         
         $reponse->closeCursor();
         return $solution;
     }
+    
 
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
@@ -77,20 +76,20 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
         return ($nbSuppr > 0);
     }
 
-    public static function addComment($object, $user, $comment) {
-        return parent::addComment($object, $user, $comment, "Solution");
+    public function addComment($user, $comment) {
+        return parent::abstractAddComment($user, $comment, "Solution");
     }
 
-    public static function addNote($object, $user, $note) {
-        return parent::addNote($object, $user, $note, "Solution");
+    public function addRate($user, $note) {
+        return parent::abstractAddNote($user, $note, "Solution");
     }
 
-    public static function removeComment($idComment) {
-        return parent::removeComment($idComment, "Solution");
+    public function removeComment($idComment) {
+        return parent::abstractRemoveComment($idComment, "Solution");
     }
 
-    public static function removeNote($object, $user) {
-        return parent::removeNote($object, $user, "Solution");
+    public function removeRate($user) {
+        return parent::abstractRemoveNote($user, "Solution");
     }
 
     public function getComment() {

@@ -10,6 +10,12 @@ class AbstractBasicPostedDB extends AbstractBasicDB{
         $this->setDate($_date);
     }
     
+    public function getFromDB($donnees){
+        $this->setLogin($donnees['login']);
+        $this->setDate($donnees['date']);
+        parent::getFromDB($donnees);
+    }
+    
     public function getLogin(){
         return $this->login;
     }

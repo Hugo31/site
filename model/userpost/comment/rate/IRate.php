@@ -7,12 +7,12 @@ interface IRate {
      * l'utilisateur qui note,
      * la note.
      */
-    public static function addRate($object, $user, $note);
+    public function addRate($user, $note);
     
     /**
      * Méthode qui permet de supprimer une note d'une table.
      */
-    public static function removeRate($object, $user);
+    public function removeRate($user);
 }
 
 ?>

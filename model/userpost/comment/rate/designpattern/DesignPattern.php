@@ -4,7 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/IDatabase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/IComment.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/IRate.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/designpattern/ETarget.php");
-
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/AbstractBasicRateDB.php");
     
 class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, IRate
 {
@@ -38,7 +38,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $rqt = $bdd->prepare('INSERT INTO DesignPattern (name, what, whenAndHow, layout, copy, implementation, nbUsage, nbComments, nbRates, rate, date, target, login) '
                             .'VALUES(:name, :what, :whenAndHow, :layout, :copy, :implementation, :nbUsage, :nbComments, :nbRates, :rate, :date, :target, :login)');
         $reussie = $rqt->execute(array(
-            'name' => $object->getNameDP(),
+            'name' => $object->getName(),
             'what' => $object->getWhat(),
             'whenAndHow' => $object->getWhenAndHow(),
             'layout' => $object->getLayout(),
@@ -73,7 +73,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
                             .'date = :date,target = :target, login = :login '
                             .'WHERE idDesignPattern = :idDesignPattern');
         $reussie = $req->execute(array(
-            'name' => $object->getNameDP(),
+            'name' => $object->getName(),
             'what' => $object->getWhat(),
             'whenAndHow' => $object->getWhenAndHow(),
             'layout' => $object->getLayout(),
@@ -125,47 +125,51 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $bdd = Database::getConnection();
         $reponse = $bdd->query('SELECT * FROM DesignPattern WHERE idDesignPattern = '.$id.'');
         $donnees = $reponse->fetch();
-
-        $dp = new DesignPattern($donnees['idDesignPattern'], $donnees['name'], $donnees['what'], $donnees['nbUsage'], ETarget::getValueEnum($donnees['target']), $donnees['login']);
+        $donnees['id'] = $id;
+        $dp = new DesignPattern($donnees['idDesignPattern'], 
+                                $donnees['name'], 
+                                $donnees['login'], 
+                                $donnees['date'], 
+                                $donnees['what'], 
+                                $donnees['nbUsage'], 
+                                ETarget::getValueEnum($donnees['target'])
+        );
         $dp->setWhenAndHow($donnees['whenAndHow']);
         $dp->setLayout($donnees['layout']);
         $dp->setCopy($donnees['copy']);
         $dp->setImplementation($donnees['implementation']);
-        $dp->setNbComments($donnees['nbComments']);
-        $dp->setNbRates($donnees['nbRates']);
-        $dp->setRate($donnees['rate']);
+        $dp->getFromDB($donnees);
+        
         $reponse->closeCursor();
         return $dp;
     }
     
     /**
      * Ajoute un commentaire à un design pattern.
-     * @param DesignPattern $object Le design pattern à commenter.
      * @param User $user L'utilisateur qui commente.
      * @param string $comment Le commentaire fournit par l'utilisateur.
      * @return bool True si l'ajout a réussi, False sinon.
      */
-    public static function addComment($object, $user, $comment) {
-        return parent::addComment($object, $user, $comment, "DesignPattern");
+    public function addComment($user, $comment) {
+        return parent::abstractAddComment($user, $comment, "DesignPattern");
     }
 
     /**
      * Supprime un commentaire pour un design pattern.
      * @param int $idComment L'identifiant du commentaire.
      */
-    public static function removeComment($idComment) {
-        return parent::removeComment($idComment, "DesignPattern");
+    public function removeComment($idComment) {
+        return parent::abstractRemoveComment($idComment, "DesignPattern");
     }
     
     /**
      * Ajoute une note à un design pattern.
-     * @param DesignPattern $object Le design pattern à commenter.
      * @param User $user L'utilisateur qui commente.
      * @param int $note La note de l'utilisateur.
      * @return bool True si l'ajout a réussi, False sinon.
      */
-    public static function addNote($object, $user, $note) {
-        return parent::addNote($object, $user, $note, "DesignPattern");
+    public function addRate($user, $note) {
+        return parent::abstractAddRate($user, $note, "DesignPattern");
     }
 
     /**
@@ -173,8 +177,8 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
      * @param DesignPattern $object Le design pattern concerné.
      * @param User $user L'utilisateur concerné.
      */
-    public static function removeNote($object, $user) {
-        return parent::removeNote($object, $user, "DesignPattern");
+    public function removeRate($user) {
+        return parent::abstractRemoveRate($user, "DesignPattern");
     }
     
     public function getWhat(){

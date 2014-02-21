@@ -11,13 +11,18 @@
  *
  * @author loic
  */
-abstract class AbstractBasicDB {
+abstract class AbstractBasicDB{
     private $identifiant;
     private $name;
     
     public function __construct($_id, $_name) {
         $this->setID($_id);
         $this->setName($_name);
+    }
+    
+    public function getFromDB($donnees){
+        $this->setID($donnees["id"]);
+        $this->setName($donnees['name']);
     }
     
     public function getID(){

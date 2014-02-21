@@ -46,9 +46,9 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment, IL
         
         $reponse = $bdd->query('SELECT * FROM Conflict WHERE idConflict = '.$id.'');
         $donnees = $reponse->fetch();
-
+        $donnees['id'] = $id;
         $conflict = new Conflict($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description'], $donnees['type']);
-        $conflict->setNbComments($donnees['nbComments']);
+        $conflict->getFromDB($donnees);
         $reponse->closeCursor();
         return $conflict;
     }
@@ -88,20 +88,19 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment, IL
 
     /**
      * Ajoute un commentaire à un conflict.
-     * @param Conflict $object Le conflit auquel serapporte le commentaire.
      * @param User $user L'utilisateur ayant posté.
      * @param String $comment Le commentaire à ajouter.
      */
-    public static function addComment($object, $user, $comment) {
-        return parent::addComment($object, $user, $comment, "Conflict");
+    public function addComment($user, $comment) {
+        return parent::abstractAddComment($user, $comment, "Conflict");
     }
 
     /**
      * Supprime un commentaire d'un conflict.
      * @param CommentDesignPattern $object Le commentaire àsupprimer du conflit.
      */
-    public static function removeComment($idComment) {
-        return parent::removeComment($idComment, "Conflict");
+    public function removeComment($idComment) {
+        return parent::abstractRemoveComment($idComment, "Conflict");
     }
     
     /**

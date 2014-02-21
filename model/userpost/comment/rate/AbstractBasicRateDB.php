@@ -1,8 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/AbstractBasicCommentDB.php.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/IAbstractRate.php");
-abstract class AbstractBasicRateDB extends AbstractBasicCommentDB implements IAbstractRate{
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/AbstractBasicCommentDB.php");
+abstract class AbstractBasicRateDB extends AbstractBasicCommentDB{
     private $rate;
     private $nbRates;
     
@@ -12,22 +11,45 @@ abstract class AbstractBasicRateDB extends AbstractBasicCommentDB implements IAb
         $this->setRate(0);
     }
     
-    public static function addRate($object, $user, $note, $nameTable){
+    public function getFromDB($donnees){
+        $this->setRate($donnees['rate']);
+        $this->setNbRates($donnees['nbRates']);
+        parent::getFromDB($donnees);
+    }
+    
+    public function abstractAddRate($user, $note, $nameTable){
         $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO Note'.$nameTable.' (login, id'.$nameTable.', note) '
                             .'VALUES(:login, :id, :note)');
         $reussie = $rqt->execute(array(
             'login' => $user->getLogin(),
-            'id' => $object->getID(),
+            'id' => $this->getID(),
             'note' => $note
+        ));
+        
+        if($reussie){
+            $rqt = $bdd->prepare('UPDATE TABLE '.$nameTable.' SET nbRates = nbRates + 1, '
+                                .'rate = (SELECT AVG(note) FROM Note'.$nameTable.' WHERE id'.$nameTable.' = '.$this->getID().')'
+                                .' WHERE id'.$nameTable.' = :id');
+            $rqt->execute(array(
+                'id' => $this->getID()
             ));
+        }
         return $reussie;
     }
      
-    public static function removeRate($object, $user, $nameTable){
+    public function abstractRemoveRate($user, $nameTable){
         $bdd = Database::getConnection();
         $nbLine = $bdd->exec('DELETE FROM Note'.$nameTable.' WHERE '
-                    .'login = \''.$user->getLogin().'\' AND id'.$nameTable.' = '.$object->getID().'');
+                    .'login = \''.$user->getLogin().'\' AND id'.$nameTable.' = '.$this->getID().'');
+        if($nbLine > 0){
+            $rqt = $bdd->prepare('UPDATE TABLE '.$nameTable.' SET nbRates = nbRates - 1, '
+                                .'rate = (SELECT AVG(note) FROM Note'.$nameTable.' WHERE id'.$nameTable.' = '.$this->getID().')'
+                                .' WHERE id'.$nameTable.' = :id');
+            $rqt->execute(array(
+                'id' => $this->getID()
+            ));
+        }
         return $nbLine > 0;
     }
     

@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaceDB/IDatabase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/IDatabase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 
 class User implements IDatabase{
