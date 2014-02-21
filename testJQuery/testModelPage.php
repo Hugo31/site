@@ -3,7 +3,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/user/User.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/designpattern/DesignPattern.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/designpattern/ETarget.php");
-
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/conflict/Conflict.php");
 ?>
 <!DOCTYPE html>
 
@@ -34,6 +34,24 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/design
         echo "DP modifié : ".DesignPattern::modifyDB($anotherDP)."<br>";
         echo "DP supprimer : ".DesignPattern::removeDB($anotherDP)."<br>";
         echo "DP ajouté pour la suite des tests : ".DesignPattern::addDB($dpFactory)."<br>";
+        $dpObserver = new DesignPattern(0, "Observer", $userUndef->getLogin(), date("Y-m-d H:i:s"), "Verifie des classes", 0, ETarget::Designer);
+        echo "DP 2 ajouter : ".  DesignPattern::addDB($dpObserver)."<br>";
+        
+        $conflict1 = new Conflict(0, "Conflict", "undefined", date("Y-m-d H:i:s"), "Description de conflict", "Conflict between design pattern");
+        echo "Conflict ajouté : ".Conflict::addDB($conflict1)."<br>";
+        $conflictMod = Conflict::getDB($conflict1->getID());
+        $conflictMod->setName("New Conflict");
+        echo "Conflict modifié : ".Conflict::modifyDB($conflictMod)."<br>";
+        echo "Conflict supprimé : ".Conflict::removeDB($conflict1)."<br>";
+        echo "Conflict ajouté : ".Conflict::addDB($conflict1)."<br>";
+        
+        echo "Lien entre Factory et conflict1 ajouter : ".Conflict::addLink($dpFactory, $conflict1)."<br>";
+        echo "Lien entre Observer et conflict1 ajouter : ".Conflict::addLink($dpObserver, $conflict1)."<br>";
+        echo "Lien entre Factory et conflict1 supprimer : ".Conflict::removeLink($dpFactory, $conflict1)."<br>";
+        echo "Lien entre Factory et conflict1 ajouter : ".Conflict::addLink($dpFactory, $conflict1)."<br>";
+        
+        
+        
         
         ?>
     </body>

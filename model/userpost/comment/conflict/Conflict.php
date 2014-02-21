@@ -2,10 +2,9 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/AbstractBasicCommentDB.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/IDatabase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/IComment.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/ILink.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 
-class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment, ILink{
+class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
     
     private $description;
     private $typeConflict;
@@ -24,9 +23,9 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment, IL
         $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO conflict (name, description, type, date, nbComments, login) VALUES(:name, :description, :type, :date, :nbComments, :login)');
         $reussie = $rqt->execute(array(
-            'name' => $object->getNameConflict(),
-            'description' => $object->getDescriptionConflict(),
-            'type' => $object->getTypeConflict(),
+            'name' => $object->getName(),
+            'description' => $object->getDescription(),
+            'type' => $object->getType(),
             'date' => $object->getDate(),
             'nbComments' => $object->getNbComments(),
             'login' => $object->getLogin()
@@ -62,10 +61,10 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment, IL
         
         $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, type = :type, date = :date, nbComments = :nbComments, login = :login WHERE idConflict = :idConflict');
         $reussie = $rqt->execute(array(
-            'name' => $object->getNameConflict(),
-            'description' => $object->getDescriptionConflict(),
-            'type' => $object->getTypeConflict(),
-            'date' => $object->getDateConflict(),
+            'name' => $object->getName(),
+            'description' => $object->getDescription(),
+            'type' => $object->getType(),
+            'date' => $object->getDate(),
             'nbComments' => $object->getNbComments(),
             'login' => $object->getLogin(),
             'idConflict' => $object->getID()
@@ -108,9 +107,9 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment, IL
      * @param DesignPattern $tableToSort Le design pattern à lier.
      * @param Conflict $sort Le conflit où l'on va ajouter un design pattern.
      */
-    public static function addLink($tableToSort, $sort) {
+    public function addLink($tableToLink) {
         $bdd = Database::getConnection();
-        $nbAj = $bdd->exec('INSERT INTO ConflictDesignPattern (idConflict, idDesignPattern) VALUES ('.$sort->getID().', '.$tableToSort->getID().')');
+        $nbAj = $bdd->exec('INSERT INTO ConflictDesignPattern (idConflict, idDesignPattern) VALUES ('.$this->getID().', '.$tableToLink->getID().')');
         return ($nbAj > 0);
     }
       
@@ -119,9 +118,9 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment, IL
      * @param DesignPattern $tableToSort Le design pattern à supprimer.
      * @param Conflict $sort Le conflit où l'on va supprimer un design pattern.
      */
-    public static function removeLink($tableToSort, $sort) {
+    public function removeLink($tableToLink) {
         $bdd = Database::getConnection();
-        $nbSuppr = $bdd->exec('DELETE FROM ConflictDesignPattern WHERE idConflict = '.$sort->getID().' and idDesignPattern = '.$tableToSort->getID());
+        $nbSuppr = $bdd->exec('DELETE FROM ConflictDesignPattern WHERE idConflict = '.$this->getID().' and idDesignPattern = '.$tableToLink->getID());
         return ($nbSuppr > 0);
     }
 

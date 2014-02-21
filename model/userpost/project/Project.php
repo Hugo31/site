@@ -20,13 +20,17 @@ class Project extends AbstractBasicPostedDB implements IDatabase, ILink{
     public static function addDB($object) {
         $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO project (name, description, date, login) VALUES(:name, :description, :date, :login)');
-        $rqt->execute(array(
+        $reussie = $rqt->execute(array(
             'name' => $object->getNameProject(),
             'description' => $object->getDescription(),
             'date' => $object->getDate(),
             'login' => $object->getLogin()
             ));
-        $object->setID((int)$bdd->lastInsertId()); 
+        if($reussie == true){
+            $object->setID((int)$bdd->lastInsertId()); 
+        }
+        return $reussie;
+        
     }
 
     /**
@@ -53,13 +57,14 @@ class Project extends AbstractBasicPostedDB implements IDatabase, ILink{
         $bdd = Database::getConnection();
         
         $rqt = $bdd->prepare('UPDATE Project SET name = :name, description = :description, date = :date, login = :login WHERE idProject = :idProject');
-        $rqt->execute(array(
+        $reussie = $rqt->execute(array(
             'name' => $object->getNameProject(),
             'description' => $object->getDescription(),
             'date' => $object->getDate(),
             'login' => $object->getLogin(),
             'idProject' => $object->getID()
         ));
+        return $reussie;
     }
 
     /**
@@ -70,29 +75,28 @@ class Project extends AbstractBasicPostedDB implements IDatabase, ILink{
         $bdd = Database::getConnection();
         
         $bdd->exec('DELETE FROM ProjectDesignPattern WHERE idProject = \''.$object->getID().'\'');
-        $bdd->exec('DELETE FROM Project WHERE idProject = \''.$object->getID().'\'');
+        $nbSuppr = $bdd->exec('DELETE FROM Project WHERE idProject = \''.$object->getID().'\'');
+        return ($nbSuppr > 0);
     }
 
     /**
      * Ajoute un design pattern à un projet.
-     * @param DesignPattern $tableToSort Le design pattern à lier.
-     * @param Project $sort Le projet où l'on va ajouter un design pattern.
+     * @param DesignPattern $tableToLink Le design pattern à lier.
      */
-    public static function addLink($tableToSort, $sort) {
+    public function addLink($tableToLink) {
         $bdd = Database::getConnection();
-        
-        $bdd->exec('INSERT INTO ProjectDesignPattern (idProject, idDesignPattern) VALUES ('.$sort->getID().', '.$tableToSort->getID().')');
+        $nbAj = $bdd->exec('INSERT INTO ProjectDesignPattern (idProject, idDesignPattern) VALUES ('.$this->getID().', '.$tableToLink->getID().')');
+        return ($nbAj > 0);
     }
       
     /**
      * Supprime un design pattern d'un projet.
-     * @param DesignPattern $tableToSort Le design pattern à supprimer.
-     * @param Project $sort Le projet où l'on va supprimer un design pattern.
+     * @param DesignPattern $tableToLink Le design pattern à supprimer.
      */
-    public static function removeLink($tableToSort, $sort) {
+    public function removeLink($tableToLink) {
         $bdd = Database::getConnection();
-        
-        $bdd->exec('DELETE FROM ProjectDesignPattern WHERE idProject = '.$sort->getID().' and idDesignPattern = '.$tableToSort->getID());
+        $nbSuppr = $bdd->exec('DELETE FROM ProjectDesignPattern WHERE idProject = '.$this->getID().' and idDesignPattern = '.$tableToLink->getID());
+        return ($nbSuppr > 0);
     }
     
     public function getDescription(){
