@@ -7,8 +7,8 @@ class ToolKitDisplay {
         echo "<ul id=\"search_sort_".$criteria."\">\n";
         foreach($dataToDisplay as $row){
             echo "<li>\n";
-            echo "<input class=\"classic\" type=\"checkbox\" name=\"id".$criteria.$i."\" value=\"".$row["id"]."\">";
-            echo "<label>".$row["name"]."</label><br>";
+            echo "<input id=\"id".$criteria.$i."\" class=\"classic\" type=\"checkbox\" name=\"id".$criteria.$i."\" value=\"".$row["id"]."\">";
+            echo "<label for=\"id".$criteria.$i."\">".$row["name"]."</label><br>";
             echo "</li>\n";
             $i++;
         }
@@ -20,9 +20,8 @@ class ToolKitDisplay {
         echo "<li>\n";
         $req = "SELECT COUNT(*) AS nb FROM ".$criteria;
         $data = $bdd->query($req);
-        echo "<a href=\"#\" onclick=\"runEffect('#search_sort_".$criteria."'); return false;\">[+]</a>";
         echo "<input class=\"tri-state\" type=\"checkbox\" name=\"idCategory\" value=\"".$data->fetch()["nb"]."\"/>";
-        echo "<label>".$criteria."</label>";
+        echo "<a href=\"#\" onclick=\"runEffect('#search_sort_".$criteria."'); return false;\"><label> + ".$criteria."</label></a>";
         ToolKitDisplay::displayCheckBoxCriteria($criteria, $bdd->query("SELECT id".$criteria." AS id, name FROM ".$criteria.""));
         echo "</li>\n";
     }

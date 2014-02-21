@@ -58,7 +58,7 @@ a {
 	text-decoration: underline;
 }
 
-a:hover, a:focus {
+a:hover {
 	color: #FF4C00;
 }
 

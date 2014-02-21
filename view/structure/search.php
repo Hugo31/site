@@ -32,20 +32,20 @@
 <aside id="search">
     <h3>SEARCH</h3>
     <form id="search_form" method="post" action="/site/controller/search/ctrlSearch.php">
-        <input type="text" id="search_keywords" name="search_keywords" /><br>
+        <input type="text" id="search_keywords" name="search_keywords" size="23"/><br/><br/>
         <input class="search_type_notarget" type="radio" name="search_type_table" value="Conflict" checked>Conflict<br>
         <input class="search_type_target" type="radio" name="search_type_table" value="DesignPattern">Design Pattern<br>
-        <div id="search_type_designpattern_target">
+        <div id="search_type_designpattern_target" style="padding-left:20px;">
             <input type="radio" name="search_type_designpattern_target" value="Designer" checked>Designer<br>
             <input type="radio" name="search_type_designpattern_target" value="Evaluator">Evaluator<br>
         </div>
         <input class="search_type_notarget" type="radio" name="search_type_table" value="Solution">Solution<br>
-
-        <div>
-            <a href="#" onclick="runEffect('#search_bar_advanced');
-                        return false;">Advanced search</a>
+        <br/>
+        <div style="text-align:right;">
+            <a href="#" onclick="runEffect('#search_bar_advanced');return false;">+ Advanced search</a>
         </div>
         <div id="search_bar_advanced">
+            <br/>
             <ul>
                 <?php
                 ToolkitDisplay::displayCheckboxesComplete($bdd, "Category");
@@ -56,6 +56,7 @@
                 ?>
             </ul>
         </div>
-        <input type="submit" value="Search"/>
+        <br/>
+        <input type="submit" value="Search" style="float:right;"/>
     </form>
 </aside>
