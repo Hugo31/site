@@ -79,21 +79,19 @@ class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
     /**
      * Ajoute un lien entre une catégorie et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à lier.
-     * @param Category $sort La catégorie à lier.
      * @return bool True si le lien a été ajouté, FALSE sinon.
      */
-    public static function addLink($tableToSort, $sort){
-        return parent::addLink($tableToSort, $sort, "Category");
+    public function addLink($tableToLink){
+        return parent::addLinkSort($tableToLink, "Category");
     }
 
     /**
      * Supprime un lien entre une catégorie et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à délier.
-     * @param Category $sort La catégorie à délier.
      * @return bool True si le lien a été supprimer, FALSE sinon.
      */
-    public static function removeLink($tableToSort, $sort){
-        return parent::removeLink($tableToSort, $sort, "Category");
+    public function removeLink($tableToLink){
+        return parent::removeLinkSort($tableToLink, "Category");
     }
 
 }

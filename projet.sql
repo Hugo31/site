@@ -151,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Project` (
   `idProject` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(100) NULL,
+  `date` DATETIME NULL,
   `login` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`idProject`),
   INDEX `fk_Projet_User1_idx` (`login` ASC),

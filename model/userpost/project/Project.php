@@ -2,9 +2,9 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/AbstractBasicPostedDB.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/IDatabase.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/ILink.php");
+//require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/ILink.php");
 
-class Project extends AbstractBasicPostedDB implements IDatabase, ILink{
+class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
     
     private $description;
     
@@ -19,9 +19,9 @@ class Project extends AbstractBasicPostedDB implements IDatabase, ILink{
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $rqt = $bdd->prepare('INSERT INTO project (name, description, date, login) VALUES(:name, :description, :date, :login)');
+        $rqt = $bdd->prepare('INSERT INTO Project (name, description, date, login) VALUES(:name, :description, :date, :login)');
         $reussie = $rqt->execute(array(
-            'name' => $object->getNameProject(),
+            'name' => $object->getName(),
             'description' => $object->getDescription(),
             'date' => $object->getDate(),
             'login' => $object->getLogin()
@@ -43,6 +43,7 @@ class Project extends AbstractBasicPostedDB implements IDatabase, ILink{
         
         $reponse = $bdd->query('SELECT * FROM Project WHERE idProject = '.$id.'');
         $donnees = $reponse->fetch();
+        $donnees['id'] = $id;
         $project = new Project($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description']);
         $project->getFromDB($donnees);
         $reponse->closeCursor();
@@ -58,7 +59,7 @@ class Project extends AbstractBasicPostedDB implements IDatabase, ILink{
         
         $rqt = $bdd->prepare('UPDATE Project SET name = :name, description = :description, date = :date, login = :login WHERE idProject = :idProject');
         $reussie = $rqt->execute(array(
-            'name' => $object->getNameProject(),
+            'name' => $object->getName(),
             'description' => $object->getDescription(),
             'date' => $object->getDate(),
             'login' => $object->getLogin(),

@@ -19,9 +19,10 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
 
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $rqt = $bdd->prepare('INSERT INTO Solution (comment, codeSolution, date, nbComments, nbRates, rate, idConflit, login) '
-                            .'VALUES(:comment, :codeSolution, :date, :nbComments, :nbRates, :rate, :idConflit, :login)');
+        $rqt = $bdd->prepare('INSERT INTO Solution (name, comment, codeSolution, date, nbComments, nbRates, rate, idConflict, login) '
+                            .'VALUES(:name, :comment, :codeSolution, :date, :nbComments, :nbRates, :rate, :idConflict, :login)');
         $reussie = $rqt->execute(array(
+            "name" => $object->getName(),
             'comment' => $object->getComment(),
             'codeSolution' => $object->getCodeSolution(),
             'date' => $object->getDate(),
@@ -30,7 +31,7 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
             'rate' => $object->getRate(), 
             'idConflict' => $object->getIDConflict(),
             'login' => $object->getLogin()
-            ));
+        ));
         if($reussie){
             $object->setID((int) $bdd->lastInsertId());
         }
@@ -39,9 +40,9 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
 
     public static function getDB($id) {
         $bdd = Database::getConnection();
-        $reponse = $bdd->exec('SELECT * FROM Solution WHERE idSolution = ' . $id . '');
+        $reponse = $bdd->query('SELECT * FROM Solution WHERE idSolution = ' . $id . '');
         $donnees = $reponse->fetch();
-
+        $donnees['id'] = $id;
         $solution = new Solution($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['comment'], $donnees['codeSolution'], $donnees['idConflict']);
         $solution->getFromDB($donnees);
         
@@ -49,14 +50,17 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
         return $solution;
     }
     
-
+    /**
+     * 
+     * @param Solution $object
+     */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
 
         $reponse = $bdd->prepare('UPDATE Solution SET name = :name, comment = :comment, codeSolution = :codeSolution, '
                                 .'nbComments = :nbComments, nbRates = :nbRates, rate = :rate, '
-                                .'date = :date, login = :login WHERE idSolution = ' . $this->getID() . '');
-        $reponse->execute(array(
+                                .'date = :date, login = :login, idConflict = :idConflict WHERE idSolution = ' . $object->getID() . '');
+        $reussie = $reponse->execute(array(
             'name' => $object->getName(),
             'comment' => $object->getComment(),
             'codeSolution' => $object->getCodeSolution(),
@@ -65,7 +69,9 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
             'rate' => $object->getRate(), 
             'date' => $object->getDate(),
             'login' => $object->getLogin(),
+            'idConflict' => $object->getIDConflict()
         ));
+        return $reussie;
     }
 
     public static function removeDB($object) {

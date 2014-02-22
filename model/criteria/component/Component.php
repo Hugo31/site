@@ -79,40 +79,36 @@ class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkCompo
     /**
      * Ajoute un lien entre un component et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à lier.
-     * @param Component $sort Le component à lier.
      * @return bool True si le lien a été ajouté, FALSE sinon.
      */
-    public static function addLink($tableToSort, $sort){
-        return parent::addLink($tableToSort, $sort, "Component");
+    public function addLink($tableToLink){
+        return parent::addLinkSort($tableToLink, "Component");
     }
 
     /**
      * Supprime un lien entre un component et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à délier.
-     * @param Component $sort La component à délier.
      * @return bool True si le lien a été supprimer, FALSE sinon.
      */
-    public static function removeLink($tableToSort, $sort){
-        return parent::removeLink($tableToSort, $sort, "Component");
+    public function removeLink($tableToLink){
+        return parent::removeLinkSort($tableToLink, "Component");
     }
     
     /**
      * Ajoute un lien relatif entre un component et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à lier.
-     * @param Component $sort Le component à lier de façon relative.
      * @return bool True si le lien a été ajouté, FALSE sinon.
      */
-    public static function addLinkRelated($tableToSort, $sort) {
-        return parent::addLink($tableToSort, $sort, "ComponentRelated");
+    public function addLinkRelated($tableToLink) {
+        return parent::addLinkSort($tableToLink, "ComponentRelated");
     }
 
     /**
      * Supprime un lien relatif entre un component et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à délier.
-     * @param Component $sort Le component à délier.
      * @return bool True si le lien a été supprimer, FALSE sinon.
      */
-    public static function removeLinkRelated($tableToSort, $sort) {
-        return parent::removeLink($tableToSort, $sort, "ComponentRelated");
+    public function removeLinkRelated($tableToLink) {
+        return parent::removeLinkSort($tableToLink, "ComponentRelated");
     }
 }

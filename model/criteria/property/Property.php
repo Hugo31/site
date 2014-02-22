@@ -77,15 +77,14 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
     /**
      * Ajoute un lien entre une propriété et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à lier.
-     * @param Property $sort La propriété à lier.
      * @return bool True si le lien a été ajouté, FALSE sinon.
      */
-    public static function addLink($tableToSort, $sort, $note){
+    public function addLink($tableToLink, $note){
         $bdd = Database::getConnection();
         $req = $bdd->prepare('INSERT INTO PropertyDesignPattern (idDesignPattern, idProperty, note) VALUES (:idDP, :idSort, :note)');
         $reussie = $req->execute(array(
-            'idDP' => $tableToSort->getID(),
-            'idSort' => $sort->getID(), 
+            'idDP' => $tableToLink->getID(),
+            'idSort' => $this->getID(), 
             'note' => $note
         ));
         return $reussie;
@@ -94,12 +93,11 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
     /**
      * Supprime un lien entre une propriété et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à délier.
-     * @param Property $sort La propriété à délier.
      * @return bool True si le lien a été supprimer, FALSE sinon.
      */
-    public static function removeLink($tableToSort, $sort){
+    public function removeLink($tableToLink){
         $bdd = Database::getConnection();
-        $nbSuppr = $bdd->exec('DELETE FROM PropertyDesignPattern WHERE idDesignPattern = '.$tableToSort->getID().' AND idProperty = '.$sort->getID().'');
+        $nbSuppr = $bdd->exec('DELETE FROM PropertyDesignPattern WHERE idDesignPattern = '.$tableToLink->getID().' AND idProperty = '.$this->getID().'');
         return ($nbSuppr > 0);
     }
 }

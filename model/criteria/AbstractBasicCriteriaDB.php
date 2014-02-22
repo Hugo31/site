@@ -1,8 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/AbstractBasicDB.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/IAbstractLink.php");
 
-class AbstractBasicCriteriaDB extends AbstractBasicDB implements IAbstractLink{
+class AbstractBasicCriteriaDB extends AbstractBasicDB{
     private $description;
     
     public function __construct($_id, $_name, $_desc) {
@@ -18,19 +17,19 @@ class AbstractBasicCriteriaDB extends AbstractBasicDB implements IAbstractLink{
         $this->description = $_description;
     }
 
-    public static function addLink($tableToSort, $sort, $nameSort) {
+    public function addLinkSort($tableToLink, $nameSort) {
         $bdd = Database::getConnection();
         $req = $bdd->prepare('INSERT INTO '.$nameSort.'DesignPattern (idDesignPattern, id'.$nameSort.') VALUES (:idDP, :idSort)');
         $reussie = $req->execute(array(
-            'idDP' => $tableToSort->getID(),
-            'idSort' => $sort->getID()
+            'idDP' => $tableToLink->getID(),
+            'idSort' => $this->getID()
         ));
         return $reussie;
     }
 
-    public static function removeLink($tableToSort, $sort, $nameSort) {
+    public function removeLinkSort($tableToLink, $nameSort) {
         $bdd = Database::getConnection();
-        $nbSuppr = $bdd->exec('DELETE FROM '.$nameSort.'DesignPattern WHERE idDesignPattern = '.$tableToSort->getID().' AND id'.$nameSort.' = '.$sort->getID().'');
+        $nbSuppr = $bdd->exec('DELETE FROM '.$nameSort.'DesignPattern WHERE idDesignPattern = '.$tableToLink->getID().' AND id'.$nameSort.' = '.$this->getID().'');
         return ($nbSuppr > 0);
         
     }

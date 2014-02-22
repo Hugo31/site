@@ -4,10 +4,10 @@ interface ILinkCriteria {
     /**
      * Méthode pour ajouter un lien deux objets.
      */
-    public static function addLink($tableToSort, $sort);
+    public function addLink($tableToLink);
 
     /**
      * Méthode pour supprimer le lien entre deux objets.
      */
-    public static function removeLink($tableToSort, $sort);
+    public function removeLink($tableToLink);
 }

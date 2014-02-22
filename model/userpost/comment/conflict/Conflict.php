@@ -105,7 +105,6 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
     /**
      * Ajoute un design pattern à un conflit.
      * @param DesignPattern $tableToSort Le design pattern à lier.
-     * @param Conflict $sort Le conflit où l'on va ajouter un design pattern.
      */
     public function addLink($tableToLink) {
         $bdd = Database::getConnection();
@@ -116,7 +115,6 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
     /**
      * Supprime un design pattern d'un conflit.
      * @param DesignPattern $tableToSort Le design pattern à supprimer.
-     * @param Conflict $sort Le conflit où l'on va supprimer un design pattern.
      */
     public function removeLink($tableToLink) {
         $bdd = Database::getConnection();

@@ -82,21 +82,19 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
     /**
      * Ajoute un lien entre une plateforme et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à lier.
-     * @param Platform $sort La plateforme à lier.
      * @return bool True si le lien a été ajouté, FALSE sinon.
      */
-    public static function addLink($tableToSort, $sort){
-        return parent::addLink($tableToSort, $sort, "Platform");
+    public function addLink($tableToLink){
+        return parent::addLinkSort($tableToLink, "Platform");
     }
 
     /**
      * Supprime un lien entre une plateforme et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à délier.
-     * @param Platform $sort La plateforme à délier.
      * @return bool True si le lien a été supprimer, FALSE sinon.
      */
-    public static function removeLink($tableToSort, $sort){
-        return parent::removeLink($tableToSort, $sort, "Platform");
+    public function removeLink($tableToLink){
+        return parent::removeLinkSort($tableToLink, "Platform");
     }
     
     public function setIcon($_icon){

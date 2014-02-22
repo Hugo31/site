@@ -23,11 +23,11 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('INSERT INTO System (name, description, icon) VALUES(:name, :description, icon)');
+        $req = $bdd->prepare('INSERT INTO System (name, description, icon) VALUES(:name, :description, :icon)');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(), 
-            'icon' => $object->getIcone()
+            'icon' => $object->getIcon()
         ));
         if($reussie == true){
             $object->setID((int)$bdd->lastInsertId()); 
@@ -82,28 +82,26 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
     /**
      * Ajoute un lien entre un système et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à lier.
-     * @param System $sort Le système à lier.
      * @return bool True si le lien a été ajouté, FALSE sinon.
      */
-    public static function addLink($tableToSort, $sort){
-        return parent::addLink($tableToSort, $sort, "System");
+    public function addLink($tableToLink){
+        return parent::addLinkSort($tableToLink, "System");
     }
 
     /**
      * Supprime un lien entre un système et un design pattern.
      * @param DesignPattern $tableToSort Le design pattern à délier.
-     * @param System $sort Le système à délier.
      * @return bool True si le lien a été supprimer, FALSE sinon.
      */
-    public static function removeLink($tableToSort, $sort){
-        return parent::removeLink($tableToSort, $sort, "System");
+    public function removeLink($tableToLink){
+        return parent::removeLinkSort($tableToLink, "System");
     }
     
     public function setIcon($_icon){
-        $icon = $_icon; 
+        $this->icon = $_icon; 
     }
     
     public function getIcon() {
-        return $icon;
+        return $this->icon;
     }
 }
