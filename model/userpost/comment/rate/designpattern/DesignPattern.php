@@ -125,23 +125,21 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $bdd = Database::getConnection();
         $reponse = $bdd->query('SELECT * FROM DesignPattern WHERE idDesignPattern = '.$id.'');
         $donnees = $reponse->fetch();
-        $donnees['id'] = $id;
-        $dp = new DesignPattern($donnees['idDesignPattern'], 
-                                $donnees['name'], 
-                                $donnees['login'], 
-                                $donnees['date'], 
-                                $donnees['what'], 
-                                $donnees['nbUsage'], 
-                                ETarget::getValueEnum($donnees['target'])
-        );
-        $dp->setWhenAndHow($donnees['whenAndHow']);
-        $dp->setLayout($donnees['layout']);
-        $dp->setCopy($donnees['copy']);
-        $dp->setImplementation($donnees['implementation']);
-        $dp->getFromDB($donnees);
-        
         $reponse->closeCursor();
-        return $dp;
+        if($donnees != false){
+            $donnees['id'] = $id;
+            $dp = new DesignPattern($donnees['idDesignPattern'], $donnees['name'], $donnees['login'], 
+                                    $donnees['date'], $donnees['what'], $donnees['nbUsage'], 
+                                    ETarget::getValueEnum($donnees['target'])
+            );
+            $dp->setWhenAndHow($donnees['whenAndHow']);
+            $dp->setLayout($donnees['layout']);
+            $dp->setCopy($donnees['copy']);
+            $dp->setImplementation($donnees['implementation']);
+            $dp->getFromDB($donnees);
+            return $dp;
+        }
+        return false;
     }
     
     /**

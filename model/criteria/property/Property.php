@@ -41,9 +41,11 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
         $bdd = Database::getConnection();
         $reponse = $bdd->query('SELECT * FROM Property WHERE idProperty = '.$id.'');
         $donnees = $reponse->fetch();
-        $st = new Property($donnees['idProperty'], $donnees['name'], $donnees['description']);
         $reponse->closeCursor();
-        return $st;
+        if($donnees != false){
+            return new Property($donnees['idProperty'], $donnees['name'], $donnees['description']);
+        }
+        return false;
     }
 
     /**

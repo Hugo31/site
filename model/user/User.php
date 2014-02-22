@@ -47,10 +47,11 @@ class User implements IDatabase{
         
         $reponse = $bdd->query('SELECT * FROM User WHERE login = \''.$id.'\'');
         $donnees = $reponse->fetch();
-        
-        $user = new User($id, $donnees['pwd'], $donnees['lastname'], $donnees['firstname'], $donnees['mail'], $donnees['logo']);
         $reponse->closeCursor();
-        return $user;
+        if($donnees != false){
+           return new User($id, $donnees['pwd'], $donnees['lastname'], $donnees['firstname'], $donnees['mail'], $donnees['logo']);
+        }
+        return false;
     }
         
 

@@ -45,9 +45,11 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
         $bdd = Database::getConnection();
         $reponse = $bdd->query('SELECT * FROM Platform WHERE idPlatform = '.$id.'');
         $donnees = $reponse->fetch();
-        $st = new Platform($donnees['idPlatform'], $donnees['name'], $donnees['description'], $donnees['icon']);
         $reponse->closeCursor();
-        return $st;
+        if($donnees != false){
+            return new Platform($donnees['idPlatform'], $donnees['name'], $donnees['description'], $donnees['icon']);
+        }
+        return false;
     }
 
     /**

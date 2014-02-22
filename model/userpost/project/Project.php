@@ -43,11 +43,15 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
         
         $reponse = $bdd->query('SELECT * FROM Project WHERE idProject = '.$id.'');
         $donnees = $reponse->fetch();
-        $donnees['id'] = $id;
-        $project = new Project($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description']);
-        $project->getFromDB($donnees);
         $reponse->closeCursor();
-        return $project;
+        if($donnees != false){
+            $donnees['id'] = $id;
+            $project = new Project($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description']);
+            $project->getFromDB($donnees);
+            return $project;
+        }
+        return false;
+
     }
 
     /**

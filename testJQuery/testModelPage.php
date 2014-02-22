@@ -27,7 +27,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/property/Property.p
         echo "<table>";
         
         $userUndef = new User("undefined", "test", "Broman", "Robert", "r.broman@gmail.com", "");
-        echo "<tr><td>User ajouté : </td><td>".User::addDB($userUndef)."</td></tr>";
+        //echo "<tr><td>User ajouté : </td><td>".User::addDB($userUndef)."</td></tr>";
         $anotherUser = User::getDB($userUndef->getLogin());
         $anotherUser->setLastName("Johnson");
         echo "<tr><td>User modifié : </td><td>".User::modifyDB($anotherUser)."</td></tr>";

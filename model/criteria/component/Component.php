@@ -43,9 +43,11 @@ class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkCompo
         $bdd = Database::getConnection();
         $reponse = $bdd->query('SELECT * FROM Component WHERE idComponent = '.$id.'');
         $donnees = $reponse->fetch();
-        $st = new Component($donnees['idComponent'], $donnees['name'], $donnees['description']);
         $reponse->closeCursor();
-        return $st;
+        if($donnees != false){
+            return new Component($donnees['idComponent'], $donnees['name'], $donnees['description']);
+        }
+        return false;
     }
 
     /**

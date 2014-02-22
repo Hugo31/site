@@ -45,11 +45,16 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
         
         $reponse = $bdd->query('SELECT * FROM Conflict WHERE idConflict = '.$id.'');
         $donnees = $reponse->fetch();
-        $donnees['id'] = $id;
-        $conflict = new Conflict($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description'], $donnees['type']);
-        $conflict->getFromDB($donnees);
         $reponse->closeCursor();
-        return $conflict;
+        if($donnees != false){
+            $donnees['id'] = $id;
+            $conflict = new Conflict($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description'], $donnees['type']);
+            $conflict->getFromDB($donnees);
+            return $conflict;
+        }
+        return false;
+        
+        
     }
 
     /**
