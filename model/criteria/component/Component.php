@@ -40,10 +40,8 @@ class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkCompo
      * @return Component Le composant issus de la base de donnée.
      */
     public static function getDB($id) { 
-        $bdd = Database::getConnection();
-        $reponse = $bdd->query('SELECT * FROM Component WHERE idComponent = '.$id.'');
-        $donnees = $reponse->fetch();
-        $reponse->closeCursor();
+        $donnees = Database::getOneData('SELECT * FROM Component WHERE idComponent = '.$id.'');
+        
         if($donnees != false){
             return new Component($donnees['idComponent'], $donnees['name'], $donnees['description']);
         }

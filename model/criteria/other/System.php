@@ -42,10 +42,7 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
      * @return System Le système issus de la base de donnée.
      */
     public static function getDB($id) { 
-        $bdd = Database::getConnection();
-        $reponse = $bdd->query('SELECT * FROM System WHERE idSystem = '.$id.'');
-        $donnees = $reponse->fetch();
-        $reponse->closeCursor();
+        $donnees = Database::getOneData('SELECT * FROM System WHERE idSystem = '.$id.'');
         if($donnees != false){
             return new System($donnees['idSystem'], $donnees['name'], $donnees['description'], $donnees['icon']);
         }

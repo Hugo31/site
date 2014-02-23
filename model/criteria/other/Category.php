@@ -40,10 +40,7 @@ class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      * @return Category La categorie issus de la base de donnée.
      */
     public static function getDB($id) { 
-        $bdd = Database::getConnection();
-        $reponse = $bdd->query('SELECT * FROM Category WHERE idCategory = '.$id.'');
-        $donnees = $reponse->fetch();
-        $reponse->closeCursor();
+        $donnees = Database::getOneData('SELECT * FROM Category WHERE idCategory = '.$id.'');
         if($donnees != false){
             return new Category($donnees['idCategory'], $donnees['name'], $donnees['description']);
         }

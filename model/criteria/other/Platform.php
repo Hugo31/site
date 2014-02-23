@@ -42,10 +42,7 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      * @return Platform La plateform issus de la base de donnée.
      */
     public static function getDB($id) { 
-        $bdd = Database::getConnection();
-        $reponse = $bdd->query('SELECT * FROM Platform WHERE idPlatform = '.$id.'');
-        $donnees = $reponse->fetch();
-        $reponse->closeCursor();
+        $donnees = Database::getOneData('SELECT * FROM Platform WHERE idPlatform = '.$id.'');
         if($donnees != false){
             return new Platform($donnees['idPlatform'], $donnees['name'], $donnees['description'], $donnees['icon']);
         }

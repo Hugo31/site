@@ -122,10 +122,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
      * @return DesignPattern Le design pattern issus de la base de donnée.
      */
     public static function getDB($id){
-        $bdd = Database::getConnection();
-        $reponse = $bdd->query('SELECT * FROM DesignPattern WHERE idDesignPattern = '.$id.'');
-        $donnees = $reponse->fetch();
-        $reponse->closeCursor();
+        $donnees = Database::getOneData('SELECT * FROM DesignPattern WHERE idDesignPattern = '.$id.'');
         if($donnees != false){
             $donnees['id'] = $id;
             $dp = new DesignPattern($donnees['idDesignPattern'], $donnees['name'], $donnees['login'], 

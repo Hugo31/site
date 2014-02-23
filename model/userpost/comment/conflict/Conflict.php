@@ -41,11 +41,7 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
      * @param int $id L'identifiant du conflit dans la base de données.
      */
     public static function getDB($id) {
-        $bdd = Database::getConnection();
-        
-        $reponse = $bdd->query('SELECT * FROM Conflict WHERE idConflict = '.$id.'');
-        $donnees = $reponse->fetch();
-        $reponse->closeCursor();
+        $donnees = Database::getOneData('SELECT * FROM Conflict WHERE idConflict = '.$id.'');
         if($donnees != false){
             $donnees['id'] = $id;
             $conflict = new Conflict($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description'], $donnees['type']);

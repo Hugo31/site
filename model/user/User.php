@@ -43,11 +43,7 @@ class User implements IDatabase{
      * @param int $id Login of the user wanted
      */
     public static function getDB($id) {
-        $bdd = Database::getConnection();
-        
-        $reponse = $bdd->query('SELECT * FROM User WHERE login = \''.$id.'\'');
-        $donnees = $reponse->fetch();
-        $reponse->closeCursor();
+        $donnees = Database::getOneData('SELECT * FROM User WHERE login = \''.$id.'\'');
         if($donnees != false){
            return new User($id, $donnees['pwd'], $donnees['lastname'], $donnees['firstname'], $donnees['mail'], $donnees['logo']);
         }

@@ -25,6 +25,14 @@ class Database {
         return Database::$bdd;
     }
     
+    public static function getOneData($req){
+        $bdd = Database::getConnection();
+        $reponse = $bdd->query($req);
+        $donnees = $reponse->fetch();
+        $reponse->closeCursor();
+        return $donnees;
+    }
+    
     
 }
 

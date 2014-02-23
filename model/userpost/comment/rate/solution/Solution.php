@@ -39,10 +39,8 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
     }
 
     public static function getDB($id) {
-        $bdd = Database::getConnection();
-        $reponse = $bdd->query('SELECT * FROM Solution WHERE idSolution = ' . $id . '');
-        $donnees = $reponse->fetch();
-        $reponse->closeCursor();
+        $donnees = Database::getOneData('SELECT * FROM Solution WHERE idSolution = ' . $id . '');
+        
         if($donnees != false){
             $donnees['id'] = $id;
             $solution = new Solution($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['comment'], $donnees['codeSolution'], $donnees['idConflict']);

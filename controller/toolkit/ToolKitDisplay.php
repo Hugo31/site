@@ -24,6 +24,7 @@ class ToolKitDisplay {
         echo "<a href=\"#\" onclick=\"toggleObject('#search_sort_".$criteria."'); return false;\"><label> + ".$criteria."</label></a>";
         ToolKitDisplay::displayCheckBoxCriteria($criteria, $bdd->query("SELECT id".$criteria." AS id, name FROM ".$criteria.""));
         echo "</li>\n";
+        
     }
     
     
