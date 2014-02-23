@@ -11,7 +11,6 @@ $session = Session::getInstance();
 <section id="contenu">
     <?php
         $bdd = Database::getConnection();
-        echo $session->query."<br>";
         $result = $bdd->query($session->query);
 
 
@@ -19,6 +18,9 @@ $session = Session::getInstance();
     ?>
     
 </section>
+<script>
+    $("details").hide();
+</script>
 <?php
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/footer.php');   
 ?>

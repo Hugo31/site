@@ -10,66 +10,8 @@
         <title></title>
     </head>
     <body>
-        
-        <ul>
-            <li>
-                <input class="tri-state" type="checkbox" value="2"/>
-                <label>Category</label>
-                <ul>
-                    <li>
-                        <input class="classic" type="checkbox" value="1"/>
-                        <label>TextCat1</label>
-                    </li>
-                    <li>
-                        <input class="classic" type="checkbox" value="2"/>
-                        <label>TextCat2</label>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        
-        <ul>
-            <li>
-                <input class="tri-state" type="checkbox" name="idCategory" value="2"/>
-                <label>Category</label>
-                <ul id="search_sort_Category">
-                    <li>
-                        <input class="classic" type="checkbox" name="idCategory0" value="1">
-                        <label>TestCat1</label><br>
-                    </li>
-                    <li>
-                        <input class="classic" type="checkbox" name="idCategory1" value="2">
-                        <label>TestCat2</label><br>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <input class="tri-state" type="checkbox" name="idCategory" value="0"/>
-                <label>Component</label>
-                <ul id="search_sort_Component">
-                </ul>
-            </li>
-            <li>
-                <input class="tri-state" type="checkbox" name="idCategory" value="0"/>
-                <label>Platform</label>
-                <ul id="search_sort_Platform">
-                </ul>
-            </li>
-            <li>
-                <input class="tri-state" type="checkbox" name="idCategory" value="0"/>
-                <label>Property</label>
-                <ul id="search_sort_Property">
-                </ul>
-            </li>
-            <li>
-                <input class="tri-state" type="checkbox" name="idCategory" value="0"/>
-                <label>System</label>
-                <ul id="search_sort_System">
-                </ul>
-            </li>
-        </ul>
 
-        <!--
+        
         Test BRO
         <p id="text">TEST</p>
         <div id="titre">J'aime les frites.</div>
@@ -185,7 +127,7 @@
                 </div> 
             </div> 
         </div>
-        -->
+        
         <?php
         // put your code here
         ?>
@@ -234,7 +176,8 @@
                             else{
                                 $('body').prepend("Il y a eu un problème :(");
                             }
-                        });
+                        }
+                    );
         
                     
                     return false;

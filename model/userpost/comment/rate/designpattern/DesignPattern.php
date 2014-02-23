@@ -203,7 +203,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $this->layout = $_layout;
     }
 
-    public function getcopy(){
+    public function getCopy(){
         return $this->copy;
     }
 

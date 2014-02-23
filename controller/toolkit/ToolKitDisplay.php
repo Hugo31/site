@@ -20,8 +20,8 @@ class ToolKitDisplay {
         echo "<li>\n";
         $req = "SELECT COUNT(*) AS nb FROM ".$criteria;
         $data = $bdd->query($req);
-        echo "<input class=\"tri-state\" type=\"checkbox\" name=\"idCategory\" value=\"".$data->fetch()["nb"]."\"/>";
-        echo "<a href=\"#\" onclick=\"runEffect('#search_sort_".$criteria."'); return false;\"><label> + ".$criteria."</label></a>";
+        echo "<input class=\"tri-state\" type=\"checkbox\" name=\"id".$criteria."\" value=\"".$data->fetch()["nb"]."\"/>";
+        echo "<a href=\"#\" onclick=\"toggleObject('#search_sort_".$criteria."'); return false;\"><label> + ".$criteria."</label></a>";
         ToolKitDisplay::displayCheckBoxCriteria($criteria, $bdd->query("SELECT id".$criteria." AS id, name FROM ".$criteria.""));
         echo "</li>\n";
     }
@@ -78,8 +78,8 @@ class ToolKitDisplay {
             echo "<div id=\"note\">".$row['rate']."</div>";
             echo "<div id=\"otherInfo\">".$row['nbRates']." notes<br>".$row['nbComments']." coms</div>";
             echo "</aside>";
-            echo "<summary><a href=\"#\">See more</a></summary>";
-            echo "<details></details>";
+            echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');\">See more</a></summary>";
+            echo "<details id=\"DesignPattern".$row['idDesignPattern']."\"></details>";
             echo "</article>";
         }
     }

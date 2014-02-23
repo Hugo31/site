@@ -21,7 +21,7 @@ class ToolKitSearch {
             ToolKitSQL::generateCriteriaLine($values, "idComponent", "comp");
             ToolKitSQL::generateCriteriaQuery("Component", "cpdp", "AND", $requete, $cond, $values['comp']);
         }
-        if(isset($values['idPaltform'])){
+        if(isset($values['idPlatform'])){
             ToolKitSQL::generateCriteriaLine($values, "idPlatform", "plat");
             ToolKitSQL::generateCriteriaQuery("Platform", "plt", "OR", $requete, $cond, $values['plat']);
         }

@@ -29,7 +29,7 @@ class ToolKitSQL {
                         $cond .= " AND ";
                     }
                     $requete .= ", ".$nameCat."DesignPattern ".$acronym.$i."";
-                    $cond .= "(cpdp".$i.".id".$nameCat." = ".$var[$i]." AND dp.idDesignPattern = ".$acronym.$i.".idDesignPattern)";
+                    $cond .= "(".$acronym.$i.".id".$nameCat." = ".$var[$i]." AND dp.idDesignPattern = ".$acronym.$i.".idDesignPattern)";
 
                 }
                 else{
@@ -46,6 +46,7 @@ class ToolKitSQL {
                     $cond .= "))";
                 }
             }
+            
         }
     }
 }

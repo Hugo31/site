@@ -1,16 +1,27 @@
 
-function runEffect(identifiant) {
+function toggleObject(identifiant) {
         $(identifiant).toggle('blind');
-        
-        if($(identifiant).text() == "[+]"){
-            $(identifiant).text("[-]");
-        }
-        else{
-            if($(identifiant).text() == "[-]"){
-                $(identifiant).text("[+]");
+}
+
+function requestDetails(identifiant, type, idSearch){
+    if($(identifiant).html() == ""){
+        $.post("/site/controller/search/ctrlResultDetails.php", {table: type, id: idSearch}, 
+            function(data) {
+                $(identifiant).empty();
+                $(identifiant).prepend(data);
+                $(identifiant).toggle('blind');
             }
-            
-        }
+        );
+    }
+    else{
+        $(identifiant).toggle('blind', function(e){
+            $(identifiant).empty();
+        });
+        
+        
+    }
+    
+    
 }
     
 function enableTriStateCheckBox(object){
