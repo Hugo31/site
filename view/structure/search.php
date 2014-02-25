@@ -32,7 +32,7 @@
 <aside id="search">
     <h3>SEARCH</h3>
     <form id="search_form" method="post" action="/site/controller/search/ctrlSearch.php">
-        <input type="text" id="search_keywords" name="search_keywords" size="23"/><br/><br/>
+        <input type="text" id="search_keywords" name="search_keywords" style="width:100%"/><br/><br/>
         <input class="search_type_notarget" type="radio" name="search_type_table" value="Conflict" checked>Conflict<br>
         <input class="search_type_target" type="radio" name="search_type_table" value="DesignPattern">Design Pattern<br>
         <div id="search_type_designpattern_target" style="padding-left:20px;">
