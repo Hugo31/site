@@ -42,7 +42,7 @@
         <input class="search_type_notarget" type="radio" name="search_type_table" value="Solution">Solution<br>
         <br/>
         <div style="text-align:right;">
-            <a href="#" onclick="toggleObject('#search_bar_advanced');return false;">[+] Advanced search</a>
+            <a href="#" onclick="toggleObject('#search_bar_advanced');return false;">Advanced search [+]</a>
         </div>
         <div id="search_bar_advanced">
             <br/>
@@ -57,6 +57,6 @@
             </ul>
         </div>
         <br/>
-        <input type="submit" value="Search" style="float:right;"/>
+        <input type="submit" value="SEARCH" class="search" style="float:right;"/>
     </form>
 </aside>

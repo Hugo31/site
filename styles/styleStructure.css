@@ -47,7 +47,6 @@ body {
 	height:24px;
 	border-radius: 4px;
 	padding: 0px 7px;
-	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
 }
 
 input.texte {
@@ -59,15 +58,27 @@ input.signin {
 	background-color: #1473da;
 	box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
 	color: #FFF;
-	border: 1px solid #1267c3;
+	border: 1px solid #1463da;
+}
+
+input.signin:hover {
+	background-color: #1463da;
+        box-shadow: 0px 0px 4px 0px white;
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
 }
 
 input.signup {
 	background-color: #FF4C00;
 	box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
 	color: #FFF;
-	border: 1px solid #7A1F0A;
+	border: 1px solid #ff6100;
 	margin-left:10px;
+}
+
+input.signup:hover {
+	background-color: #ff6100;
+        box-shadow: 0px 0px 4px 0px white;
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
 }
 
 input.signupfooter{
@@ -76,13 +87,20 @@ input.signupfooter{
 	border-radius: 4px;
 	padding: 0px 7px;
 	border: 1px solid #7A1F0A;
-	text-shadow: 0px 1px 1px #8E2A04;
 	background-color: #FF4C00;
 	box-shadow: 0px 1px 1px #000;
 	color: #FFF;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	margin-left:10px;
 	font-size:1.5em;
+}
+
+input.signupfooter:hover {
+	background-color: #ff6100;
+        -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
 }
 
 /* Bloc central contenant #search et #contenu */
