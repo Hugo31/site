@@ -77,7 +77,7 @@ class ToolKitDisplay {
             echo "<article>".$row['what']."</article>";
             echo "<aside>";
             echo "<div id=\"note\">".$row['rate']."</div>";
-            echo "<div id=\"otherInfo\">".$row['nbRates']." notes<br>".$row['nbComments']." coms</div>";
+            echo "<div id=\"otherInfo\">".$row['nbRates']." rates<br/>".$row['nbComments']." coms</div>";
             echo "</aside>";
             echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');\">See more</a></summary>";
             echo "<details id=\"DesignPattern".$row['idDesignPattern']."\"></details>";
