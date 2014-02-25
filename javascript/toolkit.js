@@ -1,6 +1,7 @@
 
-function toggleObject(identifiant) {
-        $(identifiant).toggle('blind');
+function toggleObject(proprietaire, identifiant) {
+    $(proprietaire).prop("src", "/site/img/moins.gif");
+    $(identifiant).toggle('blind');
 }
 
 function requestDetails(identifiant, type, idSearch){
