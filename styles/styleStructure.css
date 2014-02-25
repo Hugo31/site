@@ -126,10 +126,6 @@ input.signupfooter:hover {
 	color: #FF4C00;
 }
 
-#menu a:hover, #menu a:focus{
-	color:white;
-}
-
 #footercontent {
 	width:1024px;
 	margin:0 auto;
@@ -179,6 +175,7 @@ body {
 	padding: 10px 20px 10px 20px;
         min-height :600px;
 }
+
 #contenu > :first-child {
 	margin-top: 10px;
 }

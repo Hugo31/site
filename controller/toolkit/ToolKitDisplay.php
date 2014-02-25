@@ -97,8 +97,4 @@ class ToolKitDisplay {
             echo "</article>";
         }
     }
-    
-    
-    
-    
 }
