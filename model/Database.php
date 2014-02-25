@@ -33,6 +33,12 @@ class Database {
         return $donnees;
     }
     
+    public static function getAllData($req){
+        $bdd = Database::getConnection();
+        $reponse = $bdd->query($req);
+        return $reponse;
+    }
+    
     
 }
 
