@@ -5,6 +5,12 @@ class ToolKitSearch {
         $requete = "SELECT DISTINCT c.idConflict, c.name, c.description FROM Conflict c ";
         if($values['search_keywords'] != ""){
             $requete .= " WHERE name LIKE \"%".$values['search_keywords']."%\"";
+            $keys = explode(" ", $values['search_keywords']);
+            foreach($keys as $k){
+                $requete .= " OR name LIKE \"%".$k."%\"";
+            }
+        
+        
         }
         return $requete;
     }

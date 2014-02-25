@@ -64,15 +64,20 @@ class ToolKitDisplay {
             echo "<a href=\"details.php?type=DesignPattern&id=".$row['idDesignPattern']."\">".$row['name']."</a>";
             $reqSystem = "SELECT icon FROM System s, SystemDesignPattern sdp "
                     ."WHERE sdp.idDesignPattern=".$row['idDesignPattern']." AND s.idSystem = sdp.idSystem";
-            foreach($bdd->query($reqSystem) as $img){
+            $reponse = $bdd->query($reqSystem);
+            foreach($reponse as $img){
                 echo "<img src=\"".$img['icon']."\" alt=\"\"/>";
             }
+            $reponse->closeCursor();
             
-            $reqPlatform = "SELECT icon FROM Platform s, PlatformDesignPattern sdp "
-                    ."WHERE sdp.idDesignPattern=".$row['idDesignPattern']." AND s.idSystem = sdp.idSystem";
-            foreach($bdd->query($reqSystem) as $img){
+            $reqPlatform = "SELECT icon FROM Platform p, PlatformDesignPattern pdp "
+                    ."WHERE pdp.idDesignPattern=".$row['idDesignPattern']." AND p.idPlatform = pdp.idPlatform";
+            $reponse = $bdd->query($reqPlatform);
+            foreach($reponse as $img){
                 echo "<img src=\"".$img['icon']."\" alt=\"\"/>";
             }
+            $reponse->closeCursor();
+            echo "<a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add</a>";
             echo "</header>";
             echo "<article>".$row['what']."</article>";
             echo "<aside>";

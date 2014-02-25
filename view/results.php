@@ -10,6 +10,7 @@ $session = Session::getInstance();
 ?>
 <section id="contenu">
     <?php
+        echo $session->query."<br>";
         $bdd = Database::getConnection();
         $result = $bdd->query($session->query);
 

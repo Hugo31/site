@@ -11,15 +11,15 @@ $session = Session::getInstance();
 <section id="contenu">
     <?php
         $bdd = Database::getConnection();
-        if($_GET['Conflict']){
+        if($_GET['type'] == "Conflict"){
             
         }
         else{
-            if($_GET['DesignPattern']){
+            if($_GET['type'] == "DesignPattern"){
                 
             }
             else{
-                if($_GET['Solution']){
+                if($_GET['type'] == "Solution"){
                     
                 }
             }

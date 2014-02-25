@@ -15,6 +15,7 @@ class ToolkitDisplayDesignPattern {
     
     public static function displayImages($id){
         
+        
     }
     
     public static function displaySources($id){
