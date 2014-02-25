@@ -60,9 +60,9 @@ class ToolKitDisplay {
     public static function displayDesignPatternBox($dataToDisplay){
         $bdd = Database::getConnection();
         foreach($dataToDisplay as $row){
-            echo "<article id=\"article_".$row['idDesignPattern']."\">";
-            echo "<header>";
-            echo "<a href=\"details.php?type=DesignPattern&id=".$row['idDesignPattern']."\">".$row['name']."</a>";
+            echo "<article class=\"designPatternBox\" id=\"article_".$row['idDesignPattern']."\">";
+            echo "<header id='headerDesignPatternBox'>";
+            echo "<a href=\"details.php?type=DesignPattern&id=".$row['idDesignPattern']."\"><h2>".$row['name']."</h2></a>";
             $reqSystem = "SELECT icon FROM System s, SystemDesignPattern sdp "
                     ."WHERE sdp.idDesignPattern=".$row['idDesignPattern']." AND s.idSystem = sdp.idSystem";
             $reponse = $bdd->query($reqSystem);
@@ -80,11 +80,11 @@ class ToolKitDisplay {
             $reponse->closeCursor();
             echo "<a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add</a>";
             echo "</header>";
-            echo "<article>".$row['what']."</article>";
-            echo "<aside>";
-            echo "<div id=\"note\">".$row['rate']."</div>";
-            echo "<div id=\"otherInfo\">".$row['nbRates']." rates<br/>".$row['nbComments']." coms</div>";
+            echo "<aside id='asideDesignPatternBox'>";
+            echo "<div id=\"note\">".$row['rate']."/5</div>";
+            echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rates</a><br/><a href=\"\">".$row['nbComments']." coms</a></div>";
             echo "</aside>";
+            echo "<article id=\"articleDesignPatternBox\">".$row['what']."</article>";
             echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');\">See more</a></summary>";
             echo "<details id=\"DesignPattern".$row['idDesignPattern']."\"></details>";
             echo "</article>";
