@@ -23,21 +23,36 @@ class ToolKitSearch {
             ToolKitSQL::generateCriteriaLine($values, "idCategory", "cat");
             ToolKitSQL::generateCriteriaQuery("Category", "cdp", "OR", $requete, $cond, $values['cat']);
         }
+        else{
+            $values['cat']["nb"] = 0;
+        }
         if(isset($values['idComponent'])){
             ToolKitSQL::generateCriteriaLine($values, "idComponent", "comp");
             ToolKitSQL::generateCriteriaQuery("Component", "cpdp", "AND", $requete, $cond, $values['comp']);
+        }
+        else{
+            $values['comp']["nb"] = 0;
         }
         if(isset($values['idPlatform'])){
             ToolKitSQL::generateCriteriaLine($values, "idPlatform", "plat");
             ToolKitSQL::generateCriteriaQuery("Platform", "plt", "OR", $requete, $cond, $values['plat']);
         }
+        else{
+            $values['plat']["nb"] = 0;
+        }
         if(isset($values['idProperty'])){
             ToolKitSQL::generateCriteriaLine($values, "idProperty", "prop");
             ToolKitSQL::generateCriteriaQuery("Property", "prt", "AND", $requete, $cond, $values['prop']);
         }
+        else{
+            $values['prop']["nb"] = 0;
+        }
         if(isset($values['idSystem'])){
             ToolKitSQL::generateCriteriaLine($values, "idSystem", "syst");
             ToolKitSQL::generateCriteriaQuery("System", "sys", "OR", $requete, $cond, $values['syst']);
+        }
+        else{
+            $values['syst']["nb"] = 0;
         }
         
         $requete .= " WHERE target = \"".$values['search_type_designpattern_target']. "\"";
