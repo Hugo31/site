@@ -9,6 +9,7 @@ $session = Session::getInstance();
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');   
 ?>
 <section id="contenu">
+    <h1> Results </h1>
     <?php
         echo $session->query."<br>";
         $bdd = Database::getConnection();
