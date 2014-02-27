@@ -1,7 +1,5 @@
 <?php
     $bdd = Database::getConnection();
-    $session = Session::getInstance();
-    
 ?>
 
 <script>
@@ -32,13 +30,13 @@
                 ($session->idSystemQuery["nb"] > 0)
                 ){
                 echo "$(\"#search_bar_advanced\").show();";
-            }
-            else{
-                if($session->idCategoryQuery["nb"] > 0){ echo "$(\"#search_sort_Category\").show();"; }
-                if($session->idComponentQuery["nb"] > 0){ echo "$(\"#search_sort_Component\").show();"; }
-                if($session->idPlatformQuery["nb"] > 0){ echo "$(\"#search_sort_Platform\").show();"; }
-                if($session->idPropertyQuery["nb"] > 0){ echo "$(\"#search_sort_Property\").show();"; }
-                if($session->idSystemQuery["nb"] > 0){ echo "$(\"#search_sort_System\").show();"; }
+            
+                if($session->idCategoryQuery["nb"] > 0){ echo "$('#search_sort_Category_a').trigger(\"click\");"; }
+                if($session->idComponentQuery["nb"] > 0){ echo "$('#search_sort_Component_a').trigger(\"click\");"; }
+                if($session->idPlatformQuery["nb"] > 0){ echo "$('#search_sort_Platform_a').trigger(\"click\");"; }
+                if($session->idPropertyQuery["nb"] > 0){ echo "$('#search_sort_Property_a').trigger(\"click\");"; }
+                if($session->idSystemQuery["nb"] > 0){ echo "$('#search_sort_System_a').trigger(\"click\");"; }
+                
             }
         ?>
         
@@ -51,12 +49,13 @@
             enableTriStateCheckBox($(this));
         });
         
-        $(".classic").trigger("change");
+        
 
     });
 </script>
 
 <aside id="search">
+    
     <h3>SEARCH</h3>
     <form id="search_form" method="post" action="/site/controller/search/ctrlSearch.php">
         <input type="text" id="search_keywords" name="search_keywords" style="width:100%" <?php ToolkitDisplay::addValue($session->searchTextQuery); ?>/><br/><br/>
