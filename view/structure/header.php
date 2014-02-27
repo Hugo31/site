@@ -1,6 +1,7 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
     require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolKitDisplay.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
 ?>
 
 <!DOCTYPE html>
