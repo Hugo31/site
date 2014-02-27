@@ -15,7 +15,7 @@ class ToolKitSearch {
         return $requete;
     }
     
-    public static function searchDP($values){
+    public static function searchDP(&$values){
         //header("Location: ../index.php");
         $requete = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments FROM DesignPattern dp";
         $cond = "";
@@ -51,10 +51,33 @@ class ToolKitSearch {
         return $requete;
     }
     
-    public static function searchSolution(){
-        $requete = "SELECT DISTINCT s.idSolution, s.comment FROM Solution s WHERE name LIKE \"%".$values['search_keywords']."%\"";
-    
+    public static function searchSolution($values){
+        $requete = "SELECT DISTINCT s.idSolution, s.name, s.comment FROM Solution s ";
+        if($values['search_keywords'] != ""){
+            $requete .= " WHERE s.name LIKE \"%".$values['search_keywords']."%\"";
+            $keys = explode(" ", $values['search_keywords']);
+            foreach($keys as $k){
+                $requete .= " OR s.name LIKE \"%".$k."%\"";
+            }
+        }
         return $requete;
+    }
+    
+    public static function stockParameters($values, &$session){
+        $session->searchTextQuery = $values['search_keywords'];
+        $session->targetQuery = $values['search_type_designpattern_target'];
+        if($session->typeQuery == "DesignPattern"){
+            $session->idCategoryQuery = array();
+            $session->idComponentQuery = array();
+            $session->idPlatformQuery = array();
+            $session->idPropertyQuery = array();
+            $session->idSystemQuery = array();
+            if(isset($values['cat'])){ $session->idCategoryQuery = $values['cat']; }
+            if(isset($values['comp'])){ $session->idComponentQuery = $values['comp']; }
+            if(isset($values['plat'])){ $session->idPlatformQuery = $values['plat']; }
+            if(isset($values['prop'])){ $session->idPropertyQuery = $values['prop']; }
+            if(isset($values['syst'])){ $session->idSystemQuery = $values['syst']; }
+        }
     }
 }
 

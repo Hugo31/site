@@ -1,6 +1,15 @@
 
-function toggleObject(proprietaire, identifiant) {
-    $(proprietaire).prop("src", "/site/img/moins.gif");
+function toggleObject(identifiant) {
+    $(identifiant).toggle('blind');
+}
+
+function toggleTree(identifiant, handlerLink) {
+    if(handlerLink.text() == "[+]"){
+        handlerLink.text("[-]");
+    }
+    else{
+        handlerLink.text("[+]");
+    }
     $(identifiant).toggle('blind');
 }
 
@@ -18,8 +27,6 @@ function requestDetails(identifiant, type, idSearch){
         $(identifiant).toggle('blind', function(e){
             $(identifiant).empty();
         });
-        
-        
     }
     
     

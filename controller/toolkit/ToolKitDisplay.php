@@ -2,12 +2,16 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
 class ToolKitDisplay {
     
-    public static function displayCheckBoxCriteria($criteria, $dataToDisplay){
+    public static function displayCheckBoxCriteria($criteria, $dataToDisplay, $values){
         $i = 0;
         echo "<ul id=\"search_sort_".$criteria."\">\n";
         foreach($dataToDisplay as $row){
             echo "<li>\n";
-            echo "<input id=\"id".$criteria.$i."\" class=\"classic\" type=\"checkbox\" name=\"id".$criteria.$i."\" value=\"".$row["id"]."\">";
+            echo "<input id=\"id".$criteria.$i."\" class=\"classic\" type=\"checkbox\" name=\"id".$criteria.$i."\" value=\"".$row["id"]."|".$row['name']."\" ";
+            if(isset($values[$row["name"]])){
+                echo " checked ";
+            }
+            echo ">";
             echo "<label for=\"id".$criteria.$i."\"> ".$row["name"]."</label><br>";
             echo "</li>\n";
             $i++;
@@ -16,14 +20,14 @@ class ToolKitDisplay {
     }
     
     
-    public static function displayCheckboxesComplete($bdd, $criteria){
+    public static function displayCheckboxesComplete($bdd, $criteria, $values){
         echo "<li>\n";
         $req = "SELECT COUNT(*) AS nb FROM ".$criteria;
         $data = $bdd->query($req);
-        echo "<a href=\"#\" style=\"text-decoration:none;\" onclick=\"toggleObject('#search_sort_".$criteria."'); return false;\"> <label id='sup'>+ </label></a>";
+        echo "<a href=\"#\" style=\"text-decoration:none;\" onclick=\"toggleTree('#search_sort_".$criteria."', $(this)); return false;\">[+]</a>";
         echo "<input class=\"tri-state\" type=\"checkbox\" name=\"id".$criteria."\" value=\"".$data->fetch()["nb"]."\"/>";
         echo $criteria;
-        ToolKitDisplay::displayCheckBoxCriteria($criteria, $bdd->query("SELECT id".$criteria." AS id, name FROM ".$criteria.""));
+        ToolKitDisplay::displayCheckBoxCriteria($criteria, $bdd->query("SELECT id".$criteria." AS id, name FROM ".$criteria.""), $values);
         echo "</li>\n";
         
     }
@@ -102,5 +106,15 @@ class ToolKitDisplay {
             echo "<details></details>";
             echo "</article>";
         }
+    }
+    
+    public static function checkItem($item, $value){
+        if($item == $value){
+            echo "checked";
+        }
+    }
+    
+    public static function addValue($value){
+        echo "value=\"".$value."\"";
     }
 }

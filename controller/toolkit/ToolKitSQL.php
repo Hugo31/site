@@ -5,31 +5,34 @@ class ToolKitSQL {
         if(isset($values[$name])){
             $nbElem = $values[$name];
             //echo $nbElem;
-            $values[$newName] = "";
+            $values[$newName] = array();
+            $values[$newName]["nb"] = 0;
             for($i = 0; $i < $nbElem; $i++){
                 if(isset($values[$name.$i])){
-                    $values[$newName] .= $values[$name.$i]."|";
+                    $var = explode("|", $values[$name.$i]);
+                    $values[$newName][$values[$newName]["nb"]] = $var[0];
+                    $values[$newName][$var[1]] = 1;
+                    $values[$newName]["nb"] += 1;
                 }
-
             }
         }
+        
     }
     
     public static function generateCriteriaQuery($nameCat, $acronym, $cdt, &$requete, &$cond, $results){
         if(isset($results)){
-            $var = explode("|", $results); //Le dernier résultat de var n'est pas à prendre
-            if(count($var) > 0 && $var[0] != ""){
+            if(count($results) > 1){
                 if($cdt == "AND"){
                     if($cond != ""){
                         $cond .= " AND ";
                     }
-                    for($i = 0; $i < count($var) - 2; $i++){
+                    for($i = 0; $i < $results["nb"] - 1; $i++){
                         $requete .= ", ".$nameCat."DesignPattern ".$acronym.$i."";
-                        $cond .= "(".$acronym.$i.".id".$nameCat." = ".$var[$i]." AND dp.idDesignPattern = ".$acronym.$i.".idDesignPattern)";
+                        $cond .= "(".$acronym.$i.".id".$nameCat." = ".$results[$i]." AND dp.idDesignPattern = ".$acronym.$i.".idDesignPattern)";
                         $cond .= " AND ";
                     }
                     $requete .= ", ".$nameCat."DesignPattern ".$acronym.$i."";
-                    $cond .= "(".$acronym.$i.".id".$nameCat." = ".$var[$i]." AND dp.idDesignPattern = ".$acronym.$i.".idDesignPattern)";
+                    $cond .= "(".$acronym.$i.".id".$nameCat." = ".$results[$i]." AND dp.idDesignPattern = ".$acronym.$i.".idDesignPattern)";
 
                 }
                 else{
@@ -38,11 +41,11 @@ class ToolKitSQL {
                         $cond .= " AND ";
                     }
                     $cond .= "(dp.idDesignPattern = ".$acronym.".idDesignPattern AND (";
-                    for($i = 0; $i < count($var) - 2; $i++){
-                        $cond .= "(".$acronym.".id".$nameCat." = ".$var[$i].")";
+                    for($i = 0; $i < $results["nb"] - 1; $i++){
+                        $cond .= "(".$acronym.".id".$nameCat." = ".$results[$i].")";
                         $cond .= " OR ";
                     }
-                    $cond .= "(".$acronym.".id".$nameCat." = ".$var[$i].")";
+                    $cond .= "(".$acronym.".id".$nameCat." = ".$results[$i].")";
                     $cond .= "))";
                 }
             }
