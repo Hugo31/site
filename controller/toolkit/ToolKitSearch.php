@@ -55,7 +55,16 @@ class ToolKitSearch {
             $values['syst']["nb"] = 0;
         }
         
-        $requete .= " WHERE target = \"".$values['search_type_designpattern_target']. "\"";
+        $requete .= " WHERE ";
+        if($values['search_keywords'] != ""){
+            $requete .= " (dp.name LIKE \"%".$values['search_keywords']."%\"";
+            $keys = explode(" ", $values['search_keywords']);
+            foreach($keys as $k){
+                $requete .= " OR dp.name LIKE \"%".$k."%\"";
+            }
+            $requete .= ") AND ";
+        }
+        $requete .= "target = \"".$values['search_type_designpattern_target']. "\"";
         if($cond != ""){
             $requete .= " AND ";
         }

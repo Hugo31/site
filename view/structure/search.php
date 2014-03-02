@@ -2,57 +2,7 @@
     $bdd = Database::getConnection();
 ?>
 
-<script>
-    $(function() {
-        $(":radio.search_type_target").change(function() {
-            $("#search_type_designpattern_target").show("clip");
-            $("#search_advancedLink").show("clip");
-        });
-        $(":radio.search_type_notarget").change(function() {
-            $("#search_type_designpattern_target").hide();
-            $("#search_advancedLink").hide();
-        });
-        $("#search_bar_advanced").hide();
-        $("#search_sort_Category").hide();
-        $("#search_sort_Component").hide();
-        $("#search_sort_Platform").hide();
-        $("#search_sort_Property").hide();
-        $("#search_sort_System").hide();
-        <?php
-            if(isset($session->typeQuery)){
-                if($session->typeQuery != "DesignPattern"){
-                    echo "$(\"#search_type_designpattern_target\").hide();";
-                    echo "$(\"#search_advancedLink\").hide();";
-                }
-            }
-            if(($session->idCategoryQuery["nb"] > 0) || ($session->idComponentQuery["nb"] > 0) ||
-                ($session->idPlatformQuery["nb"] > 0) || ($session->idPropertyQuery["nb"] > 0) ||
-                ($session->idSystemQuery["nb"] > 0)
-                ){
-                echo "$(\"#search_bar_advanced\").show();";
-            
-                if($session->idCategoryQuery["nb"] > 0){ echo "$('#search_sort_Category_a').trigger(\"click\");"; }
-                if($session->idComponentQuery["nb"] > 0){ echo "$('#search_sort_Component_a').trigger(\"click\");"; }
-                if($session->idPlatformQuery["nb"] > 0){ echo "$('#search_sort_Platform_a').trigger(\"click\");"; }
-                if($session->idPropertyQuery["nb"] > 0){ echo "$('#search_sort_Property_a').trigger(\"click\");"; }
-                if($session->idSystemQuery["nb"] > 0){ echo "$('#search_sort_System_a').trigger(\"click\");"; }
-                
-            }
-        ?>
-        
 
-        $(".classic").change(function(e) {
-            enableCheckBoxChild($(this));
-
-        });
-        $(".tri-state").change(function(e) {
-            enableTriStateCheckBox($(this));
-        });
-        
-        
-
-    });
-</script>
 
 <aside id="search">
     
@@ -89,3 +39,53 @@
         <input type="submit" value="SEARCH" class="search" style="float:right;"/>
     </form>
 </aside>
+
+<script>
+    $(function() {
+        $(".classic").change(function(e) {
+            enableCheckBoxChild($(this));
+
+        });
+        $(".tri-state").change(function(e) {
+            enableTriStateCheckBox($(this));
+        });
+        $(":radio.search_type_target").change(function() {
+            $("#search_type_designpattern_target").show("clip");
+            $("#search_advancedLink").show("clip");
+        });
+        $(":radio.search_type_notarget").change(function() {
+            $("#search_type_designpattern_target").hide();
+            $("#search_advancedLink").hide();
+        });
+        $("#search_bar_advanced").hide();
+        $("#search_sort_Category").hide();
+        $("#search_sort_Component").hide();
+        $("#search_sort_Platform").hide();
+        $("#search_sort_Property").hide();
+        $("#search_sort_System").hide();
+        <?php
+            if(isset($session->typeQuery)){
+                if($session->typeQuery != "DesignPattern"){
+                    echo "$(\"#search_type_designpattern_target\").hide();";
+                    echo "$(\"#search_advancedLink\").hide();";
+                }
+            }
+            if(($session->idCategoryQuery["nb"] > 0) || ($session->idComponentQuery["nb"] > 0) ||
+                ($session->idPlatformQuery["nb"] > 0) || ($session->idPropertyQuery["nb"] > 0) ||
+                ($session->idSystemQuery["nb"] > 0)
+                ){
+                echo "$(\"#search_bar_advanced\").show();";
+            
+                if($session->idCategoryQuery["nb"] > 0){ echo "$('#search_sort_Category_a').trigger(\"click\");"; }
+                if($session->idComponentQuery["nb"] > 0){ echo "$('#search_sort_Component_a').trigger(\"click\");"; }
+                if($session->idPlatformQuery["nb"] > 0){ echo "$('#search_sort_Platform_a').trigger(\"click\");"; }
+                if($session->idPropertyQuery["nb"] > 0){ echo "$('#search_sort_Property_a').trigger(\"click\");"; }
+                if($session->idSystemQuery["nb"] > 0){ echo "$('#search_sort_System_a').trigger(\"click\");"; }
+                
+            }
+        ?>
+        
+        
+        $(".classic").trigger("change");
+    });
+</script>
