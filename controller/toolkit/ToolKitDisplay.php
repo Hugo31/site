@@ -48,63 +48,74 @@ class ToolKitDisplay {
     }
     
     public static function displayConflictBox($dataToDisplay){
-        foreach($dataToDisplay as $row){
-            echo "<article id=\"article_".$row['idConflict']."\">";
-            echo "<header>";
-            echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\">".$row['name']."</a>";
-            
-            echo "</header>";
-            echo "<article>".$row['description']."</article>";
-            
-            echo "</article>";
+        if ($dataToDisplay->rowCount() == 0) {
+            echo 'No results.';
+        } else {
+            foreach($dataToDisplay as $row){
+                echo "<article id=\"article_".$row['idConflict']."\">";
+                echo "<header>";
+                echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\">".$row['name']."</a>";
+
+                echo "</header>";
+                echo "<article>".$row['description']."</article>";
+
+                echo "</article>";
+            }
         }
-        
     }
     
     public static function displayDesignPatternBox($dataToDisplay){
-        $bdd = Database::getConnection();
-        foreach($dataToDisplay as $row){
-            echo "<article class=\"designPatternBox\" id=\"article_".$row['idDesignPattern']."\">";
-            echo "<header id='headerDesignPatternBox'>";
-            echo "<a href=\"details.php?type=DesignPattern&id=".$row['idDesignPattern']."\"><h2>".$row['name']."</h2></a>";
-            $reqSystem = "SELECT icon FROM System s, SystemDesignPattern sdp "
-                    ."WHERE sdp.idDesignPattern=".$row['idDesignPattern']." AND s.idSystem = sdp.idSystem";
-            $reponse = $bdd->query($reqSystem);
-            foreach($reponse as $img){
-                echo "<img src=\"".$img['icon']."\" alt=\"\"/>";
+        if ($dataToDisplay->rowCount() == 0) {
+            echo 'No results.';
+        } else {
+            $bdd = Database::getConnection();
+            foreach($dataToDisplay as $row){
+                echo "<article class=\"designPatternBox\" id=\"article_".$row['idDesignPattern']."\">";
+                echo "<header id='headerDesignPatternBox'>";
+                echo "<a href=\"details.php?type=DesignPattern&id=".$row['idDesignPattern']."\"><h2>".$row['name']."</h2></a>";
+                $reqSystem = "SELECT icon FROM System s, SystemDesignPattern sdp "
+                        ."WHERE sdp.idDesignPattern=".$row['idDesignPattern']." AND s.idSystem = sdp.idSystem";
+                $reponse = $bdd->query($reqSystem);
+                foreach($reponse as $img){
+                    echo "<img src=\"".$img['icon']."\" alt=\"\"/>";
+                }
+                $reponse->closeCursor();
+
+                $reqPlatform = "SELECT icon FROM Platform p, PlatformDesignPattern pdp "
+                        ."WHERE pdp.idDesignPattern=".$row['idDesignPattern']." AND p.idPlatform = pdp.idPlatform";
+                $reponse = $bdd->query($reqPlatform);
+                foreach($reponse as $img){
+                    echo "<img src=\"".$img['icon']."\" alt=\"\"/>";
+                }
+                $reponse->closeCursor();
+                echo "<a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add</a>";
+                echo "</header>";
+                echo "<aside id='asideDesignPatternBox'>";
+                echo "<div id=\"note\">".$row['rate']."/5</div>";
+                echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rates</a><br/><a href=\"\">".$row['nbComments']." coms</a></div>";
+                echo "</aside>";
+                echo "<article id=\"articleDesignPatternBox\">".$row['what']."</article>";
+                echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');\">See more</a></summary>";
+                echo "<details id=\"DesignPattern".$row['idDesignPattern']."\"></details>";
+                echo "</article>";
             }
-            $reponse->closeCursor();
-            
-            $reqPlatform = "SELECT icon FROM Platform p, PlatformDesignPattern pdp "
-                    ."WHERE pdp.idDesignPattern=".$row['idDesignPattern']." AND p.idPlatform = pdp.idPlatform";
-            $reponse = $bdd->query($reqPlatform);
-            foreach($reponse as $img){
-                echo "<img src=\"".$img['icon']."\" alt=\"\"/>";
-            }
-            $reponse->closeCursor();
-            echo "<a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add</a>";
-            echo "</header>";
-            echo "<aside id='asideDesignPatternBox'>";
-            echo "<div id=\"note\">".$row['rate']."/5</div>";
-            echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rates</a><br/><a href=\"\">".$row['nbComments']." coms</a></div>";
-            echo "</aside>";
-            echo "<article id=\"articleDesignPatternBox\">".$row['what']."</article>";
-            echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');\">See more</a></summary>";
-            echo "<details id=\"DesignPattern".$row['idDesignPattern']."\"></details>";
-            echo "</article>";
         }
     }
     
     public static function displaySolutionBox($dataToDisplay){
-        foreach($dataToDisplay as $row){
-            echo "<article id=\"article_".$row['idSolution']."\">";
-            echo "<header>";
-            echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\">".$row['name']."</a>";
-            echo "</header>";
-            echo "<article>".$row['comment']."</article>";
-            echo "<summary><a href=\"#\">See more</a></summary>";
-            echo "<details></details>";
-            echo "</article>";
+        if ($dataToDisplay->rowCount() == 0) {
+            echo 'No results.';
+        } else {
+            foreach($dataToDisplay as $row){
+                echo "<article id=\"article_".$row['idSolution']."\">";
+                echo "<header>";
+                echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\">".$row['name']."</a>";
+                echo "</header>";
+                echo "<article>".$row['comment']."</article>";
+                echo "<summary><a href=\"#\">See more</a></summary>";
+                echo "<details></details>";
+                echo "</article>";
+            }
         }
     }
     

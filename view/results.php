@@ -11,10 +11,8 @@ $session = Session::getInstance();
 <section id="contenu">
     <h1> Results </h1>
     <?php
-        echo $session->query."<br>";
         $bdd = Database::getConnection();
         $result = $bdd->query($session->query);
-
 
         ToolKitDisplay::displayGenericBox($session->typeQuery, $result);
     ?>
