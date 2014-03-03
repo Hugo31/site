@@ -6,8 +6,6 @@ if(isset($_POST['table']) && isset($_POST['id'])){
     echo "<div>".$dp->getWhenAndHow()."</div>";
     echo "<div>".$dp->getLayout()."</div>";
     echo "<div>".$dp->getCopy()."</div>";
-    echo "<div>".$dp->getImplementation()."</div>";
-    
+    echo "<div>".$dp->getImplementation()."</div>"; 
 }
-
 ?>

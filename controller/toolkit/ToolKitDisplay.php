@@ -71,13 +71,14 @@ class ToolKitDisplay {
             $bdd = Database::getConnection();
             foreach($dataToDisplay as $row){
                 echo "<article class=\"designPatternBox\" id=\"article_".$row['idDesignPattern']."\">";
+                echo "<div id='headerAside'>";
                 echo "<header id='headerDesignPatternBox'>";
                 echo "<a href=\"details.php?type=DesignPattern&id=".$row['idDesignPattern']."\"><h2>".$row['name']."</h2></a>";
                 $reqSystem = "SELECT icon FROM System s, SystemDesignPattern sdp "
                         ."WHERE sdp.idDesignPattern=".$row['idDesignPattern']." AND s.idSystem = sdp.idSystem";
                 $reponse = $bdd->query($reqSystem);
                 foreach($reponse as $img){
-                    echo "<img src=\"".$img['icon']."\" alt=\"\"/>";
+                    echo "<sup><img src=\"".$img['icon']."\" alt=\"\" style=\"padding-right:5px;\"/></sup>";
                 }
                 $reponse->closeCursor();
 
@@ -85,17 +86,18 @@ class ToolKitDisplay {
                         ."WHERE pdp.idDesignPattern=".$row['idDesignPattern']." AND p.idPlatform = pdp.idPlatform";
                 $reponse = $bdd->query($reqPlatform);
                 foreach($reponse as $img){
-                    echo "<img src=\"".$img['icon']."\" alt=\"\"/>";
+                    echo "<img src=\"".$img['icon']."\" alt=\"\"/ style=\"padding-right:5px;\">";
                 }
                 $reponse->closeCursor();
-                echo "<a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add</a>";
+                echo "<br/><div id=\"lienAdd\">Date of last update : 10/12/2014 | Author : <a href=\"\">inconnu</a> | <a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add to my current Design Pattern</a></div>";
                 echo "</header>";
                 echo "<aside id='asideDesignPatternBox'>";
                 echo "<div id=\"note\">".$row['rate']."/5</div>";
                 echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rates</a><br/><a href=\"\">".$row['nbComments']." coms</a></div>";
                 echo "</aside>";
+                echo "</div>";
                 echo "<article id=\"articleDesignPatternBox\">".$row['what']."</article>";
-                echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');\">See more</a></summary>";
+                echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');\" style=\"float:right\">See more</a></summary><br/>";
                 echo "<details id=\"DesignPattern".$row['idDesignPattern']."\"></details>";
                 echo "</article>";
             }

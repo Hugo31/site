@@ -1,7 +1,10 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
+    $session = Session::getInstance();
 
-include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
-include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');   
+    include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
+    include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');
+    
 /* Si l'utilisateur a bien entré un code */
 if (!empty($_REQUEST['userCode'])) {
 
