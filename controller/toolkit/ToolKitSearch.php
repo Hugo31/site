@@ -8,16 +8,14 @@ class ToolKitSearch {
             $keys = explode(" ", $values['search_keywords']);
             foreach($keys as $k){
                 $requete .= " OR name LIKE \"%".$k."%\"";
-            }
-        
-        
+            }        
         }
         return $requete;
     }
     
     public static function searchDP(&$values){
         //header("Location: ../index.php");
-        $requete = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments FROM DesignPattern dp";
+        $requete = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.date, dp.login FROM DesignPattern dp";
         $cond = "";
         if(isset($values['idCategory'])){
             ToolKitSQL::generateCriteriaLine($values, "idCategory", "cat");
@@ -71,7 +69,6 @@ class ToolKitSearch {
         $requete .= $cond;
 
 //Category : OU, Component : ET, System : OU, platform : OU, property : ET
-
         return $requete;
     }
     

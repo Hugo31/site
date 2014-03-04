@@ -86,10 +86,11 @@ class ToolKitDisplay {
                         ."WHERE pdp.idDesignPattern=".$row['idDesignPattern']." AND p.idPlatform = pdp.idPlatform";
                 $reponse = $bdd->query($reqPlatform);
                 foreach($reponse as $img){
-                    echo "<img src=\"".$img['icon']."\" alt=\"\"/ style=\"padding-right:5px;\">";
+                    echo "<sup><img src=\"".$img['icon']."\" alt=\"\"/ style=\"padding-right:5px;width:20px;\"></sup>";
                 }
                 $reponse->closeCursor();
-                echo "<br/><div id=\"lienAdd\">Date of last update : 10/12/2014 | Author : <a href=\"\">inconnu</a> | <a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add to my current Design Pattern</a></div>";
+                $dateDP = new DateTime($row['date']);
+                echo "<br/><div id=\"lienAdd\">Date of last update : ".$dateDP->format('d/m/Y')." | Author : <a href=\"\">".$row['login']."</a> | <img src=\"../img/vrac/add.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add to my current Design Pattern</a></div>";
                 echo "</header>";
                 echo "<aside id='asideDesignPatternBox'>";
                 echo "<div id=\"note\">".$row['rate']."/5</div>";
@@ -98,7 +99,7 @@ class ToolKitDisplay {
                 echo "</div>";
                 echo "<article id=\"articleDesignPatternBox\">".$row['what']."</article>";
                 echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');\" style=\"float:right\">See more</a></summary><br/>";
-                echo "<details id=\"DesignPattern".$row['idDesignPattern']."\"></details>";
+                echo "<details class=\"detailsDP\" id=\"DesignPattern".$row['idDesignPattern']."\"></details>";
                 echo "</article>";
             }
         }

@@ -122,3 +122,12 @@
     height:27px;
     font-size:1.2em;
 }
+
+.detailsDP h3 {
+    margin : 0 auto;
+    paddin:0 auto;
+    display : inline;
+    font-size: 1.3em;
+    font-weight: normal;
+    color: #96A9B5;
+}
