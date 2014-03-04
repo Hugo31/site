@@ -51,14 +51,23 @@ class ToolKitDisplay {
         if ($dataToDisplay->rowCount() == 0) {
             echo 'No results.';
         } else {
+            $bdd = Database::getConnection();
             foreach($dataToDisplay as $row){
-                echo "<article id=\"article_".$row['idConflict']."\">";
-                echo "<header>";
-                echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\">".$row['name']."</a>";
-
+                echo "<article class=\"conflitBox\" id=\"article_".$row['idConflict']."\">";
+                echo "<header id='headerConflitBox'>";
+                echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\"><h2>".$row['name']."</h2></a>";
+                $dateConflict = new DateTime($row['date']);
+                echo "<br/><div id=\"lienDP\">Date of reporting : ".$dateConflict->format('d/m/Y')." | Author : <a href=\"\">".$row['login']."</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$row['idConflict']."\">Propose a solution</a></div>";
                 echo "</header>";
+                $reqNbConflict = "SELECT COUNT(*) FROM Solution s WHERE s.idConflict=".$row['idConflict'];
+                $reponse = $bdd->query($reqNbConflict);
+                $nb = $reponse->fetch();
+                $reponse->closeCursor();
+                echo "<aside id='asideConflictBox'>";
+                echo "<div id=\"otherInfo\"><a href=\"\">".$nb[0]." solution(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
+                echo "</aside>";
+                echo "<div id=\"typeConflict\">toto</div>";
                 echo "<article>".$row['description']."</article>";
-
                 echo "</article>";
             }
         }
@@ -94,7 +103,7 @@ class ToolKitDisplay {
                 echo "</header>";
                 echo "<aside id='asideDesignPatternBox'>";
                 echo "<div id=\"note\">".$row['rate']."/5</div>";
-                echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rates</a><br/><a href=\"\">".$row['nbComments']." coms</a></div>";
+                echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rate(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
                 echo "</aside>";
                 echo "</div>";
                 echo "<article id=\"articleDesignPatternBox\">".$row['what']."</article>";

@@ -131,3 +131,46 @@
     font-weight: normal;
     color: #96A9B5;
 }
+
+.conflitBox {
+    background-color:#eee;
+    margin-bottom:10px;
+    padding:10px;
+}
+
+#headerConflitBox {
+    width:87%;
+    float:left;
+    min-height:90px;    
+}
+
+#headerConflitBox h2 {
+    margin:0 auto;
+    padding-right:5px;
+    display:inline;
+}
+
+#headerConflitBox h2:hover {
+    color: #FF4C00;
+}
+
+#lienDP {
+    height:27px;
+    font-size:1.2em;
+}
+
+#asideConflictBox {
+    width:10%;
+    padding:10px;
+    margin-top:5px;
+    float:right;
+    background-color: #96A9B5;
+    text-align:center;
+    min-height:40px;
+}
+
+#typeConflict {
+    width:100%;
+    margin-top:100px;
+    margin-bottom:10px;
+}
