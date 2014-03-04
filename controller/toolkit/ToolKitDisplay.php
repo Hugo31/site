@@ -66,7 +66,15 @@ class ToolKitDisplay {
                 echo "<aside id='asideConflictBox'>";
                 echo "<div id=\"otherInfo\"><a href=\"\">".$nb[0]." solution(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
                 echo "</aside>";
-                echo "<div id=\"typeConflict\">toto</div>";
+                echo "<div id=\"typeConflict\"> DP in conflict: ";
+                $reqPlatform = "SELECT dp.idDesignPattern, dp.name FROM DesignPattern dp, ConflictDesignPattern cdp "
+                        ."WHERE cdp.idConflict=".$row['idConflict']." AND dp.idDesignPattern = cdp.idDesignPattern";
+                $reponse = $bdd->query($reqPlatform);
+                foreach($reponse as $res){
+                    echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a> & ";
+                }
+                $reponse->closeCursor();
+                echo "</div>";
                 echo "<article>".$row['description']."</article>";
                 echo "</article>";
             }
