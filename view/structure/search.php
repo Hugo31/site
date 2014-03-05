@@ -84,8 +84,6 @@
                 
             }
         ?>
-        
-        
         $(".classic").trigger("change");
     });
 </script>
