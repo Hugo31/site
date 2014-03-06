@@ -23,16 +23,13 @@
         <div id="search_bar_advanced">
             <br/>
             <ul>
-                
                 <?php
-                
                 ToolkitDisplay::displayCheckboxesComplete($bdd, "Category", $session->idCategoryQuery);
                 ToolkitDisplay::displayCheckboxesComplete($bdd, "Component", $session->idComponentQuery);
                 ToolkitDisplay::displayCheckboxesComplete($bdd, "Platform", $session->idPlatformQuery);
                 ToolkitDisplay::displayCheckboxesComplete($bdd, "Property", $session->idPropertyQuery);
                 ToolkitDisplay::displayCheckboxesComplete($bdd, "System", $session->idSystemQuery);
                 ?>
-                
             </ul>
         </div>
         <br/>
@@ -56,6 +53,7 @@
         $(":radio.search_type_notarget").change(function() {
             $("#search_type_designpattern_target").hide();
             $("#search_advancedLink").hide();
+            $("#search_bar_advanced").hide();
         });
         $("#search_bar_advanced").hide();
         $("#search_sort_Category").hide();
@@ -68,21 +66,25 @@
                 if($session->typeQuery != "DesignPattern"){
                     echo "$(\"#search_type_designpattern_target\").hide();";
                     echo "$(\"#search_advancedLink\").hide();";
+                    
+                }
+                else{
+                    if(($session->idCategoryQuery["nb"] > 0) || ($session->idComponentQuery["nb"] > 0) ||
+                        ($session->idPlatformQuery["nb"] > 0) || ($session->idPropertyQuery["nb"] > 0) ||
+                        ($session->idSystemQuery["nb"] > 0)
+                        ){
+                        echo "$(\"#search_bar_advanced\").show();";
+
+                        if($session->idCategoryQuery["nb"] > 0){ echo "$('#search_sort_Category').show();$('#search_sort_Category_a').text('[-]');"; }
+                        if($session->idComponentQuery["nb"] > 0){ echo "$('#search_sort_Component').show();$('#search_sort_Component_a').text('[-]');"; }
+                        if($session->idPlatformQuery["nb"] > 0){ echo "$('#search_sort_Platform').show();$('#search_sort_Platform_a').text('[-]');"; }
+                        if($session->idPropertyQuery["nb"] > 0){ echo "$('#search_sort_Property').show();$('#search_sort_Property_a').text('[-]');"; }
+                        if($session->idSystemQuery["nb"] > 0){ echo "$('#search_sort_System').show();$('#search_sort_System_a').text('[-]');"; }
+
+                    }
                 }
             }
-            if(($session->idCategoryQuery["nb"] > 0) || ($session->idComponentQuery["nb"] > 0) ||
-                ($session->idPlatformQuery["nb"] > 0) || ($session->idPropertyQuery["nb"] > 0) ||
-                ($session->idSystemQuery["nb"] > 0)
-                ){
-                echo "$(\"#search_bar_advanced\").show();";
             
-                if($session->idCategoryQuery["nb"] > 0){ echo "$('#search_sort_Category_a').trigger(\"click\");"; }
-                if($session->idComponentQuery["nb"] > 0){ echo "$('#search_sort_Component_a').trigger(\"click\");"; }
-                if($session->idPlatformQuery["nb"] > 0){ echo "$('#search_sort_Platform_a').trigger(\"click\");"; }
-                if($session->idPropertyQuery["nb"] > 0){ echo "$('#search_sort_Property_a').trigger(\"click\");"; }
-                if($session->idSystemQuery["nb"] > 0){ echo "$('#search_sort_System_a').trigger(\"click\");"; }
-                
-            }
         ?>
         $(".classic").trigger("change");
     });

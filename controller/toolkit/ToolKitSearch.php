@@ -87,12 +87,13 @@ class ToolKitSearch {
     public static function stockParameters($values, &$session){
         $session->searchTextQuery = $values['search_keywords'];
         $session->targetQuery = $values['search_type_designpattern_target'];
+        $session->idCategoryQuery = array();
+        $session->idComponentQuery = array();
+        $session->idPlatformQuery = array();
+        $session->idPropertyQuery = array();
+        $session->idSystemQuery = array();
         if($session->typeQuery == "DesignPattern"){
-            $session->idCategoryQuery = array();
-            $session->idComponentQuery = array();
-            $session->idPlatformQuery = array();
-            $session->idPropertyQuery = array();
-            $session->idSystemQuery = array();
+            
             if(isset($values['cat'])){ $session->idCategoryQuery = $values['cat']; }
             if(isset($values['comp'])){ $session->idComponentQuery = $values['comp']; }
             if(isset($values['plat'])){ $session->idPlatformQuery = $values['plat']; }

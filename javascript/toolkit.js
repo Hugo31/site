@@ -28,8 +28,6 @@ function requestDetails(identifiant, type, idSearch){
             $(identifiant).empty();
         });
     }
-    
-    
 }
     
 function enableTriStateCheckBox(object){
