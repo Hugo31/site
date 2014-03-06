@@ -6,6 +6,7 @@
 <section id="contenu">
     <h1> Home </h1>
     <a href="/site/testJquery/testModelPage.php">Test Model</a>
+    <br/><a href="/site/view/addDesignPattern.php">Ajout DP</a>
     <h2>Website goals</h2>
     Restabat ut Caesar post haec properaret accitus et abstergendae causa suspicionis sororem suam, 
     eius uxorem, Constantius ad se tandem desideratam venire multis fictisque blanditiis hortabatur. 
