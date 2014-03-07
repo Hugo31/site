@@ -29,7 +29,7 @@ function validSignup(form) {
 function verifFirstname(champ) {
     var champErreur = document.getElementById("errormsgsignup_firstname");
     var firstname = champ.prop("value");
-    var regex = new RegExp('[A-z]{30}+[\S]');
+    var regex = new RegExp('[A-z]{3,30}');
     
     alert('popf');
     
@@ -49,7 +49,7 @@ function verifFirstname(champ) {
 function verifLastname(champ) {
     var champErreur = document.getElementById("errormsgsignup_lastname");
     var lastname = champ.prop("value");
-    var regex = new RegExp('[A-z]{30}+[\S]');
+    var regex = new RegExp('[A-z]{3,30}');
     
     alert('popl');
     
@@ -146,7 +146,7 @@ function verifSimilarity(champ1, champ2) {
         champ1.css("backgroundColor", "#FBA");
         champ2.css("backgroundColor", "#FBA");
         champErreur.style.color = '#FBA';
-        champErreur.innerHTML = 'Please, put the same password</br>';
+        champErreur.innerHTML = 'Please, give a password</br>';
         champ1.focus();
         return false;
     } else if (champ1.prop("value") == champ2.prop("value")) {
@@ -157,7 +157,7 @@ function verifSimilarity(champ1, champ2) {
         champ1.css("backgroundColor", "#FBA");
         champ2.css("backgroundColor", "#FBA");
         champErreur.style.color = '#FBA';
-        champErreur.innerHTML = 'Please, put the same password</br>';
+        champErreur.innerHTML = 'Please, give the same password</br>';
         champ1.focus();
         return false;
     }
