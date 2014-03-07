@@ -1,4 +1,5 @@
 <?php
+
 include('header.php');
 include('search.php');
 ?>
@@ -13,14 +14,15 @@ include('search.php');
                    required="required" size="30" maxlength="30" 
                    placeholder="JeanMi@univ-tlse.fr" />
         </p>
-        <div id="errormsgforget"></div>
+            <div id="errormsgforget"></div>
         <p>
-            <input type="submit" value="SEND" class="sendform" />
+            <input type="submit" value="SEND" class="sendforget" id="sendforget"/>
         </p>
     </form>
 </section>
 
 <?php
+
 include ('footer.php');
 
 

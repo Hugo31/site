@@ -24,8 +24,8 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/site/javascript/toolkit.js"></script>
-        <script type="text/javascript" src="signupcontrol.js"></script>
-        <script type="text/javascript" src="forgetcontrol.js"></script>
+        <script type="text/javascript" src="ctrlForget.js"></script>
+        <script type="text/javascript" src="ctrlSignup.js"></script>
     </head>
 
     <body>
