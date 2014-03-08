@@ -178,9 +178,11 @@
 }
 
 #typeConflict {
-    width:100%;
-    margin-top:100px;
-    margin-bottom:10px;
+    height:27px;
+}
+
+#descriptionConflit {
+    margin-top: 150px;
 }
 
 .solutionBox {
@@ -217,6 +219,8 @@
 
 #articleSolutionBox {
   text-align:justify;
+    margin-top: 25px;
+    margin-bottom: 10px;
 }
 
 .detailsSol h3 {
@@ -226,4 +230,15 @@
     font-size: 1.3em;
     font-weight: normal;
     color: #96A9B5;
+}
+
+#lienSol {
+    height:27px;
+    font-size:1.2em;
+}
+
+#solutionConflict {
+    width:100%;
+    margin-top:100px;
+    margin-bottom:10px;
 }
