@@ -219,3 +219,13 @@
     font-weight: normal;
     color: #96A9B5;
 }
+
+
+.bar_color{
+    background: none repeat scroll 0% 0% rgb(136, 177, 49);
+    opacity: 0.8;
+    transition: width 0.25s ease 0s;
+    display: inline-block;
+    height: 100%;
+}
+

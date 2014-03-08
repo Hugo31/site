@@ -173,11 +173,22 @@ class ToolKitDisplay {
         echo "<div>";
         echo "<div><span>".$rate."</span><br>".$nbRates." au total</div>";
         echo "<div>";
-        ToolKitDisplay::displayRateBar($id, $tableAsk, 5);
-        ToolKitDisplay::displayRateBar($id, $tableAsk, 4);
-        ToolKitDisplay::displayRateBar($id, $tableAsk, 3);
-        ToolKitDisplay::displayRateBar($id, $tableAsk, 2);
-        ToolKitDisplay::displayRateBar($id, $tableAsk, 1);
+        $five = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 5;")['nb'];
+        $four = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 4;")['nb'];
+        $three = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 3;")['nb'];
+        $two = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 2;")['nb'];
+        $one = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 1;")['nb'];
+        $max = $five;
+        if($four > $max){ $max = $four; }
+        if($three > $max){ $max = $three; }
+        if($two > $max){ $max = $two; }
+        if($one > $max){ $max = $one; }
+        if($max == 0){ $max = 1; }
+        ToolKitDisplay::displayRateBar($five, 5, ($five*100)/$max);
+        ToolKitDisplay::displayRateBar($four, 4, ($four*100)/$max);
+        ToolKitDisplay::displayRateBar($three, 3, ($three*100)/$max);
+        ToolKitDisplay::displayRateBar($two, 2, ($two*100)/$max);
+        ToolKitDisplay::displayRateBar($one, 1, ($one*100)/$max);
         echo "</div>";
         echo "</div>";
         echo "Give a rate : <input type=\"number\"/><br>";
@@ -186,14 +197,12 @@ class ToolKitDisplay {
         
     }
     
-    public static function displayRateBar($id, $tableAsk, $rateSearch){
-        $data = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = ".$rateSearch.";");
-        echo "<div class=\"histogram_bar_".$rateSearch."\">";
+    public static function displayRateBar($nb, $rateSearch, $percent){
+        echo "<div class=\"histogram_bar_".$rateSearch."\" style=\"width: 100%;\">";
         echo "<span class=\"bar_label\">".$rateSearch."</span>";
-        echo "<span class=\"bar_number\">".$data['nb']."</span>";
+        echo "<span class=\"bar_color\"></span>";
+        echo "<span class=\"bar_number\">".$nb."</span>";
         echo "</div>";
-        
-        
     }
     
     public static function displayCommentsLittles($id, $nbComments, $tableAsk){
