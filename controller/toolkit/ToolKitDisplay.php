@@ -60,20 +60,20 @@ class ToolKitDisplay {
                 echo "<br/><div id=\"lienDP\">Date of reporting : ".$dateConflict->format('d/m/Y')." | Author : <a href=\"\">".$row['login']."</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$row['idConflict']."\">Propose a solution</a></div>";
                 echo "</header>";
                 $reqNbConflict = "SELECT COUNT(*) FROM Solution s WHERE s.idConflict=".$row['idConflict'];
-                $reponse = $bdd->query($reqNbConflict);
-                $nb = $reponse->fetch();
-                $reponse->closeCursor();
+                $reponseNbC = $bdd->query($reqNbConflict);
+                $nb = $reponseNbC->fetch();
+                $reponseNbC->closeCursor();
                 echo "<aside id='asideConflictBox'>";
                 echo "<div id=\"otherInfo\"><a href=\"\">".$nb[0]." solution(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
                 echo "</aside>";
                 echo "<div id=\"typeConflict\"> DP in conflict: ";
-                $reqPlatform = "SELECT dp.idDesignPattern, dp.name FROM DesignPattern dp, ConflictDesignPattern cdp "
+                $reqDP = "SELECT dp.idDesignPattern, dp.name FROM DesignPattern dp, ConflictDesignPattern cdp "
                         ."WHERE cdp.idConflict=".$row['idConflict']." AND dp.idDesignPattern = cdp.idDesignPattern";
-                $reponse = $bdd->query($reqPlatform);
-                foreach($reponse as $res){
+                $reponseDP = $bdd->query($reqDP);
+                foreach($reponseDP as $res){
                     echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a> & ";
                 }
-                $reponse->closeCursor();
+                $reponseDP->closeCursor();
                 echo "</div>";
                 echo "<article>".$row['description']."</article>";
                 echo "</article>";
@@ -115,7 +115,7 @@ class ToolKitDisplay {
                 echo "</aside>";
                 echo "</div>";
                 echo "<article id=\"articleDesignPatternBox\">".$row['what']."</article>";
-                echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');\" style=\"float:right\">See more</a></summary><br/>";
+                echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');return false;\" style=\"float:right\">See more</a></summary><br/>";
                 echo "<details class=\"detailsDP\" id=\"DesignPattern".$row['idDesignPattern']."\"></details>";
                 echo "</article>";
             }
@@ -148,4 +148,62 @@ class ToolKitDisplay {
     public static function addValue($value){
         echo "value=\"".$value."\"";
     }
+    
+    public static function displayText($name, $data){
+        echo "<div>";
+        echo "<h3>".$name."</h3>";
+        echo $data;
+        echo "</div>";
+    }
+    
+    public static function displayRate($id, $nbRates, $rate, $tableAsk){
+        echo "<div id=\"details_rate\">";
+        echo "<h3>Rate : </h3><br>";
+        
+        echo "<div>";
+        echo "<div><span>".$rate."</span><br>".$nbRates." au total</div>";
+        echo "<div>";
+        ToolKitDisplay::displayRateBar($id, $tableAsk, 5);
+        ToolKitDisplay::displayRateBar($id, $tableAsk, 4);
+        ToolKitDisplay::displayRateBar($id, $tableAsk, 3);
+        ToolKitDisplay::displayRateBar($id, $tableAsk, 2);
+        ToolKitDisplay::displayRateBar($id, $tableAsk, 1);
+        echo "</div>";
+        echo "</div>";
+        echo "Give a rate : <input type=\"number\"/><br>";
+        echo "<a>Rate !</a>";//Jquery right here !!
+        echo "</div>";
+        
+    }
+    
+    public static function displayRateBar($id, $tableAsk, $rateSearch){
+        $data = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = ".$rateSearch.";");
+        echo "<div class=\"histogram_bar_".$rateSearch."\">";
+        echo "<span class=\"bar_label\">".$rateSearch."</span>";
+        echo "<span class=\"bar_number\">".$data['nb']."</span>";
+        echo "</div>";
+        
+        
+    }
+    
+    public static function displayCommentsLittles($id, $nbComments, $tableAsk){
+        $reponse = Database::getAllData("SELECT * FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id." ORDER BY DATE LIMIT 0, 3");
+        echo "<article>";
+        echo "<h2>Comments (".$nbComments.") : <h2><br>";
+        foreach($reponse as $row){
+            echo "<div>";
+            echo "<div>";
+            $data = Database::getOneData("SELECT logo FROM User WHERE login = \"".$row['login']."\"");
+            echo "<img src=\"".$data['logo']."\"/><br><a href=\"\">".$row['login']."</a>";
+            echo "</div>";
+            echo "<div>";
+            echo "<span>Posted ".$row['date']."</span><br>";
+            echo $row['comment'];
+            echo "</div>";
+            echo "</div>";
+        }
+        echo "</article>";
+        $reponse->closeCursor();
+    }
+          
 }
