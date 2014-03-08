@@ -17,7 +17,13 @@ class ToolkitDetails {
             echo "</article>";
             echo "<article>";
             ToolKitDisplay::displayText("Description : ", $conflict->getDescription());
+            echo "</article>";
+            echo "<article>";
+            ToolKitDisplay::displayGenericBox("DesignPattern", Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.date, dp.login FROM DesignPattern dp, ConflictDesignPattern c WHERE dp.idDesignPattern = c.idDesignPattern AND c.idConflict = ".$conflict->getID().";"));
+            echo "</article>";
             
+            echo "<article>";
+            ToolKitDisplay::displayGenericBox("Solution", Database::getAllData("SELECT DISTINCT s.idSolution, s.name, s.comment, s.rate, s.nbRates, s.nbComments, s.date, s.login FROM Solution s WHERE s.idConflict = ".$conflict->getID().";"));
             echo "</article>";
             
             ToolkitDisplay::displayCommentsLittles($id, $conflict->getNbComments(), "Conflict");

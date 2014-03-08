@@ -127,13 +127,23 @@ class ToolKitDisplay {
             echo 'No results.';
         } else {
             foreach($dataToDisplay as $row){
-                echo "<article id=\"article_".$row['idSolution']."\">";
-                echo "<header>";
-                echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\">".$row['name']."</a>";
+                
+                echo "<article class=\"solutionBox\" id=\"article_".$row['idSolution']."\">";
+                echo "<div id='headerAside'>";
+                echo "<header id='headerSolutionBox'>";
+                echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\"><h2>".$row['name']."</h2></a>";
+                
+                $dateS = new DateTime($row['date']);
+                echo "<br/><div id=\"lienAdd\">Date of last update : ".$dateS->format('d/m/Y')." | Author : <a href=\"\">".$row['login']."</a> </div>";
                 echo "</header>";
-                echo "<article>".$row['comment']."</article>";
-                echo "<summary><a href=\"#\">See more</a></summary>";
-                echo "<details></details>";
+                echo "<aside id='asideSolutionBox'>";
+                echo "<div id=\"note\">".$row['rate']."/5</div>";
+                echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rate(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
+                echo "</aside>";
+                echo "</div>";
+                echo "<article id=\"articleSolutionBox\">".$row['comment']."</article>";
+                echo "<summary><a href=\"#\" onclick=\"requestDetails('#Solution".$row['idSolution']."', 'Solution', '".$row['idSolution']."');return false;\" style=\"float:right\">See more</a></summary><br/>";
+                echo "<details class=\"detailsSol\" id=\"Solution".$row['idSolution']."\"></details>";
                 echo "</article>";
             }
         }
