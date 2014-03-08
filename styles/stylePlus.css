@@ -242,3 +242,31 @@
     margin-top:100px;
     margin-bottom:10px;
 }
+
+
+.color-sample {
+    display: inline-block;
+    height: 15px;
+    background-color: #900;
+}
+
+.histogram_bar {
+    width: 100px;
+}
+
+.rating-box .bar_number {
+    
+    position: absolute;
+}
+.rating-box .bar_label{
+    
+}
+
+.rating-box .bar_color{
+    position: relative;
+}
+
+.rating-histogram{
+    display: inline-block;
+    padding: 20px 20px 20px 30px;
+}

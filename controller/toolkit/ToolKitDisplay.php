@@ -179,9 +179,9 @@ class ToolKitDisplay {
         echo "<div id=\"details_rate\">";
         echo "<h3>Rate : </h3><br>";
         
-        echo "<div>";
-        echo "<div><span>".$rate."</span><br>".$nbRates." au total</div>";
-        echo "<div>";
+        echo "<div class=\"rating-box\">";
+        echo "<div class=\"score-container\"><span>".$rate."</span><br>".$nbRates." au total</div>";
+        echo "<div class=\"rating-histogram\">";
         $five = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 5;")['nb'];
         $four = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 4;")['nb'];
         $three = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 3;")['nb'];
@@ -207,9 +207,9 @@ class ToolKitDisplay {
     }
     
     public static function displayRateBar($nb, $rateSearch, $percent){
-        echo "<div class=\"histogram_bar_".$rateSearch."\" style=\"width: 100%;\">";
+        echo "<div class=\"histogram_bar num".$rateSearch."\">";
         echo "<span class=\"bar_label\">".$rateSearch."</span>";
-        echo "<span class=\"bar_color\"></span>";
+        echo "<span class=\"color-sample\" style=\"width : ".$percent."%\"></span>";
         echo "<span class=\"bar_number\">".$nb."</span>";
         echo "</div>";
     }
