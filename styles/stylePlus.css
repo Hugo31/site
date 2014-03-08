@@ -24,6 +24,14 @@
     margin-left : -10px;
 }
 
+#search_keywords {
+    width:90%;
+    background-image:url(../img/vrac/loupe.png);
+    background-position:left;
+    background-repeat:no-repeat;
+    padding-left:21px;
+}
+
 #search_bar_advanced ul {
     list-style:none;
     margin:0 auto;
@@ -170,9 +178,11 @@
 }
 
 #typeConflict {
-    width:100%;
-    margin-top:100px;
-    margin-bottom:10px;
+    height:27px;
+}
+
+#descriptionConflit {
+    margin-top: 150px;
 }
 
 .solutionBox {
@@ -209,6 +219,8 @@
 
 #articleSolutionBox {
   text-align:justify;
+    margin-top: 25px;
+    margin-bottom: 10px;
 }
 
 .detailsSol h3 {
@@ -220,12 +232,13 @@
     color: #96A9B5;
 }
 
-
-.bar_color{
-    background: none repeat scroll 0% 0% rgb(136, 177, 49);
-    opacity: 0.8;
-    transition: width 0.25s ease 0s;
-    display: inline-block;
-    height: 100%;
+#lienSol {
+    height:27px;
+    font-size:1.2em;
 }
 
+#solutionConflict {
+    width:100%;
+    margin-top:100px;
+    margin-bottom:10px;
+}
