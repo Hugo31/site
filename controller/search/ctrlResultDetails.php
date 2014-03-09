@@ -25,14 +25,17 @@ if(isset($_POST['table']) && isset($_POST['id'])){
     else{
         if($_POST['table'] == "Conflict"){
             $cf = Conflict::getDB($_POST['id']);
-            
+            $resConflict = $cf->getDescription();
+            if(!empty($resConflict)){
+                echo "<br/><div><h3>Description: </h3>".$resConflict."</div>"; 
+            }
         }
         else{
             if($_POST['table'] == "Solution"){
                 $st = Solution::getDB($_POST['id']);
-                $resDp = $st->getCodeSolution();
-                if(!empty($resDp)){
-                    echo "<br/><div><h3>Code of solution: </h3>".$resDp."</div>"; 
+                $resSol = $st->getCodeSolution();
+                if(!empty($resSol)){
+                    echo "<br/><div><h3>Code of solution: </h3>".$resSol."</div>"; 
                 }
             }
         }
