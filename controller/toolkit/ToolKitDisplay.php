@@ -180,7 +180,7 @@ class ToolKitDisplay {
         echo "<h3>Rate : </h3><br>";
         
         echo "<div class=\"rating-box\">";
-        echo "<div class=\"score-container\"><span>".$rate."</span><br>".$nbRates." au total</div>";
+        echo "<div class=\"score-container\"><span class=\"score\">".$rate."</span><br>".$nbRates." au total</div>";
         echo "<div class=\"rating-histogram\">";
         $five = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 5;")['nb'];
         $four = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 4;")['nb'];
@@ -193,11 +193,11 @@ class ToolKitDisplay {
         if($two > $max){ $max = $two; }
         if($one > $max){ $max = $one; }
         if($max == 0){ $max = 1; }
-        ToolKitDisplay::displayRateBar($five, 5, ($five*100)/$max);
-        ToolKitDisplay::displayRateBar($four, 4, ($four*100)/$max);
-        ToolKitDisplay::displayRateBar($three, 3, ($three*100)/$max);
-        ToolKitDisplay::displayRateBar($two, 2, ($two*100)/$max);
-        ToolKitDisplay::displayRateBar($one, 1, ($one*100)/$max);
+        ToolKitDisplay::displayRateBar($five, 5, ($five*100)/$max, "five");
+        ToolKitDisplay::displayRateBar($four, 4, ($four*100)/$max, "four");
+        ToolKitDisplay::displayRateBar($three, 3, ($three*100)/$max, "three");
+        ToolKitDisplay::displayRateBar($two, 2, ($two*100)/$max, "two");
+        ToolKitDisplay::displayRateBar($one, 1, ($one*100)/$max, "one");
         echo "</div>";
         echo "</div>";
         echo "Give a rate : <input type=\"number\"/><br>";
@@ -206,11 +206,11 @@ class ToolKitDisplay {
         
     }
     
-    public static function displayRateBar($nb, $rateSearch, $percent){
-        echo "<div class=\"histogram_bar num".$rateSearch."\">";
-        echo "<span class=\"bar_label\">".$rateSearch."</span>";
-        echo "<span class=\"color-sample\" style=\"width : ".$percent."%\"></span>";
-        echo "<span class=\"bar_number\">".$nb."</span>";
+    public static function displayRateBar($nb, $rateSearch, $percent, $nameStyle){
+        echo "<div class=\"rating-bar-container ".$nameStyle."\">";
+        echo "<span class=\"bar-label\">".$rateSearch."</span>";
+        echo "<span class=\"bar\" style=\"width : ".$percent."%\"></span>";
+        echo "<span class=\"bar-number\">".$nb."</span>";
         echo "</div>";
     }
     
