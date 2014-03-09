@@ -2,6 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/designpattern/DesignPattern.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/conflict/Conflict.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/solution/Solution.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/project/Project.php");
 if(isset($_POST['table']) && isset($_POST['id'])){
     if($_POST['table'] == "DesignPattern"){
         $dp = DesignPattern::getDB($_POST['id']);
@@ -37,8 +38,18 @@ if(isset($_POST['table']) && isset($_POST['id'])){
                 if(!empty($resSol)){
                     echo "<br/><div><h3>Code of solution: </h3>".$resSol."</div>"; 
                 }
-            }
-        }
+            } 
+            else {
+                if($_POST['table'] == "Project"){
+                    $pr = Project::getDB($_POST['id']);
+                    $resPro = $pr->getDescription();
+                    if(!empty($resPro)){
+                        echo "<br/><div><h3>Description: </h3>".$resPro."</div>"; 
+                    }
+                }
+            } 
+        } 
+        
     }
         
 }
