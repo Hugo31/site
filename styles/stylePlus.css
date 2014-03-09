@@ -2,6 +2,14 @@
     padding : 10px;   
 }
 
+#formulaireAddDP {
+    padding : 10px;   
+}
+
+#previewAddDP {
+    padding : 10px;   
+}
+
 #subject {
    font-family: 'YanoneKaffeesatz-Light';
 }
@@ -80,7 +88,7 @@
     padding:10px;
 }
 
-#headerAside {
+#headerAsideDP {
     min-height:100px;
 }
 
@@ -146,10 +154,14 @@
     padding:10px;
 }
 
+#headerAsideConflict {
+    min-height:100px;   
+}
+
 #headerConflitBox {
     width:86%;
     float:left;
-    min-height:90px;    
+    min-height:100px;    
 }
 
 #headerConflitBox h2 {
@@ -169,26 +181,52 @@
 
 #asideConflictBox {
     width:10%;
-    padding:10px;
-    margin-top:5px;
+    padding:5px;
     float:right;
     background-color: #96A9B5;
     text-align:center;
-    min-height:40px;
+    min-height:80px;
+    vertical-align: middle;
+}
+
+#otherInfoConflict {
+    vertical-align: middle;
+    margin-top: 18px;
+}
+
+#otherInfoConflict a {
+    color : #363B29;
+}
+
+#otherInfoConflict a:hover {
+    color : #546B76;
 }
 
 #typeConflict {
-    height:27px;
+   text-align: justify;
 }
 
 #descriptionConflit {
-    margin-top: 150px;
+
+}
+
+.detailsConflict h3 {
+    margin : 0 auto;
+    padding:0 auto;
+    display : inline;
+    font-size: 1.3em;
+    font-weight: normal;
+    color: #96A9B5;
 }
 
 .solutionBox {
     background-color:#eee;
     margin-bottom:10px;
     padding:10px;
+}
+
+#headerAsideSol {
+    min-height:100px;
 }
 
 #headerSolutionBox {
@@ -210,7 +248,6 @@
 #asideSolutionBox {
     width:10%;
     padding:5px;
-    margin-top:5px;
     float:right;
     background-color: #96A9B5;
     text-align:center;
@@ -219,8 +256,7 @@
 
 #articleSolutionBox {
   text-align:justify;
-    margin-top: 25px;
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .detailsSol h3 {
@@ -238,9 +274,7 @@
 }
 
 #solutionConflict {
-    width:100%;
-    margin-top:100px;
-    margin-bottom:10px;
+    height:27px;
 }
 
 /*
@@ -270,4 +304,61 @@
     display: inline-block;
     padding: 20px 20px 20px 30px;
 }
-*/
+
+.projectsBox {
+    background-color:#eee;
+    margin-bottom:10px;
+    padding:10px;
+}
+
+#headerAsideProject {
+    min-height:100px;
+}
+
+#headerProjectBox {
+    width:87%;
+    float:left;
+    min-height:100px;
+}
+
+#headerProjectBox h2 {
+    margin:0 auto;
+    padding-right:5px;
+    display:inline;
+}
+
+#headerProjectBox h2:hover {
+    color: #FF4C00;
+}
+
+#asideProjectBox {
+    width:10%;
+    padding:5px;
+    float:right;
+    background-color: #96A9B5;
+    text-align:center;
+    min-height:80px;
+}
+
+#articleProjectBox {
+  text-align:justify;
+  margin-bottom: 10px;
+}
+
+#lienProject {
+    height:27px;
+    font-size:1.2em;
+}
+
+#dpProjects {
+    height:27px;
+}
+
+.detailsProject h3 {
+    margin : 0 auto;
+    padding:0 auto;
+    display : inline;
+    font-size: 1.3em;
+    font-weight: normal;
+    color: #96A9B5;
+}

@@ -54,29 +54,42 @@ class ToolKitDisplay {
             $bdd = Database::getConnection();
             foreach($dataToDisplay as $row){
                 echo "<article class=\"conflitBox\" id=\"article_".$row['idConflict']."\">";
+                
+                echo "<div id='headerAsideConflict'>";
                 echo "<header id='headerConflitBox'>";
                 echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\"><h2>".$row['name']."</h2></a>";
                 $dateConflict = new DateTime($row['date']);
-                echo "<br/><div id=\"lienDP\">Date of reporting : ".$dateConflict->format('d/m/Y')." | Author : <a href=\"\">".$row['login']."</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$row['idConflict']."\">Propose a solution</a></div>";
-                echo "<div id=\"typeConflict\"> DP in conflict: ";
-                $reqDP = "SELECT dp.idDesignPattern, dp.name FROM DesignPattern dp, ConflictDesignPattern cdp "
-                        ."WHERE cdp.idConflict=".$row['idConflict']." AND dp.idDesignPattern = cdp.idDesignPattern";
-                $reponseDP = $bdd->query($reqDP);
-                foreach($reponseDP as $res){
-                    echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a> & ";
-                }
-                $reponseDP->closeCursor();
-                echo "</div><br/>";
+                echo "<br/><div id=\"lienDP\">Date of reporting: ".$dateConflict->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$row['idConflict']."\">Propose a solution</a></div>";
                 echo "</header>";
+                
                 $reqNbConflict = "SELECT COUNT(*) FROM Solution s WHERE s.idConflict=".$row['idConflict'];
                 $reponseNbC = $bdd->query($reqNbConflict);
                 $nb = $reponseNbC->fetch();
                 $reponseNbC->closeCursor();
                 echo "<aside id='asideConflictBox'>";
-                echo "<div id=\"otherInfo\"><a href=\"\">".$nb[0]." solution(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
+                echo "<div id=\"otherInfoConflict\"><a href=\"\">".$nb[0]." solution(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
                 echo "</aside>";
+                echo "</div>";
                 
-                echo "<article id=\"descriptionConflit\">".$row['description']."</article>";
+                echo "<div id=\"typeConflict\">DP in conflict: ";
+                
+                $rqtConflict = "SELECT dp.idDesignPattern, dp.name FROM DesignPattern dp, ConflictDesignPattern cdp "
+                        ."WHERE cdp.idConflict=".$row['idConflict']." AND dp.idDesignPattern = cdp.idDesignPattern";
+                $reponseConflict = $bdd->query($rqtConflict);
+                $nombre = $nb[0];
+                foreach($reponseConflict as $res){
+                    if ($nombre > 1) {
+                        echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a> & ";
+                        $nombre--;
+                    } else {
+                        echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a>";
+                    }
+                }
+                $reponseConflict->closeCursor();
+                echo "</div><br/>";
+                
+                echo "<summary><a href=\"#\" onclick=\"requestDetails('#Conflict".$row['idConflict']."', 'Conflict', '".$row['idConflict']."');return false;\" style=\"float:right\">See description</a></summary><br/>";
+                echo "<details class=\"detailsConflict\" id=\"Conflict".$row['idConflict']."\"></details>";
                 echo "</article>";
             }
         }
@@ -89,7 +102,7 @@ class ToolKitDisplay {
             $bdd = Database::getConnection();
             foreach($dataToDisplay as $row){
                 echo "<article class=\"designPatternBox\" id=\"article_".$row['idDesignPattern']."\">";
-                echo "<div id='headerAside'>";
+                echo "<div id='headerAsideDP'>";
                 echo "<header id='headerDesignPatternBox'>";
                 echo "<a href=\"details.php?type=DesignPattern&id=".$row['idDesignPattern']."\"><h2>".$row['name']."</h2></a>";
                 $reqSystem = "SELECT icon FROM System s, SystemDesignPattern sdp "
@@ -108,7 +121,7 @@ class ToolKitDisplay {
                 }
                 $reponse->closeCursor();
                 $dateDP = new DateTime($row['date']);
-                echo "<br/><div id=\"lienAdd\">Date of last update : ".$dateDP->format('d/m/Y')." | Author : <a href=\"\">".$row['login']."</a> | <img src=\"../img/vrac/add.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add to my current Design Pattern</a></div>";
+                echo "<br/><div id=\"lienAdd\">Date of last update: ".$dateDP->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> | <img src=\"../img/vrac/add.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add to my current Design Pattern</a></div>";
                 echo "</header>";
                 echo "<aside id='asideDesignPatternBox'>";
                 echo "<div id=\"note\">".$row['rate']."/5</div>";
@@ -131,25 +144,28 @@ class ToolKitDisplay {
             foreach($dataToDisplay as $row){
                 
                 echo "<article class=\"solutionBox\" id=\"article_".$row['idSolution']."\">";
+                echo "<div id='headerAsideSol'>";
+                
                 echo "<header id='headerSolutionBox'>";
                 echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\"><h2>".$row['name']."</h2></a>";
                 $dateS = new DateTime($row['date']);
-                echo "<br/><div id=\"lienSol\">Date of last update : ".$dateS->format('d/m/Y')." | Author : <a href=\"\">".$row['login']."</a> </div>";
+                echo "<br/><div id=\"lienSol\">Date of last update: ".$dateS->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> </div>";
                 echo "</header>";
                 
                 echo "<aside id='asideSolutionBox'>";
                 echo "<div id=\"note\">".$row['rate']."/5</div>";
                 echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rate(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
                 echo "</aside>";
+                echo "</div>";
                 
-                echo "<div id=\"solutionConflict\"> Solution of the conflict: ";
+                echo "<div id=\"solutionConflict\">Solution of the conflict: ";
                 $reqNameConflict = "SELECT c.idConflict, c.name FROM Solution s, Conflict c WHERE s.idSolution=".$row['idSolution']." and c.idConflict=s.idConflict";
                 $responseNameConflict = $bdd->query($reqNameConflict);
                 $name = $responseNameConflict->fetch();
                 $responseNameConflict->closeCursor();
                 echo "<a href=\"".$name['idConflict']."\">".$name['name']."</a>";
-                echo "</div>";
-                
+                echo "</div>";  
+                                
                 echo "<article id=\"articleSolutionBox\">".$row['comment']."</article>";
                 echo "<summary><a href=\"#\" onclick=\"requestDetails('#Solution".$row['idSolution']."', 'Solution', '".$row['idSolution']."');return false;\" style=\"float:right\">See more</a></summary><br/>";
                 echo "<details class=\"detailsSol\" id=\"Solution".$row['idSolution']."\"></details>";
@@ -232,6 +248,54 @@ class ToolKitDisplay {
         }
         echo "</article>";
         $reponse->closeCursor();
+    }
+    
+    public static function displayExistingProjects($dataToDisplay){
+        if ($dataToDisplay->rowCount() == 0) {
+            echo 'No existing projects.';
+        } else {
+            $bdd = Database::getConnection();
+            foreach($dataToDisplay as $row){
+                
+                echo "<article class=\"projectsBox\" id=\"article_".$row['idProject']."\">";
+                echo "<div id='headerAsideProject'>";
+                
+                echo "<header id='headerProjectBox'>";
+                echo "<a href=\"details.php?type=Project&id=".$row['idProject']."\"><h2>".$row['name']."</h2></a>";
+                $dateS = new DateTime($row['date']);
+                echo "<br/><div id=\"lienProject\">Date of creation: ".$dateS->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> </div>";
+                echo "</header>";
+                
+                $reqNbDP = "SELECT COUNT(*) FROM ProjectDesignPattern pdp WHERE pdp.idProject=".$row['idProject'];
+                $reponseNbDP = $bdd->query($reqNbDP);
+                $nbDP = $reponseNbDP->fetch();
+                $reponseNbDP->closeCursor();
+                echo "<aside id='asideProjectBox'>";
+                echo "<div id=\"otherInfo\"><a href=\"\">".$nbDP[0]." Design Pattern(s)</a></div>";
+                echo "</aside>";
+                echo "</div>";
+                
+                echo "<div id=\"dpProjects\">Design Patterns in this project: ";
+                $rqtDPProjects = "SELECT dp.idDesignPattern, dp.name FROM DesignPattern dp, ProjectDesignPattern pdp "
+                        ."WHERE pdp.idProject=".$row['idProject']." AND dp.idDesignPattern = pdp.idDesignPattern";
+                $responseDPProjects = $bdd->query($rqtDPProjects);
+                $nombreDP = $nbDP[0];
+                foreach($responseDPProjects as $res){
+                    if ($nombreDP > 1) {
+                        echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a> & ";
+                        $nombreDP--;
+                    } else {
+                        echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a>";
+                    }
+                }
+                $responseDPProjects->closeCursor();
+                echo "</div><br/>";  
+                                
+                echo "<summary><a href=\"#\" onclick=\"requestDetails('#Project".$row['idProject']."', 'Project', '".$row['idProject']."');return false;\" style=\"float:right\">See description</a></summary><br/>";
+                echo "<details class=\"detailsProject\" id=\"Project".$row['idProject']."\"></details>";
+                echo "</article>";
+            }
+        }
     }
           
 }
