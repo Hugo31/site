@@ -1,7 +1,10 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
+    $session = Session::getInstance();
 
-include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
-include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');   
+    include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
+    include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');
+    
 /* Si l'utilisateur a bien entré un code */
 if (!empty($_REQUEST['userCode'])) {
 
@@ -66,8 +69,8 @@ if (!empty($_REQUEST['userCode'])) {
                 </table>
                 <br/>
                 <center>
-                    <img src="./captcha.php" alt="Captcha" id="captcha" />
-                    <a style="cursor:pointer" onclick="document.images.captcha.src = './captcha.php?id=' + Math.round(Math.random(0) * 1000) + 1"><br><i>Regenerate code</i></a><br/><br/>
+                    <img src="captcha.php" alt="Captcha" id="captcha" />
+                    <a style="cursor:pointer" onclick="document.images.captcha.src = 'captcha.php?id=' + Math.round(Math.random(0) * 1000) + 1"><br><i>Regenerate code</i></a><br/><br/>
                     Enter code : <input name="userCode" id="userCode" type="text" title="Le code comporte exactement 5 lettres ou nombres." size="5" pattern="[a-zA-Z0-9]{5}" required><br/><br/>
                     <br/>
                     <input type="submit" value="Reset" style="margin-right: 15px">

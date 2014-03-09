@@ -20,6 +20,7 @@ if(isset($_POST['search_type_table'])){
             $session->query = ToolKitSearch::searchSolution($_POST);
         }
     }
+    ToolKitSearch::stockParameters($_POST, $session);
 }
 
 header("Location: /site/view/results.php");

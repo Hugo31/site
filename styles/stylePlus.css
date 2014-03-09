@@ -32,6 +32,14 @@
     margin-left : -10px;
 }
 
+#search_keywords {
+    width:90%;
+    background-image:url(../img/vrac/loupe.png);
+    background-position:left;
+    background-repeat:no-repeat;
+    padding-left:21px;
+}
+
 #search_bar_advanced ul {
     list-style:none;
     margin:0 auto;
@@ -39,7 +47,7 @@
 }
 
 #search_bar_advanced ul li {
-    color : #96A9B5;
+    color : #373F42;
 }
 
 #sup {
@@ -49,7 +57,7 @@
 
 #search_bar_advanced ul li ul {
     list-style:none;
-    padding-left:20px;
+    padding-left:30px;
     color: #373F42;
 }
 
@@ -74,42 +82,283 @@
 	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
 }
 
-#addDP_form input.addDP {
-	height:24px;
-	border-radius: 4px;
-	padding: 0px 7px;
-	background-color: #FF4C00;
-        -webkit-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-        -moz-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-	box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-	color: #FFF;
-	border: 1px solid #ff6100;
-	margin-left:10px;
-}
-#addDP_form input.addDP:hover {
-	background-color: #ff6100;
-        -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-        -moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+.designPatternBox {
+    background-color:#eee;
+    margin-bottom:10px;
+    padding:10px;
 }
 
-#previewAddDP_form input.previewDP {
-	height:24px;
-	border-radius: 4px;
-	padding: 0px 7px;
-	background-color: #FF4C00;
-        -webkit-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-        -moz-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-	box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-	color: #FFF;
-	border: 1px solid #ff6100;
-	margin-left:10px;
+#headerAsideDP {
+    min-height:100px;
 }
-#previewAddDP_form input.previewDP:hover {
-	background-color: #ff6100;
-        -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-        -moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+
+#headerDesignPatternBox {
+    width:87%;
+    float:left;
+    min-height:100px;
+}
+
+#headerDesignPatternBox h2 {
+    margin:0 auto;
+    padding-right:5px;
+    display:inline;
+}
+
+#headerDesignPatternBox h2:hover {
+    color: #FF4C00;
+}
+
+#asideDesignPatternBox {
+    width:10%;
+    padding:5px;
+    margin-top:5px;
+    float:right;
+    background-color: #96A9B5;
+    text-align:center;
+    min-height:80px;
+}
+
+#otherInfo a {
+    color : #363B29;
+}
+
+#otherInfo a:hover {
+    color : #546B76;
+}
+
+#note {
+    font-size:1.8em;
+}
+
+#articleDesignPatternBox {
+  text-align:justify;
+}
+
+#lienAdd {
+    height:27px;
+    font-size:1.2em;
+}
+
+.detailsDP h3 {
+    margin : 0 auto;
+    padding:0 auto;
+    display : inline;
+    font-size: 1.3em;
+    font-weight: normal;
+    color: #96A9B5;
+}
+
+.conflitBox {
+    background-color:#eee;
+    margin-bottom:10px;
+    padding:10px;
+}
+
+#headerAsideConflict {
+    min-height:100px;   
+}
+
+#headerConflitBox {
+    width:86%;
+    float:left;
+    min-height:100px;    
+}
+
+#headerConflitBox h2 {
+    margin:0 auto;
+    padding-right:5px;
+    display:inline;
+}
+
+#headerConflitBox h2:hover {
+    color: #FF4C00;
+}
+
+#lienDP {
+    height:27px;
+    font-size:1.2em;
+}
+
+#asideConflictBox {
+    width:10%;
+    padding:5px;
+    float:right;
+    background-color: #96A9B5;
+    text-align:center;
+    min-height:80px;
+    vertical-align: middle;
+}
+
+#otherInfoConflict {
+    vertical-align: middle;
+    margin-top: 18px;
+}
+
+#otherInfoConflict a {
+    color : #363B29;
+}
+
+#otherInfoConflict a:hover {
+    color : #546B76;
+}
+
+#typeConflict {
+   text-align: justify;
+}
+
+#descriptionConflit {
+
+}
+
+.detailsConflict h3 {
+    margin : 0 auto;
+    padding:0 auto;
+    display : inline;
+    font-size: 1.3em;
+    font-weight: normal;
+    color: #96A9B5;
+}
+
+.solutionBox {
+    background-color:#eee;
+    margin-bottom:10px;
+    padding:10px;
+}
+
+#headerAsideSol {
+    min-height:100px;
+}
+
+#headerSolutionBox {
+    width:87%;
+    float:left;
+    min-height:100px;
+}
+
+#headerSolutionBox h2 {
+    margin:0 auto;
+    padding-right:5px;
+    display:inline;
+}
+
+#headerSolutionBox h2:hover {
+    color: #FF4C00;
+}
+
+#asideSolutionBox {
+    width:10%;
+    padding:5px;
+    float:right;
+    background-color: #96A9B5;
+    text-align:center;
+    min-height:80px;
+}
+
+#articleSolutionBox {
+  text-align:justify;
+  margin-bottom: 10px;
+}
+
+.detailsSol h3 {
+    margin : 0 auto;
+    padding:0 auto;
+    display : inline;
+    font-size: 1.3em;
+    font-weight: normal;
+    color: #96A9B5;
+}
+
+#lienSol {
+    height:27px;
+    font-size:1.2em;
+}
+
+#solutionConflict {
+    height:27px;
+}
+
+
+.color-sample {
+    display: inline-block;
+    height: 15px;
+    background-color: #900;
+}
+
+.histogram_bar {
+    width: 100px;
+}
+
+.rating-box .bar_number {
+    
+    position: absolute;
+}
+.rating-box .bar_label{
+    
+}
+
+.rating-box .bar_color{
+    position: relative;
+}
+
+.rating-histogram{
+    display: inline-block;
+    padding: 20px 20px 20px 30px;
+}
+
+.projectsBox {
+    background-color:#eee;
+    margin-bottom:10px;
+    padding:10px;
+}
+
+#headerAsideProject {
+    min-height:100px;
+}
+
+#headerProjectBox {
+    width:87%;
+    float:left;
+    min-height:100px;
+}
+
+#headerProjectBox h2 {
+    margin:0 auto;
+    padding-right:5px;
+    display:inline;
+}
+
+#headerProjectBox h2:hover {
+    color: #FF4C00;
+}
+
+#asideProjectBox {
+    width:10%;
+    padding:5px;
+    float:right;
+    background-color: #96A9B5;
+    text-align:center;
+    min-height:80px;
+}
+
+#articleProjectBox {
+  text-align:justify;
+  margin-bottom: 10px;
+}
+
+#lienProject {
+    height:27px;
+    font-size:1.2em;
+}
+
+#dpProjects {
+    height:27px;
+}
+
+.detailsProject h3 {
+    margin : 0 auto;
+    padding:0 auto;
+    display : inline;
+    font-size: 1.3em;
+    font-weight: normal;
+    color: #96A9B5;
 }

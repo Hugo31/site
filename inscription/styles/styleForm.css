@@ -10,6 +10,7 @@ and open the template in the editor.
 
 
 /* Partie à ajouter au CSS styleStructure.css */
+/* Revoir les champs id et la structure du css */
 
 /* ------------------------------ COULEURS --------------------------------- */
 
@@ -68,10 +69,37 @@ form input.signupform:hover {
     background: #E54400;
 }
 
+form input.sendforget {
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0px 7px;
+    border: 1px solid #7A1F0A;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    text-shadow: 0px 1px 1px #8E2A04;
+    background-color: #415A6A;
+    box-shadow: 0px 1px 1px #000;
+    color: #FFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size:1.4em;
+    -webkit-box-reflect: below 0 linear-gradient(transparent 40%, rgba(0,0,0,.15));
+}
+
+form input.sendforget:hover {
+    background: #123146;
+}
+
 /* --------------------------- POSITIONNEMENT ------------------------------ */
 
-form {
+#formsignup {
     text-align: center;
+}
+
+#forgetform {
+    padding-top: 10px; 
+    padding-left: 30px;
 }
 
 

@@ -42,7 +42,7 @@ $char5 = substr($theCode,4,1);
 glob() retourne un tableau r�pertoriant les fichiers du dossier 'fonts', ayant l'extension .ttf ( pas .TTF ! ).
 Vous pouvez donc ajouter autant de polices TrueType que vous d�sirez, en veillant � les renommer.
 */
-$fonts = glob('fonts/*.ttf');
+$fonts = glob('../fonts/*.ttf');
  
  
 /* ====================

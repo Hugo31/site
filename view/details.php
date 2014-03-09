@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDetails.php");
 
 require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
 $session = Session::getInstance();
@@ -12,15 +13,23 @@ $session = Session::getInstance();
     <?php
         $bdd = Database::getConnection();
         if($_GET['type'] == "Conflict"){
-            
+            ToolkitDetails::displayDetailsConflict($_GET['id']);
         }
         else{
             if($_GET['type'] == "DesignPattern"){
-                
+                ToolkitDetails::displayDetailsDesignPattern($_GET['id']);
             }
             else{
                 if($_GET['type'] == "Solution"){
-                    
+                    ToolkitDetails::displayDetailsSolution($_GET['id']);
+                }
+                else{
+                    if($_GET['type'] == "Project"){
+                        ToolkitDetails::displayDetailsProject($_GET['id']);
+                    }
+                    else{
+                        echo "Error 404 !!";
+                    }
                 }
             }
         }
