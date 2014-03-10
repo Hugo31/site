@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/AbstractBasicCriteriaDB.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/IDatabase.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/property/ILinkProperty.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicCriteriaDB.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/criteria/ILinkProperty.php");
 class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProperty{
     /**
      * Construit une propriété

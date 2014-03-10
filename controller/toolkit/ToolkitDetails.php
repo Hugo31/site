@@ -1,10 +1,10 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDisplayDesignPattern.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/designpattern/DesignPattern.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/conflict/Conflict.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/solution/Solution.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/designpattern/DesignPattern.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Conflict.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Solution.php");
 
 class ToolkitDetails {
     public static function displayDetailsConflict($id){

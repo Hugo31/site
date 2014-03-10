@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/AbstractBasicCriteriaDB.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/IDatabase.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/component/ILinkComponent.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicCriteriaDB.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/criteria/ILinkComponent.php");
 
 class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkComponent{
     

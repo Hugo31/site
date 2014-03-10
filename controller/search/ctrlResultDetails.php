@@ -1,8 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/designpattern/DesignPattern.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/conflict/Conflict.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/solution/Solution.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/project/Project.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/designpattern/DesignPattern.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Conflict.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Solution.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Project.php");
 if(isset($_POST['table']) && isset($_POST['id'])){
     if($_POST['table'] == "DesignPattern"){
         $dp = DesignPattern::getDB($_POST['id']);

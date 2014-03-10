@@ -1,16 +1,16 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/user/User.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/designpattern/DesignPattern.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/designpattern/ETarget.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/conflict/Conflict.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/solution/Solution.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/project/Project.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/component/Component.php");	  
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/other/Category.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/other/Platform.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/other/System.php");			  
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/property/Property.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/User.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/designpattern/DesignPattern.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/designpattern/ETarget.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Conflict.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Solution.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Project.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Component.php");	  
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Category.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Platform.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/System.php");			  
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Property.php");
 ?>
 <!DOCTYPE html>
 
