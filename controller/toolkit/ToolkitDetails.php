@@ -39,7 +39,7 @@ class ToolkitDetails {
         $dp = DesignPattern::getDB($id);
         
         if($dp != false){
-            echo "<h1>".$dp->getName()."</h1>";
+            echo "<h1>".$dp->getName()."</h1><br/>";
             echo "<div id=\"hautDP\">";
             echo "<div id=\"contenuGaucheDP\">";
             echo "<table>";
@@ -55,7 +55,7 @@ class ToolkitDetails {
             echo "</div><div id=\"contenuDroitDP\">";
             ToolkitDisplay::displayRate($id, $dp->getNbRates(), $dp->getRate(), "DesignPattern");
             echo "</div><br/>";
-            echo "</div><br/>";
+            echo "</div><br/><br/>";
             echo "<article id=\"contenuCommentsDP\">";
             ToolKitDisplay::displayText("What : ", $dp->getWhat());
             ToolKitDisplay::displayText("When and How : ", $dp->getWhenAndHow());
