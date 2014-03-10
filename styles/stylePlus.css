@@ -169,4 +169,65 @@
     height:27px;
 }
 
+#contenuGaucheDP {
+    width: 50%;
+    float:left;
+}
 
+#hautDP h3 {
+    margin: 0px auto;
+    display: inline;
+    font-weight: normal;
+    color: #96A9B5;
+}
+
+#contenuDroitDP {
+    width: 50%;
+    float:left;
+}
+
+#hautDP {
+    min-height:260px;
+}
+
+#textDisplay h3 {
+    margin: 0px auto;
+    display: inline;
+    font-weight: normal;
+    color: #96A9B5;
+}
+
+#contenuCommentsDP {
+    width:75%;
+    float:left;
+}
+
+#asideCategorieConflictDP {
+    width:21%;
+    background-color: #eee;
+    float:right;
+    padding : 10px;
+    margin-bottom: 10px;
+}
+
+#asideCategorieConflictDP h3 {
+    margin: 0px auto;
+    font-weight: normal;
+}
+
+#asideCategorieConflictDP h2:hover {
+    color : #FF4C00;
+}
+
+#logoComment {
+    width:14%;
+    float:left;
+    text-align: center;
+}
+
+#textComment {
+    width:82%;
+    float:right;
+    border: 1px solid #FF4C00;
+    padding: 10px;
+}

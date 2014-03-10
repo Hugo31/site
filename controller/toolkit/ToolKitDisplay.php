@@ -229,15 +229,15 @@ class ToolKitDisplay {
     }
     
     public static function displayText($name, $data){
-        echo "<div>";
+        echo "<div id=\"textDisplay\">";
         echo "<h3>".$name."</h3>";
         echo $data;
-        echo "</div>";
+        echo "</div><br/>";
     }
     
     public static function displayRate($id, $nbRates, $rate, $tableAsk){
         echo "<div id=\"details_rate\">";
-        echo "<h3>Rate : </h3><br>";
+        echo "<h3>Rate: </h3><br/><br/>";
         
         echo "<div class=\"rating-box\">";
         echo "<div class=\"score-container\"><span class=\"score\">".$rate."</span><br>".$nbRates." au total</div>";
@@ -260,8 +260,7 @@ class ToolKitDisplay {
         ToolKitDisplay::displayRateBar($one, 1, ($one*100)/$max, "one");
         echo "</div>";
         echo "</div>";
-        echo "Give a rate : <input type=\"number\"/><br>";
-        echo "<a>Rate !</a>";//Jquery right here !!
+        echo "<center><h3>Give a rate:</h3> <input type=\"number\"/> <a>Rate !</a></center>";//Jquery right here !!
         echo "</div>";
         
     }
@@ -279,13 +278,13 @@ class ToolKitDisplay {
         echo "<article>";
         echo "<h2>Comments (".$nbComments.") : </h2><br>";
         foreach($reponse as $row){
-            echo "<div>";
-            echo "<div>";
+            echo "<div id=\"containerComment\">";
+            echo "<div id=\"logoComment\">";
             $data = Database::getOneData("SELECT logo FROM User WHERE login = \"".$row['login']."\"");
-            echo "<img src=\"".$data['logo']."\"/><br><a href=\"\">".$row['login']."</a>";
+            echo "<img src=\"".$data['logo']."\" style=\"width:50px;\"/><br><a href=\"\">".$row['login']."</a>";
             echo "</div>";
-            echo "<div>";
-            echo "<span>Posted ".$row['date']."</span><br>";
+            echo "<div id=\"textComment\">";
+            echo "<i>Posted ".$row['date']."</i><br>";
             echo $row['comment'];
             echo "</div>";
             echo "</div>";
