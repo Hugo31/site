@@ -61,6 +61,19 @@ class ToolkitDetails {
             
             echo "<aside>";
             ToolkitDisplayDesignPattern::displayCriteria($id);
+            echo "<article>";
+            echo "<h2>Conflict :</h2>";
+            $reponse = Database::getAllData("SELECT c.idConflict, c.name, c.date, c.login FROM Conflict c, ConflictDesignPattern cdp WHERE cdp.idDesignPattern = ".$id." AND c.idConflict = cdp.idConflict ;");
+            foreach($reponse as $row){
+                echo "<div>";
+                echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\">".$row['name']."</a><br>";
+                echo "Signalé le ".$row['date']." par ".$row['login']."<br>";
+                $data = Database::getOneData("SELECT COUNT(*) as nb FROM Solution WHERE idconflict = ".$row['idConflict']);
+                $dataCom = Database::getOneData("SELECT COUNT(*) as nb FROM CommentConflict WHERE idConflict = ".$row['idConflict']);
+                echo "".$data['nb']." solutions | ".$dataCom['nb']." coms<br>";
+                echo "</div>";
+            }
+            echo "</article>";
             echo "</aside>";
             
         }

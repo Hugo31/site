@@ -84,6 +84,18 @@ class ToolKitSearch {
         return $requete;
     }
     
+    public static function searchProject($values){
+        $requete = "SELECT DISTINCT p.idProject, p.name, p.description, p.date, p.login FROM Project p ";
+        if($values['search_keywords'] != ""){
+            $requete .= " WHERE p.name LIKE \"%".$values['search_keywords']."%\"";
+            $keys = explode(" ", $values['search_keywords']);
+            foreach($keys as $k){
+                $requete .= " OR p.name LIKE \"%".$k."%\"";
+            }
+        }
+        return $requete;
+    }
+    
     public static function stockParameters($values, &$session){
         $session->searchTextQuery = $values['search_keywords'];
         $session->targetQuery = $values['search_type_designpattern_target'];

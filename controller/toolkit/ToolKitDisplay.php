@@ -42,7 +42,13 @@ class ToolKitDisplay {
                 ToolKitDisplay::displayDesignPatternBox($dataToDisplay);
             }
             else{
-                ToolKitDisplay::displaySolutionBox($dataToDisplay);
+                if($type == "Solution"){
+                    ToolKitDisplay::displaySolutionBox($dataToDisplay);
+                }
+                else{
+                    ToolKitDisplay::displayProjectBox($dataToDisplay);
+                }
+                
             }
         }
     }
@@ -174,6 +180,34 @@ class ToolKitDisplay {
         }
     }
     
+    public static function displayProjectBox($dataToDisplay){
+        if ($dataToDisplay->rowCount() == 0) {
+            echo 'No results.';
+        } else {
+            $bdd = Database::getConnection();
+            foreach($dataToDisplay as $row){
+                
+                echo "<article class=\"projectBox\" id=\"article_".$row['idProject']."\">";
+                echo "<div id='headerAsideProject'>";
+                
+                echo "<header id='headerProjectBox'>";
+                echo "<a href=\"details.php?type=Project&id=".$row['idProject']."\"><h2>".$row['name']."</h2></a>";
+                $dateS = new DateTime($row['date']);
+                echo "<br/><div id=\"lienProject\">Date of last update: ".$dateS->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> </div>";
+                echo "</header>";
+                $data = Database::getOneData("SELECT COUNT(*) AS nb FROM ProjectDesignPattern WHERE idProject = ".$row['idProject'].";");
+                echo "<aside id='asideProjectBox'>";
+                echo "<div>".$data['nb']." Designs Patterns</div>";
+                echo "</aside>";
+                echo "</div>";
+                
+                 echo "<article id=\"articleProjectBox\">".$row['description']."</article>";
+                
+                echo "</article>";
+            }
+        }
+    }
+    
     public static function checkItem($item, $value){
         if($item == $value){
             echo "checked";
@@ -233,7 +267,7 @@ class ToolKitDisplay {
     public static function displayCommentsLittles($id, $nbComments, $tableAsk){
         $reponse = Database::getAllData("SELECT * FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id." ORDER BY DATE LIMIT 0, 3");
         echo "<article>";
-        echo "<h2>Comments (".$nbComments.") : <h2><br>";
+        echo "<h2>Comments (".$nbComments.") : </h2><br>";
         foreach($reponse as $row){
             echo "<div>";
             echo "<div>";

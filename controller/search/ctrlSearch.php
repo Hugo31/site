@@ -16,8 +16,15 @@ if(isset($_POST['search_type_table'])){
             $session->query = ToolKitSearch::searchDP($_POST);
         }
         else{
-            $session->typeQuery = "Solution";
-            $session->query = ToolKitSearch::searchSolution($_POST);
+            if($_POST['search_type_table'] == "Solution"){
+                $session->typeQuery = "Solution";
+                $session->query = ToolKitSearch::searchSolution($_POST);
+            }
+            else{
+                $session->typeQuery = "Project";
+                $session->query = ToolKitSearch::searchProject($_POST);
+            }
+            
         }
     }
     ToolKitSearch::stockParameters($_POST, $session);
