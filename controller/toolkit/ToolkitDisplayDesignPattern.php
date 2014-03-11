@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,9 +23,11 @@ class ToolkitDisplayDesignPattern {
     
     public static function displaySources($id){
         $reponse = Database::getAllData("SELECT link FROM Source WHERE idDesignPattern = ".$id.";");
+        echo '<ul>';
         foreach($reponse as $row){
-            echo "<a>".$row['link']."</a>";
+            echo "<li><a href=\"".$row['link']."\"  target='_blank'>".$row['link']."</a></li>";
         }
+        echo '</ul>';
         $reponse->closeCursor();
     }
     
@@ -41,11 +43,13 @@ class ToolkitDisplayDesignPattern {
     
     public static function displayOneCriterion($id, $name){
         $reponse = Database::getAllData("SELECT n.name FROM ".$name."DesignPattern nDP, ".$name." n WHERE nDP.id".$name." = n.id".$name." AND idDesignPattern = ".$id.";");
-        echo "<div><h3>".$name."</h3>";
-        foreach($reponse as $row){
-            echo "> ".$row['name'];
+        if ($reponse->rowCount() != 0) {
+            echo "<fieldset style=\"border: 1px solid #96A9B5;box-shadow: 0 1px 0 #FFFFFF;\"><legend style=\"font-size: 1.3em;color:#FF4C00;\">".$name."</legend>";
+            foreach($reponse as $row){
+                echo "<font style=\"padding-left:10px\">> ".$row['name']."</font><br/>";
+            }
+            echo "</fieldset><br/>";
         }
-        echo "</div>";
         $reponse->closeCursor();
     }
     

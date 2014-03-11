@@ -1,4 +1,4 @@
-/site/model/Database.php
+/site/model/implementation/Database.php
 					
 /site/model/criteria/component/Component.php
 							  

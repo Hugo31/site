@@ -1,6 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/AbstractBasicCommentDB.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicCommentDB.php");
 abstract class AbstractBasicRateDB extends AbstractBasicCommentDB{
     private $rate;
     private $nbRates;

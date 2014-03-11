@@ -1,6 +1,6 @@
 <?php
     $session = Session::getInstance();
-    require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
     require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolKitDisplay.php");
 ?>
 
@@ -21,6 +21,7 @@
         <link rel="stylesheet" type="text/css" href="/site/styles/styleBase.css" media="all" />
         <link rel="stylesheet" type="text/css" href="/site/styles/styleStructure.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/site/styles/stylePlus.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/site/styles/styleRate.css" media="screen" />
         
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
@@ -47,7 +48,6 @@
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/news.php">News</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/currentDP.php">My current Design Pattern (0)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="/site/view/existingProjects.php">Existing Projects</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/contact.php">Contact</a>
                         </nav>
                     </div>

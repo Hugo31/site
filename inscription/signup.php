@@ -3,10 +3,10 @@ include('header.php');
 include('search.php');
 ?>
 
-<!-- ligne a inclure dans le <head></head> -->
+<!-- ligne a inclure dans le <head></head>
 <link rel="stylesheet" type="text/css" href="styles/styleForm.css" />
-<script type="text/javascript" src="signupcontrol.js"></script>
-<!-- ************************************* -->
+<script type="text/javascript" src="ctrlSignup.js"></script>
+<- ************************************* -->
 
 <section id="contenu">
     <h1>Sign up</h1>
@@ -61,4 +61,3 @@ include('search.php');
 
 <?php
 include('footer.php');
-?>

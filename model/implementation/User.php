@@ -1,6 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/IDatabase.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
 
 class User implements IDatabase{
     

@@ -1,8 +1,14 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDetails.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
+    $session = Session::getInstance();
+    
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/Database.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/userpost/comment/rate/designpattern/DesignPattern.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/userpost/comment/rate/designpattern/Image.php");
+    
 
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/Database.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/designpattern/DesignPattern.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/designpattern/Image.php");
+
 
     if (isset($_POST['namee']) AND isset($_POST['what']) AND isset($_POST['wah']) AND isset($_POST['layout']) AND isset($_POST['copy']) AND isset($_POST['impl']) AND isset($_POST['thetarget'])) {
         
