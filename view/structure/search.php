@@ -8,7 +8,7 @@
     
     <h3>SEARCH</h3> 
     <form id="search_form" method="post" action="/site/controller/search/ctrlSearch.php">
-        <input type="text" id="search_keywords" name="search_keywords" style="width:90%;background-image:url(../img/vrac/loupe.png);background-position:left;background-repeat:no-repeat;padding-left:21px;" <?php ToolkitDisplay::addValue($session->searchTextQuery); ?>/><br/><br/>
+        <input type="text" id="search_keywords" name="search_keywords" <?php ToolkitDisplay::addValue($session->searchTextQuery); ?>/><br/><br/>
         <label><input class="search_type_notarget" type="radio" name="search_type_table" value="Conflict" <?php ToolkitDisplay::checkItem($session->typeQuery, "Conflict"); ?>>Conflict</label><br/>
         <label><input class="search_type_target" type="radio" name="search_type_table" value="DesignPattern" <?php ToolkitDisplay::checkItem($session->typeQuery, "DesignPattern"); ?>>Design Pattern</label><br/>
         <div id="search_type_designpattern_target" style="padding-left:20px;">
@@ -16,6 +16,7 @@
             <label><input type="radio" name="search_type_designpattern_target" value="Evaluator" <?php ToolkitDisplay::checkItem($session->targetQuery, "Evaluator"); ?>>Evaluator</label><br/>
         </div>
         <label><input class="search_type_notarget" type="radio" name="search_type_table" value="Solution" <?php ToolkitDisplay::checkItem($session->typeQuery, "Solution"); ?>>Solution</label><br/>
+        <label><input class="search_type_notarget" type="radio" name="search_type_table" value="Project" <?php ToolkitDisplay::checkItem($session->typeQuery, "Project"); ?>>Project</label><br/>
         <br/>
         <div>
             <a id="search_advancedLink" href="#" onclick="toggleObject('#search_bar_advanced');return false;">Advanced search [+]</a>

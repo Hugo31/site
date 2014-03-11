@@ -1,9 +1,9 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/Database.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/IDatabase.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/IComment.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/IRate.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/userpost/comment/rate/AbstractBasicRateDB.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IComment.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IRate.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicRateDB.php");
 
 class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate{
     private $comment;

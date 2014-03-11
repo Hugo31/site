@@ -2,8 +2,8 @@
 
 header('Location: /site/indexlaurine/index.html');
 
-require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/Database.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/user/User.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/Database.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/User.php");
 
 if (isset($_POST['usernamesignup']) AND isset($_POST['lastnamesignup']) 
         AND isset($_POST['firstnamesignup']) AND isset($_POST['passwordsignup']) 

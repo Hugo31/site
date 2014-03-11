@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/AbstractBasicDB.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicDB.php");
 
 class AbstractBasicCriteriaDB extends AbstractBasicDB{
     private $description;

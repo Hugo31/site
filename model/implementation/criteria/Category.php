@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/AbstractBasicCriteriaDB.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/IDatabase.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/criteria/ILinkCriteria.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicCriteriaDB.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/IDatabase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/criteria/ILinkCriteria.php");
 class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria{
     
     /**

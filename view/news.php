@@ -8,9 +8,14 @@
 
 <section id="contenu">
     <h1> News </h1>
-    <div id="zonegrise">
-        <h2>Nom du design Pattern</h2>	
-    </div>
+    
+    <?php
+        $bdd = Database::getConnection();
+        //$session->query = ToolKitProject::searchAllProjects();
+        //$result = $bdd->query($session->query);
+
+        //ToolKitDisplay::displayExistingProjects($result);
+    ?>
 </section>
 
 <?php

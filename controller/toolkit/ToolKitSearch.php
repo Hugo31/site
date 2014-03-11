@@ -73,12 +73,24 @@ class ToolKitSearch {
     }
     
     public static function searchSolution($values){
-        $requete = "SELECT DISTINCT s.idSolution, s.name, s.comment FROM Solution s ";
+        $requete = "SELECT DISTINCT s.idSolution, s.name, s.comment, s.date, s.rate, s.nbComments, s.nbRates, s.login FROM Solution s ";
         if($values['search_keywords'] != ""){
             $requete .= " WHERE s.name LIKE \"%".$values['search_keywords']."%\"";
             $keys = explode(" ", $values['search_keywords']);
             foreach($keys as $k){
                 $requete .= " OR s.name LIKE \"%".$k."%\"";
+            }
+        }
+        return $requete;
+    }
+    
+    public static function searchProject($values){
+        $requete = "SELECT DISTINCT p.idProject, p.name, p.description, p.date, p.login FROM Project p ";
+        if($values['search_keywords'] != ""){
+            $requete .= " WHERE p.name LIKE \"%".$values['search_keywords']."%\"";
+            $keys = explode(" ", $values['search_keywords']);
+            foreach($keys as $k){
+                $requete .= " OR p.name LIKE \"%".$k."%\"";
             }
         }
         return $requete;
