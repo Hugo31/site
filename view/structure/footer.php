@@ -18,7 +18,6 @@
                         <ul>
                             <li><a href="/site/index.php">Home</a></li>
                             <li><a href="/site/view/currentDP.php">My current Design Pattern (0)</a></li>
-                            <li><a href="/site/view/existingProjects.php">Existing Projects</a></li>
                             <li><a href="/site/view/contact.php">Contact</a></li>
                         </ul>
                     </div>

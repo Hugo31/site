@@ -1,9 +1,11 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDetails.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
     $session = Session::getInstance();
+    
+    
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php'); 
-    
     
     
 ?>

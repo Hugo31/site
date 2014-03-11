@@ -61,54 +61,54 @@
     color: #373F42;
 }
 
-
 #search_form input.search {
-	height:24px;
-	border-radius: 4px;
-	padding: 0px 7px;
-	background-color: #FF4C00;
-        -webkit-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-        -moz-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-	box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-	color: #FFF;
-	border: 1px solid #ff6100;
-	margin-left:10px;
-}
-#search_form input.search:hover {
-	background-color: #ff6100;
-        -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-        -moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+    height:24px;
+    border-radius: 4px;
+    padding: 0px 7px;
+    background-color: #FF4C00;
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+    color: #FFF;
+    border: 1px solid #ff6100;
+    margin-left:10px;
 }
 
-.designPatternBox {
+#search_form input.search:hover {
+    background-color: #ff6100;
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.box {
     background-color:#eee;
     margin-bottom:10px;
     padding:10px;
 }
 
-#headerAsideDP {
+#headerAside {
     min-height:100px;
 }
 
-#headerDesignPatternBox {
-    width:87%;
+#headerBox {
+    width:86%;
     float:left;
     min-height:100px;
 }
 
-#headerDesignPatternBox h2 {
+#headerBox h2 {
     margin:0 auto;
     padding-right:5px;
     display:inline;
 }
 
-#headerDesignPatternBox h2:hover {
+#headerBox h2:hover {
     color: #FF4C00;
 }
 
-#asideDesignPatternBox {
+#asideBox {
     width:10%;
     padding:5px;
     margin-top:5px;
@@ -116,6 +116,19 @@
     background-color: #96A9B5;
     text-align:center;
     min-height:80px;
+}
+
+#note {
+    font-size:1.8em;
+}
+
+#lienDescr {
+    height:27px;
+    font-size:1.2em;
+}
+
+#articleBox {
+    margin-bottom: 10px;
 }
 
 #otherInfo a {
@@ -126,211 +139,95 @@
     color : #546B76;
 }
 
-#note {
-    font-size:1.8em;
-}
-
-#articleDesignPatternBox {
-  text-align:justify;
-}
-
-#lienAdd {
-    height:27px;
-    font-size:1.2em;
-}
-
-.detailsDP h3 {
-    margin : 0 auto;
-    padding:0 auto;
-    display : inline;
-    font-size: 1.3em;
-    font-weight: normal;
-    color: #96A9B5;
-}
-
-.conflitBox {
-    background-color:#eee;
-    margin-bottom:10px;
-    padding:10px;
-}
-
-#headerAsideConflict {
-    min-height:100px;   
-}
-
-#headerConflitBox {
-    width:86%;
-    float:left;
-    min-height:100px;    
-}
-
-#headerConflitBox h2 {
-    margin:0 auto;
-    padding-right:5px;
-    display:inline;
-}
-
-#headerConflitBox h2:hover {
-    color: #FF4C00;
-}
-
-#lienDP {
-    height:27px;
-    font-size:1.2em;
-}
-
-#asideConflictBox {
-    width:10%;
-    padding:5px;
-    float:right;
-    background-color: #96A9B5;
-    text-align:center;
-    min-height:80px;
-    vertical-align: middle;
-}
-
-#otherInfoConflict {
+#otherInfo2 {
     vertical-align: middle;
     margin-top: 18px;
 }
 
-#otherInfoConflict a {
+#otherInfo2 a {
     color : #363B29;
 }
 
-#otherInfoConflict a:hover {
+#otherInfo2 a:hover {
     color : #546B76;
 }
 
-#typeConflict {
-   text-align: justify;
-}
-
-#descriptionConflit {
-
-}
-
-.detailsConflict h3 {
+.details h3 {
     margin : 0 auto;
     padding:0 auto;
     display : inline;
     font-size: 1.3em;
     font-weight: normal;
     color: #96A9B5;
-}
-
-.solutionBox {
-    background-color:#eee;
-    margin-bottom:10px;
-    padding:10px;
-}
-
-#headerAsideSol {
-    min-height:100px;
-}
-
-#headerSolutionBox {
-    width:87%;
-    float:left;
-    min-height:100px;
-}
-
-#headerSolutionBox h2 {
-    margin:0 auto;
-    padding-right:5px;
-    display:inline;
-}
-
-#headerSolutionBox h2:hover {
-    color: #FF4C00;
-}
-
-#asideSolutionBox {
-    width:10%;
-    padding:5px;
-    float:right;
-    background-color: #96A9B5;
-    text-align:center;
-    min-height:80px;
-}
-
-#articleSolutionBox {
-  text-align:justify;
-  margin-bottom: 10px;
-}
-
-.detailsSol h3 {
-    margin : 0 auto;
-    padding:0 auto;
-    display : inline;
-    font-size: 1.3em;
-    font-weight: normal;
-    color: #96A9B5;
-}
-
-#lienSol {
-    height:27px;
-    font-size:1.2em;
 }
 
 #solutionConflict {
     height:27px;
 }
 
-.projectBox {
-    background-color:#eee;
-    margin-bottom:10px;
-    padding:10px;
-}
-
-#headerAsideProject {
-    min-height:100px;
-}
-
-#headerProjectBox {
-    width:87%;
-    float:left;
-    min-height:100px;
-}
-
-#headerProjectBox h2 {
-    margin:0 auto;
-    padding-right:5px;
-    display:inline;
-}
-
-#headerProjectBox h2:hover {
-    color: #FF4C00;
-}
-
-#asideProjectBox {
-    width:10%;
-    padding:5px;
-    float:right;
-    background-color: #96A9B5;
-    text-align:center;
-    min-height:80px;
-}
-
-#articleProjectBox {
-  text-align:justify;
-  margin-bottom: 10px;
-}
-
-#lienProject {
-    height:27px;
-    font-size:1.2em;
-}
-
 #dpProjects {
     height:27px;
 }
 
-.detailsProject h3 {
-    margin : 0 auto;
-    padding:0 auto;
-    display : inline;
-    font-size: 1.3em;
+#contenuGaucheDP {
+    width: 50%;
+    float:left;
+}
+
+#hautDP h3 {
+    margin: 0px auto;
+    display: inline;
     font-weight: normal;
     color: #96A9B5;
+}
+
+#contenuDroitDP {
+    width: 50%;
+    float:left;
+}
+
+#hautDP {
+    min-height:260px;
+}
+
+#textDisplay h3 {
+    margin: 0px auto;
+    display: inline;
+    font-weight: normal;
+    color: #96A9B5;
+}
+
+#contenuCommentsDP {
+    width:75%;
+    float:left;
+}
+
+#asideCategorieConflictDP {
+    width:21%;
+    background-color: #eee;
+    float:right;
+    padding : 10px;
+    margin-bottom: 10px;
+}
+
+#asideCategorieConflictDP h3 {
+    margin: 0px auto;
+    font-weight: normal;
+}
+
+#asideCategorieConflictDP h2:hover {
+    color : #FF4C00;
+}
+
+#logoComment {
+    width:14%;
+    float:left;
+    text-align: center;
+}
+
+#textComment {
+    width:82%;
+    float:right;
+    border: 1px solid #FF4C00;
+    padding: 10px;
 }

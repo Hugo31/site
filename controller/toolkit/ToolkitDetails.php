@@ -40,38 +40,52 @@ class ToolkitDetails {
         $dp = DesignPattern::getDB($id);
         
         if($dp != false){
-            echo "<article>";
-            echo "<h1>".$dp->getName()."</h1>";
-            echo "<article>";
-            echo "Date : ".$dp->getDate()."<br>Author : ".$dp->getLogin()."<br>Used : ".$dp->getNbUsage()."<br>For : ".$dp->getTarget()."<br>";
+            echo "<h1>".$dp->getName()."</h1><br/>";
+            echo "<div id=\"hautDP\">";
+            echo "<div id=\"contenuGaucheDP\">";
+            echo "<table>";
+            echo "<tr><td><h3>Date:</h3></td><td>".$dp->getDate()."</td></tr>";
+            echo "<tr><td><h3>Author:</h3></td><td>".$dp->getLogin()."</td></tr>";
+            echo "<tr><td><h3>Used:</h3></td><td>".$dp->getNbUsage()." times</td></tr>";
+            echo "<tr><td><h3>For:</h3></td><td>".$dp->getTarget()."</td></tr>";
+            echo "<tr><td style=\"vertical-align:top;\"><h3>Sources:</h3></td><td>";
             ToolkitDisplayDesignPattern::displaySources($id);
+            echo "</td></tr></table>";
+            echo "<img src=\"../img/vrac/add.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$id."\">Add to my current Design Pattern</a>";
+            echo "<br/><img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/signalConflict.php?id=".$id."\">Signal a conflict</a>";            
+            echo "</div><div id=\"contenuDroitDP\">";
             ToolkitDisplay::displayRate($id, $dp->getNbRates(), $dp->getRate(), "DesignPattern");
-            echo "</article>";
-            echo "<article>";
+            echo "</div><br/>";
+            echo "</div><br/><br/>";
+            echo "<article id=\"contenuCommentsDP\">";
             ToolKitDisplay::displayText("What : ", $dp->getWhat());
             ToolKitDisplay::displayText("When and How : ", $dp->getWhenAndHow());
             ToolKitDisplay::displayText("Layout : ", $dp->getLayout());
             ToolKitDisplay::displayText("Copy : ", $dp->getCopy());
-            ToolKitDisplay::displayText("Implementation : ", $dp->getImplementation());
-            
-            echo "</article>";
+            ToolKitDisplay::displayText("Implementation : ", $dp->getImplementation());      
             
             ToolkitDisplayDesignPattern::displayImages($id);
             ToolkitDisplay::displayCommentsLittles($id, $dp->getNbComments(), "DesignPattern");
             echo "</article>";
             
-            echo "<aside>";
+            echo "<aside id=\"asideCategorieConflictDP\">";
             ToolkitDisplayDesignPattern::displayCriteria($id);
             echo "<article>";
-            echo "<h2>Conflict :</h2>";
-            $reponse = Database::getAllData("SELECT c.idConflict, c.name, c.date, c.login, c.nbComments FROM Conflict c, ConflictDesignPattern cdp WHERE cdp.idDesignPattern = ".$id." AND c.idConflict = cdp.idConflict ;");
-            foreach($reponse as $row){
-                echo "<div>";
-                echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\">".$row['name']."</a><br>";
-                echo "Signaled the ".$row['date']." by ".$row['login']."<br>";
-                $data = Database::getOneData("SELECT COUNT(*) as nb FROM Solution WHERE idconflict = ".$row['idConflict']);
-                echo "".$data['nb']." solutions | ".$row['nbComments']." coms<br>";
-                echo "</div>";
+            $data = Database::getOneData("SELECT COUNT(*) as nb FROM ConflictDesignPattern WHERE idDesignPattern=".$id.";");
+            
+            if ($data['nb'] != 0) {
+                echo "<a href=\"\"><h2>Conflicts (".$data['nb']."):</h2></a>";
+                $reponse = Database::getAllData("SELECT c.idConflict, c.name, c.date, c.login FROM Conflict c, ConflictDesignPattern cdp WHERE cdp.idDesignPattern = ".$id." AND c.idConflict = cdp.idConflict ;");
+                foreach($reponse as $row){
+                    echo "<fieldset style=\"border: 1px solid #96A9B5;box-shadow: 0 1px 0 #FFFFFF;\"><h3><a href=\"details.php?type=Conflict&id=".$row['idConflict']."\">".$row['name']."</a></h3>";
+                    echo "Signaled ".$row['date']." by <a href=\"\">".$row['login']."</a><br/>";
+                    $data = Database::getOneData("SELECT COUNT(*) as nb FROM Solution WHERE idconflict = ".$row['idConflict']);
+                    $dataCom = Database::getOneData("SELECT COUNT(*) as nb FROM CommentConflit WHERE idConflict = ".$row['idConflict']);
+                    echo "<a href=\"\">".$data['nb']." solutions</a> | <a href=\"\">".$dataCom['nb']." coms</a><br/>";
+                    echo "</fieldset>";
+                }
+            } else {
+                echo "No conflict.";
             }
             echo "</article>";
             echo "</aside>";

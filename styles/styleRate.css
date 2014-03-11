@@ -2,15 +2,16 @@
     border-radius: 2px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     background: none repeat scroll 0% 0% rgb(255, 255, 255);
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     margin-right: 7px;
+    margin-left: 60px;
     white-space: nowrap;
 }
 
 .rating-box .score-container {
     padding: 20px;
     text-align: center;
-    width: 160px;
+    width: 120px;
 }
 
 .rating-box .score-container, .rating-box .rating-histogram {
@@ -21,14 +22,14 @@
 
 .rating-box {
     white-space: nowrap;
-    width: 50%;
+    width: 70%;
 }
 
 .rating-box .rating-histogram {
     padding: 20px 20px 20px 30px;
 }
 .rating-box .rating-histogram {
-    width: 120px;
+    width: 150px;
 }
 
 .score-container .score {

@@ -48,7 +48,6 @@
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/news.php">News</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/currentDP.php">My current Design Pattern (0)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="/site/view/existingProjects.php">Existing Projects</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/contact.php">Contact</a>
                         </nav>
                     </div>
