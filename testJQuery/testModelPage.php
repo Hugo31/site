@@ -22,6 +22,8 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Prop
     <body>
         <?php
         $bdd = Database::getConnection();
+        $bdd->exec("DROP DATABASE mydb");
+        
         $sql = file_get_contents($_SERVER['DOCUMENT_ROOT']."/site/projet.sql");
         $bdd->exec($sql);
         echo "<table>";
@@ -73,6 +75,12 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Prop
         echo "<tr><td>Project modifié : </td><td>".Project::modifyDB($projectS)."</td></tr>";
         echo "<tr><td>Project supprimé : </td><td>".Project::removeDB($project)."</td></tr>";
         echo "<tr><td>Project ajouté : </td><td>".Project::addDB($project)."</td></tr>";
+        
+        echo "<tr><td>Lien entre Factory et project ajouter : </td><td>".$project->addLink($dpFactory)."</td></tr>";
+        echo "<tr><td>Lien entre Observer et project ajouter : </td><td>".$project->addLink($dpObserver)."</td></tr>";
+        echo "<tr><td>Lien entre Factory et project supprimer : </td><td>".$project->removeLink($dpFactory)."</td></tr>";
+        echo "<tr><td>Lien entre Factory et project ajouter : </td><td>".$project->addLink($dpFactory)."</td></tr>";
+        
         
         
         $component = new Component(0, "menu", "C'est un menu");

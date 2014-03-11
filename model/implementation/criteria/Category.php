@@ -1,6 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicCriteriaDB.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/IDatabase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/criteria/ILinkCriteria.php");
 class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria{
     

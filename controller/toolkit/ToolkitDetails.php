@@ -5,6 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDisplayD
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/designpattern/DesignPattern.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Conflict.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Solution.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Project.php");
 
 class ToolkitDetails {
     public static function displayDetailsConflict($id){
@@ -63,14 +64,13 @@ class ToolkitDetails {
             ToolkitDisplayDesignPattern::displayCriteria($id);
             echo "<article>";
             echo "<h2>Conflict :</h2>";
-            $reponse = Database::getAllData("SELECT c.idConflict, c.name, c.date, c.login FROM Conflict c, ConflictDesignPattern cdp WHERE cdp.idDesignPattern = ".$id." AND c.idConflict = cdp.idConflict ;");
+            $reponse = Database::getAllData("SELECT c.idConflict, c.name, c.date, c.login, c.nbComments FROM Conflict c, ConflictDesignPattern cdp WHERE cdp.idDesignPattern = ".$id." AND c.idConflict = cdp.idConflict ;");
             foreach($reponse as $row){
                 echo "<div>";
                 echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\">".$row['name']."</a><br>";
-                echo "Signalé le ".$row['date']." par ".$row['login']."<br>";
+                echo "Signaled the ".$row['date']." by ".$row['login']."<br>";
                 $data = Database::getOneData("SELECT COUNT(*) as nb FROM Solution WHERE idconflict = ".$row['idConflict']);
-                $dataCom = Database::getOneData("SELECT COUNT(*) as nb FROM CommentConflict WHERE idConflict = ".$row['idConflict']);
-                echo "".$data['nb']." solutions | ".$dataCom['nb']." coms<br>";
+                echo "".$data['nb']." solutions | ".$row['nbComments']." coms<br>";
                 echo "</div>";
             }
             echo "</article>";
@@ -106,7 +106,19 @@ class ToolkitDetails {
             echo "</article>";
             
             echo "<aside>";
-            //Display other solution for that conflict
+            $reponse = Database::getAllData("SELECT DISTINCT s.idSolution, s.name, s.date, s.rate, s.nbComments, s.nbRates, s.login FROM Solution s WHERE idConflict = ".$solution->getID()." AND idSolution != ".$solution->getID());
+            echo "<article>";
+            echo "<h2>Others Solutions :</h2>";
+            foreach($reponse as $row){
+                echo "<div>";
+                echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\">".$row['name']."</a><br>";
+                echo "Posted the ".$row['date']." by ".$row['login']."<br>";
+                echo "".$row['nbComments']." coms | ".$row['nbRates']." rates<br>";
+                echo "</div>";
+                echo "<div>";
+                echo $row['rate'];
+                echo "</div>";
+            }
             echo "</aside>";
         }
         else{
@@ -115,7 +127,32 @@ class ToolkitDetails {
     }
     
     public static function displayDetailsProject($id){
-        
+        $project = Project::getDB($id);
+        if($project != false){
+            echo "<article>";
+            echo "<h1>".$project->getName()."</h1>";
+            echo "<article>";
+            echo "Date : ".$project->getDate()."<br>Author : ".$project->getLogin()."<br>";
+            echo "</article>";
+            
+            
+            echo "<article>";
+            ToolKitDisplay::displayText("Description : ", $project->getDescription());
+            echo "</article>";
+            
+            echo "<article>";
+            ToolKitDisplay::displayDesignPatternBox(Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern pdp WHERE pdp.idProject = ".$project->getID()." AND pdp.idDesignPattern = dp.idDesignPattern;"));
+            
+            echo "</article>";
+            echo "</article>";
+            
+            echo "<aside>";
+            
+            echo "</aside>";
+        }
+        else{
+            echo "Error 404 !!";
+        }
     }
 }
 
