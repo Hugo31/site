@@ -1,7 +1,11 @@
 <?php
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDetails.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
+    $session = Session::getInstance();
+    
+    
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php'); 
-    
     
     if(1){//si utilisateur non connecté
     //renvoyer vers page login avec message erreur
