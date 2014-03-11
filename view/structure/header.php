@@ -34,7 +34,7 @@
 
             <header id="header">
                 <div id="headercontent">
-                    <img src="/site/img/header/logo_modif_gris.png" style="height:80px">
+                    <a href="/site/index.php"><img src="/site/img/header/logo_modif_gris.png" style="height:80px"></a>
                     <div id="navigation">
                         <div style="height:40px">
                             <form id="loginForm2" action="verifCo.php">
