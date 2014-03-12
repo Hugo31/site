@@ -8,6 +8,12 @@
 
 <section id="contenu">
     <h1> My current Design Pattern </h1>
+    <?php
+    $reponse = NULL;
+    
+    ToolKitDisplay::displayGenericBox("DesignPattern", $reponse);
+    ?>
+    
 </section>
 
 <?php

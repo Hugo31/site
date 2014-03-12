@@ -1,5 +1,6 @@
 <?php
     $bdd = Database::getConnection();
+    
 ?>
 
 
@@ -10,7 +11,7 @@
     <form id="search_form" method="post" action="/site/controller/search/ctrlSearch.php">
         <input type="text" id="search_keywords" name="search_keywords" <?php ToolkitDisplay::addValue($session->searchTextQuery); ?>/><br/><br/>
         <label><input class="search_type_notarget" type="radio" name="search_type_table" value="Conflict" <?php ToolkitDisplay::checkItem($session->typeQuery, "Conflict"); ?>>Conflict</label><br/>
-        <label><input class="search_type_target" type="radio" name="search_type_table" value="DesignPattern" <?php ToolkitDisplay::checkItem($session->typeQuery, "DesignPattern"); ?>>Design Pattern</label><br/>
+        <label><input class="search_type_target" type="radio" name="search_type_table" value="DesignPattern" <?php ToolkitDisplay::checkItem($session->typeQuery, "DesignPattern"); if(!isset($session->typeQuery)){ echo "checked"; }?>>Design Pattern</label><br/>
         <div id="search_type_designpattern_target" style="padding-left:20px;">
             <label><input type="radio" name="search_type_designpattern_target" value="Designer" <?php ToolkitDisplay::checkItem($session->targetQuery, "Designer"); ?>>Designer</label><br/>
             <label><input type="radio" name="search_type_designpattern_target" value="Evaluator" <?php ToolkitDisplay::checkItem($session->targetQuery, "Evaluator"); ?>>Evaluator</label><br/>
