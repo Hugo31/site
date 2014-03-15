@@ -9,7 +9,7 @@
 <section id="contenu">
     <h1> Results </h1>
     <form id="sort_form">
-        <label>Sort by : </label>
+        <label>Sort by: </label>
         <select name="typeSort">
             <option value="nothing">Name</option>
             <option value="date">Most recent</option>
@@ -24,12 +24,9 @@
             <?php
                 }
             }
-            ?>
-            
-            
-        </select><br>
-        
-        <input type="submit" value="SORT" class="sort" style="float:left;"/>
+            ?>   
+        </select>
+        <input type="submit" value="SORT" class="sort"/>
     </form>
     <br><br>
     <?php

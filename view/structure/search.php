@@ -1,9 +1,6 @@
 <?php
-    $bdd = Database::getConnection();
-    
+    $bdd = Database::getConnection();   
 ?>
-
-
 
 <aside id="search">
     

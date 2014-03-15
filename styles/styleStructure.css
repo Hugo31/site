@@ -28,8 +28,8 @@ body {
 }
 
 #menu {
-	padding-top:15px;
-	height:40px;
+	padding-top:8px;
+	height:30px;
 }
 
 #menu a{
@@ -41,6 +41,20 @@ body {
 #menu a:hover, #menu a:focus{
 	color:white;
 	text-decoration:underline;
+}
+
+#forgottenPassword {
+    padding-top:3px;
+    padding-right:198px;
+}
+
+#forgottenPassword a {
+    text-decoration:none;
+}
+
+#forgottenPassword a:hover, #forgottenPassword a:focus {
+    color:white;
+    text-decoration:underline;
 }
 
 #header input {

@@ -21,9 +21,7 @@
     and commenting, suggest solutions and report conflicts you might find.
     
     <h3>> How?</h3>
-    <div id="zonegrise">
-        All you need to do is create a free account and login. All new members and contributions to our community are welcomed.
-    </div>
+    All you need to do is create a free account and login. All new members and contributions to our community are welcomed.
     
 </section>
 

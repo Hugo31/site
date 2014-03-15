@@ -34,15 +34,17 @@
 
             <header id="header">
                 <div id="headercontent">
-                    <a href="/site/index.php"><img src="/site/img/header/logo_modif_gris.png" style="height:80px"></a>
+                    <a href="/site/index.php"><img src="/site/img/header/logo_modif_gris.png" name="image" style="height:80px"
+                       onmouseover="image.src='/site/img/header/logo_modif_gris_souris.png'" onmouseout="image.src='/site/img/header/logo_modif_gris.png'"></a>
                     <div id="navigation">
-                        <div style="height:40px">
+                        <div style="height:50px;">
                             <form id="loginForm2" action="verifCo.php">
                                 <input value="Username" id="inpUsernameEmail" class="texte" type="text">
                                 <input value="Password" id="inpPasswordPlaceholder" class="texte" type="text">
                                 <input value="SIGN IN" type="submit" class="signin" >
                                 <input value="SIGN UP" type="button" class="signup">
                             </form>
+                            <div id="forgottenPassword"><a href="">> Forgotten password ?</a></div>
                         </div>
                         <nav id="menu">
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
