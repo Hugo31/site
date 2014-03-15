@@ -101,7 +101,6 @@ class ToolKitDisplay {
         if ($dataToDisplay->rowCount() == 0) {
             echo 'No results.';
         } else {
-            $bdd = Database::getConnection();
             foreach($dataToDisplay as $row){
                 echo "<article class=\"box\" id=\"article_".$row['idDesignPattern']."\">";
                 echo "<div id='headerAside'>";
@@ -126,7 +125,7 @@ class ToolKitDisplay {
                 echo "</header>";
                 echo "<aside id='asideBox'>";
                 echo "<div id=\"note\">".$row['rate']."/5</div>";
-                echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rate(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
+                echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rate(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a><br>".$row['nbUsage']." used</div>";
                 echo "</aside>";
                 echo "</div>";
                 echo "<article id=\"articleBox\">".$row['what']."</article>";
@@ -224,6 +223,8 @@ class ToolKitDisplay {
         }
     }
     
+    
+    
     public static function addValue($value){
         echo "value=\"".$value."\"";
     }
@@ -260,7 +261,15 @@ class ToolKitDisplay {
         ToolKitDisplay::displayRateBar($one, 1, ($one*100)/$max, "one");
         echo "</div>";
         echo "</div>";
-        echo "<center><h3>Give a rate:</h3> <input type=\"number\"/> <a>Rate !</a></center>";//Jquery right here !!
+        /*if(isset($session->login)){
+            $alreadyRate = Database::getOneData("SELECT rate FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND login = \"".$session->login."\"");
+            echo"<center><h3>You already rate:</h3> <input type=\"number\" value=\"".$alreadyRate['rate']."\"/><a>Modify !</a></center>";
+        }
+        else{*/
+            echo "<center><h3>Give a rate:</h3> <input type=\"number\"/> <a>Rate !</a></center>";
+        //}
+        
+        //Jquery right here !!
         echo "</div>";
         
     }

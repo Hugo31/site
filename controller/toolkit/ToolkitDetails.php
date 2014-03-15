@@ -155,7 +155,7 @@ class ToolkitDetails {
             echo "</article>";
             
             echo "<article>";
-            ToolKitDisplay::displayDesignPatternBox(Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern pdp WHERE pdp.idProject = ".$project->getID()." AND pdp.idDesignPattern = dp.idDesignPattern;"));
+            ToolKitDisplay::displayDesignPatternBox(Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern pdp WHERE pdp.idProject = ".$project->getID()." AND pdp.idDesignPattern = dp.idDesignPattern;"));
             
             echo "</article>";
             echo "</article>";
