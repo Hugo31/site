@@ -113,6 +113,10 @@
     min-height:100px;
 }
 
+#headerAsideDP {
+    min-height:120px;
+}
+
 #headerBox {
     width:86%;
     float:left;
@@ -193,9 +197,20 @@
 #contenuGaucheDP {
     width: 50%;
     float:left;
+    min-height: 210px;
+    
 }
 
-#hautDP h3 {
+#contenuGaucheDP ul{
+    padding-left:10px;
+}
+
+#contenuHautDP {
+    min-height: 210px;
+    margin-bottom: 25px;
+}
+
+#contentDP h3 {
     margin: 0px auto;
     display: inline;
     font-weight: normal;
@@ -205,10 +220,13 @@
 #contenuDroitDP {
     width: 50%;
     float:left;
+    min-height: 210px;
 }
 
-#hautDP {
+#contentDP {
     min-height:260px;
+    width:76%;
+    float:left;
 }
 
 #textDisplay h3 {
@@ -219,8 +237,7 @@
 }
 
 #contenuCommentsDP {
-    width:75%;
-    float:left;
+    width:98%;
 }
 
 #asideCategorieConflictDP {
@@ -251,4 +268,32 @@
     float:right;
     border: 1px solid #FF4C00;
     padding: 10px;
+}
+
+#addProposeDP h3 {
+    margin: 0px auto;
+    display: inline;
+    font-weight: normal;
+    color: #96A9B5;
+    text-decoration: none;
+}
+
+#addProposeDP h3:hover {
+    color: #FF4C00;
+}
+
+#detailsConflict h3 {
+    margin: 0px auto;
+    display: inline;
+    font-weight: normal;
+    color: #96A9B5;
+    text-decoration: none;
+}
+
+#h2CommentsConflict {
+    margin: 0px auto;
+    display: inline;
+    font-weight: normal;
+    text-decoration: none;
+    color: #546B76; 
 }

@@ -11,22 +11,19 @@
     
     <?php
         $bdd = Database::getConnection();
-        echo "<h2>Most recent</h2><hr>";
-        $reponse = Database::getAllData("SELECT * FROM DesignPattern ORDER BY date DESC LIMIT 0, 3");
         $session->typeQuery = "DesignPattern";
-        ToolKitDisplay::displayGenericBox("DesignPattern", $reponse);
-        echo "<br><h2>Most popular</h2><hr>";
-        $reponse = Database::getAllData("SELECT * FROM DesignPattern ORDER BY nbUsage LIMIT 0, 3");
         
-        ToolKitDisplay::displayGenericBox("DesignPattern", $reponse);
+        echo "<h2 style=\"margin:0 auto;\">Most recent</h2><hr>";
+        $reponse = Database::getAllData("SELECT * FROM DesignPattern ORDER BY date DESC LIMIT 0, 3");     
+        ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
         
-        $reponse = Database::getAllData("SELECT * FROM DesignPattern ORDER BY rate LIMIT 0, 3");
-        echo "<br><h2>Most rated</h2><hr>";
-        ToolKitDisplay::displayGenericBox("DesignPattern", $reponse);
-        //$session->query = ToolKitProject::searchAllProjects();
-        //$result = $bdd->query($session->query);
-
-        //ToolKitDisplay::displayExistingProjects($result);
+        echo "<br/><h2 style=\"margin:0 auto;\">Most popular</h2><hr>";
+        $reponse = Database::getAllData("SELECT * FROM DesignPattern ORDER BY nbUsage DESC LIMIT 0, 3");    
+        ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
+        
+        echo "<br><h2 style=\"margin:0 auto;\">Most rated</h2><hr>";
+        $reponse = Database::getAllData("SELECT * FROM DesignPattern ORDER BY rate DESC LIMIT 0, 3");
+        ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
     ?>
 </section>
 

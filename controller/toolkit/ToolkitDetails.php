@@ -13,23 +13,30 @@ class ToolkitDetails {
         if($conflict != false){
             echo "<article>";
             echo "<h1>".$conflict->getName()."</h1>";
-            echo "<article>";
-            echo "Date : ".$conflict->getDate()."<br>Author : ".$conflict->getLogin()."<br>Type : ".$conflict->getType()."<br>";
-            echo "</article>";
-            echo "<article>";
-            ToolKitDisplay::displayText("Description : ", $conflict->getDescription());
-            echo "</article>";
-            echo "<article>";
-            ToolKitDisplay::displayGenericBox("DesignPattern", Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.date, dp.login FROM DesignPattern dp, ConflictDesignPattern c WHERE dp.idDesignPattern = c.idDesignPattern AND c.idConflict = ".$conflict->getID().";"));
-            echo "</article>";
             
-            echo "<article>";
-            ToolKitDisplay::displayGenericBox("Solution", Database::getAllData("SELECT DISTINCT s.idSolution, s.name, s.comment, s.rate, s.nbRates, s.nbComments, s.date, s.login FROM Solution s WHERE s.idConflict = ".$conflict->getID().";"));
+            echo "<article id=\"detailsConflict\">";
+            echo "<table>";
+            echo "<tr><td style=\"width:100px\"><h3>Date:</h3></td><td>".$conflict->getDate()."</td></tr>";
+            echo "<tr><td><h3>Author:</h3></td><td>".$conflict->getLogin()."</td></tr>";
+            echo "<tr><td><h3>Conflict type:</h3></td><td>".$conflict->getType()." times</td></tr>";
+            $rqtNb = Database::getOneData("SELECT COUNT(*) as nb FROM DesignPattern dp, ConflictDesignPattern cdp "
+                            ."WHERE cdp.idConflict=".$id." AND dp.idDesignPattern = cdp.idDesignPattern;");
+            $nombre = $rqtNb['nb'];
+            echo "<tr><td><h3>".$nombre." DP in conflict:</h3></td><td>";
+            ToolKitDisplay::displayDPConflict($id, $nombre);
+            echo "</td></tr></table><br/>";
+            echo "<img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/controller/proposeSol.php?id=".$id."\"><h3>Propose a solution</h3></a><br/><br/>";
+            
+            ToolKitDisplay::displayText("Description: ", $conflict->getDescription());
             echo "</article>";
+                        
+            echo "<h2 id=\"h2CommentsConflict\">Solutions</h2><hr/>";
+            ToolKitDisplay::displayGenericBox("Solution", Database::getAllData("SELECT DISTINCT s.idSolution, s.name, s.comment, s.rate, s.nbRates, s.nbComments, s.date, s.login FROM Solution s WHERE s.idConflict = ".$conflict->getID().";"));
             
             ToolkitDisplay::displayCommentsLittles($id, $conflict->getNbComments(), "Conflict");
-            echo "</article>";
             
+            echo "</article>";
+
         }
         else{
             echo "Error 404 !!";
@@ -41,7 +48,8 @@ class ToolkitDetails {
         
         if($dp != false){
             echo "<h1>".$dp->getName()."</h1><br/>";
-            echo "<div id=\"hautDP\">";
+            echo "<div id=\"contentDP\">";
+            echo "<div id=\"contenuHautDP\">";
             echo "<div id=\"contenuGaucheDP\">";
             echo "<table>";
             echo "<tr><td><h3>Date:</h3></td><td>".$dp->getDate()."</td></tr>";
@@ -49,13 +57,16 @@ class ToolkitDetails {
             echo "<tr><td><h3>Used:</h3></td><td>".$dp->getNbUsage()." times</td></tr>";
             echo "<tr><td><h3>For:</h3></td><td>".$dp->getTarget()."</td></tr>";
             echo "<tr><td style=\"vertical-align:top;\"><h3>Sources:</h3></td><td>";
-            ToolkitDisplayDesignPattern::displaySources($id);
             echo "</td></tr></table>";
-            echo "<img src=\"../img/vrac/add.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$id."\">Add to my current Design Pattern</a>";
-            echo "<br/><img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/signalConflict.php?id=".$id."\">Signal a conflict</a>";            
-            echo "</div><div id=\"contenuDroitDP\">";
+            ToolkitDisplayDesignPattern::displaySources($id);         
+            echo "</div>";
+            echo "<div id=\"contenuDroitDP\">";
             ToolkitDisplay::displayRate($id, $dp->getNbRates(), $dp->getRate(), "DesignPattern");
-            echo "</div><br/>";
+            echo "</div>";
+            echo "</div>";
+            echo "<div id=\"addProposeDP\">";
+            echo "<img src=\"../img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$id."\"><h3>Add to my current Design Pattern</h3></a>";
+            echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/controller/signalConflict.php?id=".$id."\"><h3>Signal a conflict</h3></a>";   
             echo "</div><br/><br/>";
             echo "<article id=\"contenuCommentsDP\">";
             ToolKitDisplay::displayText("What : ", $dp->getWhat());
@@ -68,6 +79,8 @@ class ToolkitDetails {
             ToolkitDisplay::displayCommentsLittles($id, $dp->getNbComments(), "DesignPattern");
             echo "</article>";
             
+            echo "</div>";
+
             echo "<aside id=\"asideCategorieConflictDP\">";
             ToolkitDisplayDesignPattern::displayCriteria($id);
             echo "<article>";

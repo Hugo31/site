@@ -4,14 +4,14 @@
     background: none repeat scroll 0% 0% rgb(255, 255, 255);
     margin-bottom: 20px;
     margin-right: 7px;
-    margin-left: 60px;
+    margin-left: 30px;
     white-space: nowrap;
 }
 
 .rating-box .score-container {
     padding: 20px;
     text-align: center;
-    width: 120px;
+    width: 100px;
 }
 
 .rating-box .score-container, .rating-box .rating-histogram {
@@ -22,14 +22,14 @@
 
 .rating-box {
     white-space: nowrap;
-    width: 70%;
+    width: 80%;
 }
 
 .rating-box .rating-histogram {
     padding: 20px 20px 20px 30px;
 }
 .rating-box .rating-histogram {
-    width: 150px;
+    width: 130px;
 }
 
 .score-container .score {
