@@ -13,8 +13,7 @@ class ToolkitDetails {
         if($conflict != false){
             echo "<article>";
             echo "<h1>".$conflict->getName()."</h1>";
-            
-            echo "<article id=\"detailsConflict\">";
+            echo "<article id=\"h3Details\">";
             echo "<table>";
             echo "<tr><td style=\"width:100px\"><h3>Date:</h3></td><td>".$conflict->getDate()."</td></tr>";
             echo "<tr><td><h3>Author:</h3></td><td>".$conflict->getLogin()."</td></tr>";
@@ -22,7 +21,7 @@ class ToolkitDetails {
             $rqtNb = Database::getOneData("SELECT COUNT(*) as nb FROM DesignPattern dp, ConflictDesignPattern cdp "
                             ."WHERE cdp.idConflict=".$id." AND dp.idDesignPattern = cdp.idDesignPattern;");
             $nombre = $rqtNb['nb'];
-            echo "<tr><td><h3>".$nombre." DP in conflict:</h3></td><td>";
+            echo "<tr><td valign=\"top\"><h3>".$nombre." DP in conflict:</h3></td><td>";
             ToolKitDisplay::displayDPConflict($id, $nombre);
             echo "</td></tr></table><br/>";
             echo "<img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/controller/proposeSol.php?id=".$id."\"><h3>Propose a solution</h3></a><br/><br/>";
@@ -56,7 +55,7 @@ class ToolkitDetails {
             echo "<tr><td><h3>Author:</h3></td><td>".$dp->getLogin()."</td></tr>";
             echo "<tr><td><h3>Used:</h3></td><td>".$dp->getNbUsage()." times</td></tr>";
             echo "<tr><td><h3>For:</h3></td><td>".$dp->getTarget()."</td></tr>";
-            echo "<tr><td style=\"vertical-align:top;\"><h3>Sources:</h3></td><td>";
+            echo "<tr><td><h3>Sources:</h3></td><td>";
             echo "</td></tr></table>";
             ToolkitDisplayDesignPattern::displaySources($id);         
             echo "</div>";
@@ -93,7 +92,7 @@ class ToolkitDetails {
                     echo "<fieldset style=\"border: 1px solid #96A9B5;box-shadow: 0 1px 0 #FFFFFF;\"><h3><a href=\"details.php?type=Conflict&id=".$row['idConflict']."\">".$row['name']."</a></h3>";
                     echo "Signaled ".$row['date']." by <a href=\"\">".$row['login']."</a><br/>";
                     $data = Database::getOneData("SELECT COUNT(*) as nb FROM Solution WHERE idconflict = ".$row['idConflict']);
-                    $dataCom = Database::getOneData("SELECT COUNT(*) as nb FROM CommentConflit WHERE idConflict = ".$row['idConflict']);
+                    $dataCom = Database::getOneData("SELECT COUNT(*) as nb FROM CommentConflict WHERE idConflict = ".$row['idConflict']);
                     echo "<a href=\"\">".$data['nb']." solutions</a> | <a href=\"\">".$dataCom['nb']." coms</a><br/>";
                     echo "</fieldset>";
                 }
@@ -114,39 +113,40 @@ class ToolkitDetails {
         if($solution != false){
             echo "<article>";
             echo "<h1>".$solution->getName()."</h1>";
-            echo "<article>";
-            echo "Date : ".$solution->getDate()."<br>Author : ".$solution->getLogin()."<br>";
+            
+            echo "<div id=\"contentSol\">";
+            echo "<div id=\"contenuGaucheSol\">";
+            echo "<table>";
+            echo "<tr><td style=\"width:150px\"><h3>Date:</h3></td><td>".$solution->getDate()."</td></tr>";
+            echo "<tr><td><h3>Author:</h3></td><td>".$solution->getLogin()."</td></tr>";
+            $data = Database::getOneData("SELECT c.idConflict, c.name FROM Solution s, Conflict c WHERE s.idSolution=".$id." and c.idConflict=s.idConflict;");
+            echo "<tr><td valign=\"top\"><h3>Solution to the conflict:</h3></td><td><a href=\"details.php?type=Conflict&id=".$data['idConflict']."\">".$data['name']."</a></td></tr>";
+            echo "</td></tr></table>";
+            echo "</div>";
+            echo "<div id=\"contenuDroitSol\">";
             ToolkitDisplay::displayRate($id, $solution->getNbRates(), $solution->getRate(), "Solution");
-            echo "</article>";
-            echo "<article>";
-     
-            ToolKitDisplay::displayConflictBox(Database::getAllData("SELECT * FROM Conflict WHERE idConflict = ".$solution->getIDConflict()));
-            echo "</article>";
+            echo "</div>";
+            echo "</div>";
             
-            echo "<article>";
             ToolKitDisplay::displayText("Comment : ", $solution->getComment());
-            ToolKitDisplay::displayText("Code for solution : ", $solution->getCodeSolution());
-            
-            echo "</article>";
+            ToolKitDisplay::displayText("Code for solution : ", $solution->getCodeSolution());                       
+            echo "<div id=\"textDisplay\">";
+            $reponse = Database::getAllData("SELECT DISTINCT s.idSolution, s.name, s.date, s.rate, s.nbComments, s.nbRates, s.login FROM Solution s WHERE idConflict = ".$solution->getIDConflict()." AND idSolution != ".$id);
+            echo "<h3>Others Solutions :</h3>";
+            echo "<ul>";
+            foreach($reponse as $row){
+                echo "<li>";
+                echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\">".$row['name']."</a><br/>";
+                echo "Posted the ".$row['date']." by ".$row['login']."<br/>";
+                echo "".$row['nbComments']." coms | ".$row['nbRates']." rates | ".$row['rate']."/5";
+                echo "</li>";
+            }
+            echo "</ul>";
+            echo "</div>";
             
             ToolkitDisplay::displayCommentsLittles($id, $solution->getNbComments(), "Solution");
+
             echo "</article>";
-            
-            echo "<aside>";
-            $reponse = Database::getAllData("SELECT DISTINCT s.idSolution, s.name, s.date, s.rate, s.nbComments, s.nbRates, s.login FROM Solution s WHERE idConflict = ".$solution->getID()." AND idSolution != ".$solution->getID());
-            echo "<article>";
-            echo "<h2>Others Solutions :</h2>";
-            foreach($reponse as $row){
-                echo "<div>";
-                echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\">".$row['name']."</a><br>";
-                echo "Posted the ".$row['date']." by ".$row['login']."<br>";
-                echo "".$row['nbComments']." coms | ".$row['nbRates']." rates<br>";
-                echo "</div>";
-                echo "<div>";
-                echo $row['rate'];
-                echo "</div>";
-            }
-            echo "</aside>";
         }
         else{
             echo "Error 404 !!";
@@ -158,24 +158,17 @@ class ToolkitDetails {
         if($project != false){
             echo "<article>";
             echo "<h1>".$project->getName()."</h1>";
-            echo "<article>";
-            echo "Date : ".$project->getDate()."<br>Author : ".$project->getLogin()."<br>";
+            
+            echo "<article id=\"h3Details\">";
+            echo "<table>";
+            echo "<tr><td><h3>Date:</h3></td><td>".$project->getDate()."</td></tr>";
+            echo "<tr><td><h3>Author:</h3></td><td>".$project->getLogin()."</td></tr>";
+            echo "</td></tr></table><br/>";            
             echo "</article>";
-            
-            
-            echo "<article>";
             ToolKitDisplay::displayText("Description : ", $project->getDescription());
+            
+            ToolKitDisplay::displayDesignPatternBox(Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern pdp WHERE pdp.idProject = ".$project->getID()." AND pdp.idDesignPattern = dp.idDesignPattern;"));            
             echo "</article>";
-            
-            echo "<article>";
-            ToolKitDisplay::displayDesignPatternBox(Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern pdp WHERE pdp.idProject = ".$project->getID()." AND pdp.idDesignPattern = dp.idDesignPattern;"));
-            
-            echo "</article>";
-            echo "</article>";
-            
-            echo "<aside>";
-            
-            echo "</aside>";
         }
         else{
             echo "Error 404 !!";
