@@ -54,7 +54,7 @@ class ToolKitDisplay {
     
     public static function displayConflictBox($dataToDisplay){
         if ($dataToDisplay->rowCount() == 0) {
-            echo 'No results.';
+            echo 'No conflicts.';
         } else {
             $bdd = Database::getConnection();
             foreach($dataToDisplay as $row){
@@ -129,7 +129,7 @@ class ToolKitDisplay {
     
     public static function displaySolutionBox($dataToDisplay){
         if ($dataToDisplay->rowCount() == 0) {
-            echo 'No results.';
+            echo 'No solutions.';
         } else {
             $bdd = Database::getConnection();
             foreach($dataToDisplay as $row){
@@ -149,12 +149,13 @@ class ToolKitDisplay {
                 echo "</aside>";
                 echo "</div>";
                 
-                echo "<div id=\"solutionConflict\">Solution of the conflict: ";
-                
-                $data = Database::getOneData("SELECT c.idConflict, c.name FROM Solution s, Conflict c WHERE s.idSolution=".$row['idSolution']." and c.idConflict=s.idConflict;");
-                echo "<a href=\"".$data['idConflict']."\">".$data['name']."</a>";
-                echo "</div>";  
-                                
+                if (!preg_match("/details/", $_SERVER['REQUEST_URI'])) {                 
+                    echo "<div id=\"solutionConflict\">Solution of the conflict: ";
+
+                    $data = Database::getOneData("SELECT c.idConflict, c.name FROM Solution s, Conflict c WHERE s.idSolution=".$row['idSolution']." and c.idConflict=s.idConflict;");
+                    echo "<a href=\"details.php?type=Conflict&id=".$data['idConflict']."\">".$data['name']."</a>";
+                    echo "</div>";  
+                }                
                 echo "<article id=\"articleBox\">".$row['comment']."</article>";
                 echo "<summary><a href=\"#\" onclick=\"requestDetails('#Solution".$row['idSolution']."', 'Solution', '".$row['idSolution']."');return false;\" style=\"float:right\">See more</a></summary><br/>";
                 echo "<details class=\"details\" id=\"Solution".$row['idSolution']."\"></details>";
@@ -223,7 +224,7 @@ class ToolKitDisplay {
     public static function displayText($name, $data){
         echo "<div id=\"textDisplay\">";
         echo "<h3>".$name."</h3>";
-        echo $data;
+        echo "<div class=\"retrait\">".$data."</div>";
         echo "</div><br/>";
     }
     
@@ -274,18 +275,22 @@ class ToolKitDisplay {
     public static function displayCommentsLittles($id, $nbComments, $tableAsk){
         $reponse = Database::getAllData("SELECT * FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id." ORDER BY DATE LIMIT 0, 3");
         echo "<article>";
-        echo "<br/><h2 id=\"h2CommentsConflict\">Comments (".$nbComments.") : </h2><hr/><br/>";
-        foreach($reponse as $row){
-            echo "<div id=\"containerComment\">";
-            echo "<div id=\"logoComment\">";
-            $data = Database::getOneData("SELECT logo FROM User WHERE login = \"".$row['login']."\"");
-            echo "<img src=\"".$data['logo']."\" style=\"width:50px;\"/><br><a href=\"\">".$row['login']."</a>";
-            echo "</div>";
-            echo "<div id=\"textComment\">";
-            echo "<i>Posted ".$row['date']."</i><br>";
-            echo $row['comment'];
-            echo "</div>";
-            echo "</div>";
+        echo "<br/><h2 id=\"h2CommentsConflict\">Comments (".$nbComments.") : </h2><hr/>";
+        if ($reponse->rowCount() == 0) {
+            echo 'No comments.<br/>';
+        } else {
+            foreach($reponse as $row){
+                echo "<div id=\"containerComment\">";
+                echo "<div id=\"logoComment\">";
+                $data = Database::getOneData("SELECT logo FROM User WHERE login = \"".$row['login']."\"");
+                echo "<img src=\"".$data['logo']."\" style=\"width:50px;\"/><br><a href=\"\">".$row['login']."</a>";
+                echo "</div>";
+                echo "<div id=\"textComment\">";
+                echo "<i>Posted ".$row['date']."</i><br>";
+                echo $row['comment'];
+                echo "</div>";
+                echo "</div>";
+            }
         }
         echo "<br/></article>";
         $reponse->closeCursor();
@@ -316,10 +321,10 @@ class ToolKitDisplay {
                 ."WHERE cdp.idConflict=".$id." AND dp.idDesignPattern = cdp.idDesignPattern;");
         foreach($rqtConflict as $res){
             if ($nombre > 1) {
-                echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a> & ";
+                echo "<a href=\"details.php?type=DesignPattern&id=".$res['idDesignPattern']."\">".$res['name']."</a> & ";
                 $nombre--;
             } else {
-                echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a>";
+                echo "<a href=\"details.php?type=DesignPattern&id=".$res['idDesignPattern']."\">".$res['name']."</a>";
             }
         }
         $rqtConflict->closeCursor();

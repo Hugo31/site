@@ -282,7 +282,7 @@
     color: #FF4C00;
 }
 
-#detailsConflict h3 {
+#h3Details h3 {
     margin: 0px auto;
     display: inline;
     font-weight: normal;
@@ -296,4 +296,40 @@
     font-weight: normal;
     text-decoration: none;
     color: #546B76; 
+}
+
+#contentSol {
+    min-height:220px;
+    float:left;
+    width:100%;
+}
+
+#contenuGaucheSol {
+    width: 60%;
+    float:left;
+    min-height: 210px;
+}
+
+#contentSol h3 {
+    margin: 0px auto;
+    display: inline;
+    font-weight: normal;
+    color: #96A9B5;
+    text-decoration: none;
+}
+
+#contenuDroitSol {
+    width: 40%;
+    float:right;
+    min-height: 210px;
+}
+
+#textDisplay ul li {
+    color : #363B29;
+    padding-bottom:15px;
+}
+
+.retrait {
+    padding-top: 5px;
+    text-indent:30px;
 }
