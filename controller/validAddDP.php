@@ -3,9 +3,8 @@
     require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
     $session = Session::getInstance();
     
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/Database.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/userpost/comment/rate/designpattern/DesignPattern.php");
-    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/userpost/comment/rate/designpattern/Image.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/designpattern/DesignPattern.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/designpattern/Image.php");
     
 
 

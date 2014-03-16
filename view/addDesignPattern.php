@@ -62,13 +62,12 @@
                     <tr>
                         <td style="width:400px"><label for="img">(Optional) Image</label></td>
                         <td><input id="img" type="url" value="" name="img" size="40" placeholder="Copy the image url"></td>
-                    </tr>                    
-                    <tr>
+                    </tr>
                 </table>
                 <br/>
                 <center>
                     <input type="submit" value="Preview" class="addDP" style="margin-right: 15px" onclick="this.form.action='previewAddDP.php'">
-                    <input type="submit" value="Finish" class="addDP" style="margin-left: 15px " onclick="this.form.action='../controller/validAddDP.php'">
+                    <input type="submit" value="Add Design Pattern" class="addDP" style="margin-left: 15px " onclick="this.form.action='../controller/validAddDP.php'">
                 </center>
             </form>
         </div>

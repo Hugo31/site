@@ -22,6 +22,7 @@
         <link rel="stylesheet" type="text/css" href="/site/styles/styleStructure.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/site/styles/stylePlus.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/site/styles/styleRate.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/site/styles/styleAdd.css" media="screen" />
         
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>

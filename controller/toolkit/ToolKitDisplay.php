@@ -111,8 +111,8 @@ class ToolKitDisplay {
                 }
                 $reqPlatform->closeCursor();
                 $dateDP = new DateTime($row['date']);
-                echo "<br/><div id=\"lienDescr\">Date of last update: ".$dateDP->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> | Used: ".$row['nbUsage']." times ";
-                echo "<br/><img src=\"../img/vrac/add.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add to My current Design Pattern</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/signalConflict.php?id=".$row['idDesignPattern']."\">Signal a conflict</a></div>";
+                echo "<br/><div id=\"lienDescr\">Last update: ".$dateDP->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> | Used: ".$row['nbUsage']." times ";
+                echo "<br/><img src=\"../img/vrac/add.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$row['idDesignPattern']."\">Add to My current Design Pattern</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$row['idDesignPattern']."\">Report a conflict</a></div>";
                 echo "</header>";
                 echo "<aside id='asideBox'>";
                 echo "<div id=\"note\">".$row['rate']."/5</div>";
@@ -324,4 +324,13 @@ class ToolKitDisplay {
         }
         $rqtConflict->closeCursor();
     }
+    
+    public static function displayDesignPattern($id){
+        echo '<div id="dDP">';
+        echo $id;
+        echo 'Last update: date | Author: autor | Used: 0 times ';
+        echo '</div>';
+
+    }
+    
 }
