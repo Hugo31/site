@@ -65,7 +65,7 @@ class ToolkitDetails {
             echo "</div>";
             echo "<div id=\"addProposeDP\">";
             echo "<img src=\"../img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$id."\"><h3>Add to my current Design Pattern</h3></a>";
-            echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/controller/signalConflict.php?id=".$id."\"><h3>Signal a conflict</h3></a>";   
+            echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$id."\"><h3>Report a conflict</h3></a>";   
             echo "</div><br/><br/>";
             echo "<article id=\"contenuCommentsDP\">";
             ToolKitDisplay::displayText("What : ", $dp->getWhat());
