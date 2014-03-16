@@ -34,7 +34,6 @@
                         <td style="width:400px"><label for="description">Description</label></td>
                         <td><textarea id="description" name="description" style="width:256px;height:100px" required placeholder="Description of your project"></textarea></td>
                     </tr>
-                    <tr>
                 </table>
                 <br/>
                 <center>

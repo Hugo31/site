@@ -24,7 +24,7 @@ class ToolkitDetails {
             echo "<tr><td valign=\"top\"><h3>".$nombre." DP in conflict:</h3></td><td>";
             ToolKitDisplay::displayDPConflict($id, $nombre);
             echo "</td></tr></table><br/>";
-            echo "<img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/controller/proposeSol.php?id=".$id."\"><h3>Propose a solution</h3></a><br/><br/>";
+            echo "<img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/view/addSolution.php?id=".$id."\"><h3>Propose a solution</h3></a><br/><br/>";
             
             ToolKitDisplay::displayText("Description: ", $conflict->getDescription());
             echo "</article>";

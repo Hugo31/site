@@ -64,7 +64,7 @@ class ToolKitDisplay {
                 echo "<header id='headerBox'>";
                 echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\"><h2>".$row['name']."</h2></a>";
                 $dateConflict = new DateTime($row['date']);
-                echo "<br/><div id=\"lienDescr\">Date of reporting: ".$dateConflict->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/proposeSol.php?id=".$row['idConflict']."\">Propose a solution</a></div>";
+                echo "<br/><div id=\"lienDescr\">Date of reporting: ".$dateConflict->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/AddSolution.php?id=".$row['idConflict']."\">Propose a solution</a></div>";
                 echo "</header>";
                 
                 $data = Database::getOneData("SELECT COUNT(*) as nb FROM Solution WHERE idconflict = ".$row['idConflict']);
@@ -330,10 +330,18 @@ class ToolKitDisplay {
         $rqtConflict->closeCursor();
     }
     
-    public static function displayDesignPattern($id){
+    public static function displayDesignPatternMini($id){
         echo '<div id="dDP">';
-        echo $id;
-        echo 'Last update: date | Author: autor | Used: 0 times ';
+        echo 'DP number '.$id;
+        echo ' | Last update: date | Author: autor | Used: 0 times ';
+        echo '</div>';
+
+    }
+    
+    public static function displayConflictMini($id){
+        echo '<div id="dDP">';
+        echo 'Conflict number '.$id;
+        echo ' | Date of reporting: date | Author: autor | Used: 0 times | 0 DP in conflict';
         echo '</div>';
 
     }

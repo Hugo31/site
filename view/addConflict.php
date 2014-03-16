@@ -21,7 +21,7 @@
     
     function displayDP2(sel){
         
-        document.getElementById('DP2').innerHTML = '<?php ToolkitDisplay::displayDesignPattern(2) ?>';
+        document.getElementById('DP2').innerHTML = '<?php ToolkitDisplay::displayDesignPatternMini($_GET['id']) ?>';
         
         //var value = sel.options[sel.selectedIndex].value;
     }
@@ -34,7 +34,7 @@
             
             <?php
             if (isset($_GET['id'])){
-                ToolkitDisplay::displayDesignPattern($_GET['id']);
+                ToolkitDisplay::displayDesignPatternMini($_GET['id']);
             }
 
             $bdd = Database::getConnection();
