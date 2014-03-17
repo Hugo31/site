@@ -10,14 +10,10 @@ $user = new User($donnees['login'], $donnees['pwd'], $donnees['lastname'], $donn
 ?>
 
 <section id="contenu">
-    <h1><?php echo $user->getLogin() ?></h1>
+    <h1><?php echo $user->getLogin() ?>JMichel</h1>
     <div id="profil">
         <div id="profillogo">
-            Logo <br/>
-            <br/>
-            image
-            <br/>
-            <br/>
+            Image de profil
         </div>
         <div id="profilcontent">
             <div id="profilgauche">
