@@ -42,7 +42,7 @@
                     <div id="navigation">
                         <div style="height:50px">
                             <form method="post" id="loginForm2" name="loginform2"
-                                  action="#" onsubmit="return validSignin($(this));">
+                                  action="/site/controller/sign/validSignin.php" onsubmit="return validSignin($(this));">
                                 
                                 <input type="text" id="loginsignin" name="loginsignin" 
                                        required="required" placeholder="Username or Email">
