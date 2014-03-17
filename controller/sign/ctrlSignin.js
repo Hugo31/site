@@ -10,64 +10,71 @@
  */
 
 var formulaire;
+var postReturn;
 
 function validSignin(form) {
     formulaire = form;
+    postReturn = false;
 
     var login = formulaire.find("#loginsignin").prop("value");
     var password = formulaire.find("#passwordsignin").prop("value");
-    var ret;
-    
+
     var anEmail = typeEmail(login);
-    
-    
+
     if (anEmail) {
-        ret = ($.post('/site/controller/sign/ctrlSigninEmail.php', {email: login, password: password}, function(data) {
-            var champLogin = formulaire.find("#loginsignin");
-            var champPassword = formulaire.find("#passwordsignin");
-            var champErreur = document.getElementById("errorlogin");
+        $.ajax({
+            type: 'POST',
+            url: '/site/controller/sign/ctrlSigninEmail.php',
+            data: {email: login, password: password},
+            async: false,
+            success: function(data) {
+                var champLogin = formulaire.find("#loginsignin");
+                var champPassword = formulaire.find("#passwordsignin");
+                var champErreur = document.getElementById("errorlogin");
 
-            if (data[0] != '0') {
-                champPassword.css("backgroundColor", "#FFF");
-                champLogin.css("backgroundColor", "#FFF")
-                champErreur.style.color = '#FFF';
-                champErreur.innerHTML = '';
-                return true;
-            } else {
-                champPassword.css("backgroundColor", "#FBA");
-                champLogin.css("backgroundColor", "#FBA");
-                champErreur.style.color = '#FBA';
-                champErreur.innerHTML = '> Wrong password or email !';
-                return false;
+                if (data[0] != '0') {
+                    champPassword.css("backgroundColor", "#FFF");
+                    champLogin.css("backgroundColor", "#FFF")
+                    champErreur.style.color = '#FFF';
+                    champErreur.innerHTML = '';
+                    postReturn = true;
+                } else {
+                    champPassword.css("backgroundColor", "#FBA");
+                    champLogin.css("backgroundColor", "#FBA");
+                    champErreur.style.color = '#FBA';
+                    champErreur.innerHTML = 'Wrong password or email !';
+                    postReturn = false;
+                }
             }
-        }));
+        });
     } else {
-        ret = ($.post('/site/controller/sign/ctrlSigninUsername.php', {username: login, password: password}, function(data) {
-            var champLogin = formulaire.find("#loginsignin");
-            var champPassword = formulaire.find("#passwordsignin");
-            var champErreur = document.getElementById("errorlogin");
+        $.ajax({
+            type: 'POST',
+            url: '/site/controller/sign/ctrlSigninUsername.php',
+            data: {username: login, password: password},
+            async: false,
+            success: function(data) {
+                var champLogin = formulaire.find("#loginsignin");
+                var champPassword = formulaire.find("#passwordsignin");
+                var champErreur = document.getElementById("errorlogin");
 
-            if (data[0] != '0') {
-                champPassword.css("backgroundColor", "#FFF");
-                champLogin.css("backgroundColor", "#FFF")
-                champErreur.style.color = '#FFF';
-                champErreur.innerHTML = '';
-                return true;
-            } else {
-                champPassword.css("backgroundColor", "#FBA");
-                champLogin.css("backgroundColor", "#FBA");
-                champErreur.style.color = '#FBA';
-                champErreur.innerHTML = '> Wrong password or username !';
-                return false;
+                if (data[0] != '0') {
+                    champPassword.css("backgroundColor", "#FFF");
+                    champLogin.css("backgroundColor", "#FFF")
+                    champErreur.style.color = '#FFF';
+                    champErreur.innerHTML = '';
+                    postReturn = true;
+                } else {
+                    champPassword.css("backgroundColor", "#FBA");
+                    champLogin.css("backgroundColor", "#FBA");
+                    champErreur.style.color = '#FBA';
+                    champErreur.innerHTML = 'Wrong password or username !';
+                    postReturn = false;
+                }
             }
-        }));
+        });
     }
-    
-    if(ret){
-        return true;
-    } else {
-        return false;
-    }
+    return postReturn;
 }
 
 function typeEmail(value) {

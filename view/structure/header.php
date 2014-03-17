@@ -40,9 +40,9 @@
                     <a href="/site/index.php"><img src="/site/img/header/logo_modif_gris.png" name="image" style="height:80px"
                        onmouseover="image.src='/site/img/header/logo_modif_gris_souris.png'" onmouseout="image.src='/site/img/header/logo_modif_gris.png'"></a>
                     <div id="navigation">
-                        <div style="height:40px">
+                        <div style="height:50px">
                             <form method="post" id="loginForm2" name="loginform2"
-                                  action="#" onsubmit="return validSignin($(this));">
+                                  action="/site/controller/sign/validSignin.php" onsubmit="return validSignin($(this));">
                                 
                                 <input type="text" id="loginsignin" name="loginsignin" 
                                        required="required" placeholder="Username or Email">
@@ -55,7 +55,8 @@
                                 </a>
                                 
                             </form>
-                            <div id="errorlogin" style="float: left; margin-left: 71px; margin-top: 3px"></div>
+                            <div id="errorlogin" style="float: left; margin-left: 75px; margin-top: 3px"></div>
+                            <div id="forgottenPassword"><a href="/site/view/forget.php">> Forgotten password?</a></div>
                         </div>
                         <nav id="menu">
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
