@@ -1,0 +1,44 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17 mars 2014, 18:04:22
+    Author     : loicviguier
+*/
+
+#profil {
+    font-size: 1.2em;
+    color: #96A9B5;
+    text-decoration: none;
+    text-align: left;
+}
+
+#profildroit {
+    color: #373F42;
+}
+
+#profilgauche {
+    color: #96A9B5;
+}
+
+/******************* Positionnement *************************/
+
+#profilcontent {
+    line-height: 170%;
+}
+
+#profilgauche {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    padding: 0px 10px;
+}
+
+#profildroit {
+    display: inline-block;
+    width: 100px;
+    height: 200px;
+    padding: 0px 10px;
+}

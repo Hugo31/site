@@ -20,6 +20,7 @@
         <link rel="stylesheet" type="text/css" href="styles/styleStructure.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="styles/stylePlus.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="styles/styleForm.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="styles/styleProfil.css" media="screen" />
         
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
