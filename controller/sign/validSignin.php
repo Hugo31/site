@@ -1,7 +1,7 @@
 <?php
 // On démarre une session
-//$session = Session::getInstance(); -> Erreur
-session_start();
+require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
+$session = Session::getInstance(); 
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/Database.php");
 
@@ -16,8 +16,7 @@ if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#i", $login)){
 }
 
 // Ajout du login dans la variable de session 'login'
-//$session->login =  $login; -> Erreur
-$_SESSION['login'] = $login;
+$session->login =  $login;
 
 // On retourne a l'index
 header('Location: /site/index.php');

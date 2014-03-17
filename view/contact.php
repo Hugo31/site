@@ -12,7 +12,7 @@ if (!empty($_REQUEST['userCode'])) {
     $userCode = strtoupper($_REQUEST['userCode']);
 
     /* Cryptage et comparaison avec la valeur stockée dans $_SESSION['captcha'] */
-    if (md5($userCode) == $_SESSION['captcha']) {
+    if (md5($userCode) == $session->captcha) {
         // envoi d'un mail
         $mail = "winckler@irit.fr";
         $messageComplet = 'You just received a new message from '.$_POST['thename'].' '.$_POST['thefirstname'] . '('.$_POST['themail'].')\n\nMessage :\n' . $_POST['themessage'];

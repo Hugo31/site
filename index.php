@@ -9,7 +9,7 @@
 <section id="contenu">
     <h1> Home </h1>
     Welcome to UI Design Pattern Community
-    <br/><?php echo ' > login : ' . $_SESSION['login'] .'' ?>
+    <br/><?php echo ' > login : ' . $session->login .'' ?>
     <br/>
     <br/><a href="/site/testJquery/testModelPage.php">Test Model</a>
     <br/><a href="/site/view/addDesignPattern.php">Page test ajout de DP</a>
