@@ -38,7 +38,9 @@
                         </ul>
                     </div>
                     <div style="width:146px;float:left;padding-top:60px;text-align:center">
-                        <input value="SIGN UP" type="button" class="signupfooter">
+                        <a href="/site/view/signup.php" style="text-decoration: none">
+                            <input value="SIGN UP" type="button" class="signupfooter">
+                        </a>
                     </div>
                 </div>
             </footer>

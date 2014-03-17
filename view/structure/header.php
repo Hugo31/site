@@ -19,6 +19,7 @@
         <meta name="robots" content="All" />
 
         <link rel="stylesheet" type="text/css" href="/site/styles/styleBase.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="/site/styles/styleForm.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/site/styles/styleStructure.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/site/styles/stylePlus.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/site/styles/styleRate.css" media="screen" />
@@ -26,6 +27,7 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/site/javascript/toolkit.js"></script>
+        <script type="text/javascript" src="/site/controller/sign/ctrlSignin.js"></script>
     </head>
 
     <body>
@@ -37,12 +39,21 @@
                     <a href="/site/index.php"><img src="/site/img/header/logo_modif_gris.png" style="height:80px"></a>
                     <div id="navigation">
                         <div style="height:40px">
-                            <form id="loginForm2" action="verifCo.php">
-                                <input value="Username" id="inpUsernameEmail" class="texte" type="text">
-                                <input value="Password" id="inpPasswordPlaceholder" class="texte" type="text">
+                            <form method="post" id="loginForm2" name="loginform2"
+                                  action="#" onsubmit="return validSignin($(this));">
+                                
+                                <input type="text" id="loginsignin" name="loginsignin" 
+                                       required="required" placeholder="Username or Email">
+                                <input type="password" id="passwordsignin" name="passwordsignin"
+                                       required="required" placeholder="Password">
                                 <input value="SIGN IN" type="submit" class="signin" >
-                                <input value="SIGN UP" type="button" class="signup">
+                                
+                                <a href="/site/view/signup.php" style="text-decoration: none" >
+                                    <input value="SIGN UP" type="button" class="signup">
+                                </a>
+                                
                             </form>
+                            <div id="errorlogin" style="float: left; margin-left: 71px; margin-top: 3px"></div>
                         </div>
                         <nav id="menu">
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
