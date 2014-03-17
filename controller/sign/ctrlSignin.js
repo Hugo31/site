@@ -37,7 +37,7 @@ function validSignin(form) {
                 champPassword.css("backgroundColor", "#FBA");
                 champLogin.css("backgroundColor", "#FBA");
                 champErreur.style.color = '#FBA';
-                champErreur.innerHTML = '> Wrong password or email !';
+                champErreur.innerHTML = 'Wrong password or email !';
                 return false;
             }
         }));
@@ -57,7 +57,7 @@ function validSignin(form) {
                 champPassword.css("backgroundColor", "#FBA");
                 champLogin.css("backgroundColor", "#FBA");
                 champErreur.style.color = '#FBA';
-                champErreur.innerHTML = '> Wrong password or username !';
+                champErreur.innerHTML = 'Wrong password or username !';
                 return false;
             }
         }));
