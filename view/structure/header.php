@@ -23,6 +23,7 @@
         <link rel="stylesheet" type="text/css" href="/site/styles/styleStructure.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/site/styles/stylePlus.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/site/styles/styleRate.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/site/styles/styleAdd.css" media="screen" />
         
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
@@ -36,7 +37,8 @@
 
             <header id="header">
                 <div id="headercontent">
-                    <a href="/site/index.php"><img src="/site/img/header/logo_modif_gris.png" style="height:80px"></a>
+                    <a href="/site/index.php"><img src="/site/img/header/logo_modif_gris.png" name="image" style="height:80px"
+                       onmouseover="image.src='/site/img/header/logo_modif_gris_souris.png'" onmouseout="image.src='/site/img/header/logo_modif_gris.png'"></a>
                     <div id="navigation">
                         <div style="height:40px">
                             <form method="post" id="loginForm2" name="loginform2"

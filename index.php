@@ -8,7 +8,8 @@
     <h1> Home </h1>
     Welcome to uidesignpatterncommunity
     <br/><a href="/site/testJquery/testModelPage.php">Test Model</a>
-    <br/><a href="/site/view/addDesignPattern.php">Page test Ajout de DP</a>
+    <br/><a href="/site/view/addDesignPattern.php">Page test ajout de DP</a>
+    <br/><a href="/site/view/addProject.php">Page test ajout de projet</a>
     <h2>Website goals</h2>
     This site allows sharing and community management of design patterns. It allows you to search design patterns based on several criteria
     and specific needs related to a project. It should also allow to comment on design patterns, report conflicts between them 
@@ -21,9 +22,7 @@
     and commenting, suggest solutions and report conflicts you might find.
     
     <h3>> How?</h3>
-    <div id="zonegrise">
-        All you need to do is create a free account and login. All new members and contributions to our community are welcomed.
-    </div>
+    All you need to do is create a free account and login. All new members and contributions to our community are welcomed.
     
 </section>
 

@@ -53,5 +53,4 @@ class ToolkitDisplayDesignPattern {
         $reponse->closeCursor();
     }
     
-    
 }

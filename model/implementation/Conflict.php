@@ -107,9 +107,9 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
      * Ajoute un design pattern à un conflit.
      * @param DesignPattern $tableToSort Le design pattern à lier.
      */
-    public function addLink($tableToLink) {
+    public function addLink($id) {
         $bdd = Database::getConnection();
-        $nbAj = $bdd->exec('INSERT INTO ConflictDesignPattern (idConflict, idDesignPattern) VALUES ('.$this->getID().', '.$tableToLink->getID().')');
+        $nbAj = $bdd->exec('INSERT INTO ConflictDesignPattern (idConflict, idDesignPattern) VALUES ('.$this->getID().', '.$id.')');
         return ($nbAj > 0);
     }
       
@@ -117,9 +117,9 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
      * Supprime un design pattern d'un conflit.
      * @param DesignPattern $tableToSort Le design pattern à supprimer.
      */
-    public function removeLink($tableToLink) {
+    public function removeLink($id) {
         $bdd = Database::getConnection();
-        $nbSuppr = $bdd->exec('DELETE FROM ConflictDesignPattern WHERE idConflict = '.$this->getID().' and idDesignPattern = '.$tableToLink->getID());
+        $nbSuppr = $bdd->exec('DELETE FROM ConflictDesignPattern WHERE idConflict = '.$this->getID().' and idDesignPattern = '.$id);
         return ($nbSuppr > 0);
     }
 
