@@ -28,7 +28,7 @@ DROP TABLE IF EXISTS `mydb`.`DesignPattern` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`DesignPattern` (
   `idDesignPattern` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(150) NOT NULL,
   `what` TEXT NOT NULL,
   `whenAndHow` TEXT NULL,
   `layout` TEXT NULL,
@@ -153,6 +153,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Project` (
   `description` VARCHAR(100) NULL,
   `date` DATETIME NULL,
   `login` VARCHAR(30) NOT NULL,
+  `current` TINYINT(1) NOT NULL,
   PRIMARY KEY (`idProject`),
   INDEX `fk_Projet_User1_idx` (`login` ASC),
   CONSTRAINT `fk_Projet_User1`
@@ -188,23 +189,42 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `mydb`.`TypeConflict`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`TypeConflict` ;
+
+CREATE TABLE IF NOT EXISTS `mydb`.`TypeConflict` (
+  `idTypeConflict` INT NOT NULL,
+  `name` VARCHAR(150) NOT NULL,
+  `description` TEXT NULL,
+  PRIMARY KEY (`idTypeConflict`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `mydb`.`Conflict`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `mydb`.`Conflict` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Conflict` (
   `idConflict` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(30) NOT NULL,
+  `name` VARCHAR(150) NOT NULL,
   `description` TEXT NULL,
-  `type` VARCHAR(45) NULL,
   `date` DATETIME NULL,
   `nbComments` INT NULL,
   `login` VARCHAR(30) NOT NULL,
+  `idTypeConflict` INT NOT NULL,
   PRIMARY KEY (`idConflict`),
   INDEX `fk_Conflit_User1_idx` (`login` ASC),
+  INDEX `fk_Conflict_TypeConflict1_idx` (`idTypeConflict` ASC),
   CONSTRAINT `fk_Conflit_User1`
     FOREIGN KEY (`login`)
     REFERENCES `mydb`.`User` (`login`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Conflict_TypeConflict1`
+    FOREIGN KEY (`idTypeConflict`)
+    REFERENCES `mydb`.`TypeConflict` (`idTypeConflict`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -244,7 +264,7 @@ DROP TABLE IF EXISTS `mydb`.`Solution` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Solution` (
   `idSolution` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(150) NOT NULL,
   `comment` TEXT NULL,
   `codeSolution` TEXT NULL,
   `nbComments` INT NULL,
