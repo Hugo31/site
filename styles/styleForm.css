@@ -60,7 +60,7 @@ and open the template in the editor.
     cursor: pointer;
     border-radius: 4px;
     padding: 0px 7px;
-    border: 1px solid #7A1F0A;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
     margin-top: 25px;
     text-shadow: 0px 1px 1px #8E2A04;
@@ -84,7 +84,7 @@ and open the template in the editor.
     cursor: pointer;
     border-radius: 4px;
     padding: 0px 7px;
-    border: 1px solid #7A1F0A;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
     margin-top: 5px;
     text-shadow: 0px 1px 1px #8E2A04;
@@ -102,6 +102,42 @@ and open the template in the editor.
     text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
 }
 
+#profil {
+    font-size: 1.2em;
+    color: #96A9B5;
+    text-decoration: none;
+    text-align: left;
+}
+
+#profildroit {
+    color: #373F42;
+}
+
+#profilgauche {
+    color: #96A9B5;
+}
+
+#modifyprofil {
+    width: 100px;
+    height: 41px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0px 7px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-shadow: 0px 1px 1px #8E2A04;
+    background-color: #FF4C00;
+    box-shadow: 0px 1px 1px #B2B2B2;
+    color: #FFF;
+    font-size:1.1em;
+    -webkit-box-reflect: below 0 linear-gradient(transparent 40%, rgba(0,0,0,.15));
+}
+
+#modifyprofil:hover {
+    background-color: #FF6100;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
 /* --------------------------- POSITIONNEMENT ------------------------------ */
 
 #formsignup {
@@ -113,5 +149,30 @@ and open the template in the editor.
     padding-left: 30px;
 }
 
+#profilcontent {
+    line-height: 170%;
+}
+
+#profillogo {
+    height: 150px; 
+}
+
+#profilgauche {
+    display: inline-block;
+    width: 125px;
+    height: 215px;
+    padding: 0px 10px 0px 35px;
+}
+
+#profildroit {
+    display: inline-block;
+    width: 125px;
+    height: 215px;
+    padding: 0px 10px;
+}
+
+#profilform {
+    text-align: center;
+}
 
 /* Fin de la partie à ajouter */
