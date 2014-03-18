@@ -12,8 +12,10 @@
     <?php
     //$session->login = "undefined";
     unset($session->login);
-    $session->currentDP[0] = 1;
-    $session->currentDP[1] = 2;
+    $currentDP = $session->currentDP;
+    $currentDP[0] = 1;
+    $currentDP[1] = 2;
+    $session->currentDP = $currentDP;
     $reponse = false;
     $req = "";
     if(isset($session->login)){

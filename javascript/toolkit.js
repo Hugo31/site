@@ -50,3 +50,15 @@ function enableCheckBoxChild(object){
         $(this).prop("indeterminate", (nbCheck > 0) && (nbCheck < $(this).prop("value")));
     });
 }
+
+function addToCart(idDP, frame){
+    $.post("/site/controller/addCart.php", {idDesignPattern : idDP}, function(data){
+        if(data === true){
+            alert("You add one design pattern");
+        }
+        else{
+            alert("An error occured when adding the design pattern");
+        }
+    });
+    return false;
+}
