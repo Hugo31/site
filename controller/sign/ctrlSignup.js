@@ -33,6 +33,7 @@ function verifFirstname(champ) {
         champ.focus();
         champ.css("backgroundColor", "#FBA");
         champErreur.style.color = '#FBA';
+        champErreur.style.padding = '0px 0px 0px 84px';
         champErreur.innerHTML = 'Your firstname is too short or too long</br>';
         return false;
     }
@@ -44,6 +45,7 @@ function verifFirstname(champ) {
     } else {
         champ.focus();
         champ.css("backgroundColor", "#FBA");
+        champErreur.style.padding = '0px 0px 0px 148px';
         champErreur.style.color = '#FBA';
         champErreur.innerHTML = 'Your firstname must not contain special characters</br>';
         return false;
@@ -59,6 +61,7 @@ function verifLastname(champ) {
         champ.focus();
         champ.css("backgroundColor", "#FBA");
         champErreur.style.color = '#FBA';
+        champErreur.style.padding = '0px 0px 0px 84px';
         champErreur.innerHTML = 'Your lastname is too short or too long</br>';
         return false;
     }
@@ -70,6 +73,7 @@ function verifLastname(champ) {
     } else {
         champ.focus();
         champ.css("backgroundColor", "#FBA");
+        champErreur.style.padding = '0px 0px 0px 148px';
         champErreur.style.color = '#FBA';
         champErreur.innerHTML = 'Your lastname must not contain special characters</br>';
         return false;
@@ -84,6 +88,7 @@ function verifUsername(champ) {
     if (username.length < 3 || username.length > 30) {
         champ.focus();
         champ.css("backgroundColor", "#FBA");
+        champErreur.style.padding = '0px 0px 0px 84px';
         champErreur.style.color = '#FBA';
         champErreur.innerHTML = 'Your username is too short or too long</br>';
         return false;
@@ -107,6 +112,7 @@ function verifUsername(champ) {
                 } else {
                     champUsername.focus();
                     champUsername.css("backgroundColor", "#FBA");
+                    champErreur.style.padding = '0px 0px 0px 48px';
                     champErreur.style.color = '#FBA';
                     champErreur.innerHTML = 'Your username is already exist</br>';
                     verifUsernameReturn = false;
@@ -117,6 +123,7 @@ function verifUsername(champ) {
     } else {
         champ.focus();
         champ.css("backgroundColor", "#FBA");
+        champErreur.style.padding = '0px 0px 0px 148px';
         champErreur.style.color = '#FBA';
         champErreur.innerHTML = 'Your username must not contain special characters</br>';
         return false;
@@ -145,6 +152,7 @@ function verifEmail(champ) {
                 } else {
                     champEmail.focus();
                     champEmail.css("backgroundColor", "#FBA");
+                    champErreur.style.padding = '0px 0px 0px 20px';
                     champErreur.style.color = '#FBA';
                     champErreur.innerHTML = 'This email is already exist</br>';
                     verifEmailReturn = false;
@@ -155,8 +163,9 @@ function verifEmail(champ) {
     } else {
         champ.focus();
         champ.css("backgroundColor", "#FBA");
+        champErreur.style.padding = '0px 0px 0px 54px';
         champErreur.style.color = '#FBA';
-        champErreur.innerHTML = 'please, put a valid email address</br>';
+        champErreur.innerHTML = 'Please, put a valid email address</br>';
         return false;
     }
 }
@@ -178,6 +187,7 @@ function verifSimilarity(champ1, champ2) {
             champ2.focus();
             champ1.css("backgroundColor", "#FBA");
             champ2.css("backgroundColor", "#FBA");
+            champErreur.style.padding = '0px 0px 0px 49px';
             champErreur.style.color = '#FBA';
             champErreur.innerHTML = 'Please, give the same password</br>';
             champ1.focus();
@@ -187,6 +197,7 @@ function verifSimilarity(champ1, champ2) {
         if (pass1 == '' && pass2 == '') {
             champ1.css("backgroundColor", "#FBA");
             champ2.css("backgroundColor", "#FBA");
+            champErreur.style.padding = '0px 0px 0px 49px';
             champErreur.style.color = '#FBA';
             champErreur.innerHTML = 'Please, give a password</br>';
             champ1.focus();
@@ -195,6 +206,7 @@ function verifSimilarity(champ1, champ2) {
     } else {
         champ1.css("backgroundColor", "#FBA");
         champ2.css("backgroundColor", "#FBA");
+        champErreur.style.padding = '0px 0px 0px 122px';
         champErreur.style.color = '#FBA';
         champErreur.innerHTML = 'Password must not contain special characters</br>';
         return false;

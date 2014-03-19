@@ -16,12 +16,12 @@ and open the template in the editor.
 
 #formsignup input, #forgetform input {
     outline: none;
-    height:24px;
+    height:22px;
     border-radius: 4px;
     padding: 0px 7px;
     text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
     margin-top: 4px;
-    padding: 10px 5px 10px 32px;    
+    padding: 10px 0px 10px 15px;    
     border: 1px solid rgb(178, 178, 178);
     box-sizing : content-box;
     border-radius: 3px;
@@ -118,8 +118,8 @@ and open the template in the editor.
 }
 
 #modifyprofil {
-    width: 100px;
-    height: 41px;
+    width: 70px;
+    height: 26px;
     cursor: pointer;
     border-radius: 4px;
     padding: 0px 7px;
@@ -128,7 +128,7 @@ and open the template in the editor.
     background-color: #FF4C00;
     box-shadow: 0px 1px 1px #B2B2B2;
     color: #FFF;
-    font-size:1.1em;
+    font-size: 0.7em;
     -webkit-box-reflect: below 0 linear-gradient(transparent 40%, rgba(0,0,0,.15));
 }
 
@@ -149,30 +149,39 @@ and open the template in the editor.
     padding-left: 30px;
 }
 
+#formsignup label {
+    display: inline-block;
+    width: 100px;
+    margin-right: 20px;  
+    vertical-align: middle;  
+    text-align: right;
+}
+
 #profilcontent {
     line-height: 170%;
 }
 
 #profillogo {
-    height: 150px; 
+    height: 100px;
+    padding-left: 35px;
 }
 
 #profilgauche {
     display: inline-block;
     width: 125px;
-    height: 215px;
+    height: 110px;
     padding: 0px 10px 0px 35px;
 }
 
 #profildroit {
     display: inline-block;
     width: 125px;
-    height: 215px;
+    height: 110px;
     padding: 0px 10px;
 }
 
 #profilform {
-    text-align: center;
+    padding: 0px 0px 15px 35px;
 }
 
 /* Fin de la partie à ajouter */
