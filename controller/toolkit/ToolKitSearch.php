@@ -85,9 +85,9 @@ class ToolKitSearch {
     }
     
     public static function searchProject($values){
-        $requete = "SELECT DISTINCT p.idProject, p.name, p.description, p.date, p.login FROM Project p ";
+        $requete = "SELECT DISTINCT p.idProject, p.name, p.description, p.date, p.login FROM Project p WHERE p.current = false";
         if($values['search_keywords'] != ""){
-            $requete .= " WHERE p.name LIKE \"%".$values['search_keywords']."%\"";
+            $requete .= " AND p.name LIKE \"%".$values['search_keywords']."%\"";
             $keys = explode(" ", $values['search_keywords']);
             foreach($keys as $k){
                 $requete .= " OR p.name LIKE \"%".$k."%\"";

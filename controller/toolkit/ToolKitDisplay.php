@@ -112,7 +112,7 @@ class ToolKitDisplay {
                 $reqPlatform->closeCursor();
                 $dateDP = new DateTime($row['date']);
                 echo "<br/><div id=\"lienDescr\">Last update: ".$dateDP->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> | Used: ".$row['nbUsage']." times ";
-                echo "<br/><img src=\"../img/vrac/add.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"#\" onClick=\"return addToCart(".$row['idDesignPattern'].", $('body'));\">Add to My current Design Pattern</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$row['idDesignPattern']."\">Report a conflict</a></div>";
+                echo "<br/><img src=\"../img/vrac/add.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"#\" onClick=\"".ToolkitDisplay::cartLink($row['idDesignPattern'], "$('body')")."\">Add to My current Design Pattern</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$row['idDesignPattern']."\">Report a conflict</a></div>";
                 echo "</header>";
                 echo "<aside id='asideBox'>";
                 echo "<div id=\"note\">".$row['rate']."/5</div>";
@@ -228,7 +228,7 @@ class ToolKitDisplay {
         echo "</div><br/>";
     }
     
-    public static function displayRate($id, $nbRates, $rate, $tableAsk){
+    public static function displayRate($id, $nbRates, $rate, $tableAsk, $session){
         echo "<div id=\"details_rate\">";        
         echo "<div class=\"rating-box\">";
         echo "<div class=\"score-container\"><span class=\"score\">".$rate."</span><br>".$nbRates." au total</div>";
@@ -256,7 +256,7 @@ class ToolKitDisplay {
             echo"<center><h3>You already rate:</h3> <input type=\"number\" value=\"".$alreadyRate['rate']."\"/><a>Modify !</a></center>";
         }
         else{*/
-            echo "<center><h3>Give a rate:</h3> <input type=\"number\"/> <a>Rate !</a></center>";
+            echo "<center><h3>Give a rate:</h3> <input id=\"rateDP".$id."\"type=\"number\"/> <a href=\"#\" onClick=\"return addRate(".$id.", ".$session->login.", $('#rateDP".$id."'));\">Rate !</a></center>";
         //}
         
         //Jquery right here !!
@@ -344,6 +344,10 @@ class ToolKitDisplay {
         echo ' | Date of reporting: date | Author: autor | Used: 0 times | 0 DP in conflict';
         echo '</div>';
 
+    }
+    
+    public static function cartLink($id, $frame){
+        return "addToCart(".$id.", ".$frame.");";
     }
     
 }

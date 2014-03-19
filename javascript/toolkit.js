@@ -53,7 +53,8 @@ function enableCheckBoxChild(object){
 
 function addToCart(idDP, frame){
     $.post("/site/controller/addCart.php", {idDesignPattern : idDP}, function(data){
-        if(data === true){
+        
+        if(data == true){
             alert("You add one design pattern");
         }
         else{
@@ -61,4 +62,28 @@ function addToCart(idDP, frame){
         }
     });
     return false;
+}
+
+function removeFromCart(idDP){
+    $.post("/site/controller/removeCart.php", {idDesignPattern : idDP}, function(data){
+        
+        if(data == true){
+            alert("You remove one design pattern");
+        }
+        else{
+            alert("An error occured when removing the design pattern");
+        }
+    });
+    return false;
+}
+
+function addRate(id, loginRate, input){
+    $.post("/site/controller/addRate.php", {idDesignPattern: id, login : loginRate, rate : input.prop("value")}, function(data){
+        if(data == true){
+            alert("You have rate that one");
+        }    
+        else{
+            alert("Impossible to rate");
+        }
+    });
 }

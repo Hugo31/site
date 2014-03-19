@@ -1,8 +1,7 @@
 <?php
     require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
     $session = Session::getInstance();
-    $session->currentDP = array();
-
+    
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');      
 ?>
@@ -10,12 +9,6 @@
 <section id="contenu">
     
     <?php
-    //$session->login = "undefined";
-    unset($session->login);
-    $currentDP = $session->currentDP;
-    $currentDP[0] = 1;
-    $currentDP[1] = 2;
-    $session->currentDP = $currentDP;
     $reponse = false;
     $req = "";
     if(isset($session->login)){
@@ -42,7 +35,6 @@
             echo "No design pattern selected";
         }
     }
-    
     $reponse = Database::getAllData($req);
     if($reponse != false){
         ToolKitDisplay::displayGenericBox("DesignPattern", $reponse);

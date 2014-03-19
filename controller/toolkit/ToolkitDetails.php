@@ -8,7 +8,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Solution.php"
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Project.php");
 
 class ToolkitDetails {
-    public static function displayDetailsConflict($id){
+    public static function displayDetailsConflict($id, $session){
         $conflict = Conflict::getDB($id);
         if($conflict != false){
             echo "<article>";
@@ -42,7 +42,7 @@ class ToolkitDetails {
         }
     }
     
-    public static function displayDetailsDesignPattern($id){
+    public static function displayDetailsDesignPattern($id, $session){
         $dp = DesignPattern::getDB($id);
         
         if($dp != false){
@@ -60,7 +60,7 @@ class ToolkitDetails {
             ToolkitDisplayDesignPattern::displaySources($id);         
             echo "</div>";
             echo "<div id=\"contenuDroitDP\">";
-            ToolkitDisplay::displayRate($id, $dp->getNbRates(), $dp->getRate(), "DesignPattern");
+            ToolkitDisplay::displayRate($id, $dp->getNbRates(), $dp->getRate(), "DesignPattern", $session);
             echo "</div>";
             echo "</div>";
             echo "<div id=\"addProposeDP\">";
@@ -108,7 +108,7 @@ class ToolkitDetails {
         }
     }
     	
-    public static function displayDetailsSolution($id){
+    public static function displayDetailsSolution($id, $session){
         $solution = Solution::getDB($id);
         if($solution != false){
             echo "<article>";
@@ -124,7 +124,7 @@ class ToolkitDetails {
             echo "</td></tr></table>";
             echo "</div>";
             echo "<div id=\"contenuDroitSol\">";
-            ToolkitDisplay::displayRate($id, $solution->getNbRates(), $solution->getRate(), "Solution");
+            ToolkitDisplay::displayRate($id, $solution->getNbRates(), $solution->getRate(), "Solution", $session);
             echo "</div>";
             echo "</div>";
             
@@ -153,7 +153,7 @@ class ToolkitDetails {
         }
     }
     
-    public static function displayDetailsProject($id){
+    public static function displayDetailsProject($id, $session){
         $project = Project::getDB($id);
         if($project != false){
             echo "<article>";
