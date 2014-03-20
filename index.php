@@ -3,10 +3,10 @@
     $session = Session::getInstance();
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');   
-
 ?>
 
 <section id="contenu">
+    
     <h1> Home </h1>
     Welcome to UI Design Pattern Community
     <br/><?php echo ' > login : ' . $session->login .'' ?>
@@ -28,7 +28,7 @@
     
     <h3>> How?</h3>
     All you need to do is create a free account and login. All new members and contributions to our community are welcomed.
-    
+    <br/><br/><br/>
 </section>
 
 <?php

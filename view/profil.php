@@ -13,7 +13,7 @@ if (!$user = User::getDB($session->login))
 <section id="contenu">
     <h1><?php echo $user->getLogin() ?></h1>
     <div id="profil">
-        <h2>Information</h2>
+        <h2>Information about me</h2>
         <div id="profillogo">
             Image de profil
         </div>
@@ -34,7 +34,7 @@ if (!$user = User::getDB($session->login))
             </form>
         </div>
     </div>
-    <h2>Project</h2>
+    <h2>My Project</h2>
     <br/>
     <h2>Self design pattern</h2>
     <br/>

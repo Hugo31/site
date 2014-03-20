@@ -325,3 +325,17 @@
     padding-top: 5px;
     text-indent:30px;
 }
+#connecte {
+    font-size: 1.4em;
+    color: #96A9B5;   
+    height:50px;
+}
+
+#connecte a {
+    text-decoration: none;
+}
+
+#connecte a:hover, #menu a:focus{
+    color:white;
+    text-decoration:underline;
+}
