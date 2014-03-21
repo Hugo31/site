@@ -11,7 +11,6 @@
     Welcome to UI Design Pattern Community
     <br/><?php echo ' > login : ' . $session->login .'' ?>
     <br/>
-    <br/><a href="/site/controller/deconnexion.php">Déconnexion</a>
     <br/><a href="/site/view/profil.php">Test Profil</a>
     <br/><a href="/site/testJquery/testModelPage.php">Test Model</a>
     <br/><a href="/site/view/addDesignPattern.php">Page test ajout de DP</a>

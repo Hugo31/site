@@ -14,6 +14,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
     private $layout;
     private $copy;
     private $implementation;
+    private $descriptionImage;
     private $nbUsage;
     private $target;
     
@@ -24,6 +25,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $this->setLayout("");
         $this->setCopy("");
         $this->setImplementation("");
+        $this->setDescriptionImage("");
         $this->setNbUsage($_nbUsage);
         $this->setTarget($_target);
     }
@@ -44,6 +46,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
             'layout' => $object->getLayout(),
             'copy' => $object->getCopy(),
             'implementation' => $object->getImplementation(),
+            'descriptionImage' => $object->getDescriptionImage(),
             'nbUsage' => $object->getNbUsage(),
             'nbComments' => $object->getNbComments(), 
             'nbRates' => $object->getNbRates(), 
@@ -79,6 +82,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
             'layout' => $object->getLayout(),
             'copy' => $object->getCopy(),
             'implementation' => $object->getImplementation(),
+            'descriptionImage' => $object->getDescriptionImage(),
             'nbUsage' => $object->getNbUsage(),
             'nbComments' => $object->getNbComments(), 
             'nbRates' => $object->getNbRates(), 
@@ -133,6 +137,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
             $dp->setLayout($donnees['layout']);
             $dp->setCopy($donnees['copy']);
             $dp->setImplementation($donnees['implementation']);
+            $dp->setDescriptionImage($donnees['descriptionImage']);
             $dp->getFromDB($donnees);
             return $dp;
         }
@@ -214,6 +219,14 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
 
     public function setImplementation($_implementation){
         $this->implementation = $_implementation;
+    }
+    
+    public function getDescriptionImage(){
+        return $this->descriptionImage;
+    }
+
+    public function setDescriptionImage($_descriptionImage){
+        $this->descriptionImage = $_descriptionImage;
     }
     
     public function getNbUsage(){

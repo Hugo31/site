@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`DesignPattern` (
   `layout` TEXT NULL,
   `copy` TEXT NULL,
   `implementation` TEXT NULL,
+  `descriptionImage` TEXT NULL,
   `nbUsage` INT NULL,
   `nbComments` INT NULL,
   `nbRates` INT NULL,
@@ -60,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ImageDesignPattern` (
   `idImage` INT NOT NULL AUTO_INCREMENT,
   `idDesignPattern` INT NOT NULL,
   `link` VARCHAR(250) NOT NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`idImage`),
   INDEX `fk_ImageDesignPattern_DesignPattern_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_ImageDesignPattern_DesignPattern`

@@ -16,13 +16,10 @@ else{
         $session->currentDP = array(); 
     }
     if(in_array($_POST['idDesignPattern'], $session->currentDP)){
-        $key = array_search($_POST['idDesignPattern'], $currentDP);
         $currentDP = $session->currentDP;
-        
-        for($i = $key; $i < count($currentDP) - 1; $i++){
-            $currentDP[$i] = $currentDP[$i + 1];
-        }
-        unset($currentDP[count($currentDP)]);
+        $key = array_search($_POST['idDesignPattern'], $currentDP);
+        unset($currentDP[$key]);
+        $currentDP = array_values($currentDP);
         $session->currentDP = $currentDP;
         echo true;
     }

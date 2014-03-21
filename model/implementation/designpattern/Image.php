@@ -18,18 +18,17 @@ class Image {
      * @param string $link Le lien de l'image.
      * @return bool True si l'ajout a réussi, False sinon.
      */
-    public static function addImage($object, $link) {
+    public static function addImage($object, $link, $description) {
         $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO ImageDesignPattern (idDesignPattern, link) '
                             .'VALUES(:idDesignPattern, :link)');
         $reussie = $rqt->execute(array(
             'idDesignPattern' => $object->getID(),
-            'link' => $link
+            'link' => $link, 
+            'description' => $description
             ));
         return $reussie;
     }
-
-    
 
     /**
      * Supprime une image.

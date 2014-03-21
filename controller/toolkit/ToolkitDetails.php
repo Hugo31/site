@@ -64,7 +64,7 @@ class ToolkitDetails {
             echo "</div>";
             echo "</div>";
             echo "<div id=\"addProposeDP\">";
-            echo "<img src=\"../img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"#\" onClick=\"".ToolkitDisplay::cartLink($id, "$('body')")."\"><h3>Add to my current Design Pattern</h3></a>";
+            echo "".ToolkitDisplay::cartLink($id, "this", false)."";
             echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$id."\"><h3>Report a conflict</h3></a>";   
             echo "</div><br/><br/>";
             echo "<article id=\"contenuCommentsDP\">";
@@ -167,7 +167,7 @@ class ToolkitDetails {
             echo "</article>";
             ToolKitDisplay::displayText("Description : ", $project->getDescription());
             
-            ToolKitDisplay::displayDesignPatternBox(Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern pdp WHERE pdp.idProject = ".$project->getID()." AND pdp.idDesignPattern = dp.idDesignPattern;"));            
+            ToolKitDisplay::displayDesignPatternBox(Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern pdp WHERE pdp.idProject = ".$project->getID()." AND pdp.idDesignPattern = dp.idDesignPattern;"), false);            
             echo "</article>";
         }
         else{

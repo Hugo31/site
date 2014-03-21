@@ -14,7 +14,6 @@
     $reponse = false;
     $req = "";
     if(isset($session->login)){
-        echo "logged";
         $reqP = "SELECT idProject, name, description FROM Project WHERE login = \"".$session->login."\" AND current = 1;";
         $data = Database::getOneData($reqP);
         if(isset($session->currentDP)){
@@ -47,7 +46,7 @@
     }
     $reponse = Database::getAllData($req);
     if($reponse != false){
-        ToolKitDisplay::displayGenericBox("DesignPattern", $reponse);
+        ToolKitDisplay::displayDesignPatternBox($reponse, true);
     }
     
     

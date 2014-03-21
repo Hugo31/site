@@ -1,5 +1,10 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
+
+
+
+
 class ToolKitDisplay {
     
     public static function displayCheckBoxCriteria($criteria, $dataToDisplay, $values){
@@ -39,7 +44,7 @@ class ToolKitDisplay {
         }
         else{
             if($type == "DesignPattern"){
-                ToolKitDisplay::displayDesignPatternBox($dataToDisplay);
+                ToolKitDisplay::displayDesignPatternBox($dataToDisplay, false);
             }
             else{
                 if($type == "Solution"){
@@ -87,7 +92,7 @@ class ToolKitDisplay {
         }
     }
     
-    public static function displayDesignPatternBox($dataToDisplay){
+    public static function displayDesignPatternBox($dataToDisplay, $destroyWhenRemove){
         if ($dataToDisplay->rowCount() == 0) {
             echo 'No results.';
         } else {
@@ -112,7 +117,7 @@ class ToolKitDisplay {
                 $reqPlatform->closeCursor();
                 $dateDP = new DateTime($row['date']);
                 echo "<br/><div id=\"lienDescr\">Last update: ".$dateDP->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> | Used: ".$row['nbUsage']." times ";
-                echo "<br/><img src=\"../img/vrac/add.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"#\" onClick=\"".ToolkitDisplay::cartLink($row['idDesignPattern'], "$('body')")."\">Add to My current Design Pattern</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$row['idDesignPattern']."\">Report a conflict</a></div>";
+                echo "<br/>".ToolkitDisplay::cartLink($row['idDesignPattern'], "this", $destroyWhenRemove)." | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$row['idDesignPattern']."\">Report a conflict</a></div>";
                 echo "</header>";
                 echo "<aside id='asideBox'>";
                 echo "<div id=\"note\">".$row['rate']."/5</div>";
@@ -346,8 +351,37 @@ class ToolKitDisplay {
 
     }
     
-    public static function cartLink($id, $frame){
-        return "addToCart(".$id.", ".$frame.");";
+    public static function cartLink($id, $selector, $destroyWhenRemove){
+        $session = Session::getInstance();
+        $removeIt = "";
+        if($destroyWhenRemove){
+            $removeIt .= "true";
+        }else{
+            $removeIt .= "false";
+        }
+        if(isset($session->login)){
+            $data = Database::getOneData("SELECT idProject FROM Project WHERE login = \"".$session->login."\" AND current = 1;");
+            $exist = DataBase::getOneData("SELECT COUNT(*) as nbExist FROM ProjectDesignPattern WHERE idProject = ".$data['idProject']." AND idDesignPattern = ".$id.";");
+            if($exist['nbExist'] > 0){
+                $fct = "<img src=\"/site/img/vrac/croix.png\" style=\"vertical-align:bottom;width:20px\"/><a href=\"#\" onClick=\"return removeFromCart(".$id.", $(this), ".$removeIt.");\">Remove my current Design Pattern</a>";
+                return $fct;
+            }
+            else{
+                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/><a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
+            }
+        }
+        else{
+            if(!isset($session->currentDP)){
+                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/><a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
+            }
+            if(!in_array($id, $session->currentDP)){
+                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/><a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
+            }
+            else{
+                $fct = "<img src=\"/site/img/vrac/croix.png\" style=\"vertical-align:bottom;width:20px\"/><a href=\"#\" onClick=\"return removeFromCart(".$id.", $(this), ".$removeIt.");\">Remove my current Design Pattern</a>";
+                return $fct;
+            }
+        }
     }
     
 }

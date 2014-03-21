@@ -62,7 +62,7 @@
                         <?php } else { 
                         echo "<div id=\"connecte\">Hi ". $session->login."!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
                                 . "<a href=\"/site/view/profil.php\">See my profile</a>"
-                                . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"\">Disconnect</a></div>";
+                                . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"/site/controller/deconnexion.php\">Disconnect</a></div>";
                         } ?>
                         <nav id="menu">
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

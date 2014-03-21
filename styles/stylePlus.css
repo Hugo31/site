@@ -339,3 +339,8 @@
     color:white;
     text-decoration:underline;
 }
+
+.img_pattern {
+    max-width: 400px;
+    max-heigth: 200px;
+}
