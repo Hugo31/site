@@ -32,7 +32,7 @@
             
         }
         else{
-            echo "No design pattern selected";
+            echo "<h1> My current Design Pattern </h1> No design pattern selected.";
         }
     }
     $reponse = Database::getAllData($req);

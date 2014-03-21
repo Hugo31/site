@@ -120,7 +120,7 @@ class ToolKitDisplay {
                 echo "</aside>";
                 echo "</div>";
                 echo "<article id=\"articleBox\">".$row['what']."</article>";
-                echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');return false;\" style=\"float:right\">See more</a></summary><br/>";
+                echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');return false;\" style=\"float:right\">See a bit more</a></summary><br/>";
                 echo "<details class=\"details\" id=\"DesignPattern".$row['idDesignPattern']."\"></details>";
                 echo "</article>";
             }
@@ -157,7 +157,7 @@ class ToolKitDisplay {
                     echo "</div>";  
                 }                
                 echo "<article id=\"articleBox\">".$row['comment']."</article>";
-                echo "<summary><a href=\"#\" onclick=\"requestDetails('#Solution".$row['idSolution']."', 'Solution', '".$row['idSolution']."');return false;\" style=\"float:right\">See more</a></summary><br/>";
+                echo "<summary><a href=\"#\" onclick=\"requestDetails('#Solution".$row['idSolution']."', 'Solution', '".$row['idSolution']."');return false;\" style=\"float:right\">See a bit more</a></summary><br/>";
                 echo "<details class=\"details\" id=\"Solution".$row['idSolution']."\"></details>";
                 echo "</article>";
             }

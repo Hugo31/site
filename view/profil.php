@@ -6,11 +6,16 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/User.php");
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/header.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 
-if (!$user = User::getDB($session->login))
-    echo "__Wrong User";
 ?>
 
 <section id="contenu">
+
+<?php
+if (!$user = User::getDB($session->login)) {
+    echo "__Wrong User";
+} else {
+?>
+
     <h1><?php echo $user->getLogin() ?></h1>
     <div id="profil">
         <h2>Information about me</h2>
@@ -38,7 +43,9 @@ if (!$user = User::getDB($session->login))
     <br/>
     <h2>Self design pattern</h2>
     <br/>
-</section>
 
 <?php
+}
+echo '</section>';
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/footer.php');
+?>
