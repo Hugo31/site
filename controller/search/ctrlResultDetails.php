@@ -22,6 +22,7 @@ if(isset($_POST['table']) && isset($_POST['id'])){
         if (!empty($resDP)) {
             echo "<br/><div><h3>Implementation: </h3>".$resDP."</div><br/>"; 
         }
+        echo "<a href=\"details.php?type=DesignPattern&id=".$_POST['id']."\" style=\"float:right\">See really more</a><br/>";
     }
     else{
         if($_POST['table'] == "Conflict"){
@@ -38,6 +39,7 @@ if(isset($_POST['table']) && isset($_POST['id'])){
                 if(!empty($resSol)){
                     echo "<br/><div><h3>Code of solution: </h3>".$resSol."</div>"; 
                 }
+                echo "<a href=\"details.php?type=Solution&id=".$_POST['id']."\" style=\"float:right\">See really more</a><br/>";                
             } 
             else {
                 if($_POST['table'] == "Project"){

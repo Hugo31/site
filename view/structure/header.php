@@ -40,6 +40,7 @@
                     <a href="/site/index.php"><img src="/site/img/header/logo_modif_gris.png" name="image" style="height:80px"
                        onmouseover="image.src='/site/img/header/logo_modif_gris_souris.png'" onmouseout="image.src='/site/img/header/logo_modif_gris.png'"></a>
                     <div id="navigation">
+                        <?php if (!isset($session->login)) { ?>
                         <div style="height:50px">
                             <form method="post" id="loginForm2" name="loginform2"
                                   action="/site/controller/sign/validSignin.php" onsubmit="return validSignin($(this));">
@@ -58,6 +59,11 @@
                             <div id="errorlogin" style="float: left; margin-left: 75px; margin-top: 3px"></div>
                             <div id="forgottenPassword"><a href="/site/view/forget.php">> Forgotten password?</a></div>
                         </div>
+                        <?php } else { 
+                        echo "<div id=\"connecte\">Hi ". $session->login."!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                                . "<a href=\"/site/view/profil.php\">See my profile</a>"
+                                . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"\">Disconnect</a></div>";
+                        } ?>
                         <nav id="menu">
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/news.php">News</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
