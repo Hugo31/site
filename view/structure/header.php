@@ -2,6 +2,7 @@
     $session = Session::getInstance();
     require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
     require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolKitDisplay.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitSearch.php");
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +68,7 @@
                         <nav id="menu">
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/news.php">News</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="/site/view/currentDP.php">My current Design Pattern (0)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="/site/view/currentDP.php">My current Design Pattern (<span class="currentDP_numberIn"><?php ToolKitSearch::getNbCurrentCart($session) ?></span>)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/contact.php">Contact</a>
                         </nav>
                     </div>

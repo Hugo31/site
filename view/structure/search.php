@@ -17,7 +17,7 @@
         <label><input class="search_type_notarget" type="radio" name="search_type_table" value="Project" <?php ToolkitDisplay::checkItem($session->typeQuery, "Project"); ?>>Project</label><br/>
         <br/>
         <div>
-            <a id="search_advancedLink" href="#" onclick="toggleObject('#search_bar_advanced');return false;">Advanced search [+]</a>
+            <a id="search_advancedLink" href="#" onclick="toggleObject('#search_bar_advanced');changeValueSpanSearch('#search_advancedLink_span'); return false;">Advanced search <span id="search_advancedLink_span">[+]</span></a>
         </div>
         <div id="search_bar_advanced">
             <br/>

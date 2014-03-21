@@ -56,6 +56,11 @@ function addToCart(idDP, selector, removeIt){
         
         if(data == true){
             alert("You add one design pattern");
+            $('.currentDP_numberIn').each(function(e){
+                var numb = parseInt($(this).text(), 10);
+                numb++;
+                $(this).text(numb);
+            });
             selector.text("Remove from my current Design Pattern");
             selector.attr("onclick", "return removeFromCart("+ idDP + ", $(this), " + removeIt.toString() + ");");
             selector.prev().attr("src", "/site/img/vrac/croix.png");
@@ -71,6 +76,11 @@ function removeFromCart(idDP, selector, removeIt){
     $.post("/site/controller/removeCart.php", {idDesignPattern : idDP}, function(data){
         if(data == true){
             alert("You remove one design pattern");
+            $('.currentDP_numberIn').each(function(e){
+                var numb = parseInt($(this).text(), 10);
+                numb--;
+                $(this).text(numb);
+            });
             selector.text("Add to my current Design Pattern");
             selector.attr("onclick", "return addToCart("+ idDP + ", $(this), " + removeIt.toString() + ");");
             selector.prev().attr("src", "/site/img/vrac/add.png");
@@ -95,4 +105,13 @@ function addRate(id, loginRate, input){
             alert("Impossible to rate");
         }
     });
+}
+
+function changeValueSpanSearch(selector){
+    if($(selector).text() == "[+]"){
+        $(selector).text("[-]");
+    }
+    else{
+        $(selector).text("[+]");
+    }
 }

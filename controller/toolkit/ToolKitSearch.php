@@ -113,6 +113,25 @@ class ToolKitSearch {
             if(isset($values['syst'])){ $session->idSystemQuery = $values['syst']; }
         }
     }
+    
+    public static function getNbCurrentCart($session){
+        $nb = 0;
+        if(isset($session->login)){
+            $reqP = "SELECT idProject FROM Project WHERE login = \"".$session->login."\" AND current = 1;";
+            $data = Database::getOneData($reqP);
+            $reqNb = "SELECT count(idDesignPattern) As nb FROM ProjectDesignPattern WHERE idProject = ".$data['idProject'].";";
+            $dataNb = Database::getOneData($reqNb);
+            $nb += $dataNb['nb'];
+            if(isset($session->currentDP)){
+                $nb += count($session->currentDP);
+            }
+        }
+        else{
+            $nb += count($session->currentDP);
+
+        }
+        echo $nb;
+    }
 }
 
 ?>
