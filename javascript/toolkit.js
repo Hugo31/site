@@ -53,7 +53,7 @@ function enableCheckBoxChild(object){
 
 function addToCart(idDP, frame){
     $.post("/site/controller/addCart.php", {idDesignPattern : idDP}, function(data){
-        
+
         if(data == true){
             alert("You add one design pattern");
         }
@@ -79,6 +79,7 @@ function removeFromCart(idDP){
 
 function addRate(id, loginRate, input){
     $.post("/site/controller/addRate.php", {idDesignPattern: id, login : loginRate, rate : input.prop("value")}, function(data){
+        
         if(data == true){
             alert("You have rate that one");
         }    

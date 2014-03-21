@@ -325,3 +325,8 @@
     padding-top: 5px;
     text-indent:30px;
 }
+
+.img_pattern {
+    max-width: 400px;
+    max-heigth: 200px;
+}
