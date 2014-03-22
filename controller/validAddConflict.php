@@ -8,8 +8,7 @@
 
     if (isset($_POST['selectDP2']) AND isset($_POST['namee']) AND isset($_POST['description']) AND isset($_POST['typee']) AND isset($_POST['DP1'])) {
 
-        $cf = new Conflict(-1, $_POST['namee'], 'undefined', date("Y-m-d H:i:s"), $_POST['description'], $_POST['typee']);
-        //TODO: remplacé 'undefined' par l'utilisateur actuellement connecté 
+        $cf = new Conflict(-1, $_POST['namee'], $session->login, date("Y-m-d H:i:s"), $_POST['description'], $_POST['typee']);
         
         $bdd = Database::getConnection();
         Conflict::addDB($cf);
