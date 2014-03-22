@@ -15,7 +15,8 @@ if (!$user = User::getDB($session->login))
     <div id="profil">
         <h2>Information</h2>
         <div id="profillogo">
-            Image de profil
+            Image de profil<br/>
+            <img src="/site/img/vrac/defaultlogo.png" alt="Image profil" style="width: 100px; height:100px">
         </div>
         <div id="profilcontent">
             <div id="profilgauche">

@@ -147,6 +147,28 @@ input#captchasignup {
     width: 65px;
 }
 
+#headerlogout {
+    font-size: 1.2em;
+}
+
+#headerlogout button{
+    height:25px;
+    border-radius: 4px;
+    padding: 0px 7px;
+    background-color: #E50000;
+    box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+    color: #FFF;
+    border: 1px solid #CC0000;
+    margin-left: 20px;
+    font-size: 0.65em;
+}
+
+#headerlogout button:hover{
+    background-color: #FA0000;
+    box-shadow: 0px 0px 4px 0px white;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
 /* --------------------------- POSITIONNEMENT ------------------------------ */
 
 #formsignup {
@@ -171,7 +193,7 @@ input#captchasignup {
 }
 
 #profillogo {
-    height: 100px;
+    height: 125px;
     padding-left: 35px;
 }
 
@@ -191,6 +213,10 @@ input#captchasignup {
 
 #profilform {
     padding: 0px 0px 15px 35px;
+}
+
+#headerlogout img{
+    vertical-align: middle;
 }
 
 /* Fin de la partie à ajouter */

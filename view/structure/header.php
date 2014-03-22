@@ -1,7 +1,7 @@
 <?php
-    $session = Session::getInstance();
-    require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
-    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolKitDisplay.php");
+$session = Session::getInstance();
+require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolKitDisplay.php");
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
         <link rel="stylesheet" type="text/css" href="/site/styles/stylePlus.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/site/styles/styleRate.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="/site/styles/styleAdd.css" media="screen" />
-        
+
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/site/javascript/toolkit.js"></script>
@@ -38,25 +38,35 @@
             <header id="header">
                 <div id="headercontent">
                     <a href="/site/index.php"><img src="/site/img/header/logo_modif_gris.png" name="image" style="height:80px"
-                       onmouseover="image.src='/site/img/header/logo_modif_gris_souris.png'" onmouseout="image.src='/site/img/header/logo_modif_gris.png'"></a>
+                                                   onmouseover="image.src = '/site/img/header/logo_modif_gris_souris.png'" onmouseout="image.src = '/site/img/header/logo_modif_gris.png'"></a>
                     <div id="navigation">
                         <div style="height:50px">
-                            <form method="post" id="loginForm2" name="loginform2"
-                                  action="/site/controller/sign/validSignin.php" onsubmit="return validSignin($(this));">
-                                
-                                <input type="text" id="loginsignin" name="loginsignin" 
-                                       required="required" placeholder="Username or Email">
-                                <input type="password" id="passwordsignin" name="passwordsignin"
-                                       required="required" placeholder="Password">
-                                <input value="SIGN IN" type="submit" class="signin" >
-                                
-                                <a href="/site/view/signup.php" style="text-decoration: none" >
-                                    <input value="SIGN UP" type="button" class="signup">
-                                </a>
-                                
-                            </form>
-                            <div id="errorlogin" style="float: left; margin-left: 75px; margin-top: 3px"></div>
-                            <div id="forgottenPassword"><a href="/site/view/forget.php">> Forgotten password?</a></div>
+                            <?php if (!isset($session->login)) { ?>
+                                <form method="post" id="loginForm2" name="loginform2"
+                                      action="/site/controller/sign/validSignin.php" onsubmit="return validSignin($(this));">
+
+                                    <input type="text" id="loginsignin" name="loginsignin" 
+                                           required="required" placeholder="Username or Email">
+                                    <input type="password" id="passwordsignin" name="passwordsignin"
+                                           required="required" placeholder="Password">
+                                    <input value="SIGN IN" type="submit" class="signin" >
+
+                                    <a href="/site/view/signup.php" style="text-decoration: none" >
+                                        <input value="SIGN UP" type="button" class="signup">
+                                    </a>
+
+                                </form>
+                                <div id="errorlogin" style="float: left; margin-left: 75px; margin-top: 3px"></div>
+                                <div id="forgottenPassword"><a href="/site/view/forget.php">> Forgotten password?</a></div>·
+                            <?php } else { ?>
+                                <div id="headerlogout">
+                                    <img src="/site/img/vrac/defaultlogo.png" alt="Logo utilisateur" style="width: 45px; height: 45px">
+                                    <a href="/site/view/profil.php" style="text-decoration: none"><?php echo $session->login ?></a>
+                                    <a href="/site/controller/sign/logout.php">
+                                        <button class="logout">Logout</button>
+                                    </a>
+                                </div>
+                            <?php } ?>
                         </div>
                         <nav id="menu">
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
