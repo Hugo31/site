@@ -1,7 +1,8 @@
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
-    include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
-    include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');  
+
+require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/Session.php");
+include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/header.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 ?>
 
 <script type="text/javascript" src="/site/controller/sign/ctrlSignup.js"></script>
@@ -52,10 +53,17 @@
         </p>
         <div id="errormsgsignup_password"></div>
         <p>
+            <img src="captcha.php" alt="Captcha" id="signinimagecaptcha" />
+            <a style="cursor:pointer" onclick="document.images.signinimagecaptcha.src = 'captcha.php?id=' + Math.round(Math.random(0) * 1000) + 1"><br><i>Regenerate code</i></a><br/><br/>
+            <label for="captchasignup" class="ucaptcha">Enter code</label>
+            <input type="text" id="captchasignup" name="captchasignup" size="5" pattern="[a-zA-Z0-9]{5}"><br/>
+        </p>
+        <p>
             <input type="submit" value="SIGN UP" class="signupform" />
         </p>
     </form>
 </section>
 
 <?php
-include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/footer.php');
+
+include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/footer.php');
