@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`User` (
   `firstname` VARCHAR(30) NULL,
   `mail` VARCHAR(30) NOT NULL,
   `logo` VARCHAR(60) NULL,
+  `typeUser` ENUM('Classic', 'Admin') NOT NULL,
   PRIMARY KEY (`login`))
 ENGINE = InnoDB;
 
