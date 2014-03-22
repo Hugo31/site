@@ -363,22 +363,22 @@ class ToolKitDisplay {
             $data = Database::getOneData("SELECT idProject FROM Project WHERE login = \"".$session->login."\" AND current = 1;");
             $exist = DataBase::getOneData("SELECT COUNT(*) as nbExist FROM ProjectDesignPattern WHERE idProject = ".$data['idProject']." AND idDesignPattern = ".$id.";");
             if($exist['nbExist'] > 0){
-                $fct = "<img src=\"/site/img/vrac/croix.png\" style=\"vertical-align:bottom;width:20px\"/><a href=\"#\" onClick=\"return removeFromCart(".$id.", $(this), ".$removeIt.");\">Remove my current Design Pattern</a>";
+                $fct = "<img src=\"/site/img/vrac/croix.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return removeFromCart(".$id.", $(this), ".$removeIt.");\">Remove my current Design Pattern</a>";
                 return $fct;
             }
             else{
-                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/><a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
+                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
             }
         }
         else{
             if(!isset($session->currentDP)){
-                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/><a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
+                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
             }
             if(!in_array($id, $session->currentDP)){
-                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/><a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
+                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
             }
             else{
-                $fct = "<img src=\"/site/img/vrac/croix.png\" style=\"vertical-align:bottom;width:20px\"/><a href=\"#\" onClick=\"return removeFromCart(".$id.", $(this), ".$removeIt.");\">Remove my current Design Pattern</a>";
+                $fct = "<img src=\"/site/img/vrac/croix.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return removeFromCart(".$id.", $(this), ".$removeIt.");\">Remove my current Design Pattern</a>";
                 return $fct;
             }
         }
