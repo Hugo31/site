@@ -36,9 +36,7 @@
                 $req .= "dp.idDesignPattern = ".$session->currentDP[$i]." OR ";
                 
             }
-            $req .= "dp.idDesignPattern = ".$session->currentDP[$i].";";
-            
-            
+            $req .= "dp.idDesignPattern = ".$session->currentDP[$i].";";  
         }
         else{
             echo "<h1> My current Design Pattern </h1> No design pattern selected.";

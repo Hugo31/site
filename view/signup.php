@@ -7,7 +7,12 @@
 <script type="text/javascript" src="/site/controller/sign/ctrlSignup.js"></script>
 
 <section id="contenu">
-    <h1>Sign up</h1>
+    <h1>Sign up</h1><br/>
+    Votre espace personnel sur www.uidesignpatterncommunity.com vous permet de gérer vos projets, 
+    d'ajouter des design pattern, de signaler des conflits ainsi que de proposer des solutions à ces conflits. 
+    En vous connectant, vous aurez aussi la possibilité de donner votre avis en postant des commentaires sur les 
+    autres design patterns. <br/><br/>
+    <center><h3 style="margin:0 auto">N'attendez plus, inscrivez vous gratuitement sur notre site pour profiter de tous ces privilèges !</h3></center><br/><br/>
     <form method="post" id="formsignup" name="formsignup"
           action="/site/controller/sign/validsignup.php" onsubmit="return validSignup($(this));">
         <p>
