@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS `mydb`.`User` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`User` (
   `login` VARCHAR(30) NOT NULL,
-  `pwd` VARCHAR(20) NOT NULL,
+  `pwd` VARCHAR(32) NOT NULL,
   `lastname` VARCHAR(30) NULL,
   `firstname` VARCHAR(30) NULL,
   `mail` VARCHAR(30) NOT NULL,

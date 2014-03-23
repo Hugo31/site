@@ -33,6 +33,7 @@ abstract class AbstractBasicRateDB extends AbstractBasicCommentDB{
             'id' => $this->getID(),
             'note' => $note
         ));
+        
         if($reussie){
             $requete = 'UPDATE '.$nameTable.' SET';
             if($data['nb'] == 0){ $requete .= ' nbRates = nbRates + 1, ';}
