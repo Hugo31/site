@@ -19,8 +19,15 @@ abstract class AbstractBasicRateDB extends AbstractBasicCommentDB{
     
     public function abstractAddRate($user, $note, $nameTable){
         $bdd = Database::getConnection();
-        $rqt = $bdd->prepare('INSERT INTO Note'.$nameTable.' (login, id'.$nameTable.', note) '
+        $data = Database::getOneData('SELECT count(note) as nb FROM Note'.$nameTable.' WHERE id'.$nameTable.' = '.$this->getID().' AND login = "'.$user->getLogin().'";');
+        if($data['nb'] > 0){
+            $rqt = $bdd->prepare('UPDATE TABLE Note'.$nameTable.' SET note = :note WHEREid'.$nameTable.' = :id AND login = :login;');
+        }
+        else{
+            $rqt = $bdd->prepare('INSERT INTO Note'.$nameTable.' (login, id'.$nameTable.', note) '
                             .'VALUES(:login, :id, :note)');
+            
+        }
         $reussie = $rqt->execute(array(
             'login' => $user->getLogin(),
             'id' => $this->getID(),
@@ -28,8 +35,10 @@ abstract class AbstractBasicRateDB extends AbstractBasicCommentDB{
         ));
         
         if($reussie){
-            $rqt = $bdd->prepare('UPDATE TABLE '.$nameTable.' SET nbRates = nbRates + 1, '
-                                .'rate = (SELECT AVG(note) FROM Note'.$nameTable.' WHERE id'.$nameTable.' = '.$this->getID().')'
+            $requete = 'UPDATE TABLE '.$nameTable.' SET';
+            if($data['nb'] == 0){ $requete .= ' nbRates = nbRates + 1, ';}
+            $rqt = $bdd->prepare($requete.''
+                                .' rate = (SELECT AVG(note) FROM Note'.$nameTable.' WHERE id'.$nameTable.' = '.$this->getID().')'
                                 .' WHERE id'.$nameTable.' = :id');
             $rqt->execute(array(
                 'id' => $this->getID()

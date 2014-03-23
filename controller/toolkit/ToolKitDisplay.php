@@ -256,13 +256,19 @@ class ToolKitDisplay {
         ToolKitDisplay::displayRateBar($one, 1, ($one*100)/$max, "one");
         echo "</div>";
         echo "</div>";
-        /*if(isset($session->login)){
-            $alreadyRate = Database::getOneData("SELECT rate FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND login = \"".$session->login."\"");
-            echo"<center><h3>You already rate:</h3> <input type=\"number\" value=\"".$alreadyRate['rate']."\"/><a>Modify !</a></center>";
+        if(isset($session->login)){
+            $alreadyRate = Database::getOneData("SELECT count(note) as nb, note FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND login = \"".$session->login."\"");
+            if($alreadyRate['nb'] > 0){
+                echo"<center><h3>You already rate:</h3> <input type=\"number\" value=\"".$alreadyRate['note']."\"/><a>Modify !</a> or <a>Remove !</a></center>";
+            }
+            else{
+                echo"<center><h3>Give a rate:</h3> <input id=\"rateNumber\" type=\"number\" value=\"0\"/><a href=\"#\" onClick=\"return addRate('".$tableAsk."', ".$id.", '".$session->login."', $('#rateNumber'));\">Rate !</a></center>";
+            }
+            
         }
-        else{*/
-            echo "<center><h3>Give a rate:</h3> <input id=\"rateDP".$id."\"type=\"number\"/> <a href=\"#\" onClick=\"return addRate(".$id.", ".$session->login.", $('#rateDP".$id."'));\">Rate !</a></center>";
-        //}
+        else{
+            echo "<center>You need to be connected</center>";
+        }
         
         //Jquery right here !!
         echo "</div>";
