@@ -96,11 +96,18 @@ function removeFromCart(idDP, selector, removeIt){
 }
 
 function addRate(table, id, login, input){
-    alert(table + " " + id + " " + login + " " + $('#rateNumber').attr("type"));
-    $.post("/site/controller/addRate.php", {table: table, id: id, login : login, rate : input.prop("value")}, function(data){
+    $.post("/site/controller/addRate.php", {table: table, id: id, login : login, rate : input.val()}, function(data){
         
         if(data == true){
-            alert("You have rate that one");
+            $('#details_rate').remove();
+            $.post("/site/controller/reupRating.php", {table: table, id: id, login : login, rate : input.val()}, function(data){
+                if(table == "DesignPattern"){
+                    $('#contenuDroitDP').append(data);
+                }
+                else{
+                    $('#contenuDroitSol').append(data);
+                }
+            });
         }    
         else{
             alert("Impossible to rate");
@@ -110,10 +117,17 @@ function addRate(table, id, login, input){
 }
 
 function removeRate(table, id, login, input){
-    $.post("/site/controller/removeRate.php", {table: table, id: id, login : login, rate : input.prop("value")}, function(data){
-        
+    $.post("/site/controller/removeRate.php", {table: table, id: id, login : login, rate : input.val()}, function(data){
         if(data == true){
-            alert("You have remove your rate that one");
+            $('#details_rate').remove();
+            $.post("/site/controller/reupRating.php", {table: table, id: id, login : login, rate : input.val()}, function(data){
+                if(table == "DesignPattern"){
+                    $('#contenuDroitDP').append(data);
+                }
+                else{
+                    $('#contenuDroitSol').append(data);
+                }
+            });
         }    
         else{
             alert("Impossible to remove the rate");
