@@ -259,10 +259,11 @@ class ToolKitDisplay {
         if(isset($session->login)){
             $alreadyRate = Database::getOneData("SELECT count(note) as nb, note FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND login = \"".$session->login."\"");
             if($alreadyRate['nb'] > 0){
-                echo"<center><h3>You already rate:</h3> <input type=\"number\" value=\"".$alreadyRate['note']."\"/><a>Modify !</a> or <a>Remove !</a></center>";
+                echo"<center><h3>You already rate:</h3> <input id=\"rateNumber\" type=\"number\" value=\"".$alreadyRate['note']."\"/><a href=\"#\" onClick=\"return addRate('".$tableAsk."', ".$id.", '".$session->login."', $('#rateNumber'));\">Modify !</a> "
+                        ."or <a href=\"#\" onClick=\"return removeRate('".$tableAsk."', ".$id.", '".$session->login."', $('#rateNumber'));\">Remove !</a></center>";
             }
             else{
-                echo"<center><h3>Give a rate:</h3> <input id=\"rateNumber\" type=\"number\" value=\"0\"/><a href=\"#\" onClick=\"return addRate('".$tableAsk."', ".$id.", '".$session->login."', $('#rateNumber'));\">Rate !</a></center>";
+                echo"<center><h3>Give a rate:</h3> <input id=\"rateNumber\" type=\"number\" value=\"5\"/><a href=\"#\" onClick=\"return addRate('".$tableAsk."', ".$id.", '".$session->login."', $('#rateNumber'));\">Rate !</a></center>";
             }
             
         }

@@ -7,10 +7,12 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
 class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
     
     private $description;
+    private $current;
     
     public function __construct($_id, $_name, $_login, $_date, $_desc) {
         parent::__construct($_id, $_name, $_login, $_date);
         $this->setDescription($_desc);
+        $this->setCurrent(false);
     }
     
     /**
@@ -24,7 +26,8 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
             'name' => $object->getName(),
             'description' => $object->getDescription(),
             'date' => $object->getDate(),
-            'login' => $object->getLogin()
+            'login' => $object->getLogin(), 
+            'current' => $object->isCurrent()
             ));
         if($reussie == true){
             $object->setID((int)$bdd->lastInsertId()); 
@@ -43,6 +46,7 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
         if($donnees != false){
             $donnees['id'] = $id;
             $project = new Project($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description']);
+            $project->setCurrent($donnees['current']);
             $project->getFromDB($donnees);
             return $project;
         }
@@ -57,12 +61,13 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
         
-        $rqt = $bdd->prepare('UPDATE Project SET name = :name, description = :description, date = :date, login = :login WHERE idProject = :idProject');
+        $rqt = $bdd->prepare('UPDATE Project SET name = :name, description = :description, date = :date, login = :login, current = :current WHERE idProject = :idProject');
         $reussie = $rqt->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),
             'date' => $object->getDate(),
             'login' => $object->getLogin(),
+            'current' => $object->isCurrent(),
             'idProject' => $object->getID()
         ));
         return $reussie;
@@ -106,6 +111,14 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
 
     public function setDescription($_description) {
         $this->description = $_description;
+    }
+    
+    public function isCurrent(){
+        return $this->current;
+    }
+
+    public function setCurrent($_current) {
+        $this->current = $_current;
     }
     
 }
