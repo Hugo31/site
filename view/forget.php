@@ -8,11 +8,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 
 <section id="contenu">
     <h1>Forgotten password ?</h1><br/>
-    Vous avez oublié votre mot de passe pour vous identifier sur www.uidesignpatterncommunity.com et vous ne pouvez donc plus accéder à votre espace personnel. Voici la marche à suivre pour le récupérer:
+    You forgot your password on www.uidesignpatterncommunity.com and cannot access your personal space anymore. Here is how to retrieve it:
     <ol>
-        <li>Entrez votre adresse mail dans l'espace prévu à cet effet.</li>
-        <li>Si celle-ci est correcte, vous recevrez un mail contenant votre nouveau mot de passe généré aléatoirement.</li>
-        <li>Lors de votre nouvelle connexion, n'oubliez pas de changer ce mot de passe.</li>
+        <li>Enter your email address in the field below.</li>
+        <li>If there is an account associated with this email address, you will receive an email containing your new randomly generated password.</li>
+        <li>On your next connection, don't forget to change your password.</li>
     </ol>
     <form method="post" id="forgetform" name="forgetform"
           action="#" onsubmit="return validforget($(this));">
