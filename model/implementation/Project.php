@@ -21,7 +21,7 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $rqt = $bdd->prepare('INSERT INTO Project (name, description, date, login) VALUES(:name, :description, :date, :login)');
+        $rqt = $bdd->prepare('INSERT INTO Project (name, description, date, login, current) VALUES(:name, :description, :date, :login, :current)');
         $reussie = $rqt->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),

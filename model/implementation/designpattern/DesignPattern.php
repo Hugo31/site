@@ -28,6 +28,8 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $this->setDescriptionImage("");
         $this->setNbUsage($_nbUsage);
         $this->setTarget($_target);
+        
+        
     }
     
     /**
@@ -37,8 +39,8 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
      */
     public static function addDB($object){
         $bdd = Database::getConnection();
-        $rqt = $bdd->prepare('INSERT INTO DesignPattern (name, what, whenAndHow, layout, copy, implementation, nbUsage, nbComments, nbRates, rate, date, target, login) '
-                            .'VALUES(:name, :what, :whenAndHow, :layout, :copy, :implementation, :nbUsage, :nbComments, :nbRates, :rate, :date, :target, :login)');
+        $rqt = $bdd->prepare('INSERT INTO DesignPattern (name, what, whenAndHow, layout, copy, implementation, descriptionImage, nbUsage, nbComments, nbRates, rate, date, target, login) '
+                            .'VALUES(:name, :what, :whenAndHow, :layout, :copy, :implementation, :nbUsage, :descriptionImage, :nbComments, :nbRates, :rate, :date, :target, :login)');
         $reussie = $rqt->execute(array(
             'name' => $object->getName(),
             'what' => $object->getWhat(),
