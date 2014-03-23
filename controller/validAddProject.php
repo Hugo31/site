@@ -8,8 +8,7 @@
 
     if (isset($_POST['namee']) AND isset($_POST['description'])) {
 
-        $pj = new Project(-1, $_POST['namee'], 'undefined', date("Y-m-d H:i:s"), $_POST['description']);
-        //TODO: remplacé 'undefined' par l'utilisateur actuellement connecté 
+        $pj = new Project(-1, $_POST['namee'], $session->login, date("Y-m-d H:i:s"), $_POST['description']);
         
         $bdd = Database::getConnection();
         Project::addDB($pj);

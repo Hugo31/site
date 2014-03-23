@@ -1,6 +1,3 @@
-
-
-
 INSERT INTO `mydb`.`DesignPattern` (`idDesignPattern`, `name`, `what`, `whenAndHow`, `layout`, `copy`, `implementation`, `nbUsage`, `nbComments`, `nbRates`, `rate`, `date`, `target`, `login`) 
 VALUES (NULL, 'Advancement Box', 'Display the user its current position in the procedure: where he is, what he has done, what is left to be done.', 
 'Must be used in multi-step wizard procedures holding three or more steps.', 
