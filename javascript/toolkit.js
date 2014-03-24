@@ -50,3 +50,68 @@ function enableCheckBoxChild(object){
         $(this).prop("indeterminate", (nbCheck > 0) && (nbCheck < $(this).prop("value")));
     });
 }
+
+function addToCart(idDP, selector, removeIt){
+    $.post("/site/controller/addCart.php", {idDesignPattern : idDP}, function(data){
+        
+        if(data == true){
+            alert("You add one design pattern");
+            $('.currentDP_numberIn').each(function(e){
+                var numb = parseInt($(this).text(), 10);
+                numb++;
+                $(this).text(numb);
+            });
+            selector.text("Remove from my current Design Pattern");
+            selector.attr("onclick", "return removeFromCart("+ idDP + ", $(this), " + removeIt.toString() + ");");
+            selector.prev().attr("src", "/site/img/vrac/croix.png");
+        }
+        else{
+            alert("An error occured when adding the design pattern");
+        }
+    });
+    return false;
+}
+
+function removeFromCart(idDP, selector, removeIt){
+    $.post("/site/controller/removeCart.php", {idDesignPattern : idDP}, function(data){
+        if(data == true){
+            alert("You remove one design pattern");
+            $('.currentDP_numberIn').each(function(e){
+                var numb = parseInt($(this).text(), 10);
+                numb--;
+                $(this).text(numb);
+            });
+            selector.text("Add to my current Design Pattern");
+            selector.attr("onclick", "return addToCart("+ idDP + ", $(this), " + removeIt.toString() + ");");
+            selector.prev().attr("src", "/site/img/vrac/add.png");
+            if(removeIt){
+                $('#article_' + idDP + '').remove();
+            }
+        }
+        else{
+            alert("An error occured when removing the design pattern");
+        }
+    });
+    return false;
+}
+
+function addRate(id, loginRate, input){
+    $.post("/site/controller/addRate.php", {idDesignPattern: id, login : loginRate, rate : input.prop("value")}, function(data){
+        
+        if(data == true){
+            alert("You have rate that one");
+        }    
+        else{
+            alert("Impossible to rate");
+        }
+    });
+}
+
+function changeValueSpanSearch(selector){
+    if($(selector).text() == "[+]"){
+        $(selector).text("[-]");
+    }
+    else{
+        $(selector).text("[+]");
+    }
+}

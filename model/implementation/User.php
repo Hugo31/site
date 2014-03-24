@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/ETypeUser.php");
 
 class User implements IDatabase{
     
@@ -10,6 +11,7 @@ class User implements IDatabase{
     private $firstname;
     private $mail;
     private $logo;
+    private $typeUser;
     
     public function __construct($login, $pwd, $lastname, $firstname, $mail, $logo){
         $this->setLogin($login);
@@ -18,6 +20,7 @@ class User implements IDatabase{
     	$this->setFirstName($firstname);
     	$this->setMail($mail);
     	$this->setLogo($logo);
+        $this->setTypeUser(ETypeUser::Classic);
     }
     
     /**
@@ -33,7 +36,8 @@ class User implements IDatabase{
             'lastname' => $object->getLastName(),
             'firstname' => $object->getFirstName(),
             'mail' => $object->getMail(),
-            'logo' => $object->getLogo()
+            'logo' => $object->getLogo(),
+            'typeUser' => ETypeUser::getNameEnum($object->getTypeUser())
             ));
         return $reussie;
     }
@@ -44,8 +48,11 @@ class User implements IDatabase{
      */
     public static function getDB($id) {
         $donnees = Database::getOneData('SELECT * FROM User WHERE login = \''.$id.'\'');
+        $user = null;
         if($donnees != false){
-           return new User($id, $donnees['pwd'], $donnees['lastname'], $donnees['firstname'], $donnees['mail'], $donnees['logo']);
+           $user = new User($id, $donnees['pwd'], $donnees['lastname'], $donnees['firstname'], $donnees['mail'], $donnees['logo']);
+           $user->setTypeUser(ETypeUser::getValueEnum($donnees['typeUser']));
+           return $user;
         }
         return false;
     }
@@ -65,7 +72,8 @@ class User implements IDatabase{
             'lastname' => $object->getLastName(),
             'firstname' => $object->getFirstName(),
             'mail' => $object->getMail(),
-            'logo' => $object->getLogo()
+            'logo' => $object->getLogo(),
+            'typeUser' => ETypeUser::getNameEnum($object->getTypeUser())
             ));
         return $reussie;
     }
@@ -138,6 +146,14 @@ class User implements IDatabase{
 
     public function setLogo($logo){
         $this->logo = $logo;
+    }
+    
+    public function getTypeUser(){
+        return $this->typeUser;
+    }
+    
+    public function setTypeUser($_typeUser) {
+        $this->typeUser = ETypeUser::getValueEnum($_typeUser);
     }
 
 }

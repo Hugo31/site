@@ -8,7 +8,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Solution.php"
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Project.php");
 
 class ToolkitDetails {
-    public static function displayDetailsConflict($id){
+    public static function displayDetailsConflict($id, $session){
         $conflict = Conflict::getDB($id);
         if($conflict != false){
             echo "<article>";
@@ -42,7 +42,7 @@ class ToolkitDetails {
         }
     }
     
-    public static function displayDetailsDesignPattern($id){
+    public static function displayDetailsDesignPattern($id, $session){
         $dp = DesignPattern::getDB($id);
         
         if($dp != false){
@@ -60,11 +60,11 @@ class ToolkitDetails {
             ToolkitDisplayDesignPattern::displaySources($id);         
             echo "</div>";
             echo "<div id=\"contenuDroitDP\">";
-            ToolkitDisplay::displayRate($id, $dp->getNbRates(), $dp->getRate(), "DesignPattern");
+            ToolkitDisplay::displayRate($id, $dp->getNbRates(), $dp->getRate(), "DesignPattern", $session);
             echo "</div>";
             echo "</div>";
             echo "<div id=\"addProposeDP\">";
-            echo "<img src=\"../img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/controller/addCart.php?id=".$id."\"><h3>Add to my current Design Pattern</h3></a>";
+            echo "".ToolkitDisplay::cartLink($id, "this", false)."";
             echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$id."\"><h3>Report a conflict</h3></a>";   
             echo "</div><br/><br/>";
             echo "<article id=\"contenuCommentsDP\">";
@@ -108,7 +108,7 @@ class ToolkitDetails {
         }
     }
     	
-    public static function displayDetailsSolution($id){
+    public static function displayDetailsSolution($id, $session){
         $solution = Solution::getDB($id);
         if($solution != false){
             echo "<article>";
@@ -124,7 +124,7 @@ class ToolkitDetails {
             echo "</td></tr></table>";
             echo "</div>";
             echo "<div id=\"contenuDroitSol\">";
-            ToolkitDisplay::displayRate($id, $solution->getNbRates(), $solution->getRate(), "Solution");
+            ToolkitDisplay::displayRate($id, $solution->getNbRates(), $solution->getRate(), "Solution", $session);
             echo "</div>";
             echo "</div>";
             
@@ -153,7 +153,7 @@ class ToolkitDetails {
         }
     }
     
-    public static function displayDetailsProject($id){
+    public static function displayDetailsProject($id, $session){
         $project = Project::getDB($id);
         if($project != false){
             echo "<article>";
@@ -167,7 +167,7 @@ class ToolkitDetails {
             echo "</article>";
             ToolKitDisplay::displayText("Description : ", $project->getDescription());
             
-            ToolKitDisplay::displayDesignPatternBox(Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern pdp WHERE pdp.idProject = ".$project->getID()." AND pdp.idDesignPattern = dp.idDesignPattern;"));            
+            ToolKitDisplay::displayDesignPatternBox(Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern pdp WHERE pdp.idProject = ".$project->getID()." AND pdp.idDesignPattern = dp.idDesignPattern;"), false);            
             echo "</article>";
         }
         else{

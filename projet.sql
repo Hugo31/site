@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`User` (
   `firstname` VARCHAR(30) NULL,
   `mail` VARCHAR(30) NOT NULL,
   `logo` VARCHAR(60) NULL,
+  `typeUser` ENUM('Classic', 'Admin') NOT NULL,
   PRIMARY KEY (`login`))
 ENGINE = InnoDB;
 
@@ -34,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`DesignPattern` (
   `layout` TEXT NULL,
   `copy` TEXT NULL,
   `implementation` TEXT NULL,
+  `descriptionImage` TEXT NULL,
   `nbUsage` INT NULL,
   `nbComments` INT NULL,
   `nbRates` INT NULL,
@@ -59,7 +61,8 @@ DROP TABLE IF EXISTS `mydb`.`ImageDesignPattern` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`ImageDesignPattern` (
   `idImage` INT NOT NULL AUTO_INCREMENT,
   `idDesignPattern` INT NOT NULL,
-  `link` VARCHAR(50) NOT NULL,
+  `link` VARCHAR(250) NOT NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`idImage`),
   INDEX `fk_ImageDesignPattern_DesignPattern_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_ImageDesignPattern_DesignPattern`
@@ -104,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Source` (
   `idSource` INT NOT NULL AUTO_INCREMENT,
   `idDesignPattern` INT NOT NULL,
   `author` VARCHAR(30) NULL,
-  `link` VARCHAR(50) NULL,
+  `link` VARCHAR(250) NULL,
   PRIMARY KEY (`idSource`),
   INDEX `fk_Source_DesignPattern1_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_Source_DesignPattern1`
@@ -231,11 +234,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CommentConflit`
+-- Table `mydb`.`CommentConflict`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`CommentConflit` ;
+DROP TABLE IF EXISTS `mydb`.`CommentConflict` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`CommentConflit` (
+CREATE TABLE IF NOT EXISTS `mydb`.`CommentConflict` (
   `idComment` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(30) NOT NULL,
   `idConflict` INT NOT NULL,

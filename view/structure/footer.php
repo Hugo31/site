@@ -17,7 +17,7 @@
                         <center><h4>Sitemap</h4></center>
                         <ul>
                             <li><a href="/site/index.php">Home</a></li>
-                            <li><a href="/site/view/currentDP.php">My current Design Pattern (0)</a></li>
+                            <li><a href="/site/view/currentDP.php">My current Design Pattern (<span class="currentDP_numberIn"><?php ToolKitSearch::getNbCurrentCart($session) ?></span>)</a></li>
                             <li><a href="/site/view/contact.php">Contact</a></li>
                         </ul>
                     </div>

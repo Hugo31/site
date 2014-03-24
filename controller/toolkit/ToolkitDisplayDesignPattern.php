@@ -16,7 +16,7 @@ class ToolkitDisplayDesignPattern {
     public static function displayImages($id){
         $reponse = Database::getAllData("SELECT link FROM ImageDesignPattern WHERE idDesignPattern = ".$id.";");
         foreach($reponse as $row){
-            echo "<img src=\"".$row['link']."\", alt=\"img design\"/>";
+            echo "<img class=\"img_pattern\" src=\"".$row['link']."\", alt=\"img design\"/>";
         }
         $reponse->closeCursor();
     }

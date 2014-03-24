@@ -13,19 +13,19 @@ $session = Session::getInstance();
     <?php
         $bdd = Database::getConnection();
         if($_GET['type'] == "Conflict"){
-            ToolkitDetails::displayDetailsConflict($_GET['id']);
+            ToolkitDetails::displayDetailsConflict($_GET['id'], $session);
         }
         else{
             if($_GET['type'] == "DesignPattern"){
-                ToolkitDetails::displayDetailsDesignPattern($_GET['id']);
+                ToolkitDetails::displayDetailsDesignPattern($_GET['id'], $session);
             }
             else{
                 if($_GET['type'] == "Solution"){
-                    ToolkitDetails::displayDetailsSolution($_GET['id']);
+                    ToolkitDetails::displayDetailsSolution($_GET['id'], $session);
                 }
                 else{
                     if($_GET['type'] == "Project"){
-                        ToolkitDetails::displayDetailsProject($_GET['id']);
+                        ToolkitDetails::displayDetailsProject($_GET['id'], $session);
                     }
                     else{
                         echo "Error 404 !!";
