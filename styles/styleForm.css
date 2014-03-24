@@ -147,7 +147,7 @@ input#captchasignup {
 }
 
 #headerlogout {
-    font-size: 1.2em;
+    font-size: 1.4em;
 }
 
 #headerlogout button{
@@ -159,7 +159,12 @@ input#captchasignup {
     color: #FFF;
     border: 1px solid #CC0000;
     margin-left: 20px;
-    font-size: 0.65em;
+    font-size: 0.5em;
+}
+
+#headerlogout a:hover {
+    text-decoration: underline;
+    color: white;
 }
 
 #headerlogout button:hover{
