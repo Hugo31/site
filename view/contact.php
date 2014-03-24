@@ -73,8 +73,8 @@ if (!empty($_REQUEST['userCode'])) {
                     <a style="cursor:pointer" onclick="document.images.captcha.src = 'captcha.php?id=' + Math.round(Math.random(0) * 1000) + 1"><br><i>Regenerate code</i></a><br/><br/>
                     Enter code : <input name="userCode" id="userCode" type="text" title="Le code comporte exactement 5 lettres ou nombres." size="5" pattern="[a-zA-Z0-9]{5}" required><br/><br/>
                     <br/>
-                    <input type="submit" value="RESET" class="reset" style="margin-right: 15px">
-                    <input type="reset" value="SEND" class="send" style="margin-left: 15px">
+                    <input type="reset" value="RESET" class="reset" style="margin-right: 15px">
+                    <input type="submit" value="SEND" class="send" style="margin-left: 15px">
                 </center>
             </form>
         </div>
