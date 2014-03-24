@@ -18,8 +18,7 @@ if (!empty($_POST['captchasignup'])) {
             $user = new User($_POST['usernamesignup'], $_POST['passwordsignup'], $_POST['lastnamesignup'], $_POST['firstnamesignup'], $_POST['emailsignup'], NULL);
             User::addDB($user);
             $proj = new Project(null, "Current Design Pattern", $_POST['usernamesignup'], date(), "");
-            echo $proj->getDate();
-            echo $proj->getName();
+            $proj->setCurrent(true);
             Project::addDB($proj);
         }
     } else {
