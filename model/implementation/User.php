@@ -2,6 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/ETypeUser.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/ETypeUser.php");
 
 class User implements IDatabase{
     
