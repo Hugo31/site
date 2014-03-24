@@ -4,6 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/Session.php")
 $session = Session::getInstance();
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/Database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/User.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/Project.php");
 
 if (!empty($_POST['captchasignup'])) {
 
@@ -17,7 +18,8 @@ if (!empty($_POST['captchasignup'])) {
             $user = new User($_POST['usernamesignup'], $_POST['passwordsignup'], $_POST['lastnamesignup'], $_POST['firstnamesignup'], $_POST['emailsignup'], NULL);
             User::addDB($user);
             $proj = new Project(null, "Current Design Pattern", $_POST['usernamesignup'], date(), "");
-            $proj->setCurrent(true);
+            echo $proj->getDate();
+            echo $proj->getName();
             Project::addDB($proj);
         }
     } else {

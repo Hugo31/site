@@ -30,7 +30,7 @@ class User implements IDatabase{
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('INSERT INTO User(login, pwd, lastname, firstname, mail, logo) VALUES(:login, :pwd, :lastname, :firstname, :mail, :logo)');
+        $req = $bdd->prepare('INSERT INTO User(login, pwd, lastname, firstname, mail, logo, typeUser) VALUES(:login, :pwd, :lastname, :firstname, :mail, :logo, :typeUser)');
         $reussie = $req->execute(array(
             'login' => $object->getLogin(),
             'pwd' => $object->getPwd(),
@@ -66,7 +66,7 @@ class User implements IDatabase{
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
         
-        $req = $bdd->prepare('UPDATE User SET pwd = :pwd, lastname = :lastname, firstname = :firstname, mail = :mail, logo = :logo WHERE login = :login');
+        $req = $bdd->prepare('UPDATE User SET pwd = :pwd, lastname = :lastname, firstname = :firstname, mail = :mail, logo = :logo, typeUser = :typeUser WHERE login = :login');
         $reussie = $req->execute(array(
             'login' => $object->getLogin(),
             'pwd' => $object->getPwd(),
