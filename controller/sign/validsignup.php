@@ -11,7 +11,5 @@ if (isset($_POST['usernamesignup']) AND isset($_POST['lastnamesignup']) AND isse
     User::addDB($user);
     $proj = new Project(null, "Current Design Pattern", $_POST['usernamesignup'], date("Y-m-d H:i:s"), "");
     $proj->setCurrent(true);
-    echo $proj->getDate();
-    echo $proj->getName();
     Project::addDB($proj);
 }

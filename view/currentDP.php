@@ -24,6 +24,11 @@
             unset($session->currentDP);
         }
         echo "<h1>".$data['name']."</h1>";
+        echo "<form action=\"/site/controller/>";
+        echo "<label>Name : </label><input name=\"name_project\" type=\"text\"/>";
+        echo "<label>Description : <\label><input name=\"desc_project\" type=\"textarea\"/>";
+        echo "<input type=\"button\" value=\"Save it\"/>";
+        echo"</form>";
         echo "<article><h2>Description: </h2>".$data['description']."<br/><br/></article>";
         $req = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern proj "
                 ."WHERE dp.idDesignPattern = proj.idDesignPattern AND proj.idProject = ".$data['idProject'].";";
