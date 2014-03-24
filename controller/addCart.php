@@ -9,7 +9,13 @@ $bdd = Database::getConnection();
 if(isset($session->login)){
     $data = Database::getOneData("SELECT idProject FROM Project WHERE login = \"".$session->login."\" AND current = 1;");
     $proj = Project::getDB($data['idProject']);
-    echo $proj->addLink(new DesignPattern($_POST['idDesignPattern'], "", "", "", "", 0, 0));
+    if($proj == false){
+        echo false;
+    }
+    else{
+        echo $proj->addLink(new DesignPattern($_POST['idDesignPattern'], "", "", "", "", 0, 0));
+    }
+    
 }
 else{
     if(!isset($session->currentDP)){

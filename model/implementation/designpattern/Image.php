@@ -20,8 +20,8 @@ class Image {
      */
     public static function addImage($object, $link, $description) {
         $bdd = Database::getConnection();
-        $rqt = $bdd->prepare('INSERT INTO ImageDesignPattern (idDesignPattern, link) '
-                            .'VALUES(:idDesignPattern, :link)');
+        $rqt = $bdd->prepare('INSERT INTO ImageDesignPattern (idDesignPattern, link, description) '
+                            .'VALUES(:idDesignPattern, :link, :description)');
         $reussie = $rqt->execute(array(
             'idDesignPattern' => $object->getID(),
             'link' => $link, 

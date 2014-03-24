@@ -95,16 +95,45 @@ function removeFromCart(idDP, selector, removeIt){
     return false;
 }
 
-function addRate(id, loginRate, input){
-    $.post("/site/controller/addRate.php", {idDesignPattern: id, login : loginRate, rate : input.prop("value")}, function(data){
+function addRate(table, id, login, input){
+    $.post("/site/controller/addRate.php", {table: table, id: id, login : login, rate : input.val()}, function(data){
         
         if(data == true){
-            alert("You have rate that one");
+            $('#details_rate').remove();
+            $.post("/site/controller/reupRating.php", {table: table, id: id, login : login, rate : input.val()}, function(data){
+                if(table == "DesignPattern"){
+                    $('#contenuDroitDP').append(data);
+                }
+                else{
+                    $('#contenuDroitSol').append(data);
+                }
+            });
         }    
         else{
             alert("Impossible to rate");
         }
     });
+    return false;
+}
+
+function removeRate(table, id, login, input){
+    $.post("/site/controller/removeRate.php", {table: table, id: id, login : login, rate : input.val()}, function(data){
+        if(data == true){
+            $('#details_rate').remove();
+            $.post("/site/controller/reupRating.php", {table: table, id: id, login : login, rate : input.val()}, function(data){
+                if(table == "DesignPattern"){
+                    $('#contenuDroitDP').append(data);
+                }
+                else{
+                    $('#contenuDroitSol').append(data);
+                }
+            });
+        }    
+        else{
+            alert("Impossible to remove the rate");
+        }
+    });
+    return false;
 }
 
 function changeValueSpanSearch(selector){

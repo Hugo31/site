@@ -9,11 +9,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 
 <section id="contenu">
     <h1>Sign up</h1><br/>
-    Votre espace personnel sur www.uidesignpatterncommunity.com vous permet de gérer vos projets, 
-    d'ajouter des design pattern, de signaler des conflits ainsi que de proposer des solutions à ces conflits. 
-    En vous connectant, vous aurez aussi la possibilité de donner votre avis en postant des commentaires sur les 
-    autres design patterns. <br/><br/>
-    <center><h3 style="margin:0 auto">N'attendez plus, inscrivez vous gratuitement sur notre site pour profiter de tous ces privilèges !</h3></center><br/><br/>
+    Your personal space on www.uidesignpatterncommunity.com allows you to manage your projects, 
+    add design patterns, report conflicts and propose solutions to these conflicts. 
+    By logging in, you'll also have the possibility to share your opinion on design patterns by posting comments. <br/><br/>
+    <center><h3 style="margin:0 auto">Don't wait, register for free on our site to enjoy all these benefits now!</h3></center><br/><br/>
     <form method="post" id="formsignup" name="formsignup"
           action="/site/controller/sign/validsignup.php" onsubmit="return validSignup($(this));">
         <p>

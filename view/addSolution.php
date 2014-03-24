@@ -11,20 +11,17 @@
 ?>
 
 <section id="contenu">
-    <h2> Propose a solution </h2>
-    
     
     <?php
-    if(1){//si utilisateur non connecté
-    //renvoyer vers page login avec message erreur
-        //header('Location: /site/index.php');
-        echo '<h3>Not logged!</h3>';
+    if(!isset($session->login)){//si utilisateur non connecté
+        echo '<h3>You must be connected in order to use this page</h3>';
     }
-    
-    if (isset($_GET['id'])){
-        ToolkitDisplay::displayConflictMini($_GET['id']);
-    }
+    else{   
+        if (isset($_GET['id'])){
+            ToolkitDisplay::displayConflictMini($_GET['id']);
+        }
     ?>
+    <h2> Propose a solution </h2>
     
     <div style="width:540px;float:left;height:700px;">
         <br/><br/>
@@ -52,6 +49,8 @@
             </form>
         </div>
     </div>
+    <?php } ?>
+    
 </section>
 
 <?php

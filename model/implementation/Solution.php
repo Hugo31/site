@@ -87,7 +87,7 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
     }
 
     public function addRate($user, $note) {
-        return parent::abstractAddNote($user, $note, "Solution");
+        return parent::abstractAddRate($user, $note, "Solution");
     }
 
     public function removeComment($idComment) {
@@ -95,7 +95,7 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
     }
 
     public function removeRate($user) {
-        return parent::abstractRemoveNote($user, "Solution");
+        return parent::abstractRemoveRate($user, "Solution");
     }
 
     public function getComment() {

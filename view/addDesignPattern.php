@@ -10,68 +10,83 @@
     
 ?>
 
+<script type="text/javascript">
+    sources = 0;
+    function addsources() {
+        if (sources !== 5) {
+            document.getElementById('tableAddDP').innerHTML += '<tr><td style="width:400px"><label for="source">Source</label></td><td><input id="source" type="url" value="" name="source[]" size="40" required placeholder="Copy source url"></td></tr>';            
+            sources += 1;
+        } else {
+            document.getElementById('tableAddDP').innerHTML += "<br />Only 5 sources fields allowed.";
+            document.formulaireAddDP.addSource.disabled=true;
+        }
+    };
+</script>
+
+
 <section id="contenu">
-    <h2> Add a Design Pattern </h2>
     
     <?php
-    if(1){//si utilisateur non connecté
-    //renvoyer vers page login avec message erreur
-        //header('Location: /site/index.php');
-        echo '<h3>Not logged!</h3>';
+    if(isset($session->login)){//si utilisateur non connecté
+        echo '<h3>You must be connected in order to use this page</h3>';
     }
+    else{
     ?>
-    
-    <div style="width:540px;float:left;height:700px;">
-        <br/><br/>
-        <div id="formulaireAddDP">
-            <form id="addDP_form" method="post">
-                <table>
-                    <tr>
-                        <td style="width:400px"><label for="namee">Name</label></td>
-                        <td><input id="namee" type="text" value="" name="namee" size="40" required autofocus placeholder="Name of this Design Pattern"></td>
-                    </tr>
-                    <tr>
-                        <td style="width:400px"><label for="what">What</label></td>
-                        <td><textarea id="what" name="what" style="width:400px;height:300px" required placeholder="Resume of this Design Pattern"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td style="width:400px"><label for="wah">When And How</label></td>
-                        <td><input id="wah" type="text" value="/" name="wah" size="40" required placeholder="?"></td>
-                    </tr>
-                    <tr>
-                        <td style="width:400px"><label for="layout">Layout</label></td>
-                        <td><input id="layout" type="text" value="/" name="layout" size="40" required placeholder="?"></td>
-                    </tr>
-                    <tr>
-                        <td style="width:400px"><label for="copy">Copy</label></td>
-                        <td><input id="copy" type="text" value="/" name="copy" size="40" required placeholder="?"></td>
-                    </tr>
-                    <tr>
-                        <td style="width:400px"><label for="impl">Implementation</label></td>
-                        <td><input id="impl" type="text" value="/" name="impl" size="40" required placeholder="?"></td>
-                    </tr>                    
-                    <tr>
-                        <td style="width:400px"><label>Target</label></td>
-                        <td>
-                            <select id="subject" name="thetarget" required placeholder="?">
-                                <option value="Designer" selected>Designer</option>
-                                <option value="Evaluator">Evaluator</option>
-                            </select> 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width:400px"><label for="img">(Optional) Image</label></td>
-                        <td><input id="img" type="url" value="" name="img" size="40" placeholder="Copy the image url"></td>
-                    </tr>
-                </table>
-                <br/>
-                <center>
-                    <input type="submit" value="Preview" class="addDP" style="margin-right: 15px" onclick="this.form.action='previewAddDP.php'">
-                    <input type="submit" value="Add Design Pattern" class="addDP" style="margin-left: 15px " onclick="this.form.action='../controller/validAddDP.php'">
-                </center>
-            </form>
+        <h2> Add a Design Pattern </h2>
+        <div style="width:540px;float:left;height:1000px;">
+            <br/><br/>
+            <div id="formulaireAddDP">
+                <form id="addDP_form" method="post">
+                    <table id="tableAddDP">
+                        <tr>
+                            <td style="width:400px"><label for="namee">Name</label></td>
+                            <td><input id="namee" type="text" value="" name="namee" size="40" required autofocus placeholder="Name of this Design Pattern"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:400px"><label for="what">What</label></td>
+                            <td><textarea id="what" name="what" style="width:400px;height:300px" required placeholder="Resume of this Design Pattern"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td style="width:400px"><label for="wah">When And How</label></td>
+                            <td><input id="wah" type="text" value="/" name="wah" size="40" required placeholder="?"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:400px"><label for="layout">Layout</label></td>
+                            <td><input id="layout" type="text" value="/" name="layout" size="40" required placeholder="?"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:400px"><label for="copy">Copy</label></td>
+                            <td><input id="copy" type="text" value="/" name="copy" size="40" required placeholder="?"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:400px"><label for="impl">Implementation</label></td>
+                            <td><input id="impl" type="text" value="/" name="impl" size="40" required placeholder="?"></td>
+                        </tr>                    
+                        <tr>
+                            <td style="width:400px"><label>Target</label></td>
+                            <td>
+                                <select id="subject" name="thetarget" required placeholder="?">
+                                    <option value="Designer" selected>Designer</option>
+                                    <option value="Evaluator">Evaluator</option>
+                                </select> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:400px"><label for="img">(Optional) Image</label></td>
+                            <td><input id="img" type="url" value="" name="img" size="40" placeholder="Copy image url"></td>
+                        </tr>
+                    </table>
+                    
+                    <br/>
+                    <center>
+                        <input type="button" onclick="addsources()" name="addSource" value="Add source" />
+                        <input type="submit" value="Preview" class="addDP" style="margin-right: 15px" onclick="this.form.action='previewAddDP.php'">
+                        <input type="submit" value="Add Design Pattern" class="addDP" style="margin-left: 15px " onclick="this.form.action='../controller/validAddDP.php'">
+                    </center>
+                </form>
+            </div>
         </div>
-    </div>
+    <?php } ?>
 </section>
 
 <?php

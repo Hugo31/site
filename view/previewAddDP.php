@@ -12,16 +12,18 @@
 
 <section id="contenu">
     <?php
-    if(1){//si utilisateur non connecté
-    //renvoyer vers page login avec message erreur
-        //header('Location: /site/index.php');
-        echo '<h3>Not logged!</h3>';
+    if(!isset($session->login)){//si utilisateur non connecté
+        echo '<h3>You must be connected in order to use this page</h3>';
     }
+    else{
     ?>
     <h2> Preview </h2>
     
-    <div id="previewAddDP" style="width:540px;float:left;height:700px;">
-        VISU DP
+    <div id="previewAddDP">
+        <?php
+            ToolkitDetails::displayDetailsDesignPattern(2, $session);
+        ?>
+    
         <form id="previewAddDP_form" method="post">
             <center>
                     <input type="button" value="Modify input" class="previewDP" style="margin-right: 15px" onclick="history.go(-1);">
@@ -33,6 +35,7 @@
             </script>
         </form>
     </div>
+    <?php } ?>
 </section>
 
 <?php

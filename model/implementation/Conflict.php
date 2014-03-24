@@ -44,7 +44,7 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
         $donnees = Database::getOneData('SELECT * FROM Conflict WHERE idConflict = '.$id.'');
         if($donnees != false){
             $donnees['id'] = $id;
-            $conflict = new Conflict($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description'], $donnees['type']);
+            $conflict = new Conflict($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description'], $donnees['idTypeConflict']);
             $conflict->getFromDB($donnees);
             return $conflict;
         }
@@ -60,11 +60,11 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
         
-        $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, type = :type, date = :date, nbComments = :nbComments, login = :login WHERE idConflict = :idConflict');
+        $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, idTypeConflict = :type, date = :date, nbComments = :nbComments, login = :login WHERE idConflict = :idConflict');
         $reussie = $rqt->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),
-            'type' => $object->getType(),
+            'idTypeConflict' => $object->getType(),
             'date' => $object->getDate(),
             'nbComments' => $object->getNbComments(),
             'login' => $object->getLogin(),
