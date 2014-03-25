@@ -3,7 +3,7 @@
     $session = Session::getInstance();
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/header.php');   
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');   
-?>
+?> 
 
 <section id="contenu">
     
