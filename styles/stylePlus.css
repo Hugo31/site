@@ -408,3 +408,12 @@ input.logout:hover {
     max-width: 400px;
     max-heigth: 200px;
 }
+
+#manageUsers a {
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+#manageUsers a:hover {
+    text-decoration: underline;
+}
