@@ -21,7 +21,7 @@ if (!$user = User::getDB($session->login)) {
         <h2>Information about me</h2>
         <div id="profillogo">
             Image de profil<br/>
-            <img src="/site/img/vrac/defaultlogo.png" alt="Image profil" style="width: 100px; height:100px">
+            <img src="<?php echo $user->getLogo() ?>" alt="Image profil" style="width: 100px; height:100px">
         </div>
         <div id="profilcontent">
             <div id="profilgauche">
@@ -40,8 +40,6 @@ if (!$user = User::getDB($session->login)) {
             </form>
         </div>
     </div>
-    <h2>My Project</h2>
-    <br/>
     <h2>Self design pattern</h2>
     <br/>
 
