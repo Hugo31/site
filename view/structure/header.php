@@ -45,7 +45,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
                             <div id="headerlogout" style="height: 50px">
                                 <img src = "/site/img/vrac/defaultlogo.png" alt = "image profil" style = "height: 35px; width: 35px">
                                 <a href = "/site/view/profil.php" style = "text-decoration: none"><?php echo $session->login; echo $session->admin ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="" style="text-decoration: none">See my projects</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="/site/view/projects.php" style="text-decoration: none">See my projects</a>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="/site/controller/sign/logout.php" style="text-decoration:none">
                                     <button>LOG OUT</button>
                                 </a>
