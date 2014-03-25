@@ -27,7 +27,7 @@
 <section id="contenu">
     
     <?php
-    if(isset($session->login)){//si utilisateur non connecté
+    if(!isset($session->login)){//si utilisateur non connecté
         echo '<h3>You must be connected in order to use this page</h3>';
     }
     else{
