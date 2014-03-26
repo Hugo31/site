@@ -41,17 +41,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
                 </form>
             </div>
         </div>
-        <h2>Self design pattern</h2>
-        <?php
-        $bdd = Database::getConnection();
-        $session->typeQuery = "DesignPattern";
-        $reponse = Database::getAllData("SELECT * FROM DesignPattern WHERE login = \"" . $session->login . "\";");
-        ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
-        ?>
-        <br/><br/>
-        <a href="/site/view/addDesignPattern.php" style="text-decoration: none">
-            <button id="profilAddDP">Create A New Design Pattern</button>
-        </a>
     <?php } ?>
 </section>
 <script>

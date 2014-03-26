@@ -47,8 +47,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
                                     <img src = "/site/img/user/user_gris.png" name="profil" style = "width:25px;vertical-align:top"
                                      onmouseover="profil.src = '/site/img/user/user_blanc.png'" onmouseout="profil.src = '/site/img/user/user_gris.png'">
                                     <?php echo $session->login; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="/site/view/projects.php" style="text-decoration: none">My contributions</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="/site/view/contributions.php?id=<?php echo $session->login; ?>" style="text-decoration: none">My projects</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="/site/view/contributions.php" style="text-decoration: none">My contributions</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="/site/view/projects.php?id=<?php echo $session->login; ?>" style="text-decoration: none">My projects</a>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="/site/controller/sign/logout.php" style="text-decoration:none">
                                     <button>LOG OUT</button>
                                 </a>
