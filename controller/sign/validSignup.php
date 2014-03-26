@@ -15,7 +15,7 @@ if (!empty($_POST['captchasignup'])) {
     if (md5($userCaptchaCode) == $session->captcha) {
         header('Location: /site/index.php');
         if (isset($_POST['usernamesignup']) AND isset($_POST['lastnamesignup']) AND isset($_POST['firstnamesignup']) AND isset($_POST['passwordsignup']) AND isset($_POST['emailsignup'])) {
-            $user = new User($_POST['usernamesignup'], md5($_POST['passwordsignup']), $_POST['lastnamesignup'], $_POST['firstnamesignup'], $_POST['emailsignup'], NULL);
+            $user = new User($_POST['usernamesignup'], md5($_POST['passwordsignup']), $_POST['lastnamesignup'], $_POST['firstnamesignup'], $_POST['emailsignup'], "/site/img/user/user.png");
             User::addDB($user);
             $proj = new Project(null, "Current Design Pattern", $_POST['usernamesignup'], date(), "");
             $proj->setCurrent(true);

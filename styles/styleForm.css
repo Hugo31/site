@@ -117,16 +117,13 @@ and open the template in the editor.
 }
 
 #modifyprofil {
-    width: 70px;
-    height: 26px;
-    cursor: pointer;
+    height:26px;
     border-radius: 4px;
     padding: 0px 7px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    text-shadow: 0px 1px 1px #8E2A04;
     background-color: #FF4C00;
-    box-shadow: 0px 1px 1px #B2B2B2;
+    box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
     color: #FFF;
+    border: 1px solid #FF6100;
     font-size: 0.7em;
     -webkit-box-reflect: below 0 linear-gradient(transparent 40%, rgba(0,0,0,.15));
 }
@@ -167,6 +164,24 @@ input#captchasignup {
 }
 
 #headerlogout button:hover{
+    background-color: #FF6100;
+    box-shadow: 0px 0px 4px 0px white;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+#profilAddDP{
+    height:26px;
+    border-radius: 4px;
+    padding: 0px 7px;
+    background-color: #FF4C00;
+    box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+    color: #FFF;
+    border: 1px solid #FF6100;
+    font-size: 0.8em;
+    -webkit-box-reflect: below 0 linear-gradient(transparent 40%, rgba(0,0,0,.15));
+}
+
+#profilAddDP:hover{
     background-color: #FF6100;
     box-shadow: 0px 0px 4px 0px white;
     text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
