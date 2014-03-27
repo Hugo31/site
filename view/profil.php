@@ -13,7 +13,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 
     <?php
     if (!$user = User::getDB($session->login)) {
-        echo "__Wrong User";
+        echo '<h3>You must be connected in order to use this page</h3>';
     } else {
         ?>
 
@@ -36,16 +36,13 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
                     <?php echo $user->getMail() ?><br/>
                 </div>
                 <form method="post" id="profilform" name="profilform"
-                      action="/site/view/editProfil.php" onsubmit="return false;">
+                      action="/site/view/editProfil.php" onsubmit="return true">
                     <input type="submit" value="Modify" class="modifyprofil" id="modifyprofil"/>
                 </form>
             </div>
         </div>
     <?php } ?>
 </section>
-<script>
-    $("details").hide();
-</script>
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/footer.php');
 ?>
