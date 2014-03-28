@@ -8,53 +8,123 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/User.php");
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/header.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 
-if (!$user = User::getDB($session->login)) {
+$pwdNotification;
+$usrNotification;
+
+function verifEmail($email) {
+
+    if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#i", $email)) {
+        return true;
+    }
+
+    global $usrNotification;
+    $usrNotification = "Please, put a valid email";
+    return false;
+}
+
+function verifName($name) {
+
+    if (preg_match("#^([A-z]+([ |\-]{1}([A-z])+)*){2,30}$#i", $name)) {
+        return true;
+    }
+
+    global $usrNotification;
+    $usrNotification = "Please, put a valid name";
+    return false;
+}
+
+function verifPassword($pass1, $pass2) {
+    global $pwdNotification;
+
+    if (preg_match("#^[A-z0-9]{4,30}$#i", $pass1)) {
+        if ($pass1 == $pass2) {
+            $pwdNotification = "Password has been changed";
+            return true;
+        } else {
+            $pwdNotification = "Please, put the same password";
+            return false;
+        }
+    }
+
+    $pwdNotification = "Please, put a valid password";
+    return false;
+}
+
+if (!$session->login) {
     echo '<center><h3>You must be connected in order to use this page</h3></center>';
 } else {
+    $user = User::getDB($session->login);
+    if (isset($_POST['firstnameedit']) && isset($_POST['lastnameedit']) && isset($_POST['emailedit']) && isset($_POST['passwordedit']) && isset($_POST['passwordedit_confirm'])) {
+
+        $pass1 = $_POST['passwordedit'];
+        $pass2 = $_POST['passwordedit_confirm'];
+
+        if ($pass1 != '' || $pass2 != '') {
+            if (verifPassword($pass1, $pass2)) {
+                $user->setPwd($pass1);
+                User::modifyDB($user);
+            }
+        }
+
+        $verife = verifEmail($_POST['emailedit']);
+        $veriff = verifName($_POST['firstnameedit']);
+        $verifl = verifName($_POST['lastnameedit']);
+
+        if ($verife && $veriff && $verifl) {
+            $user->setMail($_POST['emailedit']);
+            $user->setFirstName($_POST['firstnameedit']);
+            $user->setLastName($_POST['lastnameedit']);
+            User::modifyDB($user);
+            //Redirection nécéssaire
+        }
+    }
     ?>
-    <h1>Edit your profil</h1>
 
     <section id="contenu">
+        <h1>Edit your profil</h1>
+
         <h2><?php echo $user->getLogin() ?></h2>
         <div id="editprofilimg">
             <p>Profil picture</p>
-                <img src="<?php echo $user->getLogo() ?>" alt="Image profil" style="width: 100px; height:100px">
+            <img src="<?php echo $user->getLogo() ?>" alt="Image profil" style="width: 100px; height:100px">
         </div>
         <form method="post" id="editprofilform" name="editprofilform"
-              action="/site/controller/sign/validEditProfil.php" onsubmit="return true">
+              action="/site/view/editProfil.php" onsubmit="return true">
             <p>
                 <label for="firstnameedit" class="fnameedit">Change your firstname</label>
                 <input type="text" id="firstnameedit" name="firstnameedit" 
                        required="required" size="30" maxlength="30"
-                       value=<?php $user->getFirstName() ?> />
+                       value=<?php echo $user->getFirstName() ?> />
             </p>
-            <div id="errormsgeditprofil_firstname"></div>
             <p>
                 <label for="lastnameedit" class="lnameedit">Change your lastname</label>
                 <input type="text" id="lastnameedit" name="lastnameedit" 
                        required="required" size="30" maxlength="30" 
-                       value=<?php $user->getLastName() ?> />
+                       value=<?php echo $user->getLastName() ?> />
             </p>
-            <div id="errormsgsignupeditprofil_lastnameedit"></div>
             <p>
                 <label for="emailedit" class="uemailedit">Change your email</label>
                 <input type="email" id="emailedit" name="emailedit" 
                        required="required" size="30" maxlength="30" 
-                       value=<?php $user->getMail() ?> />
+                       value=<?php echo $user->getMail() ?> />
             </p>
-            <div id="errormsgsignupeditprofil_email"></div>
+            <div id="errormsgeditprofil_usr" style="color: red; margin-left: 150px">
+                <?php echo $usrNotification ?>
+            </div>
             <br/>
             <p>
                 <label for="passwordedit" class="upasswdedit">Change your password</label>
                 <input type="password" id="passwordedit" name="passwordedit" 
-                       required="required" size="30" maxlength="30" />
+                       size="30" maxlength="30" />
             </p>
             <p>
                 <label for="passwordedit_confirm" class="upasswdedit">Please confirm your new password</label>
                 <input type="password" id="passwordedit_confirm" name="passwordedit_confirm" 
-                       required="required" size="30" maxlength="30" />
+                       size="30" maxlength="30" />
             </p>
-            <div id="errormsgsignupeditprofil_password"></div>
+            <div id="errormsgeditprofil_pwd" style="color: red; margin-left: 150px">
+                <?php echo $pwdNotification ?>
+            </div>
             <p>
                 <input type="submit" value="Apply" class="applymodifyprofil" id="applymodifyprofil"/>
             </p>
