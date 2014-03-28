@@ -14,7 +14,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
     By logging in, you'll also have the possibility to share your opinion on design patterns by posting comments. <br/><br/>
     <center><h3 style="margin:0 auto">Don't wait, register for free on our site to enjoy all these benefits now!</h3></center><br/><br/>
     <form method="post" id="formsignup" name="formsignup"
-          action="/site/controller/sign/validsignup.php" onsubmit="return validSignup($(this));">
+          action="/site/controller/sign/validSignup.php" onsubmit="return validSignup($(this));">
         <p>
             <label for="firstnamesignup" class="fname">Your firstname</label>
             <input type="text" id="firstnamesignup" name="firstnamesignup" 
