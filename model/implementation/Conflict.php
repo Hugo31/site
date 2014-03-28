@@ -21,11 +21,11 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $rqt = $bdd->prepare('INSERT INTO conflict (name, description, type, date, nbComments, login) VALUES(:name, :description, :type, :date, :nbComments, :login)');
+        $rqt = $bdd->prepare('INSERT INTO conflict (name, description, date, nbComments, login, idTypeConflict) VALUES(:name, :description, :date, :nbComments, :login, :idTypeConflict)');
         $reussie = $rqt->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),
-            'type' => $object->getType(),
+            'idTypeConflict' => $object->getType(),
             'date' => $object->getDate(),
             'nbComments' => $object->getNbComments(),
             'login' => $object->getLogin()

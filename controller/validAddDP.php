@@ -6,6 +6,11 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/designpattern/DesignPattern.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/designpattern/Image.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/designpattern/Source.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/criteria/Category.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/criteria/Component.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/criteria/Platform.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/criteria/Property.php");
+    require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/criteria/System.php");
     
     if (isset($_POST['namee']) AND isset($_POST['what']) AND isset($_POST['wah']) AND isset($_POST['layout']) AND isset($_POST['copy']) AND isset($_POST['impl']) AND isset($_POST['thetarget'])) {
         
@@ -17,13 +22,70 @@
         
         DesignPattern::addDB($dp);
         
-        if (isset($_POST['img']) AND $_POST['img'] != ""){
-            Image::addImage($dp, $_POST['img'], 'NULL');//todo description
-        }
+        if (isset($_POST['image'])){foreach($_POST['image'] as $img) {
+            Image::addImage($dp, $img, 'NULL');//todo description
+        }}
+        if (isset($_POST['source'])){foreach($_POST['source'] as $src) {
+            Source::addSource($dp, "undefined", $src);//todo ajout auteur
+        }}
+        if (isset($_POST['CategoryDP'])){foreach($_POST['CategoryDP'] as $idcat) {
+            $category = new Category($idcat, "", "", "");
+            $category->addLink($dp);
+        }}
+        if (isset($_POST['ComponentDP'])){foreach($_POST['ComponentDP'] as $idcompo) {
+            $component = new Component($idcompo, "", "", "");
+            $component->addLink($dp);
+        }}
+        if (isset($_POST['PlatformDP'])){foreach($_POST['PlatformDP'] as $idplat) {
+            $platform = new Platform($idplat, "", "", "");
+            $platform->addLink($dp);
+        }}
+        if (isset($_POST['PropertyDP'])){foreach($_POST['PropertyDP'] as $idprop) {
+            $property = new Property($idprop, "", "", "");
+            $property->addLink($dp);
+        }}
+        if (isset($_POST['SystemDP'])){foreach($_POST['SystemDP'] as $idsyst) {
+            $system = new System($idsyst, "", "", "");
+            $system->addLink($dp);
+        }}
         
-        foreach($_POST['source'] as $link) {
-            Source::addSource($dp, "undefined", $link);//todo ajout auteur
-        }
+        //upload images
+        $allowedExts = array("gif", "jpeg", "jpg", "png");
+        if ($_FILES['file']['name'] != ""){foreach ($_FILES["file"]["error"] as $key => $error) {
+            $temp = explode(".", $_FILES["file"]["name"][$key]);
+            $extension = end($temp);
+            if ((($_FILES["file"]["type"][$key] == "image/gif")
+            || ($_FILES["file"]["type"][$key] == "image/jpeg")
+            || ($_FILES["file"]["type"][$key] == "image/jpg")
+            || ($_FILES["file"]["type"][$key] == "image/pjpeg")
+            || ($_FILES["file"]["type"][$key] == "image/x-png")
+            || ($_FILES["file"]["type"][$key] == "image/png"))
+            && ($_FILES["file"]["size"][$key] < 20000000)
+            && $error == UPLOAD_ERR_OK
+            && in_array($extension, $allowedExts)){
+                if ($_FILES["file"]["error"][$key] > 0){
+                    echo "Error: " . $_FILES["file"]["error"][$key] . "<br>";
+                }
+                else{
+                    echo "Upload: " . $_FILES["file"]["name"][$key] . "<br>";
+                    echo "Type: " . $_FILES["file"]["type"][$key] . "<br>";
+                    echo "Size: " . ($_FILES["file"]["size"][$key] / 1024) . " kB<br>";
+
+                    if (file_exists("img/designPattern/" . $_FILES["file"]["name"][$key])){
+                        echo $_FILES["file"]["name"][$key] . " already exists. ";
+                        Image::addImage($dp, "/site/img/designPattern/" . $_FILES["file"]["name"][$key], 'NULL');//todo description
+                    }
+                    else{
+                        move_uploaded_file($_FILES["file"]["tmp_name"][$key], "../img/designPattern/" . $_FILES["file"]["name"][$key]);
+                        echo "Stored in: " . "img/designPattern/" . $_FILES["file"]["name"][$key];
+                        Image::addImage($dp, "/site/img/designPattern/" . $_FILES["file"]["name"][$key], 'NULL');//todo description
+                    }
+                }
+            }
+            else{
+                echo "Invalid file";
+            }
+        }}
         
         header('Location: /site/view/details.php?type=DesignPattern&id=' . $dp->getID());
     }

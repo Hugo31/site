@@ -10,12 +10,11 @@
 
         $cf = new Conflict(-1, $_POST['namee'], $session->login, date("Y-m-d H:i:s"), $_POST['description'], $_POST['typee']);
         
-        $bdd = Database::getConnection();
         Conflict::addDB($cf);
-        
+
         $cf->addLink($_POST['DP1']);
         $cf->addLink($_POST['selectDP2']);
-        
+
         header('Location: /site/view/details.php?type=Conflict&id=' . $cf->getID());
     }
     else{

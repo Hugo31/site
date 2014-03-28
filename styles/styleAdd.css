@@ -19,7 +19,8 @@
 }
 
 
-#addDP_form input.addDP {
+
+input[type="button"]:enabled, input[type="submit"]:enabled { 
     height:24px;
     border-radius: 4px;
     padding: 0px 7px;
@@ -32,28 +33,20 @@
     margin-left:10px;
 }
 
-#addDP_form input.addDP:hover {
-    background-color: #ff6100;
-    -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
-}
-
-#addConflict_form input.addConflict {
+input[type="button"]:disabled, input[type="submit"]:disabled {
     height:24px;
     border-radius: 4px;
     padding: 0px 7px;
-    background-color: #FF4C00;
+    background-color: #E6E6E6;
     -webkit-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
     color: #FFF;
-    border: 1px solid #ff6100;
+    border: 1px solid #E6E6E6;
     margin-left:10px;
 }
 
-#addConflict_form input.addConflict:hover {
+input[type="button"]:hover:enabled, input[type="submit"]:hover:enabled {
     background-color: #ff6100;
     -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.5);
@@ -61,50 +54,3 @@
     text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
 }
 
-
-#addProject_form input.addProject {
-    height:24px;
-    border-radius: 4px;
-    padding: 0px 7px;
-    background-color: #FF4C00;
-    -webkit-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-    color: #FFF;
-    border: 1px solid #ff6100;
-    margin-left:10px;
-}
-
-#addProject_form input.addProject:hover {
-    background-color: #ff6100;
-    -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
-}
-
-#addSolution_form input.addSolution {
-    height:24px;
-    border-radius: 4px;
-    padding: 0px 7px;
-    background-color: #FF4C00;
-    -webkit-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 1px 0px 0px rgba(237, 237, 237, 0.37) inset, 0px 1px 0px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-    color: #FFF;
-    border: 1px solid #ff6100;
-    margin-left:10px;
-}
-
-#addSolution_form input.addSolution:hover {
-    background-color: #ff6100;
-    -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
-    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
-}
-
-
-#previewAddDP {
-    pointer-events: none;
-}

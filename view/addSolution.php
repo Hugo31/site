@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDetails.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitAdds.php");
     require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
     $session = Session::getInstance();
 
@@ -18,7 +18,7 @@
     }
     else{   
         if (isset($_GET['id'])){
-            ToolkitDisplay::displayConflictMini($_GET['id']);
+            ToolkitAdds::displayConflictMini($_GET['id']);
         }
     ?>
     <h2> Propose a solution </h2>
@@ -44,7 +44,7 @@
                 <br/>
                 <input id="DP1" type="text" value="<?php echo $_GET['id']?>" name="conflict"  hidden>
                 <center>
-                    <input type="submit" value="Post Solution" class="addSolution" style="margin-left: 15px " onclick="this.form.action='../controller/validAddSolution.php'">
+                    <input type="submit" value="Post Solution" style="margin-left: 15px " onclick="this.form.action='../controller/validAddSolution.php'">
                 </center>
             </form>
         </div>

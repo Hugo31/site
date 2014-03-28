@@ -1,5 +1,5 @@
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDetails.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitAdds.php");
     require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
     $session = Session::getInstance();
 
@@ -12,7 +12,7 @@
     
     function displayDP2(sel){
         
-        document.getElementById('DP2').innerHTML = '<?php ToolkitDisplay::displayDesignPatternMini($_GET['id']) ?>';
+        document.getElementById('DP2').innerHTML = '<?php ToolkitAdds::displayDesignPatternMini($_GET['id']) ?>';
         
         //var value = sel.options[sel.selectedIndex].value;
     }
@@ -27,6 +27,7 @@
         echo '<h3>You must be connected in order to use this page</h3>';
     }
     else{
+        $bdd = Database::getConnection();
     ?>
     
     <h2> Report conflicts </h2>
@@ -35,10 +36,9 @@
             
             <?php
             if (isset($_GET['id'])){
-                ToolkitDisplay::displayDesignPatternMini($_GET['id']);
+                ToolkitAdds::displayDesignPatternMini($_GET['id']);
             }
 
-            $bdd = Database::getConnection();
             $sql = " SELECT idDesignPattern, name FROM DesignPattern WHERE idDesignPattern <> " . $_GET['id'] . ";";
             $result = $bdd->query($sql);
 
@@ -67,13 +67,22 @@
                     </tr>
                     <tr>
                         <td style="width:400px"><label for="typee">Type</label></td>
-                        <td><input id="typee" type="typee" value="/" name="typee" size="40" required placeholder="Type of conflict"></td>
+                        <td><select id="typee" name="typee" required>
+                            <option selected disabled hidden>Choose</option>
+                            <?php
+                                $sql = " SELECT idTypeConflict, name FROM TypeConflict;";
+                                $result = $bdd->query($sql);
+                                foreach($result as $row){
+                                    echo"<option value='$row[0]'>$row[1]</option>";
+                                }
+                            ?>
+                        </select></td>
                     </tr>
                 </table>
                 <br/>
                 <input id="DP1" type="text" value="<?php echo $_GET['id']?>" name="DP1"  hidden>
                 <center>
-                    <input type="submit" value="Add Conflict" class="addConflict" style="margin-left: 15px " onclick="this.form.action='../controller/validAddConflict.php'">
+                    <input type="submit" value="Add Conflict" style="margin-left: 15px " onclick="this.form.action='../controller/validAddConflict.php'">
                 </center>
             </div>
         </form>
