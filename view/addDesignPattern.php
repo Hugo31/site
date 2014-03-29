@@ -151,27 +151,27 @@
                     <table id="tableAddDP">
                         <tr>
                             <td style="width:100px"><label for="namee">Name</label></td>
-                            <td><input style="width:400px" id="namee" type="text" value="" name="namee" size="40" required autofocus placeholder="Name of this Design Pattern"></td>
+                            <td><input style="width:400px" id="namee" type="text" value="" name="namee" size="40" required autofocus placeholder="Design Pattern title"></td>
                         </tr>
                         <tr>
                             <td style="width:100px"><label for="what">What</label></td>
-                            <td><textarea id="what" name="what" style="width:400px;height:200px" required placeholder="Resume of this Design Pattern"></textarea></td>
+                            <td><textarea id="what" name="what" style="width:400px;height:200px" required placeholder="Design Pattern description"></textarea></td>
                         </tr>
                         <tr>
                             <td style="width:100px"><label for="wah">When And How</label></td>
-                            <td><textarea id="wah" name="wah" style="width:400px;height:80px" required placeholder="?"></textarea></td>
+                            <td><textarea id="wah" name="wah" style="width:400px;height:80px" required placeholder=""></textarea></td>
                         </tr>
                         <tr>
                             <td style="width:100px"><label for="layout">Layout</label></td>
-                            <td><textarea id="layout" name="layout" style="width:400px;height:80px" required placeholder="?"></textarea></td>
+                            <td><textarea id="layout" name="layout" style="width:400px;height:80px" required placeholder=""></textarea></td>
                         </tr>
                         <tr>
                             <td style="width:100px"><label for="copy">Copy</label></td>
-                            <td><textarea id="copy" name="copy" style="width:400px;height:80px" required placeholder="?"></textarea></td>
+                            <td><textarea id="copy" name="copy" style="width:400px;height:80px" required placeholder=""></textarea></td>
                         </tr>
                         <tr>
                             <td style="width:100px"><label for="impl">Implementation</label></td>
-                            <td><textarea id="impl" name="impl" style="width:400px;height:80px" required placeholder="?"></textarea></td>
+                            <td><textarea id="impl" name="impl" style="width:400px;height:80px" required placeholder=""></textarea></td>
                         </tr>                    
                         <tr>
                             <td style="width:100px"><label>Target</label></td>

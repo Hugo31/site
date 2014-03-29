@@ -8,17 +8,23 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
 class ToolKitAdds {
     
     public static function displayDesignPatternMini($id){
-        echo '<div id="dDP">';
-        echo 'DP number '.$id;
-        echo ' | Last update: date | Author: autor | Used: 0 times ';
+        echo '<div id="miniDP">';
+        
+        $donnees = Database::getOneData('SELECT * FROM DesignPattern WHERE idDesignPattern = '.$id.'');
+        
+        echo $donnees['name'];
+        echo ' | '.$donnees['what'];
         echo '</div>';
 
     }
     
     public static function displayConflictMini($id){
-        echo '<div id="dDP">';
-        echo 'Conflict number '.$id;
-        echo ' | Date of reporting: date | Author: autor | Used: 0 times | 0 DP in conflict';
+        echo '<div id="miniConflict">';
+        
+        $donnees = Database::getOneData('SELECT * FROM Conflict WHERE idConflict = '.$id.'');
+        
+        echo $donnees['name'];
+        echo ' | '.$donnees['description'];
         echo '</div>';
 
     }
