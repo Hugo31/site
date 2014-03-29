@@ -9,47 +9,38 @@
 <section id="contenu">
     <h1> About us </h1>
     <h2>Context</h2>
-    Dans le cadre du Master 1 Informatique à l'Université Paul Sabatier, un groupe
-    de 4 étudiants a été formé afin de réaliser un projet informatique sur 4 mois, de janvier 2014 à avril 2014. 
-    A l'initiative de Mr Marco Winckler, ce projet porte sur la gestion communautaire de design patterns. 
-    Ces étudiants ont réalisé un projet complet avec une phase d’analyse et d’écoute du besoin, suivie 
-    d’une phase de création, de développement et d'intégration pour arriver au site qui vous est présenté aujourd'hui.
+    As part of the Master 1 Computer Science at Paul Sabatier University, a group of four students was formed to achieve an IT project 
+    in 4 months, from January 2014 to April 2014. At the initiative of Mr Marco Winckler, this project is based on community management 
+    of design patterns. In order to achieve this project these students went through an analysis of client needs, followed by a phase of design, 
+    development and integration to create the site brought to you today.
     <h2>Our staff</h2>
     <h3>> Loïc FAURE</h3>
     // faire sa présentation
     <br/><br/>
     <div id="zonegrise">
         <img src="/site/img/vrac/guillemet2.png" width="30px" style="padding-right:5px;">
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site 
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site 
+        Da right PAC in a da right place
     </div>
     <h3>> Hugo GUIGNARD</h3>
-    // faire sa présentation
-    <br/><br/>
     <div id="zonegrise">
         <img src="/site/img/vrac/guillemet2.png" width="30px" style="padding-right:5px;">
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site 
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site 
+        Legends say that Hugo was raised by wolves in the mystical mountains of Saint-Clar. Model of wisdom, 
+        goodness and awesomeness, Hugo is considered by his peers as a superior spirit who appeared to 
+        help the human race to overcome its challenges.
     </div>
     <h3>> Laurine MARMISSE</h3>
     // faire sa présentation
     <br/><br/>
     <div id="zonegrise">
         <img src="/site/img/vrac/guillemet2.png" width="30px" style="padding-right:5px;">
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site 
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site 
+        mon plat stp
     </div>
     <h3>> Loïc VIGUIER</h3>
     // faire sa présentation
     <br/><br/>
     <div id="zonegrise">
         <img src="/site/img/vrac/guillemet2.png" width="30px" style="padding-right:5px;">
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site 
-        Donner son avis sur ce site Donner son avis sur ce site Donner son avis sur ce site 
+        MF3
     </div>
 </section>
 
