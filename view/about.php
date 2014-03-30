@@ -35,7 +35,8 @@
     <div id="zonegrise">
         <img src="/site/img/vrac/guillemet2.png" width="30px" style="padding-right:5px;">
         mon plat stp<br>
-        ofet, what else?
+        ofet, what else?<br>
+        Laurine c'est la plus gentille des membres de l'équipe, en plus elle est juste trop sex :P
     </div>
     <h3>> Loïc VIGUIER</h3>
     // faire sa présentation
