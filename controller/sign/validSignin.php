@@ -17,12 +17,10 @@ if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#i", $login)){
 
 $donnees = Database::getOneData("SELECT typeUser FROM User WHERE login = \"" . $login . "\";");
 if ($donnees['typeUser'] == "Admin"){
-     // Ajout du login dans la variable de session 'admin'
     $session->admin = $login;
-} else {
-    // Ajout du login dans la variable de session 'login'
-    $session->login =  $login;
-}
+} 
+
+$session->login = $login;
 
 // On retourne a l'index
 header('Location: /site/index.php');

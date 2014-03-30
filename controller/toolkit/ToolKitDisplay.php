@@ -342,22 +342,6 @@ class ToolKitDisplay {
         $rqtConflict->closeCursor();
     }
     
-    public static function displayDesignPatternMini($id){
-        echo '<div id="dDP">';
-        echo 'DP number '.$id;
-        echo ' | Last update: date | Author: autor | Used: 0 times ';
-        echo '</div>';
-
-    }
-    
-    public static function displayConflictMini($id){
-        echo '<div id="dDP">';
-        echo 'Conflict number '.$id;
-        echo ' | Date of reporting: date | Author: autor | Used: 0 times | 0 DP in conflict';
-        echo '</div>';
-
-    }
-    
     public static function cartLink($id, $selector, $destroyWhenRemove){
         $session = Session::getInstance();
         $removeIt = "";

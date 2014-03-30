@@ -41,11 +41,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
                     <a href="/site/index.php"><img src="/site/img/header/logo_modif_gris.png" name="image" style="height:80px"
                                                    onmouseover="image.src = '/site/img/header/logo_modif_gris_souris.png'" onmouseout="image.src = '/site/img/header/logo_modif_gris.png'"></a>
                     <div id="navigation">
-                        <?php if (isset($session->login) || isset($session->admin)) { ?>
+                        <?php if (isset($session->login)) { ?>
                             <div id="headerlogout" style="height: 50px">
-                                <img src = "/site/img/vrac/defaultlogo.png" alt = "image profil" style = "height: 35px; width: 35px">
-                                <a href = "/site/view/profil.php" style = "text-decoration: none"><?php echo $session->login; echo $session->admin ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="/site/view/projects.php" style="text-decoration: none">See my projects</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href = "/site/view/profil.php" style = "text-decoration: none">
+                                    <img src = "/site/img/user/user_gris.png" name="profil" style = "width:25px;vertical-align:top"
+                                     onmouseover="profil.src = '/site/img/user/user_blanc.png'" onmouseout="profil.src = '/site/img/user/user_gris.png'">
+                                    <?php echo $session->login; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="/site/view/contributions.php" style="text-decoration: none">My contributions</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="/site/view/projects.php?id=<?php echo $session->login; ?>" style="text-decoration: none">My projects</a>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="/site/controller/sign/logout.php" style="text-decoration:none">
                                     <button>LOG OUT</button>
                                 </a>
@@ -75,7 +78,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
                         if (isset($session->admin)) {
                             ?>
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="">Users</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="/site/view/manageUsers.php">Users</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="">Design Patterns</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="">Conflicts</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="">Solutions</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -86,6 +89,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/news.php">News</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/currentDP.php">My current Design Pattern (<span class="currentDP_numberIn"><?php ToolKitSearch::getNbCurrentCart($session) ?></span>)</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="/site/view/about.php">About us</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/contact.php">Contact</a>
 <?php } ?>
                         </nav>

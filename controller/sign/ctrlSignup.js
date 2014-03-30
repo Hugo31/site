@@ -206,9 +206,9 @@ function verifSimilarity(champ1, champ2) {
     } else {
         champ1.css("backgroundColor", "#FBA");
         champ2.css("backgroundColor", "#FBA");
-        champErreur.style.padding = '0px 0px 0px 122px';
+        champErreur.style.padding = '0px 0px 0px 146px';
         champErreur.style.color = '#FBA';
-        champErreur.innerHTML = 'Password must not contain special characters</br>';
+        champErreur.innerHTML = 'Password is too short or contain special characters</br>';
         return false;
     }
 }
