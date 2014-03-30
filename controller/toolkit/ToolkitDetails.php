@@ -158,7 +158,11 @@ class ToolkitDetails {
         if($project != false){
             echo "<article>";
             echo "<h1>".$project->getName()."</h1>";
-            
+            if($session->login == $project->getLogin()){
+                echo "<a>Re-open that project</a>";
+                
+            }
+            echo "<a>Import that project</a>";
             echo "<article id=\"h3Details\">";
             echo "<table>";
             echo "<tr><td><h3>Date:</h3></td><td>".$project->getDate()."</td></tr>";

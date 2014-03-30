@@ -13,17 +13,22 @@
     <?php
     $reponse = false;
     $req = "";
+    
     if(isset($session->login)){
         $reqP = "SELECT idProject, name, description FROM Project WHERE login = \"".$session->login."\" AND current = 1;";
         $data = Database::getOneData($reqP);
-        if(isset($session->currentDP)){
-            $proj = Project::getDB($data['idProject']);
-            for ($i = 0; $i < count($session->currentDP); $i ++){
-                $proj->addLink(new DesignPattern($session->currentDP[$i], "", "", "", "", "", ""));
-            }
-            unset($session->currentDP);
-        }
+        
         echo "<h1>".$data['name']."</h1>";
+        if(count($session->currentDP)){
+            echo "Your current cart when you weren't connected contains some design patterns. What do you want to do ?";
+            echo "Be aware that only your connected cart will be saved when you will create a new project.";
+            echo "<form action=\"/site/controller/mergeProject.php\" method=\"post\">";
+            echo "<input type=\"radio\" name=\"merge\" value=\"mergeAll\">Merge current cart into your connected cart<br>";
+            echo "<input type=\"radio\" name=\"merge\" value=\"replaceCurrent\">Replace your current cart with your connected cart<br>";
+            echo "<input type=\"radio\" name=\"merge\" value=\"replaceConnected\">Replace your connected cart with your current cart<br>";
+            echo "<input type=\"submit\" name=\"submit\" value=\"Execute\"/>";
+            echo"</form>";
+        }
         echo "<form action=\"/site/controller/saveProject.php\" method=\"post\">";
         echo "<label>Name : </label><input name=\"name_project\" type=\"text\"/><br/>";
         echo "<label>Description : </label><input name=\"desc_project\" type=\"textarea\"/><br/>";
@@ -32,25 +37,26 @@
         echo "<article><h2>Description: </h2>".$data['description']."<br/><br/></article>";
         $req = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern proj "
                 ."WHERE dp.idDesignPattern = proj.idDesignPattern AND proj.idProject = ".$data['idProject'].";";
-    }
-    else{
-        if(count($session->currentDP) > 0){
-            echo "<h1> My current Design Pattern </h1>";
-            $req = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp WHERE ";
-            for ($i = 0; $i < count($session->currentDP) - 1; $i ++){
-                $req .= "dp.idDesignPattern = ".$session->currentDP[$i]." OR ";
-                
-            }
-            $req .= "dp.idDesignPattern = ".$session->currentDP[$i].";";  
-        }
-        else{
-            echo "<h1> My current Design Pattern </h1> No design pattern selected.";
+        $reponse = Database::getAllData($req);
+        if($reponse != false){
+            ToolKitDisplay::displayDesignPatternBox($reponse, true);
         }
     }
-    $reponse = Database::getAllData($req);
-    if($reponse != false){
-        ToolKitDisplay::displayDesignPatternBox($reponse, true);
+    
+    if(count($session->currentDP) > 0){
+        echo "<h1> My current Design Pattern </h1>";
+        $req = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp WHERE ";
+        for ($i = 0; $i < count($session->currentDP) - 1; $i ++){
+            $req .= "dp.idDesignPattern = ".$session->currentDP[$i]." OR ";
+
+        }
+        $req .= "dp.idDesignPattern = ".$session->currentDP[$i].";"; 
+        $reponse = Database::getAllData($req);
+        if($reponse != false){
+            ToolKitDisplay::displayDesignPatternBox($reponse, true);
+        }
     }
+    
     
     
     ?>
