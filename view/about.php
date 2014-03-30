@@ -34,7 +34,8 @@
     <br/><br/>
     <div id="zonegrise">
         <img src="/site/img/vrac/guillemet2.png" width="30px" style="padding-right:5px;">
-        mon plat stp
+        mon plat stp<br>
+        ofet, what else?
     </div>
     <h3>> Loïc VIGUIER</h3>
     // faire sa présentation
