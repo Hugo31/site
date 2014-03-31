@@ -8,8 +8,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/User.php");
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/header.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 
-$pwdNotification;
-$usrNotification;
+$pwdNotification = "";
+$usrNotification = "";
 
 function verifEmail($email) {
 
