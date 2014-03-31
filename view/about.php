@@ -20,6 +20,7 @@
     <div id="zonegrise">
         <img src="/site/img/vrac/guillemet2.png" width="30px" style="padding-right:5px;">
         Da right PAC in a da right place
+        <img src="/site/img/vrac/surprisemotherfucker.png" width="150px" > 
     </div>
     <h3>> Hugo GUIGNARD</h3>
     <div id="zonegrise">
@@ -33,7 +34,9 @@
     <br/><br/>
     <div id="zonegrise">
         <img src="/site/img/vrac/guillemet2.png" width="30px" style="padding-right:5px;">
-        mon plat stp
+        mon plat stp<br>
+        ofet, what else?<br>
+        Laurine c'est la plus gentille des membres de l'équipe, en plus elle est juste trop sex :P
     </div>
     <h3>> Loïc VIGUIER</h3>
     // faire sa présentation
