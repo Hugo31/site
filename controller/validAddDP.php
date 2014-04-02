@@ -50,6 +50,7 @@
         }}
         
         //upload images
+        $imagesCount = 0;
         $allowedExts = array("gif", "jpeg", "jpg", "png");
         if ($_FILES['file']['name'] != ""){foreach ($_FILES["file"]["error"] as $key => $error) {
             $temp = explode(".", $_FILES["file"]["name"][$key]);
@@ -63,27 +64,11 @@
             && ($_FILES["file"]["size"][$key] < 20000000)
             && $error == UPLOAD_ERR_OK
             && in_array($extension, $allowedExts)){
-                if ($_FILES["file"]["error"][$key] > 0){
-                    echo "Error: " . $_FILES["file"]["error"][$key] . "<br>";
+                if ($_FILES["file"]["error"][$key] == 0){
+                    move_uploaded_file($_FILES["file"]["tmp_name"][$key], "../img/designPattern/imgDP" . $dp->getID() . "NB" . $imagesCount . "." . pathinfo($_FILES["file"]["name"][$key], PATHINFO_EXTENSION));
+                    Image::addImage($dp, "/site/img/designPattern/imgDP" . $dp->getID() . "NB" . $imagesCount . "." . pathinfo($_FILES["file"]["name"][$key], PATHINFO_EXTENSION), 'NULL');//todo description
+                    $imagesCount+=1;
                 }
-                else{
-                    echo "Upload: " . $_FILES["file"]["name"][$key] . "<br>";
-                    echo "Type: " . $_FILES["file"]["type"][$key] . "<br>";
-                    echo "Size: " . ($_FILES["file"]["size"][$key] / 1024) . " kB<br>";
-
-                    if (file_exists("img/designPattern/" . $_FILES["file"]["name"][$key])){
-                        echo $_FILES["file"]["name"][$key] . " already exists. ";
-                        Image::addImage($dp, "/site/img/designPattern/" . $_FILES["file"]["name"][$key], 'NULL');//todo description
-                    }
-                    else{
-                        move_uploaded_file($_FILES["file"]["tmp_name"][$key], "../img/designPattern/" . $_FILES["file"]["name"][$key]);
-                        echo "Stored in: " . "img/designPattern/" . $_FILES["file"]["name"][$key];
-                        Image::addImage($dp, "/site/img/designPattern/" . $_FILES["file"]["name"][$key], 'NULL');//todo description
-                    }
-                }
-            }
-            else{
-                echo "Invalid file";
             }
         }}
         

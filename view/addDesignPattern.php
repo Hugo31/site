@@ -93,7 +93,7 @@
         }
     
         if (images !== MAXIMAGES) {
-            document.getElementById('tableImages').innerHTML += '<tr><td style="width:100px"><label for="imageup">Image upload</label></td><td><input type="file" name="file[]"></td></tr>';            
+            document.getElementById('tableImages').innerHTML += '<tr><td style="width:100px"><label for="imageup">Image upload</label></td><td><input type="file" accept="image/*" name="file[]"></td></tr>';            
             images += 1;
             increasesizediv('main', 30);
             if (images === MAXIMAGES) {
@@ -188,9 +188,9 @@
                     
                     <br/><h3> Optional informations </h3>
                     <h4>Images & Sources</h4>
-                    <input type="button" onclick="addimagelink()" id="addImageLink" name="addImageLink" value="Add image link" />
-                    <input type="button" onclick="addimageupload()" id="addImageUpload" name="addImageUpload" value="Upload image" />
-                    <input type="button" onclick="addsources()" id="addSource" name="addSource" value="Add source" />
+                    <input class="add" type="button" onclick="addimagelink()" id="addImageLink" name="addImageLink" value="Add image link" />
+                    <input class="add" type="button" onclick="addimageupload()" id="addImageUpload" name="addImageUpload" value="Upload image" />
+                    <input class="add" type="button" onclick="addsources()" id="addSource" name="addSource" value="Add source" />
                     
                     
                     <table id="tableImages"></table>
@@ -207,7 +207,7 @@
                         
                     <br/>
                     <center>
-                        <input type="submit" value="Add Design Pattern" style="margin-left: 15px " onclick="this.form.action='../controller/validAddDP.php'">
+                        <input type="submit" class="add" value="Add Design Pattern" style="margin-left: 15px " onclick="this.form.action='../controller/validAddDP.php'">
                     </center>
                 </form>
             </div>

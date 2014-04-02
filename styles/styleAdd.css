@@ -18,7 +18,7 @@
     padding : 10px;   
 }
 
-input[type="button"]:enabled, input[type="submit"]:enabled { 
+input[type="button"].add:enabled, input[type="submit"].add:enabled { 
     height:44px;
     border-radius: 4px;
     padding: 0px 7px;
@@ -31,7 +31,7 @@ input[type="button"]:enabled, input[type="submit"]:enabled {
     margin-left:10px;
 }
 
-input[type="button"]:disabled, input[type="submit"]:disabled {
+input[type="button"].add:disabled, input[type="submit"].add:disabled {
     height:44px;
     border-radius: 4px;
     padding: 0px 7px;
@@ -44,7 +44,7 @@ input[type="button"]:disabled, input[type="submit"]:disabled {
     margin-left:10px;
 }
 
-input[type="button"]:hover:enabled, input[type="submit"]:hover:enabled {
+input[type="button"].add:hover:enabled, input[type="submit"].add:hover:enabled {
     background-color: #ff6100;
     -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.5);

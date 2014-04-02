@@ -44,7 +44,7 @@
                 <br/>
                 <input id="DP1" type="text" value="<?php echo $_GET['id']?>" name="conflict"  hidden>
                 <center>
-                    <input type="submit" value="Post Solution" style="margin-left: 15px " onclick="this.form.action='../controller/validAddSolution.php'">
+                    <input type="submit" class="add" value="Post Solution" style="margin-left: 15px " onclick="this.form.action='../controller/validAddSolution.php'">
                 </center>
             </form>
         </div>
