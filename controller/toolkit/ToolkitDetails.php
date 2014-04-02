@@ -162,7 +162,7 @@ class ToolkitDetails {
                 echo "<a>Re-open that project</a>";
                 
             }
-            echo "<a>Import that project</a>";
+            echo "<a href=\"/site/controller/exportXML.php?idProject=".$id."\">Import that project</a>";
             echo "<article id=\"h3Details\">";
             echo "<table>";
             echo "<tr><td><h3>Date:</h3></td><td>".$project->getDate()."</td></tr>";
