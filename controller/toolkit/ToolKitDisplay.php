@@ -69,12 +69,12 @@ class ToolKitDisplay {
                 echo "<header id='headerBox'>";
                 echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\"><h2>".$row['name']."</h2></a>";
                 $dateConflict = new DateTime($row['date']);
-                echo "<br/><div id=\"lienDescr\">Date of reporting: ".$dateConflict->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/AddSolution.php?id=".$row['idConflict']."\">Propose a solution</a></div>";
+                echo "<br/><div id=\"lienDescr\">Date of reporting: ".$dateConflict->format('d/m/Y')." | Author: ".$row['login']." | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/AddSolution.php?id=".$row['idConflict']."\">Propose a solution</a></div>";
                 echo "</header>";
                 
                 $data = Database::getOneData("SELECT COUNT(*) as nb FROM Solution WHERE idconflict = ".$row['idConflict']);
                 echo "<aside id='asideBox'>";
-                echo "<div id=\"otherInfo2\"><a href=\"\">".$data['nb']." solution(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
+                echo "<div id=\"otherInfo2\">".$data['nb']." solution(s)<br/>".$row['nbComments']." com(s)</div>";
                 echo "</aside>";
                 echo "</div>";
                 
@@ -116,12 +116,12 @@ class ToolKitDisplay {
                 }
                 $reqPlatform->closeCursor();
                 $dateDP = new DateTime($row['date']);
-                echo "<br/><div id=\"lienDescr\">Last update: ".$dateDP->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> | Used: ".$row['nbUsage']." times ";
+                echo "<br/><div id=\"lienDescr\">Last update: ".$dateDP->format('d/m/Y')." | Author: ".$row['login']." | Used: ".$row['nbUsage']." times ";
                 echo "<br/>".ToolkitDisplay::cartLink($row['idDesignPattern'], "this", $destroyWhenRemove)." | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$row['idDesignPattern']."\">Report a conflict</a></div>";
                 echo "</header>";
                 echo "<aside id='asideBox'>";
                 echo "<div id=\"note\">".$row['rate']."/5</div>";
-                echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rate(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
+                echo "<div id=\"otherInfo\">".$row['nbRates']." rate(s)<br/>".$row['nbComments']." com(s)</div>";
                 echo "</aside>";
                 echo "</div>";
                 echo "<article id=\"articleBox\">".$row['what']."</article>";
@@ -145,12 +145,12 @@ class ToolKitDisplay {
                 echo "<header id='headerBox'>";
                 echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\"><h2>".$row['name']."</h2></a>";
                 $dateS = new DateTime($row['date']);
-                echo "<br/><div id=\"lienDescr\">Date of last update: ".$dateS->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> </div>";
+                echo "<br/><div id=\"lienDescr\">Date of last update: ".$dateS->format('d/m/Y')." | Author: ".$row['login']." </div>";
                 echo "</header>";
                 
                 echo "<aside id='asideBox'>";
                 echo "<div id=\"note\">".$row['rate']."/5</div>";
-                echo "<div id=\"otherInfo\"><a href=\"\">".$row['nbRates']." rate(s)</a><br/><a href=\"\">".$row['nbComments']." com(s)</a></div>";
+                echo "<div id=\"otherInfo\">".$row['nbRates']." rate(s)<br/>".$row['nbComments']." com(s)</div>";
                 echo "</aside>";
                 echo "</div>";
                 
@@ -182,7 +182,7 @@ class ToolKitDisplay {
                 echo "<header id='headerBox'>";
                 echo "<a href=\"details.php?type=Project&id=".$row['idProject']."\"><h2>".$row['name']."</h2></a>";
                 $dateS = new DateTime($row['date']);
-                echo "<br/><div id=\"lienDescr\">Date of creation: ".$dateS->format('d/m/Y')." | Author: <a href=\"\">".$row['login']."</a> </div>";
+                echo "<br/><div id=\"lienDescr\">Date of creation: ".$dateS->format('d/m/Y')." | Author: ".$row['login']." </div>";
                 echo "</header>";
 
                 $data = Database::getOneData("SELECT COUNT(*) as nb FROM ProjectDesignPattern pdp WHERE pdp.idProject=".$row['idProject'].";");
@@ -229,7 +229,13 @@ class ToolKitDisplay {
     public static function displayText($name, $data){
         echo "<div id=\"textDisplay\">";
         echo "<h3>".$name."</h3>";
-        echo "<div class=\"retrait\">".$data."</div>";
+        echo "<div class=\"retrait\">";
+        if ($data != "") {
+            echo $data;
+        } else {
+            echo "No data";
+        }
+        echo "</div>";
         echo "</div><br/>";
     }
     
@@ -268,7 +274,7 @@ class ToolKitDisplay {
             
         }
         else{
-            echo "<center>You need to be connected</center>";
+            echo "<center>For rating, you need to be connected.</center>";
         }
         
         //Jquery right here !!
@@ -363,13 +369,13 @@ class ToolKitDisplay {
         }
         else{
             if(!isset($session->currentDP)){
-                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
+                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\"><h3>Add to my current Design Pattern</h3></a>";
             }
             if(!in_array($id, $session->currentDP)){
-                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
+                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\"><h3>Add to my current Design Pattern</h3></a>";
             }
             else{
-                $fct = "<img src=\"/site/img/vrac/croix.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return removeFromCart(".$id.", $(this), ".$removeIt.");\">Remove my current Design Pattern</a>";
+                $fct = "<img src=\"/site/img/vrac/croix.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return removeFromCart(".$id.", $(this), ".$removeIt.");\"><h3>Remove my current Design Pattern</h3></a>";
                 return $fct;
             }
         }
