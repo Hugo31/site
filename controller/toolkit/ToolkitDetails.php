@@ -62,7 +62,7 @@ class ToolkitDetails {
             echo "<div id=\"contenuDroitDP\">";
             ToolkitDisplay::displayRate($id, $dp->getNbRates(), $dp->getRate(), "DesignPattern", $session);
             echo "</div>";
-            echo "</div>";
+            echo "</div><br/>";
             echo "<div id=\"addProposeDP\">";
             echo "".ToolkitDisplay::cartLink($id, "this", false)."";
             echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$id."\"><h3>Report a conflict</h3></a>";   
@@ -130,20 +130,21 @@ class ToolkitDetails {
             
             ToolKitDisplay::displayText("Comment : ", $solution->getComment());
             ToolKitDisplay::displayText("Code for solution : ", $solution->getCodeSolution());                       
-            echo "<div id=\"textDisplay\">";
             $reponse = Database::getAllData("SELECT DISTINCT s.idSolution, s.name, s.date, s.rate, s.nbComments, s.nbRates, s.login FROM Solution s WHERE idConflict = ".$solution->getIDConflict()." AND idSolution != ".$id);
-            echo "<h3>Others Solutions :</h3>";
-            echo "<ul>";
-            foreach($reponse as $row){
-                echo "<li>";
-                echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\">".$row['name']."</a><br/>";
-                echo "Posted the ".$row['date']." by ".$row['login']."<br/>";
-                echo "".$row['nbComments']." coms | ".$row['nbRates']." rates | ".$row['rate']."/5";
-                echo "</li>";
+            if ($reponse->rowCount() != 0) {
+                echo "<div id=\"textDisplay\">";
+                echo "<h3>Others Solutions :</h3>";
+                echo "<ul>";
+                foreach($reponse as $row){
+                    echo "<li>";
+                    echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\">".$row['name']."</a><br/>";
+                    echo "Posted the ".$row['date']." by ".$row['login']."<br/>";
+                    echo "".$row['nbComments']." coms | ".$row['nbRates']." rates | ".$row['rate']."/5";
+                    echo "</li>";
+                }
+                echo "</ul>";
+                echo "</div>";
             }
-            echo "</ul>";
-            echo "</div>";
-            
             ToolkitDisplay::displayCommentsLittles($id, $solution->getNbComments(), "Solution");
 
             echo "</article>";

@@ -8,8 +8,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/User.php");
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/header.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 
-$pwdNotification;
-$usrNotification;
+$pwdNotification = "";
+$usrNotification = "";
 
 function verifEmail($email) {
 
@@ -61,7 +61,7 @@ if (!$session->login) {
 
         if ($pass1 != '' || $pass2 != '') {
             if (verifPassword($pass1, $pass2)) {
-                $user->setPwd($pass1);
+                $user->setPwd(md5($pass1));
                 User::modifyDB($user);
             }
         }
@@ -70,12 +70,15 @@ if (!$session->login) {
         $veriff = verifName($_POST['firstnameedit']);
         $verifl = verifName($_POST['lastnameedit']);
 
-        if ($verife && $veriff && $verifl) {
+        if ($verife && $veriff && $verifl && 
+                ($user->getFirstName() != $_POST['firstnameedit'] ||
+                $user->getLastName() != $_POST['lastnameedit'] ||
+                $user->getMail() != $_POST['emailedit'])) {
             $user->setMail($_POST['emailedit']);
             $user->setFirstName($_POST['firstnameedit']);
             $user->setLastName($_POST['lastnameedit']);
+            $usrNotification = "User informations has been changed";
             User::modifyDB($user);
-            //Redirection nécéssaire
         }
     }
     ?>
