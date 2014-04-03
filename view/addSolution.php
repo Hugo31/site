@@ -7,7 +7,7 @@
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php'); 
     
     if(!isset($session->login)){//si utilisateur non connecté
-        echo '<h3>You must be connected in order to use this page</h3>';
+        echo '<center><h3>You must be connected in order to use this page</h3></center>';
     }
     else{   
         if (!isset($_GET['id'])){
