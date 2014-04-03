@@ -54,12 +54,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             This is your current cart where all previously selected Design Pattern has been save...<br/>
             To add a new Design Pattern you just need to clic on the link "Add to ..." in the description of any Design Pattern.<br/><br/>
             You want to save your project ? Nothing more simple! Creat now an account to save it and make many other!<br/>
-        </div>
+        </div><br/><br/>
         <?php
     }
 
     if (count($session->currentDP) > 0) {
-        echo "<h1> My current Design Pattern </h1>";
         $req = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp WHERE ";
         for ($i = 0; $i < count($session->currentDP) - 1; $i ++) {
             $req .= "dp.idDesignPattern = " . $session->currentDP[$i] . " OR ";

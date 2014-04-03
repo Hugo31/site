@@ -7,11 +7,11 @@
                 <div id ="footercontent">
                     <div style="width:450px;height:230px;float:left;margin-right:4px;padding:0px 10px 0px 10px;">
                         <center><h4>UI Design Pattern Community</h4></center>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This site allows sharing and community management of design patterns. 
-                        It allows you to search on several criteria required design patterns 
-                        to specific needs related to a project. It should also allow comment 
-                        these design patterns, report conflicts between different design patterns 
-                        and provide solutions to these conflicts.
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"UI Design Pattern Community" is a community site 
+                        to create, manage and share interface design pattern with every one. 
+                        Completely free, this site is the result of a project at the 
+                        University of Toulouse III - Paul Sabatier, born from the idea of ​​Marco Winckler and 
+                        carried out in 4 months by 4 students of the IT Master 1.
                     </div>
                     <div style="text-align:left;width:146px;height:230px;float:left;margin-right:4px;padding:0px 10px 0px 10px;">
                         <center><h4>Sitemap</h4></center>

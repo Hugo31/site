@@ -38,7 +38,7 @@
                 <br/>
                 
                 <center>
-                    <input type="submit" value="Create" style="margin-left: 15px " onclick="this.form.action='../controller/validAddProject.php'">
+                    <input type="submit" class="add" value="Create" style="margin-left: 15px " onclick="this.form.action='../controller/validAddProject.php'">
                 </center>
             </form>
         </div>

@@ -114,7 +114,7 @@
                 <br/>
                 <input id="DP1" type="text" value="<?php echo $_GET['id']?>" name="DP1" hidden>
                 <center>
-                    <input id="go" type="submit" title="You need to select at least 2 DP" disabled value="Add Conflict" style="margin-left: 15px " onclick="this.form.action='../controller/validAddConflict.php'">
+                    <input id="go" type="submit" class="add" title="You need to select at least 2 DP" disabled value="Add Conflict" style="margin-left: 15px " onclick="this.form.action='../controller/validAddConflict.php'">
                 </center>
             </div>
         </form>

@@ -369,13 +369,13 @@ class ToolKitDisplay {
         }
         else{
             if(!isset($session->currentDP)){
-                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\"><h3>Add to my current Design Pattern</h3></a>";
+                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
             }
             if(!in_array($id, $session->currentDP)){
-                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\"><h3>Add to my current Design Pattern</h3></a>";
+                return "<img src=\"/site/img/vrac/add.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return addToCart(".$id.", $(this), ".$removeIt.");\">Add to my current Design Pattern</a>";
             }
             else{
-                $fct = "<img src=\"/site/img/vrac/croix.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return removeFromCart(".$id.", $(this), ".$removeIt.");\"><h3>Remove my current Design Pattern</h3></a>";
+                $fct = "<img src=\"/site/img/vrac/croix.png\" style=\"vertical-align:bottom;width:20px\"/> <a href=\"#\" onClick=\"return removeFromCart(".$id.", $(this), ".$removeIt.");\">Remove my current Design Pattern</a>";
                 return $fct;
             }
         }
