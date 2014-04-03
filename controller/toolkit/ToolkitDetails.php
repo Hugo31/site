@@ -32,7 +32,7 @@ class ToolkitDetails {
             echo "<h2 id=\"h2CommentsConflict\">Solutions</h2><hr/>";
             ToolKitDisplay::displayGenericBox("Solution", Database::getAllData("SELECT DISTINCT s.idSolution, s.name, s.comment, s.rate, s.nbRates, s.nbComments, s.date, s.login FROM Solution s WHERE s.idConflict = ".$conflict->getID().";"));
             
-            ToolkitDisplay::displayCommentsLittles($id, $conflict->getNbComments(), "Conflict");
+            ToolkitDisplay::displayCommentsLittles($id, $conflict->getNbComments(), "Conflict", $session);
             
             echo "</article>";
 
@@ -75,7 +75,7 @@ class ToolkitDetails {
             ToolKitDisplay::displayText("Implementation : ", $dp->getImplementation());      
             
             ToolkitDisplayDesignPattern::displayImages($id);
-            ToolkitDisplay::displayCommentsLittles($id, $dp->getNbComments(), "DesignPattern");
+            ToolkitDisplay::displayCommentsLittles($id, $dp->getNbComments(), "DesignPattern", $session);
             echo "</article>";
             
             echo "</div>";
@@ -145,7 +145,7 @@ class ToolkitDetails {
                 echo "</ul>";
                 echo "</div>";
             }
-            ToolkitDisplay::displayCommentsLittles($id, $solution->getNbComments(), "Solution");
+            ToolkitDisplay::displayCommentsLittles($id, $solution->getNbComments(), "Solution", $session);
 
             echo "</article>";
         }

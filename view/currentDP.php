@@ -37,7 +37,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         }
         echo "<form action=\"/site/controller/saveProject.php\" method=\"post\">";
         echo "<label>Name : </label><input name=\"name_project\" type=\"text\"/><br/>";
-        echo "<label>Description : </label><input name=\"desc_project\" type=\"textarea\"/><br/>";
+        echo "<label>Description : </label><textarea name=\"desc_project\"></textarea><br/>";
         echo "<input type=\"submit\" value=\"Save it\"/>";
         echo"</form>";
         echo "<article><h2>Description: </h2>" . $data['description'] . "<br/><br/></article>";

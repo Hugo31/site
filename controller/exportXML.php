@@ -26,7 +26,25 @@ if(isset($_GET['idProject'])){
         fputs($file, "\t\t\t<copy>".$dp->getCopy()."</copy>\n");
         fputs($file, "\t\t\t<implementation>".$dp->getImplementation()."</implementation>\n");
         fputs($file, "\t\t\t<descriptionImage>".$dp->getDescriptionImage()."</descriptionImage>\n");
-        
+        fputs($file, "\t\t\t<Images>\n");
+        $images = Database::getAllData("SELECT * FROM ImageDesignPattern WHERE idDesignPattern = ".$dp->getID());
+        foreach($images as $rowI){
+            fputs($file, "\t\t\t\t<Image>\n");
+            fputs($file, "\t\t\t\t\t<description>".$rowI['description']."</description>\n");
+            $element = pathinfo($rowI['link']);
+            fputs($file, "\t\t\t\t\t<name>".$element['filename'].".".$element['extension']."</name>\n");
+            fputs($file, "\t\t\t\t</Image>\n");
+        }
+        fputs($file, "\t\t\t</Images>\n");
+        fputs($file, "\t\t\t<Sources>\n");
+        $sources = Database::getAllData("SELECT * FROM Source WHERE idDesignPattern = ".$dp->getID());
+        foreach($sources as $rowS){
+            fputs($file, "\t\t\t\t<Source>\n");
+            fputs($file, "\t\t\t\t\t<author>".$rowS['author']."</author>\n");
+            fputs($file, "\t\t\t\t\t<link>".$rowS['link']."</link>\n");
+            fputs($file, "\t\t\t\t</Source>\n");
+        }
+        fputs($file, "\t\t\t</Sources>\n");
         fputs($file, "\t\t</DesignPattern>\n");
     }
     fputs($file, "\t</DesignsPatterns>\n");

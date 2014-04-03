@@ -120,7 +120,7 @@ class ToolKitDisplay {
                 echo "<br/>".ToolkitDisplay::cartLink($row['idDesignPattern'], "this", $destroyWhenRemove)." | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$row['idDesignPattern']."\">Report a conflict</a></div>";
                 echo "</header>";
                 echo "<aside id='asideBox'>";
-                echo "<div id=\"note\">".$row['rate']."/5</div>";
+                echo "<div id=\"note\">".round($row['rate'], 1)."/5</div>";
                 echo "<div id=\"otherInfo\">".$row['nbRates']." rate(s)<br/>".$row['nbComments']." com(s)</div>";
                 echo "</aside>";
                 echo "</div>";
@@ -242,7 +242,7 @@ class ToolKitDisplay {
     public static function displayRate($id, $nbRates, $rate, $tableAsk, $session){
         echo "<div id=\"details_rate\">";        
         echo "<div class=\"rating-box\">";
-        echo "<div class=\"score-container\"><span class=\"score\">".$rate."</span><br>".$nbRates." au total</div>";
+        echo "<div class=\"score-container\"><span class=\"score\">".round($rate, 1)."</span><br>".$nbRates." au total</div>";
         echo "<div class=\"rating-histogram\">";
         $five = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 5;")['nb'];
         $four = Database::getOneData("SELECT COUNT(*) as nb FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND note = 4;")['nb'];
@@ -290,7 +290,7 @@ class ToolKitDisplay {
         echo "</div>";
     }
     
-    public static function displayCommentsLittles($id, $nbComments, $tableAsk){
+    public static function displayCommentsLittles($id, $nbComments, $tableAsk, $session){
         $reponse = Database::getAllData("SELECT * FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id." ORDER BY DATE LIMIT 0, 3");
         echo "<article>";
         echo "<br/><h2 id=\"h2CommentsConflict\">Comments (".$nbComments.") : </h2><hr/>";
@@ -310,8 +310,22 @@ class ToolKitDisplay {
                 echo "</div>";
             }
         }
+        
+        
         echo "<br/></article>";
+        if(isset($session->login)){
+            ToolKitDisplay::displayAddComment();
+        }
         $reponse->closeCursor();
+    }
+    
+    public static function displayAddComment(){
+        echo "<article id=\"containerAddComment\">";
+        echo "<form action=\"/site/controller/addComment.php\" method=\"POST\">";
+        echo "<textarea name=\"comment\"></textarea>";
+        echo "<input type=\"submit\" value=\"Send\"/>";
+        echo "</form>";
+        echo "</article>";
     }
     
     public static function debutchaine($chaine, $nbmots) { // 1er argument : chaîne - 2e argument : nombre de mots

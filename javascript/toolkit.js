@@ -55,7 +55,7 @@ function addToCart(idDP, selector, removeIt){
     $.post("/site/controller/addCart.php", {idDesignPattern : idDP}, function(data){
         
         if(data == true){
-            alert("You add one design pattern");
+            
             $('.currentDP_numberIn').each(function(e){
                 var numb = parseInt($(this).text(), 10);
                 numb++;
@@ -75,7 +75,6 @@ function addToCart(idDP, selector, removeIt){
 function removeFromCart(idDP, selector, removeIt){
     $.post("/site/controller/removeCart.php", {idDesignPattern : idDP}, function(data){
         if(data == true){
-            alert("You remove one design pattern");
             $('.currentDP_numberIn').each(function(e){
                 var numb = parseInt($(this).text(), 10);
                 numb--;
