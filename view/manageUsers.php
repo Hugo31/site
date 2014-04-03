@@ -10,7 +10,9 @@
 <section id="contenu">
     
     <?php
-    if(isset($session->admin)){//si utilisateur non connecté
+    if(!isset($session->admin)){ //si utilisateur non connecté
+        echo '<center><h3>You must be connected in order to use this page</h3></center>';
+    } else {
     ?>
         <h1> Manage users </h1>
         <div id="manageUsers">
@@ -18,9 +20,7 @@
         | <img src="/site/img/vrac/mail.png" style="vertical-align:middle;">  <a href="adminSendEmail.php">Send email to members</a>
         </div>
         <br/>// visualiser tous les utilisateurs => possibilité de les modifier ou supprimer
-    <?php } else{
-        echo "You must be connected.";
-    } ?>
+    <?php }  ?>
 </section>
 
 <?php

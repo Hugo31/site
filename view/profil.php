@@ -12,11 +12,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 <section id="contenu">
 
     <?php
-    if (!$user = User::getDB($session->login)) {
-        echo '<h3>You must be connected in order to use this page</h3>';
+    if (!isset($session->login)) {
+        echo '<center><h3>You must be connected in order to use this page</h3></center>';
     } else {
+        $user = User::getDB($session->login);
         ?>
-
         <h1><?php echo $user->getLogin() ?></h1>
         <div id="profil">
             <h2>Information about me</h2>

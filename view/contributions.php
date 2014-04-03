@@ -13,7 +13,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 
     <?php
     if (!$user = User::getDB($session->login)) {
-        echo "__Wrong User";
+        echo '<center><h3>You must be connected in order to use this page</h3></center>';
     } else {
         ?>
 

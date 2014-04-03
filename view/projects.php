@@ -12,9 +12,8 @@
     <br><br>
     <?php
         if(!isset($session->login)){
-           echo "You aren't logged"; 
-        }
-        else{
+           echo '<center><h3>You must be connected in order to use this page</h3></center>'; 
+        } else{
             $bdd = Database::getConnection();
             
             $result = $bdd->query("SELECT DISTINCT p.idProject, p.name, p.description, p.date, p.login FROM Project p WHERE p.login = \"".$session->login."\";");

@@ -50,7 +50,7 @@ function verifPassword($pass1, $pass2) {
     return false;
 }
 
-if (!$session->login) {
+if (!isset($session->login)) {
     echo '<center><h3>You must be connected in order to use this page</h3></center>';
 } else {
     $user = User::getDB($session->login);
