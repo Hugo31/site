@@ -26,7 +26,9 @@
         ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
     ?>
 </section>
-
+<script>
+    $("details").hide();
+</script>
 <?php
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/footer.php');  
 ?>
