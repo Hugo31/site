@@ -15,14 +15,16 @@ abstract class AbstractBasicCommentDB extends AbstractBasicPostedDB{
     }
     
     public function abstractAddComment($user, $comment, $nameTable) {
+        
         $bdd = Database::getConnection();
-        $rqt = $bdd->prepare('INSERT INTO Comment'.$nameTable.' (login, '.$nameTable.', date, comment) '
+        $rqt = $bdd->prepare('INSERT INTO Comment'.$nameTable.' (login, id'.$nameTable.', date, comment) '
                             .'VALUES(:login, :id, NOW(), :comment)');
         $reussie = $rqt->execute(array(
             'login' => $user->getLogin(),
             'id' => $this->getID(),
             'comment' => $comment
         ));
+        
         if($reussie){
             $rqt = $bdd->prepare('UPDATE TABLE '.$nameTable.' SET nbComments = nbComments + 1 WHERE id'.$nameTable.' = :id');
             $rqt->execute(array(
