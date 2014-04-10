@@ -70,7 +70,7 @@ if (!isset($session->login)) {
         $veriff = verifName($_POST['firstnameedit']);
         $verifl = verifName($_POST['lastnameedit']);
 
-        if ($verife && $veriff && $verifl && 
+        if ($verife && $veriff && $verifl &&
                 ($user->getFirstName() != $_POST['firstnameedit'] ||
                 $user->getLastName() != $_POST['lastnameedit'] ||
                 $user->getMail() != $_POST['emailedit'])) {
@@ -89,8 +89,18 @@ if (!isset($session->login)) {
         <h2><?php echo $user->getLogin() ?></h2>
         <div id="editprofilimg">
             <p>Profil picture</p>
-            <img src="<?php echo $user->getLogo() ?>" alt="Image profil" style="width: 100px; height:100px">
+            <img src="<?php echo $user->getLogo() ?>" alt="Image profil" style="width: auto; height:100px">
+
         </div>
+        <br/>
+
+        <form method="post" id="editprofilimgform" name="editprofilimgform"
+              action="#" onsubmit="return true">
+            <label for="editimgup">Image upload</label>
+            <input type="file" id="editimgup" name="editimgup" accept="image/*">
+            <input type="submit" value="Submit" class="applymodifyimgprofil" id="applymodifyimgprofil"/>
+        </form>
+
         <form method="post" id="editprofilform" name="editprofilform"
               action="/site/view/editProfil.php" onsubmit="return true">
             <p>
@@ -142,3 +152,4 @@ if (!isset($session->login)) {
     <?php
 }
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/footer.php');
+?>

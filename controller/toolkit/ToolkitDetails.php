@@ -16,7 +16,7 @@ class ToolkitDetails {
             echo "<article id=\"h3Details\">";
             echo "<table>";
             echo "<tr><td style=\"width:100px\"><h3>Date:</h3></td><td>".$conflict->getDate()."</td></tr>";
-            echo "<tr><td><h3>Author:</h3></td><td>".$conflict->getLogin()."</td></tr>";
+            echo "<tr><td><h3>Author:</h3></td><td><a href=\"/site/view/user.php?user=".$conflict->getLogin()."\">".$conflict->getLogin()."</a></td></tr>";
             echo "<tr><td><h3>Conflict type:</h3></td><td>".$conflict->getType()." times</td></tr>";
             $rqtNb = Database::getOneData("SELECT COUNT(*) as nb FROM DesignPattern dp, ConflictDesignPattern cdp "
                             ."WHERE cdp.idConflict=".$id." AND dp.idDesignPattern = cdp.idDesignPattern;");
@@ -52,7 +52,7 @@ class ToolkitDetails {
             echo "<div id=\"contenuGaucheDP\">";
             echo "<table>";
             echo "<tr><td><h3>Date:</h3></td><td>".$dp->getDate()."</td></tr>";
-            echo "<tr><td><h3>Author:</h3></td><td>".$dp->getLogin()."</td></tr>";
+            echo "<tr><td><h3>Author:</h3></td><td><a href=\"/site/view/user.php?user=".$dp->getLogin()."\">".$dp->getLogin()."</a></td></tr>";
             echo "<tr><td><h3>Used:</h3></td><td>".$dp->getNbUsage()." times</td></tr>";
             echo "<tr><td><h3>For:</h3></td><td>".$dp->getTarget()."</td></tr>";
             echo "<tr><td><h3>Sources:</h3></td><td>";
@@ -118,7 +118,7 @@ class ToolkitDetails {
             echo "<div id=\"contenuGaucheSol\">";
             echo "<table>";
             echo "<tr><td style=\"width:150px\"><h3>Date:</h3></td><td>".$solution->getDate()."</td></tr>";
-            echo "<tr><td><h3>Author:</h3></td><td>".$solution->getLogin()."</td></tr>";
+            echo "<tr><td><h3>Author:</h3></td><td><a href=\"/site/view/user.php?user=".$solution->getLogin()."\">".$solution->getLogin()."</a></td></tr>";
             $data = Database::getOneData("SELECT c.idConflict, c.name FROM Solution s, Conflict c WHERE s.idSolution=".$id." and c.idConflict=s.idConflict;");
             echo "<tr><td valign=\"top\"><h3>Solution to the conflict:</h3></td><td><a href=\"details.php?type=Conflict&id=".$data['idConflict']."\">".$data['name']."</a></td></tr>";
             echo "</td></tr></table>";
@@ -160,14 +160,13 @@ class ToolkitDetails {
             echo "<article>";
             echo "<h1>".$project->getName()."</h1>";
             if($session->login == $project->getLogin()){
-                echo "<a>Re-open that project</a>";
-                
+                echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"#\">Re-open that project</a></div>";
             }
-            echo "<a href=\"/site/controller/exportXML.php?idProject=".$id."\" target=\"_blank\">Import that project</a>";
+            echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"/site/controller/exportXML.php?idProject=".$id."\" target=\"_blank\">Import that project</a></div><br/>";
             echo "<article id=\"h3Details\">";
             echo "<table>";
             echo "<tr><td><h3>Date:</h3></td><td>".$project->getDate()."</td></tr>";
-            echo "<tr><td><h3>Author:</h3></td><td>".$project->getLogin()."</td></tr>";
+            echo "<tr><td><h3>Author:</h3></td><td><a href=\"/site/view/user.php?user=".$project->getLogin()."\">".$project->getLogin()."</a></td></tr>";
             echo "</td></tr></table><br/>";            
             echo "</article>";
             ToolKitDisplay::displayText("Description : ", $project->getDescription());
