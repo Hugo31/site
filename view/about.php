@@ -19,8 +19,7 @@
     <br/><br/>
     <div id="zonegrise">
         <img src="/site/img/vrac/guillemet2.png" width="30px" style="padding-right:5px;">
-        Da right PAC in a da right place
-        <img src="/site/img/vrac/surprisemotherfucker.png" width="150px" > 
+        Hola ! Soy Juan Martinez, comó esta dans la casa? 
     </div>
     <h3>> Hugo GUIGNARD</h3>
     <div id="zonegrise">
