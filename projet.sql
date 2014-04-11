@@ -621,9 +621,9 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `mydb`.`Reporting` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Reporting` (
-  `idReporting` INT NOT NULL,
+  `idReporting` INT NOT NULL AUTO_INCREMENT,
   `message` TEXT NULL,
-  `typeReported` VARCHAR(45) NOT NULL,
+  `typeReported` ENUM('DesignPattern', 'Solution', 'Conflict', 'CommentConflict', 'CommentDesignPattern', 'CommentSolution', 'User') NOT NULL,
   `idReported` INT NOT NULL,
   `loginReporter` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`idReporting`),
