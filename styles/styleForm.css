@@ -209,7 +209,7 @@ input#captchasignup {
     text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
 }
 
-#editprofilform label, #editprofilimg p {
+#editprofilform label, #editprofilimg p, #editprofilimgform label {
     font-size: 1.2em;
     font-weight: normal;
     color: #96A9B5;
@@ -306,7 +306,7 @@ input#captchasignup {
     padding-left: 45px;
 }
 
-#editprofilform label {
+#editprofilform label, #editprofilimgform label {
     display: inline-block;
     width: 125px;
     margin-right: 20px;  
