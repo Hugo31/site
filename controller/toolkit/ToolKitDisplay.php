@@ -313,15 +313,13 @@ class ToolKitDisplay {
         
         
         echo "<br/></article>";
-        if(isset($session->login)){
-            ToolKitDisplay::displayAddComment($id, $tableAsk, $nbComments);
-        }
+        
         $reponse->closeCursor();
     }
     
     public static function displayAddComment($id, $tableAsk, $nbComments){
         echo "<article id=\"containerAddComment\">";
-        echo "<form action=\"/site/controller/addComment.php\" method=\"POST\" onsubmit=\"return addCommentToDP($('textarea[name=comment]'), ".$id.", ".$tableAsk.", ".$nbComments.", $('article[id=commentsDetails]'));\">";
+        echo "<form action=\"/site/controller/addComment.php\" method=\"POST\" onsubmit=\"return addCommentToDP($('textarea[name=comment]'), ".$id.", '".$tableAsk."', ".$nbComments.", $('article[id=commentsDetails]'));\">";
         echo "<input type=\"hidden\" id=\"hidden_id\" name=\"id\" value=\"".$id."\"/>";
         echo "<input type=\"hidden\" id=\"hidden_table\" name=\"table\" value=\"".$tableAsk."\"/>";
         echo "<textarea name=\"comment\"></textarea>";

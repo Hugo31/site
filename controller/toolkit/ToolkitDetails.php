@@ -33,7 +33,9 @@ class ToolkitDetails {
             ToolKitDisplay::displayGenericBox("Solution", Database::getAllData("SELECT DISTINCT s.idSolution, s.name, s.comment, s.rate, s.nbRates, s.nbComments, s.date, s.login FROM Solution s WHERE s.idConflict = ".$conflict->getID().";"));
             
             ToolkitDisplay::displayCommentsLittles($id, $conflict->getNbComments(), "Conflict", $session);
-            
+            if(isset($session->login)){
+                ToolKitDisplay::displayAddComment($id, $tableAsk, $nbComments);
+            }
             echo "</article>";
 
         }
@@ -76,6 +78,9 @@ class ToolkitDetails {
             
             ToolkitDisplayDesignPattern::displayImages($id);
             ToolkitDisplay::displayCommentsLittles($id, $dp->getNbComments(), "DesignPattern", $session);
+            if(isset($session->login)){
+                ToolKitDisplay::displayAddComment($id, $tableAsk, $nbComments);
+            }
             echo "</article>";
             
             echo "</div>";
@@ -146,7 +151,9 @@ class ToolkitDetails {
                 echo "</div>";
             }
             ToolkitDisplay::displayCommentsLittles($id, $solution->getNbComments(), "Solution", $session);
-
+            if(isset($session->login)){
+                ToolKitDisplay::displayAddComment($id, $tableAsk, $nbComments);
+            }
             echo "</article>";
         }
         else{

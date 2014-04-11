@@ -146,7 +146,7 @@ function changeValueSpanSearch(selector){
 
 
 function addCommentToDP(comment, id, table, nbComments, articleComment){
-    $.post("/site/controller/addComment.php", {id: id, comment: comment, table: table}, 
+    $.post("/site/controller/addComment.php", {id: id, comment: comment.val(), table: table}, 
     function(boolAdded){
         alert(boolAdded);
         if(boolAdded == true){

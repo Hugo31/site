@@ -20,7 +20,7 @@
                             <li><a href="/site/view/new.php">News</a></li>
                             <li><a href="/site/view/currentDP.php">My current Design Pattern (<span class="currentDP_numberIn"><?php ToolKitSearch::getNbCurrentCart($session) ?></span>)</a></li>
                         </ul>
-                    </div>>
+                    </div>
                     <div style="width:146px;height:230px;float:left;padding:0px 10px 0px 10px;margin-right:4px;">
                         <center><h4>Information</h4></center>
                         <ul>
