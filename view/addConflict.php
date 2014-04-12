@@ -15,7 +15,7 @@
     
     function addDPInConflict(id) {
         $.ajax({
-           url:'miniDPTrigger.php',
+           url:'../controller/miniDPTrigger.php',
            type: 'post',
            data: { "idDP": id.options[id.selectedIndex].value},
            complete: function (response) {
