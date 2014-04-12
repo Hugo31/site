@@ -4,7 +4,6 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/User.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/ReportingObject.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/designpattern/DesignPattern.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/designpattern/ETarget.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/EReportingObject.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Conflict.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Solution.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Project.php");
