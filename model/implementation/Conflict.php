@@ -60,7 +60,7 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
         
-        $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, idTypeConflict = :type, date = :date, nbComments = :nbComments, login = :login WHERE idConflict = :idConflict');
+        $rqt = $bdd->prepare('UPDATE Conflict SET name = :name, description = :description, idTypeConflict = :idTypeConflict, date = :date, nbComments = :nbComments, login = :login WHERE idConflict = :idConflict');
         $reussie = $rqt->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),
@@ -107,9 +107,9 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
      * Ajoute un design pattern à un conflit.
      * @param DesignPattern $tableToSort Le design pattern à lier.
      */
-    public function addLink($id) {
+    public function addLink($tableToSort) {
         $bdd = Database::getConnection();
-        $nbAj = $bdd->exec('INSERT INTO ConflictDesignPattern (idConflict, idDesignPattern) VALUES ('.$this->getID().', '.$id.')');
+        $nbAj = $bdd->exec('INSERT INTO ConflictDesignPattern (idConflict, idDesignPattern) VALUES ('.$this->getID().', '.$tableToSort->getID().')');
         return ($nbAj > 0);
     }
       
@@ -117,9 +117,9 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
      * Supprime un design pattern d'un conflit.
      * @param DesignPattern $tableToSort Le design pattern à supprimer.
      */
-    public function removeLink($id) {
+    public function removeLink($tableToSort) {
         $bdd = Database::getConnection();
-        $nbSuppr = $bdd->exec('DELETE FROM ConflictDesignPattern WHERE idConflict = '.$this->getID().' and idDesignPattern = '.$id);
+        $nbSuppr = $bdd->exec('DELETE FROM ConflictDesignPattern WHERE idConflict = '.$this->getID().' and idDesignPattern = '.$tableToSort->getID());
         return ($nbSuppr > 0);
     }
 

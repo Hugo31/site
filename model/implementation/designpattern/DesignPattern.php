@@ -73,10 +73,11 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $bdd = Database::getConnection();
         $req = $bdd->prepare('UPDATE DesignPattern SET '
                             .'name = :name, what = :what, whenAndHow = :whenAndHow, layout = :layout, '
-                            .'copy = :copy, implementation = :implementation, nbUsage = :nbUsage, '
-                            .'nbComments = :nbComments, nbRates = :nbRates, rate = :rate, '
+                            .'copy = :copy, implementation = :implementation, descriptionImage = :descriptionImage, '
+                            .'nbUsage = :nbUsage, nbComments = :nbComments, nbRates = :nbRates, rate = :rate, '
                             .'date = :date,target = :target, login = :login '
                             .'WHERE idDesignPattern = :idDesignPattern');
+
         $reussie = $req->execute(array(
             'name' => $object->getName(),
             'what' => $object->getWhat(),

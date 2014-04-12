@@ -1,8 +1,10 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/User.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/ReportingObject.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/designpattern/DesignPattern.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/designpattern/ETarget.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/EReportingObject.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Conflict.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Solution.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Project.php");
@@ -46,7 +48,11 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Prop
         $dpObserver = new DesignPattern(0, "Observer", $userUndef->getLogin(), date("Y-m-d H:i:s"), "Verifie des classes", 0, ETarget::Designer);
         echo "<tr><td>DP 2 ajouter : </td><td>".  DesignPattern::addDB($dpObserver)."</td></tr>";
         
-        $conflict1 = new Conflict(0, "Conflict", "undefined", date("Y-m-d H:i:s"), "Description de conflict", "Conflict between design pattern");
+        $bdd = Database::getConnection();
+        $reussie = $bdd->exec("INSERT INTO TypeConflict (name, description) VALUES (\"Conflict between values\", \"Description\");");
+        echo "<tr><td>Type conflict ajouté : </td><td>".$reussie."</td></tr>";
+        
+        $conflict1 = new Conflict(0, "Conflict", "undefined", date("Y-m-d H:i:s"), "Description de conflict", 0);
         echo "<tr><td>Conflict ajouté : </td><td>".Conflict::addDB($conflict1)."</td></tr>";
         $conflictMod = Conflict::getDB($conflict1->getID());
         $conflictMod->setName("New Conflict");
@@ -134,6 +140,16 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Prop
         echo "<tr><td>Property ajouté : </td><td>".Property::addDB($property)."</td></tr>";
         echo "<tr><td>Lien property ajouté</td><td>".$property->addLink($dpFactory, 5)."</td></tr>";
         echo "<tr><td>Lien property supprimer</td><td>".$property->removeLink($dpFactory)."</td></tr>";
+        
+        
+        $reportObject = new ReportingObject(0, "Eh ça me plait pas !", "DesignPattern", $dpObserver, date("Y-m-d H:i:s"), "undefined");
+        echo "<tr><td>Report ajouté : </td><td>".ReportingObject::addDB($reportObject)."</td></tr>";
+        $otherReport = ReportingObject::getDB($reportObject->getID());
+        $otherReport->setMessage("New Message");
+        echo "<tr><td>Report modifié : </td><td>".ReportingObject::modifyDB($otherReport)."</td></tr>";
+        echo "<tr><td>Report supprimé : </td><td>".ReportingObject::removeDB($reportObject)."</td></tr>";
+        echo "<tr><td>Report ajouté : </td><td>".ReportingObject::addDB($reportObject)."</td></tr>";
+        
         
         echo "</table>";
         

@@ -627,6 +627,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Reporting` (
   `typeReported` ENUM('DesignPattern', 'Solution', 'Conflict', 'CommentConflict', 'CommentDesignPattern', 'CommentSolution', 'User') NOT NULL,
   `idReported` INT NOT NULL,
   `login` VARCHAR(30) NOT NULL,
+  `date` DATETIME NOT NULL,
   PRIMARY KEY (`idReporting`),
   INDEX `fk_Reporting_User1_idx` (`login` ASC),
   CONSTRAINT `fk_Reporting_User1`
