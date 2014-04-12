@@ -621,15 +621,17 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `mydb`.`Reporting` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`Reporting` (
-  `idReporting` INT NOT NULL,
+  `idReporting` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
   `message` TEXT NULL,
-  `typeReported` VARCHAR(45) NOT NULL,
+  `typeReported` ENUM('DesignPattern', 'Solution', 'Conflict', 'CommentConflict', 'CommentDesignPattern', 'CommentSolution', 'User') NOT NULL,
   `idReported` INT NOT NULL,
-  `loginReporter` VARCHAR(30) NOT NULL,
+  `login` VARCHAR(30) NOT NULL,
+  `date` DATETIME NOT NULL,
   PRIMARY KEY (`idReporting`),
-  INDEX `fk_Reporting_User1_idx` (`loginReporter` ASC),
+  INDEX `fk_Reporting_User1_idx` (`login` ASC),
   CONSTRAINT `fk_Reporting_User1`
-    FOREIGN KEY (`loginReporter`)
+    FOREIGN KEY (`login`)
     REFERENCES `mydb`.`User` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
