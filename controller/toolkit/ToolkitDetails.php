@@ -24,8 +24,10 @@ class ToolkitDetails {
             echo "<tr><td valign=\"top\"><h3>".$nombre." DP in conflict:</h3></td><td>";
             ToolKitDisplay::displayDPConflict($id, $nombre);
             echo "</td></tr></table><br/>";
-            echo "<img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/view/addSolution.php?id=".$id."\"><h3>Propose a solution</h3></a><br/><br/>";
-            
+            if($session->login){
+                echo "<img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/view/addSolution.php?id=".$id."\"><h3>Propose a solution</h3></a>";
+                echo " | <img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=Conflict&amp;name=".$conflict->getName()."&amp;id=".$id."\"><h3>Report content</h3></a><br/><br/>";
+            }
             ToolKitDisplay::displayText("Description: ", $conflict->getDescription());
             echo "</article>";
                         
@@ -66,8 +68,11 @@ class ToolkitDetails {
             echo "</div>";
             echo "</div><br/>";
             echo "<div id=\"addProposeDP\">";
-            echo "".ToolkitDisplay::cartLink($id, "this", false)."";
-            echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$id."\"><h3>Report a conflict</h3></a>";   
+            echo "<h3>".ToolkitDisplay::cartLink($id, "this", false)."</h3>";
+            if(isset($session->login)){
+                echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$id."\"><h3>Report a conflict</h3></a>";
+                echo " | <img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=DesignPattern&amp;name=".$dp->getName()."&amp;id=".$id."\"><h3>Report content</h3></a>";
+            }
             echo "</div><br/><br/>";
             echo "<article id=\"contenuCommentsDP\">";
             ToolKitDisplay::displayText("What : ", $dp->getWhat());
@@ -126,7 +131,10 @@ class ToolkitDetails {
             echo "<tr><td><h3>Author:</h3></td><td><a href=\"/site/view/user.php?user=".$solution->getLogin()."\">".$solution->getLogin()."</a></td></tr>";
             $data = Database::getOneData("SELECT c.idConflict, c.name FROM Solution s, Conflict c WHERE s.idSolution=".$id." and c.idConflict=s.idConflict;");
             echo "<tr><td valign=\"top\"><h3>Solution to the conflict:</h3></td><td><a href=\"details.php?type=Conflict&id=".$data['idConflict']."\">".$data['name']."</a></td></tr>";
-            echo "</td></tr></table>";
+            echo "</td></tr></table></br>";
+            if(isset($session->login)) {
+                echo "<img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=Solution&amp;name=".$solution->getName()."&amp;id=".$id."\"><h3>Report content</h3></a>";
+            }
             echo "</div>";
             echo "<div id=\"contenuDroitSol\">";
             ToolkitDisplay::displayRate($id, $solution->getNbRates(), $solution->getRate(), "Solution", $session);
