@@ -30,6 +30,16 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/site/javascript/toolkit.js"></script>
         <script type="text/javascript" src="/site/controller/sign/ctrlSignin.js"></script>
+        
+        <script type="text/javascript">
+        function limite(textarea, max){
+            if(textarea.value.length >= max) {
+                textarea.value = textarea.value.substring(0,max);
+            }
+            var reste = max - textarea.value.length;
+            document.getElementById('max_desc').innerHTML = reste;
+        }
+        </script>
     </head>
 
     <body>

@@ -15,9 +15,21 @@ class ToolkitDisplayDesignPattern {
     
     public static function displayImages($id){
         $reponse = Database::getAllData("SELECT link FROM ImageDesignPattern WHERE idDesignPattern = ".$id.";");
+        echo "<table style=\"text-align:center\">";
+        $i = 0;
         foreach($reponse as $row){
-            echo "<img class=\"img_pattern\" src=\"".$row['link']."\" alt=\"img design\"/>";
+            if ($i == 0) {
+                echo "<tr><td width=\"300px\"><img class=\"img_pattern\" width=\"250px\" src=\"".$row['link']."\" alt=\"img design\" style=\"border:1px solid #FF4C00;\"/></td>";
+                $i++;
+            } else {
+                echo "<td width=\"300px\"><img class=\"img_pattern\" width=\"250px\" src=\"".$row['link']."\" alt=\"img design\" style=\"border:1px solid #FF4C00;\"/></td></tr>";
+                $i = 0;
+            } 
         }
+        if ($i != 0) {
+            echo "</tr>";
+        }
+        echo "</table>";
         $reponse->closeCursor();
     }
     

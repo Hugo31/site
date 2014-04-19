@@ -12,6 +12,18 @@
 			<copy>Give each step a number.</copy>
 			<implementation>Put the box in the rigth-hand part of the screen, just as any non-critical information that can be missed by people holding a low screen resolution.</implementation>
 			<descriptionImage></descriptionImage>
+			<Images>
+				<Image>
+					<description></description>
+					<name>advancement_box1.png</name>
+				</Image>
+			</Images>
+			<Sources>
+				<Source>
+					<author>Van Welie</author>
+					<link>http://www.welie.com/patterns/showPattern.php?patternID=purchase-process</link>
+				</Source>
+			</Sources>
 		</DesignPattern>
 		<DesignPattern>
 			<name>Multi-Step Wizard</name>
@@ -25,6 +37,30 @@ Shouldnt be used when the procedure.</whenandhow>
 			<implementation>1. Make sure the back button always works.
 2. When going back to a previous step, auto complete the previous imput.</implementation>
 			<descriptionImage></descriptionImage>
+			<Images>
+				<Image>
+					<description></description>
+					<name>multi-step_wizard1.png</name>
+				</Image>
+				<Image>
+					<description></description>
+					<name>multi-step_wizard2.png</name>
+				</Image>
+				<Image>
+					<description></description>
+					<name>multi-step_wizard3.png</name>
+				</Image>
+			</Images>
+			<Sources>
+				<Source>
+					<author>Undefined</author>
+					<link>http://www.designofsites.com/about_the_book/patternh1.pdf</link>
+				</Source>
+				<Source>
+					<author>Undefined</author>
+					<link>http://harbinger.sims.berkeley.edu/ui_designpatterns/webpatterns2/webpatterns/pattern.php?id=7</link>
+				</Source>
+			</Sources>
 		</DesignPattern>
 	</DesignsPatterns>
 </Project>

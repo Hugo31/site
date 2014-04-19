@@ -265,11 +265,11 @@ class ToolKitDisplay {
         if(isset($session->login)){
             $alreadyRate = Database::getOneData("SELECT count(note) as nb, note FROM Note".$tableAsk." WHERE id".$tableAsk." = ".$id." AND login = \"".$session->login."\"");
             if($alreadyRate['nb'] > 0){
-                echo"<center><h3>You already rate:</h3> <input id=\"rateNumber\" type=\"number\" value=\"".$alreadyRate['note']."\"/><a href=\"#\" onClick=\"return addRate('".$tableAsk."', ".$id.", '".$session->login."', $('#rateNumber'));\">Modify !</a> "
-                        ."or <a href=\"#\" onClick=\"return removeRate('".$tableAsk."', ".$id.", '".$session->login."', $('#rateNumber'));\">Remove !</a></center>";
+                echo"<center><h3>You already rate:</h3> <input id=\"rateNumber\" type=\"number\" min=\"0\" max=\"5\" size=\"1\" value=\"".$alreadyRate['note']."\"/>&nbsp;&nbsp;<a href=\"#\" onClick=\"return addRate('".$tableAsk."', ".$id.", '".$session->login."', $('#rateNumber'));\"><h3>Modify !</h3></a> "
+                        ."or <a href=\"#\" onClick=\"return removeRate('".$tableAsk."', ".$id.", '".$session->login."', $('#rateNumber'));\"><h3>Remove !</h3></a></center>";
             }
             else{
-                echo"<center><h3>Give a rate:</h3> <input id=\"rateNumber\" type=\"number\" value=\"5\"/><a href=\"#\" onClick=\"return addRate('".$tableAsk."', ".$id.", '".$session->login."', $('#rateNumber'));\">Rate !</a></center>";
+                echo"<center><h3>Give a rate between 0 and 5:</h3> <input id=\"rateNumber\" type=\"number\" min=\"0\" max=\"5\" size=\"1\"/>&nbsp;&nbsp;<a href=\"#\" onClick=\"return addRate('".$tableAsk."', ".$id.", '".$session->login."', $('#rateNumber'));\"><h3>Rate !</h3></a></center>";
             }
             
         }
@@ -293,7 +293,7 @@ class ToolKitDisplay {
     public static function displayCommentsLittles($id, $nbComments, $tableAsk, $session){
         $reponse = Database::getAllData("SELECT * FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id." ORDER BY DATE LIMIT 0, 3");
         echo "<article id=\"commentsDetails\">";
-        echo "<br/><h2 id=\"h2CommentsConflict\">Comments (".$nbComments.") : </h2><hr/>";
+        echo "<br/><h2 id=\"h2CommentsConflict\">Comments (".$nbComments.")</h2><hr/>";
         if ($reponse->rowCount() == 0) {
             echo 'No comments.<br/>';
         } else {
@@ -301,17 +301,17 @@ class ToolKitDisplay {
                 echo "<div id=\"containerComment\">";
                 echo "<div id=\"logoComment\">";
                 $data = Database::getOneData("SELECT logo FROM User WHERE login = \"".$row['login']."\"");
-                echo "<img src=\"".$data['logo']."\" style=\"width:50px;\"/><br><a href=\"\">".$row['login']."</a>";
+                echo "<img src=\"".$data['logo']."\" style=\"width:50px;height:50px;\"/><br><a href=\"\">".$row['login']."</a>";
                 echo "</div>";
                 echo "<div id=\"textComment\">";
                 echo "<i>Posted ".$row['date']."</i><br>";
                 echo $row['comment'];
                 echo "</div>";
+                echo "<div class=\"clear\"></div> ";
                 echo "</div>";
             }
         }
-        
-        
+           
         echo "<br/></article>";
         
         $reponse->closeCursor();
@@ -319,11 +319,17 @@ class ToolKitDisplay {
     
     public static function displayAddComment($id, $tableAsk, $nbComments){
         echo "<article id=\"containerAddComment\">";
+        echo "<br/><h3 id=\"h3CommentsConflict\">Add a new comment </h3><hr/>";
         echo "<form action=\"/site/controller/addComment.php\" method=\"POST\" onsubmit=\"return addCommentToDP($('textarea[name=comment]'), ".$id.", '".$tableAsk."', ".$nbComments.", $('article[id=commentsDetails]'));\">";
         echo "<input type=\"hidden\" id=\"hidden_id\" name=\"id\" value=\"".$id."\"/>";
         echo "<input type=\"hidden\" id=\"hidden_table\" name=\"table\" value=\"".$tableAsk."\"/>";
-        echo "<textarea name=\"comment\"></textarea>";
-        echo "<input type=\"submit\" value=\"Send\"/>";
+        echo "<table><tr>"
+        . "<td style=\"vertical-align:top;font-size:1.2em;\"><label for=\"messageCom\">Message&nbsp;&nbsp;</td>"
+        . "<td><textarea id=\"messageCom\" name=\"comment\" onkeyup=\"limite(this,500);\" 
+                            onkeydown=\"limite(this,500);\" style=\"min-width:400px;max-width:500px;min-height:100px;max-height:400px\" required></textarea><br/><span id=\"max_desc\">500</span> remaining characters</td>"
+                . "</tr></table><br/>";
+        echo "<center><input type=\"reset\" value=\"RESET\" class=\"reset\" style=\"margin-right: 15px\">
+              <input type=\"submit\" value=\"SEND\" class=\"send\" style=\"margin-left: 15px\"></center><br/><br/>";
         echo "</form>";
         echo "</article>";
     }

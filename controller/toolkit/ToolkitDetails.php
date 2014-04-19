@@ -36,7 +36,8 @@ class ToolkitDetails {
             
             ToolkitDisplay::displayCommentsLittles($id, $conflict->getNbComments(), "Conflict", $session);
             if(isset($session->login)){
-                ToolKitDisplay::displayAddComment($id, $tableAsk, $nbComments);
+                $tableAsk = "conflict";
+                ToolKitDisplay::displayAddComment($id, $tableAsk, $conflict->getNbComments());
             }
             echo "</article>";
 
@@ -61,12 +62,13 @@ class ToolkitDetails {
             echo "<tr><td><h3>For:</h3></td><td>".$dp->getTarget()."</td></tr>";
             echo "<tr><td><h3>Sources:</h3></td><td>";
             echo "</td></tr></table>";
-            ToolkitDisplayDesignPattern::displaySources($id);         
+            ToolkitDisplayDesignPattern::displaySources($id);  
             echo "</div>";
             echo "<div id=\"contenuDroitDP\">";
             ToolkitDisplay::displayRate($id, $dp->getNbRates(), $dp->getRate(), "DesignPattern", $session);
             echo "</div>";
-            echo "</div><br/>";
+            echo "<div class=\"clear\"></div>";
+            echo "</div>";
             echo "<div id=\"addProposeDP\">";
             echo "<h3>".ToolkitDisplay::cartLink($id, "this", false)."</h3>";
             if(isset($session->login)){
@@ -84,7 +86,8 @@ class ToolkitDetails {
             ToolkitDisplayDesignPattern::displayImages($id);
             ToolkitDisplay::displayCommentsLittles($id, $dp->getNbComments(), "DesignPattern", $session);
             if(isset($session->login)){
-                ToolKitDisplay::displayAddComment($id, $tableAsk, $nbComments);
+                $tableAsk = "designpattern";
+                ToolKitDisplay::displayAddComment($id, $tableAsk, $dp->getNbComments());
             }
             echo "</article>";
             
@@ -160,7 +163,8 @@ class ToolkitDetails {
             }
             ToolkitDisplay::displayCommentsLittles($id, $solution->getNbComments(), "Solution", $session);
             if(isset($session->login)){
-                ToolKitDisplay::displayAddComment($id, $tableAsk, $nbComments);
+                $tableAsk = "solution";
+                ToolKitDisplay::displayAddComment($id, $tableAsk, $solution->getNbComments());
             }
             echo "</article>";
         }
@@ -177,7 +181,7 @@ class ToolkitDetails {
             if($session->login == $project->getLogin()){
                 echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"#\">Re-open that project</a></div>";
             }
-            echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"/site/controller/exportXML.php?idProject=".$id."\" target=\"_blank\">Import that project</a></div><br/>";
+            echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"/site/controller/exportXML.php?idProject=".$id."\" target=\"_blank\"><img src=\"/site/img/vrac/xml.png\" style=\"vertical-align:middle;padding-right:5px;\">Import that project</a></div><br/>";
             echo "<article id=\"h3Details\">";
             echo "<table>";
             echo "<tr><td><h3>Date:</h3></td><td>".$project->getDate()."</td></tr>";

@@ -15,14 +15,17 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
     } else {
         ?>
         <h1>Report on <?php echo $_GET['type'] . ' : ' . $_GET['name']; ?></h1>
-        <h2>Please report problem description in the next field...</h2>
+        Please report problem description in the next field...<br/><br/>
         <form id="formReportContent" name="formReportContent" method="post"
               <?php echo "action=\"../controller/addReport.php?type=" . $_GET['type'] . "&amp;name=" . $_GET['name'] . "&amp;id=" . $_GET['id']."\"" ?> >
-            <p>
-                <label for="repportMessage" style="font-size: 1.3em;font-weight: normal;color: #FF4C00; font-family: 'YanoneKaffeesatz-Regular';">Message *</label><br/>
-            <textarea id="repportMessage" name="repportMessage" style="width:400px;height:200px" required placeholder="Repport Message"></textarea>
-            </p>
-            <input type="submit" class="add" value="Send" style="padding: 0px 20px; margin-left: 0px; height: 30px; font-size: 0.85em;">
+            <table>
+                <tr>
+                    <td style="vertical-align:top;"><label for="repportMessage">Message&nbsp;&nbsp;</label></td>
+                    <td><textarea id="repportMessage" name="repportMessage" style="min-width:400px;max-width:600px;min-height:200px;max-height:400px" required placeholder="Repport Message"></textarea></td>
+                </tr>
+            </table>
+            <br/>
+            <center><input type="submit" class="add" value="Send" style="padding: 0px 20px; margin-left: 0px; height: 30px; font-size: 0.85em;"></center>
         </form>
 
         <?php
