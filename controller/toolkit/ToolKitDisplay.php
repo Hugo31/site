@@ -61,6 +61,7 @@ class ToolKitDisplay {
         if ($dataToDisplay->rowCount() == 0) {
             echo 'No conflicts.';
         } else {
+            $session = Session::getInstance();
             $bdd = Database::getConnection();
             foreach($dataToDisplay as $row){
                 echo "<article class=\"box\" id=\"article_".$row['idConflict']."\">";
@@ -69,7 +70,10 @@ class ToolKitDisplay {
                 echo "<header id='headerBox'>";
                 echo "<a href=\"details.php?type=Conflict&id=".$row['idConflict']."\"><h2>".$row['name']."</h2></a>";
                 $dateConflict = new DateTime($row['date']);
-                echo "<br/><div id=\"lienDescr\">Date of reporting: ".$dateConflict->format('d/m/Y')." | Author: <a href=\"/site/view/user.php?user=".$row['login']."\">".$row['login']."</a> | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/AddSolution.php?id=".$row['idConflict']."\">Propose a solution</a></div>";
+                echo "<br/><div id=\"lienDescr\">Date of reporting: ".$dateConflict->format('d/m/Y')." | Author: <a href=\"/site/view/user.php?user=".$row['login']."\">".$row['login']."</a>";
+                if(isset($session->login)) {
+                    echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/AddSolution.php?id=".$row['idConflict']."\">Propose a solution</a></div>";
+                }
                 echo "</header>";
                 
                 $data = Database::getOneData("SELECT COUNT(*) as nb FROM Solution WHERE idconflict = ".$row['idConflict']);
@@ -96,6 +100,7 @@ class ToolKitDisplay {
         if ($dataToDisplay->rowCount() == 0) {
             echo 'No results.';
         } else {
+            $session = Session::getInstance();
             foreach($dataToDisplay as $row){
                 echo "<article class=\"box\" id=\"article_".$row['idDesignPattern']."\">";
                 echo "<div id='headerAsideDP'>";
@@ -117,7 +122,10 @@ class ToolKitDisplay {
                 $reqPlatform->closeCursor();
                 $dateDP = new DateTime($row['date']);
                 echo "<br/><div id=\"lienDescr\">Last update: ".$dateDP->format('d/m/Y')." | Author: <a href=\"/site/view/user.php?user=".$row['login']."\">".$row['login']."</a> | Used: ".$row['nbUsage']." times ";
-                echo "<br/>".ToolkitDisplay::cartLink($row['idDesignPattern'], "this", $destroyWhenRemove)." | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$row['idDesignPattern']."\">Report a conflict</a></div>";
+                echo "<br/>".ToolkitDisplay::cartLink($row['idDesignPattern'], "this", $destroyWhenRemove);
+                if(isset($session->login)){
+                    echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$row['idDesignPattern']."\">Report a conflict</a></div>";
+                }
                 echo "</header>";
                 echo "<aside id='asideBox'>";
                 echo "<div id=\"note\">".round($row['rate'], 1)."/5</div>";
