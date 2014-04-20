@@ -12,6 +12,13 @@ $session = Session::getInstance();
 <section id="contenu">
     <?php
         $bdd = Database::getConnection();
+        if($session->admin){
+            echo "<form action=\"/site/controller/deleteAdmin.php\" method=\"post\">";
+            echo "<input type=\"hidden\" name=\"type\" value=\"".$_GET['type']."\"/>";
+            echo "<input type=\"hidden\" name=\"id\" value=\"".$_GET['id']."\"/>";
+            echo "<input type=\"submit\" value=\"Remove\"/>";
+            echo "</form>";
+        }
         if($_GET['type'] == "Conflict"){
             ToolkitDetails::displayDetailsConflict($_GET['id'], $session);
         }
