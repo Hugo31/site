@@ -107,9 +107,9 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
      * Ajoute un design pattern à un conflit.
      * @param DesignPattern $tableToSort Le design pattern à lier.
      */
-    public function addLink($tableToSort) {
+    public function addLink($id) {
         $bdd = Database::getConnection();
-        $nbAj = $bdd->exec('INSERT INTO ConflictDesignPattern (idConflict, idDesignPattern) VALUES ('.$this->getID().', '.$tableToSort->getID().')');
+        $nbAj = $bdd->exec('INSERT INTO ConflictDesignPattern (idConflict, idDesignPattern) VALUES ('.$this->getID().', '.$id.')');
         return ($nbAj > 0);
     }
       

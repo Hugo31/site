@@ -8,6 +8,25 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/header.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 ?>
 
+<script type="text/javascript">
+    hideblock = function(a){
+        $(a).attr("onclick","return showblock($(this));");
+        $(a).text("Show conflicts");
+        $(a).parent().children("div").first().hide().end();
+        
+        return!1;
+    };
+    
+    showblock = function(a){
+        $(a).attr("onclick","return hideblock($(this));");
+        $(a).text("Hide conflicts");
+        $(a).parent().children("div").first().show().end();
+        $(a).show();
+
+        return!1;
+    };
+</script>
+
 <section id="contenu">
 
     <?php
@@ -40,14 +59,50 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         echo "<label>Description : </label><textarea name=\"desc_project\"></textarea><br/>";
         echo "<input type=\"submit\" value=\"Save it\"/>";
         echo"</form>";
-        echo "<article><h2>Description: </h2>" . $data['description'] . "<br/><br/></article>";
+        
         $req = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern proj "
                 . "WHERE dp.idDesignPattern = proj.idDesignPattern AND proj.idProject = " . $data['idProject'] . ";";
         $reponse = Database::getAllData($req);
+        
+        $result = Database::getAllData($req);
+        $save = [];
+        $conf = array();
+        $i = 0;
+        $trouv = false;
+        foreach($result as $row){
+            foreach($save as $dps){
+                $reqConf = "SELECT DISTINCT cdp.idConflict FROM conflictdesignpattern cdp, conflictdesignpattern cdp2 WHERE cdp.idDesignPattern = " . $dps[0] . " AND cdp2.idDesignPattern = " . $row[0];
+                $reponseConf = Database::getAllData($reqConf);
+                foreach($reponseConf as $conflicts){
+                    if (!$trouv){
+                        echo '</br><cC>Warning! You may encounter conflicts between your Design Patterns. </cC></br><a href="#" onclick="return showblock(this)" style="text-decoration:none;" >Show conflicts</a>';
+                        echo '<div id="conflictsCart" hidden = true>';
+                        $trouv = true;
+                    }
+                    $reponseConf2 = Database::getAllData("SELECT * FROM Conflict WHERE idConflict = " . $conflicts['idConflict']. ";");
+                    foreach($reponseConf2 as $conflicts2){
+                        if (!in_array($conflicts2['idConflict'], $conf)) {
+                            array_push($conf, $conflicts2['idConflict']);
+                            $reponseConf3 = Database::getAllData("SELECT * FROM Conflict WHERE idConflict = " . $conflicts['idConflict']. ";");
+                            ToolKitDisplay::displayConflictBox($reponseConf3);
+                        }
+                    }
+                    
+                }
+            }
+            $save[$i] = $row[0];
+            $i++;
+        }
+        if ($trouv){
+            echo '</div>';
+        }
+        
+        echo "<article><h2>Description: </h2>" . $data['description'] . "<br/><br/></article>";
         if ($reponse != false) {
             ToolKitDisplay::displayDesignPatternBox($reponse, true);
         }
-    } else {
+    } 
+    else {
         ?>
         <h1>My current Design Pattern</h1>
         <div id="cartDescription">
@@ -57,6 +112,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         </div><br/><br/>
         <?php
     }
+
 
     if (count($session->currentDP) > 0) {
         $req = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp WHERE ";
@@ -68,6 +124,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         if ($reponse != false) {
             ToolKitDisplay::displayDesignPatternBox($reponse, true);
         }
+        
     }
     ?>
 

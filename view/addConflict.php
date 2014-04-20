@@ -37,7 +37,7 @@
        }
        id.remove(id.selectedIndex);
        id.selectedIndex = 0;
-       increasesizediv('main', 75);
+       increasesizediv('main', 60);
      }
      
     function increasesizediv(div, size){//increase height by size
@@ -64,7 +64,7 @@
     ?>
     
     <h2> Report conflicts </h2>
-    <div id="main" style="width:780px;float:left;height:500px;">
+    <div id="main" style="width:780px;float:left;height:570px;">
         <form id="addConflict_form" method="post">
             
             <h3>Design patterns in conflict</h3>
