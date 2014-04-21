@@ -105,26 +105,59 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
     else {
         ?>
         <h1>My current Design Pattern</h1>
-        <div id="cartDescription">
+        <p id="cartDescription">
             This is your current cart where all previously selected Design Pattern has been save...<br/>
             To add a new Design Pattern you just need to clic on the link "Add to ..." in the description of any Design Pattern.<br/><br/>
             You want to save your project ? Nothing more simple! Creat now an account to save it and make many other!<br/>
-        </div><br/><br/>
+        </p><br/><br/>
         <?php
-    }
+    
+        if (count($session->currentDP) > 0) {
+            $req = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp WHERE ";
+            for ($i = 0; $i < count($session->currentDP) - 1; $i ++) {
+                $req .= "dp.idDesignPattern = " . $session->currentDP[$i] . " OR ";
+            }
+            $req .= "dp.idDesignPattern = " . $session->currentDP[$i] . ";";
+            $reponse = Database::getAllData($req);
+            
+            $result = Database::getAllData($req);
+            $save = [];
+            $conf = array();
+            $i = 0;
+            $trouv = false;
+            foreach($result as $row){
+                foreach($save as $dps){
+                    $reqConf = "SELECT DISTINCT cdp.idConflict FROM conflictdesignpattern cdp, conflictdesignpattern cdp2 WHERE cdp.idDesignPattern = " . $dps[0] . " AND cdp2.idDesignPattern = " . $row[0];
+                    $reponseConf = Database::getAllData($reqConf);
+                    foreach($reponseConf as $conflicts){
+                        if (!$trouv){
+                            echo '<cC>Warning! You may encounter conflicts between your Design Patterns. </cC></br><a href="#" onclick="return showblock(this)" style="text-decoration:none;" >Show conflicts</a>';
+                            echo '<div id="conflictsCart" hidden = true>';
+                            $trouv = true;
+                        }
+                        $reponseConf2 = Database::getAllData("SELECT * FROM Conflict WHERE idConflict = " . $conflicts['idConflict']. ";");
+                        foreach($reponseConf2 as $conflicts2){
+                            if (!in_array($conflicts2['idConflict'], $conf)) {
+                                array_push($conf, $conflicts2['idConflict']);
+                                $reponseConf3 = Database::getAllData("SELECT * FROM Conflict WHERE idConflict = " . $conflicts['idConflict']. ";");
+                                ToolKitDisplay::displayConflictBox($reponseConf3);
+                            }
+                        }
 
+                    }
+                }
+                $save[$i] = $row[0];
+                $i++;
+            }
+            if ($trouv){
+                echo '</div></br>';
+            }
+            
+            if ($reponse != false) {
+                ToolKitDisplay::displayDesignPatternBox($reponse, true);
+            }
 
-    if (count($session->currentDP) > 0) {
-        $req = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp WHERE ";
-        for ($i = 0; $i < count($session->currentDP) - 1; $i ++) {
-            $req .= "dp.idDesignPattern = " . $session->currentDP[$i] . " OR ";
         }
-        $req .= "dp.idDesignPattern = " . $session->currentDP[$i] . ";";
-        $reponse = Database::getAllData($req);
-        if ($reponse != false) {
-            ToolKitDisplay::displayDesignPatternBox($reponse, true);
-        }
-        
     }
     ?>
 
