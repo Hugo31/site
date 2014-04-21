@@ -145,15 +145,15 @@ function changeValueSpanSearch(selector){
 }
 
 
-function addCommentToDP(comment, id, table, nbComments, articleComment){
+function addCommentToDP(comment, id, table, nbComments, articleComment, articleAdd){
     $.post("/site/controller/addComment.php", {id: id, comment: comment.val(), table: table}, 
     function(boolAdded){
-        alert(boolAdded);
         if(boolAdded == true){
             $.post("/site/controller/reupdateComments.php", {id: id, table: table, nbComments: nbComments}, 
             function(containerComments){
                 parent = articleComment.parent();
                 articleComment.remove();
+                articleAdd.remove();
                 parent.append(containerComments);
             });
         }

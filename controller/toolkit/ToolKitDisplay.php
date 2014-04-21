@@ -299,7 +299,7 @@ class ToolKitDisplay {
     }
     
     public static function displayCommentsLittles($id, $nbComments, $tableAsk, $session){
-        $reponse = Database::getAllData("SELECT * FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id." ORDER BY DATE LIMIT 0, 3");
+        $reponse = Database::getAllData("SELECT * FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id." ORDER BY DATE DESC LIMIT 0, 3");
         echo "<article id=\"commentsDetails\">";
         echo "<br/><h2 id=\"h2CommentsConflict\">Comments (".$nbComments.")</h2><hr/>";
         if ($reponse->rowCount() == 0) {
@@ -328,7 +328,8 @@ class ToolKitDisplay {
     public static function displayAddComment($id, $tableAsk, $nbComments){
         echo "<article id=\"containerAddComment\">";
         echo "<br/><h3 id=\"h3CommentsConflict\">Add a new comment </h3><hr/>";
-        echo "<form action=\"/site/controller/addComment.php\" method=\"POST\" onsubmit=\"return addCommentToDP($('textarea[name=comment]'), ".$id.", '".$tableAsk."', ".$nbComments.", $('article[id=commentsDetails]'));\">";
+        
+        echo "<form action=\"/site/controller/addComment.php\" method=\"POST\" onsubmit=\"return addCommentToDP($('textarea[name=comment]'), ".$id.", '".$tableAsk."', ".$nbComments.", $('article[id=commentsDetails]'), $('article[id=containerAddComment]'));\">";
         echo "<input type=\"hidden\" id=\"hidden_id\" name=\"id\" value=\"".$id."\"/>";
         echo "<input type=\"hidden\" id=\"hidden_table\" name=\"table\" value=\"".$tableAsk."\"/>";
         echo "<table><tr>"
