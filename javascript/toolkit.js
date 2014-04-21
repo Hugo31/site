@@ -149,7 +149,7 @@ function addCommentToDP(comment, id, table, nbComments, articleComment, articleA
     $.post("/site/controller/addComment.php", {id: id, comment: comment.val(), table: table}, 
     function(boolAdded){
         if(boolAdded == true){
-            $.post("/site/controller/reupdateComments.php", {id: id, table: table, nbComments: nbComments}, 
+            $.post("/site/controller/reupdateComments.php", {id: id, table: table, nbComments: nbComments + 1}, 
             function(containerComments){
                 parent = articleComment.parent();
                 articleComment.remove();
