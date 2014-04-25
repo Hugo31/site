@@ -299,7 +299,7 @@ class ToolKitDisplay {
     }
     
     public static function displayCommentsLittles($id, $nbComments, $tableAsk, $session){
-        $reponse = Database::getAllData("SELECT * FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id." ORDER BY DATE DESC LIMIT 0, 3");
+        $reponse = Database::getAllData("SELECT * FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id." ORDER BY DATE DESC LIMIT 0, 5");
         echo "<article id=\"commentsDetails\">";
         echo "<br/><h2 id=\"h2CommentsConflict\">Comments (".$nbComments.")</h2><hr/>";
         if ($reponse->rowCount() == 0) {
@@ -319,9 +319,15 @@ class ToolKitDisplay {
                 echo "</div>";
             }
         }
-           
+        $row = Database::getOneData("SELECT COUNT(*) AS count FROM comment".$tableAsk." WHERE id".$tableAsk." = ".$id."");
+        $count = $row['count'];   
         echo "<br/></article>";
-        
+        echo "<form action=\"comment.php\" method=\"POST\">";
+        echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"".$id."\"/>";
+        echo "<input type=\"hidden\" id=\"table\" name=\"table\" value=\"".$tableAsk."\"/>";
+        if ($count != 0) {
+            echo "<center><input type=\"submit\" class=\"send\" value=\"See all comments about it\"/></center></form><br/><br/>";
+        }
         $reponse->closeCursor();
     }
     

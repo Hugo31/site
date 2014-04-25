@@ -1,0 +1,74 @@
+<xml version="1.0">
+<Project>
+	<name>titi</name>
+	<description>efizgj</description>
+	<DesignsPatterns>
+		<DesignPattern>
+			<name>Advancement Box</name>
+			<target>Designer</target>
+			<what>Display the user its current position in the procedure: where he is, what he has done, what is left to be done.</what>
+			<whenandhow>Must be used in multi-step wizard procedures holding three or more steps.</whenandhow>
+			<layout>1. Use 2 shades of 1 colour for the background of the box places, the deeper one signalizing the current step, the lighter for thesteps done or to be done.2. Use three icons to show the state of a step. 3. Recall the step number in the header of the page. 4. Dont use checkboxes to indicate (completed) steps as this can give a false impression users can click on them.</layout>
+			<copy>Give each step a number.</copy>
+			<implementation>Put the box in the rigth-hand part of the screen, just as any non-critical information that can be missed by people holding a low screen resolution.</implementation>
+			<descriptionImage></descriptionImage>
+			<Images>
+				<Image>
+					<description></description>
+					<name>imgDP3NB1.png</name>
+				</Image>
+				<Image>
+					<description>efirghoidhxc efligfhodijvx,</description>
+					<name>multi-step_wizard1.png</name>
+				</Image>
+				<Image>
+					<description>efirghoidhxc efligfhodijvx,efirghoidhxc efligfhodijvx,efirghoidhxc efligfhodijvx,efirghoidhxc efligfhodijvx,efirghoidhxc efligfhodijvx,efirghoidhxc efligfhodijvx,efirghoidhxc efligfhodijvx,efirghoidhxc efligfhodijvx,efirghoidhxc efligfhodijvx,efirghoidhxc efligfhodijvx,efirghoidhxc efligfhodijvx,</description>
+					<name>multi-step_wizard1.png</name>
+				</Image>
+			</Images>
+			<Sources>
+				<Source>
+					<author>Van Welie</author>
+					<link>http://www.welie.com/patterns/showPattern.php?patternID=purchase-process</link>
+				</Source>
+			</Sources>
+		</DesignPattern>
+		<DesignPattern>
+			<name>Multi-Step Wizard</name>
+			<target>Designer</target>
+			<what>The goal of the procedure is reached through the accomplishment of a sequence of activites. This sequence of activities is guided by the sequence of screens but also by the navigation proposed which is limited to "next step" and "previous step" (eventually "cancell all").</what>
+			<whenandhow>Should be used when users are novice.
+Shouldnt be used when the procedure.</whenandhow>
+			<layout>1. Use an advancement box to indicate the procedure advancement.
+2. Remove unnecessary links and content so focus is on the wizard, while reinforcing the brand.</layout>
+			<copy>Give you step a clear title, whose formulation is user-centred and contains a verb corresponding to the activity of the step.</copy>
+			<implementation>1. Make sure the back button always works.
+2. When going back to a previous step, auto complete the previous imput.</implementation>
+			<descriptionImage></descriptionImage>
+			<Images>
+				<Image>
+					<description></description>
+					<name>multi-step_wizard1.png</name>
+				</Image>
+				<Image>
+					<description></description>
+					<name>multi-step_wizard2.png</name>
+				</Image>
+				<Image>
+					<description></description>
+					<name>multi-step_wizard3.png</name>
+				</Image>
+			</Images>
+			<Sources>
+				<Source>
+					<author>Undefined</author>
+					<link>http://www.designofsites.com/about_the_book/patternh1.pdf</link>
+				</Source>
+				<Source>
+					<author>Undefined</author>
+					<link>http://harbinger.sims.berkeley.edu/ui_designpatterns/webpatterns2/webpatterns/pattern.php?id=7</link>
+				</Source>
+			</Sources>
+		</DesignPattern>
+	</DesignsPatterns>
+</Project>
