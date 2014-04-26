@@ -9,7 +9,7 @@ abstract class AbstractBasicCommentDB extends AbstractBasicPostedDB{
         $this->setNbComments(0);
     }
     
-    public function getFromDB($donnees){
+    public function getFromDB($donnees) {
         $this->setNbComments($donnees['nbComments']);
         parent::getFromDB($donnees);
     }
@@ -25,7 +25,7 @@ abstract class AbstractBasicCommentDB extends AbstractBasicPostedDB{
             'comment' => $comment
         ));
         
-        if($reussie){
+        if ($reussie) {
             $rqt = $bdd->prepare('UPDATE TABLE '.$nameTable.' SET nbComments = nbComments + 1 WHERE id'.$nameTable.' = :id');
             $rqt->execute(array(
                 'id' => $this->getID()
@@ -37,7 +37,7 @@ abstract class AbstractBasicCommentDB extends AbstractBasicPostedDB{
     public function abstractRemoveComment($idComment, $nameTable) {
         $bdd = Database::getConnection();
         $nbLine = $bdd->exec('DELETE FROM Comment'.$nameTable.' WHERE idComment = \''.$idComment.'\'');
-        if($nbLine > 0){
+        if ($nbLine > 0) {
             $rqt = $bdd->prepare('UPDATE TABLE '.$nameTable.' SET nbComments = nbComments - 1 WHERE id'.$nameTable.' = :id');
             $rqt->execute(array(
                 'id' => $this->getID()
@@ -46,11 +46,11 @@ abstract class AbstractBasicCommentDB extends AbstractBasicPostedDB{
         return ($nbLine > 0);
     }
     
-    public function getNbComments(){
+    public function getNbComments() {
         return $this->nbComments;
     }
     
-    public function setNbComments($_nbComments){
+    public function setNbComments($_nbComments) {
         $this->nbComments = $_nbComments;
     }
 }

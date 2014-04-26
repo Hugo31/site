@@ -20,7 +20,7 @@ class Session
      */
     public static function getInstance()
     {
-        if (!isset(self::$instance)){
+        if (!isset(self::$instance)) {
             self::$instance = new self;
         }
         self::$instance->startSession();
@@ -29,11 +29,11 @@ class Session
 
     /**
      * (Re)starts the session.
-     * @return bool TRUE if the session has been initialized, else FALSE.
+     * @return bool TRUE if the session has been initialized, } else { FALSE.
      */
     public function startSession()
     {
-        if ($this->sessionState == self::SESSION_NOT_STARTED){
+        if ($this->sessionState == self::SESSION_NOT_STARTED) {
             $this->sessionState = session_start();
         }
         return $this->sessionState;
@@ -59,7 +59,7 @@ class Session
      */
     public function __get($name)
     {
-        if (isset($_SESSION[$name])){
+        if (isset($_SESSION[$name])) {
             return $_SESSION[$name];
         }
     }
@@ -78,11 +78,11 @@ class Session
     
     /**
      * Destroys the current session.
-     * @return boolean TRUE if session has been deleted, else FALSE
+     * @return boolean TRUE if session has been deleted, } else { FALSE
      */
     public function destroy()
     {
-        if ($this->sessionState == self::SESSION_STARTED){
+        if ($this->sessionState == self::SESSION_STARTED) {
             $this->sessionState = !session_destroy();
             unset($_SESSION);
             return !$this->sessionState;

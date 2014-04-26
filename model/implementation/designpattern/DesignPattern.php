@@ -18,7 +18,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
     private $nbUsage;
     private $target;
     
-    public function __construct($_id, $_name, $_login, $_date, $_what, $_nbUsage, $_target) {
+    public function __construct($_id, $_name = "", $_login = "", $_date = null, $_what = "", $_nbUsage = "", $_target = ETarget::Designer) {
         parent::__construct($_id, $_name, $_login, $_date);
         $this->setWhat($_what);
         $this->setWhenAndHow("");
@@ -37,7 +37,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
      * @param DesignPattern $object Le design pattern à sauvegarder.
      * @return bool True si l'ajout à réussi, False sinon.
      */
-    public static function addDB($object){
+    public static function addDB($object) {
         $bdd = Database::getConnection();
         $rqt = $bdd->prepare('INSERT INTO DesignPattern (name, what, whenAndHow, layout, copy, implementation, descriptionImage, nbUsage, nbComments, nbRates, rate, date, target, login) '
                             .'VALUES(:name, :what, :whenAndHow, :layout, :copy, :implementation, :nbUsage, :descriptionImage, :nbComments, :nbRates, :rate, :date, :target, :login)');
@@ -57,7 +57,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
             'target' => ETarget::getNameEnum($object->getTarget()),
             'login' => $object->getLogin()
             ));
-        if($reussie == true){
+        if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
         }
         
@@ -69,7 +69,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
      * @param DesignPattern $object Le nouveau design pattern à modifier avec un identifiant valide.
      * @return bool True si la modification a réussi, False sinon.
      */
-    public static function modifyDB($object){
+    public static function modifyDB($object) {
         $bdd = Database::getConnection();
         $req = $bdd->prepare('UPDATE DesignPattern SET '
                             .'name = :name, what = :what, whenAndHow = :whenAndHow, layout = :layout, '
@@ -103,7 +103,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
      * @param DesignPattern $object Le design pattern à supprimer.
      * @return bool True si la suppression a réussi, False sinon.
      */
-    public static function removeDB($object){
+    public static function removeDB($object) {
         $bdd = Database::getConnection();
         //Spprimer les occurences de : 
         $bdd->exec('DELETE FROM SystemDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
@@ -128,9 +128,9 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
      * @param int $id L'identifiant du design pattern.
      * @return DesignPattern Le design pattern issus de la base de donnée.
      */
-    public static function getDB($id){
+    public static function getDB($id) {
         $donnees = Database::getOneData('SELECT * FROM DesignPattern WHERE idDesignPattern = '.$id.'');
-        if($donnees != false){
+        if ($donnees != false) {
             $donnees['id'] = $id;
             $dp = new DesignPattern($donnees['idDesignPattern'], $donnees['name'], $donnees['login'], 
                                     $donnees['date'], $donnees['what'], $donnees['nbUsage'], 
@@ -184,7 +184,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         return parent::abstractRemoveRate($user, "DesignPattern");
     }
     
-    public function getWhat(){
+    public function getWhat() {
         return $this->what;
     }
 
@@ -192,7 +192,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $this->what = $_what;
     }
 
-    public function getWhenAndHow(){
+    public function getWhenAndHow() {
         return $this->whenAndHow;
     }
 
@@ -200,7 +200,7 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $this->whenAndHow = $_whenAndHow;
     }
 
-    public function getLayout(){
+    public function getLayout() {
         return $this->layout;
     }
 
@@ -208,39 +208,39 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $this->layout = $_layout;
     }
 
-    public function getCopy(){
+    public function getCopy() {
         return $this->copy;
     }
 
-    public function setCopy($_copy){
+    public function setCopy($_copy) {
         $this->copy = $_copy;
     }
 
-    public function getImplementation(){
+    public function getImplementation() {
         return $this->implementation;
     }
 
-    public function setImplementation($_implementation){
+    public function setImplementation($_implementation) {
         $this->implementation = $_implementation;
     }
     
-    public function getDescriptionImage(){
+    public function getDescriptionImage() {
         return $this->descriptionImage;
     }
 
-    public function setDescriptionImage($_descriptionImage){
+    public function setDescriptionImage($_descriptionImage) {
         $this->descriptionImage = $_descriptionImage;
     }
     
-    public function getNbUsage(){
+    public function getNbUsage() {
         return $this->nbUsage;
     }
 
-    public function setNbUsage($_nbUsage){
+    public function setNbUsage($_nbUsage) {
         $this->nbUsage = $_nbUsage;
     }
 
-    public function getTarget(){
+    public function getTarget() {
         return $this->target;
     }
 

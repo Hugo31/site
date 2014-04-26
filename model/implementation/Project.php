@@ -9,7 +9,7 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
     private $description;
     private $current;
     
-    public function __construct($_id, $_name, $_login, $_date, $_desc) {
+    public function __construct($_id, $_name = "", $_login = "", $_date = null, $_desc = "") {
         parent::__construct($_id, $_name, $_login, $_date);
         $this->setDescription($_desc);
         $this->setCurrent(false);
@@ -29,7 +29,7 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
             'login' => $object->getLogin(), 
             'current' => $object->isCurrent()
             ));
-        if($reussie == true){
+        if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
         }
         return $reussie;
@@ -43,7 +43,7 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
      */
     public static function getDB($id) {
         $donnees = Database::getOneData('SELECT * FROM Project WHERE idProject = '.$id.'');
-        if($donnees != false){
+        if ($donnees != false) {
             $donnees['id'] = $id;
             $project = new Project($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description']);
             $project->setCurrent($donnees['current']);
@@ -105,7 +105,7 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
         return ($nbSuppr > 0);
     }
     
-    public function getDescription(){
+    public function getDescription() {
         return $this->description;
     }
 
@@ -113,7 +113,7 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
         $this->description = $_description;
     }
     
-    public function isCurrent(){
+    public function isCurrent() {
         return $this->current;
     }
 

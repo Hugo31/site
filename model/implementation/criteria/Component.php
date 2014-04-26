@@ -27,7 +27,7 @@ class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkCompo
             'name' => $object->getName(),
             'description' => $object->getDescription()
             ));
-        if($reussie == true){
+        if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
         }
         
@@ -42,7 +42,7 @@ class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkCompo
     public static function getDB($id) { 
         $donnees = Database::getOneData('SELECT * FROM Component WHERE idComponent = '.$id.'');
         
-        if($donnees != false){
+        if ($donnees != false) {
             return new Component($donnees['idComponent'], $donnees['name'], $donnees['description']);
         }
         return false;
@@ -81,7 +81,7 @@ class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkCompo
      * @param DesignPattern $tableToSort Le design pattern à lier.
      * @return bool True si le lien a été ajouté, FALSE sinon.
      */
-    public function addLink($tableToLink){
+    public function addLink($tableToLink) {
         return parent::addLinkSort($tableToLink, "Component");
     }
 
@@ -90,7 +90,7 @@ class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkCompo
      * @param DesignPattern $tableToSort Le design pattern à délier.
      * @return bool True si le lien a été supprimer, FALSE sinon.
      */
-    public function removeLink($tableToLink){
+    public function removeLink($tableToLink) {
         return parent::removeLinkSort($tableToLink, "Component");
     }
     

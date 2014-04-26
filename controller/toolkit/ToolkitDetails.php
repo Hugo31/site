@@ -8,9 +8,9 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Solution.php"
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Project.php");
 
 class ToolkitDetails {
-    public static function displayDetailsConflict($id, $session){
+    public static function displayDetailsConflict($id, $session) {
         $conflict = Conflict::getDB($id);
-        if($conflict != false){
+        if ($conflict != false) {
             echo "<article>";
             echo "<h1>".$conflict->getName()."</h1>";
             echo "<article id=\"h3Details\">";
@@ -24,7 +24,7 @@ class ToolkitDetails {
             echo "<tr><td valign=\"top\"><h3>".$nombre." DP in conflict:</h3></td><td>";
             ToolKitDisplay::displayDPConflict($id, $nombre);
             echo "</td></tr></table><br/>";
-            if($session->login){
+            if ($session->login) {
                 echo "<img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/view/addSolution.php?id=".$id."\"><h3>Propose a solution</h3></a>";
                 echo " | <img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=Conflict&amp;name=".$conflict->getName()."&amp;id=".$id."\"><h3>Report content</h3></a><br/><br/>";
             }
@@ -35,22 +35,21 @@ class ToolkitDetails {
             ToolKitDisplay::displayGenericBox("Solution", Database::getAllData("SELECT DISTINCT s.idSolution, s.name, s.comment, s.rate, s.nbRates, s.nbComments, s.date, s.login FROM Solution s WHERE s.idConflict = ".$conflict->getID().";"));
             
             ToolkitDisplay::displayCommentsLittles($id, $conflict->getNbComments(), "Conflict", $session);
-            if(isset($session->login)){
+            if (isset($session->login)) {
                 $tableAsk = "conflict";
                 ToolKitDisplay::displayAddComment($id, $tableAsk, $conflict->getNbComments());
             }
             echo "</article>";
 
-        }
-        else{
+        } else {
             echo "Error 404 !!";
         }
     }
     
-    public static function displayDetailsDesignPattern($id, $session){
+    public static function displayDetailsDesignPattern($id, $session) {
         $dp = DesignPattern::getDB($id);
         
-        if($dp != false){
+        if ($dp != false) {
             echo "<h1>".$dp->getName()."</h1><br/>";
             echo "<div id=\"contentDP\">";
             echo "<div id=\"contenuHautDP\">";
@@ -71,7 +70,7 @@ class ToolkitDetails {
             echo "</div>";
             echo "<div id=\"addProposeDP\">";
             echo "<h3>".ToolkitDisplay::cartLink($id, "this", false)."</h3>";
-            if(isset($session->login)){
+            if (isset($session->login)) {
                 echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:bottom;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$id."\"><h3>Report a conflict</h3></a>";
                 echo " | <img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=DesignPattern&amp;name=".$dp->getName()."&amp;id=".$id."\"><h3>Report content</h3></a>";
             }
@@ -85,7 +84,7 @@ class ToolkitDetails {
             
             ToolkitDisplayDesignPattern::displayImages($id);
             ToolkitDisplay::displayCommentsLittles($id, $dp->getNbComments(), "DesignPattern", $session);
-            if(isset($session->login)){
+            if (isset($session->login)) {
                 $tableAsk = "designpattern";
                 ToolKitDisplay::displayAddComment($id, $tableAsk, $dp->getNbComments());
             }
@@ -101,7 +100,7 @@ class ToolkitDetails {
             if ($data['nb'] != 0) {
                 echo "<a href=\"\"><h2>Conflicts (".$data['nb']."):</h2></a>";
                 $reponse = Database::getAllData("SELECT c.idConflict, c.name, c.date, c.login FROM Conflict c, ConflictDesignPattern cdp WHERE cdp.idDesignPattern = ".$id." AND c.idConflict = cdp.idConflict ;");
-                foreach($reponse as $row){
+                foreach ($reponse as $row) {
                     echo "<fieldset style=\"border: 1px solid #96A9B5;box-shadow: 0 1px 0 #FFFFFF;\"><h3><a href=\"details.php?type=Conflict&id=".$row['idConflict']."\">".$row['name']."</a></h3>";
                     echo "Signaled ".$row['date']." by <a href=\"\">".$row['login']."</a><br/>";
                     $data = Database::getOneData("SELECT COUNT(*) as nb FROM Solution WHERE idconflict = ".$row['idConflict']);
@@ -115,15 +114,14 @@ class ToolkitDetails {
             echo "</article>";
             echo "</aside>";
             
-        }
-        else{
+        } else {
             echo "Error 404 !!";
         }
     }
     	
-    public static function displayDetailsSolution($id, $session){
+    public static function displayDetailsSolution($id, $session) {
         $solution = Solution::getDB($id);
-        if($solution != false){
+        if ($solution != false) {
             echo "<article>";
             echo "<h1>".$solution->getName()."</h1>";
             
@@ -135,7 +133,7 @@ class ToolkitDetails {
             $data = Database::getOneData("SELECT c.idConflict, c.name FROM Solution s, Conflict c WHERE s.idSolution=".$id." and c.idConflict=s.idConflict;");
             echo "<tr><td valign=\"top\"><h3>Solution to the conflict:</h3></td><td><a href=\"details.php?type=Conflict&id=".$data['idConflict']."\">".$data['name']."</a></td></tr>";
             echo "</td></tr></table></br>";
-            if(isset($session->login)) {
+            if (isset($session->login)) {
                 echo "<img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=Solution&amp;name=".$solution->getName()."&amp;id=".$id."\"><h3>Report content</h3></a>";
             }
             echo "</div>";
@@ -151,7 +149,7 @@ class ToolkitDetails {
                 echo "<div id=\"textDisplay\">";
                 echo "<h3>Others Solutions :</h3>";
                 echo "<ul>";
-                foreach($reponse as $row){
+                foreach ($reponse as $row) {
                     echo "<li>";
                     echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\">".$row['name']."</a><br/>";
                     echo "Posted the ".$row['date']." by ".$row['login']."<br/>";
@@ -162,23 +160,22 @@ class ToolkitDetails {
                 echo "</div>";
             }
             ToolkitDisplay::displayCommentsLittles($id, $solution->getNbComments(), "Solution", $session);
-            if(isset($session->login)){
+            if (isset($session->login)) {
                 $tableAsk = "solution";
                 ToolKitDisplay::displayAddComment($id, $tableAsk, $solution->getNbComments());
             }
             echo "</article>";
-        }
-        else{
+        } else {
             echo "Error 404 !!";
         }
     }
     
-    public static function displayDetailsProject($id, $session){
+    public static function displayDetailsProject($id, $session) {
         $project = Project::getDB($id);
-        if($project != false){
+        if ($project != false) {
             echo "<article>";
             echo "<h1>".$project->getName()."</h1>";
-            if($session->login == $project->getLogin()){
+            if ($session->login == $project->getLogin()) {
                 echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"#\">Re-open that project</a></div>";
             }
             echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"/site/controller/exportXML.php?idProject=".$id."\" target=\"_blank\"><img src=\"/site/img/vrac/xml.png\" style=\"vertical-align:middle;padding-right:5px;\">Import that project</a></div><br/>";
@@ -192,8 +189,7 @@ class ToolkitDetails {
             
             ToolKitDisplay::displayDesignPatternBox(Database::getAllData("SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern pdp WHERE pdp.idProject = ".$project->getID()." AND pdp.idDesignPattern = dp.idDesignPattern;"), false);            
             echo "</article>";
-        }
-        else{
+        } else {
             echo "Error 404 !!";
         }
     }

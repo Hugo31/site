@@ -7,39 +7,33 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Conflict.php"
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/User.php");
 $session = Session::getInstance();
 $reussie = false;
-if(isset($session->login)){
+
+if (isset($session->login)) {
     $user = new User($session->login, "", "", "", "", "");
-    if(isset($_POST['id'])){
-        if($_POST['table'] == "designpattern"){
+    if (isset($_POST['id'])) {
+        if ($_POST['table'] == "designpattern") {
             $dp = new DesignPattern($_POST['id'], "", "", "", "", "", "");
             $reussie = $dp->addComment($user, $_POST['comment']);
-        }
-        else{
-            if($_POST['table'] == "solution"){
+        } else {
+            if ($_POST['table'] == "solution") {
                 $sl = new Solution($_POST['id'], "", "", "", "", "", "");
                 $reussie = $sl->addComment($user, $_POST['comment']);
-            }
-            else{
+            } else {
                 $cf = new Conflict($_POST['id'], "", "", "", "", "");
                 $reussie = $cf->addComment($user, $_POST['comment']);
             }
         }
         
-        
-        if($reussie == true){
+        if ($reussie == true) {
             $req = "UPDATE ".$_POST['table']." SET nbComments = nbComments + 1 WHERE id".$_POST['table']." = ".$_POST['id'].";";
             Database::getConnection()->exec($req);
-            
         }
-        
         echo $reussie;
-    }
-    else{
+    } else {
         echo false;
     }
-}
-else{
-        echo false;
+} else {
+    echo false;
 }
 
 

@@ -20,7 +20,7 @@
             data: { "idReported": id, "typeReported": type},
             complete: function(data) {
                 setTimeout(
-                    function(){
+                    function() {
                        location.reload();
                     }, 1);    
             }
@@ -36,7 +36,7 @@
             data: { "idReported": id, "typeReported": type},
             complete: function(data) {
                 setTimeout(
-                    function(){
+                    function() {
                        location.reload();
                     }, 1);    
             }
@@ -44,7 +44,7 @@
        });
    }
     
-   hideblock = function(a, index){
+   hideblock = function(a, index) {
         $(a).attr("onclick","return showblock($(this)," + index + ");");
         $(a).text("[+]");
         $(a).parent().children("p").eq(index).hide().end();
@@ -52,7 +52,7 @@
         return!1;
     };
     
-    showblock = function(a, index){
+    showblock = function(a, index) {
         $(a).attr("onclick","return hideblock($(this)," + index + ");");
         $(a).text("[-]");
         $(a).parent().children("p").eq(index).show().end();
@@ -65,21 +65,19 @@
 <section id="contenu">
     
     <?php
-    if(!isset($session->admin)){ //si utilisateur non connecté
+    if (!isset($session->admin)) { //si utilisateur non connecté
         echo '<center><h3>You must be connected in order to use this page</h3></center>';
-    } 
-    else {
+    } else {
         echo '<h1> Users reports </h1>';
 
         $bdd = Database::getConnection();
         $sql = "SELECT idReported, typeReported FROM `reporting` GROUP BY idReported, typeReported";
         $result = $bdd->query($sql);
-        if($result->rowCount() != 0){
-            foreach($result as $row){
+        if ($result->rowCount() != 0) {
+            foreach ($result as $row) {
                 ToolkitAdds::displayReportMini($row[0], $row[1]);
             }
-        }
-        else{
+        } else {
             echo 'No report found';
         }
         

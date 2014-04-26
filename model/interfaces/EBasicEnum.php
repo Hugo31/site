@@ -19,7 +19,7 @@ abstract class EBasicEnum {
      * @param int $i the value which we desire the name
      * @return string|NULL the existing name, NULL otherwise
      */
-    public static function getNameEnum($i){
+    public static function getNameEnum($i) {
         
         $constants = self::getConstants();
         $keys = array_map('strtolower', array_keys($constants));
@@ -33,7 +33,7 @@ abstract class EBasicEnum {
      * @param bool $strict Indique s'il faut respecter la casse.
      * @return int|bool La valeur du nom
      */
-    public static function getValueEnum($name, $strict = false){
+    public static function getValueEnum($name, $strict = false) {
         $constants = self::getConstants();
         if ($strict) {
             return array_search(strtolower($name), $keys, true);

@@ -26,7 +26,7 @@ class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
             'name' => $object->getName(),
             'description' => $object->getDescription()
             ));
-        if($reussie == true){
+        if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
         }
         
@@ -41,7 +41,7 @@ class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      */
     public static function getDB($id) { 
         $donnees = Database::getOneData('SELECT * FROM Category WHERE idCategory = '.$id.'');
-        if($donnees != false){
+        if ($donnees != false) {
             return new Category($donnees['idCategory'], $donnees['name'], $donnees['description']);
         }
         return false;
@@ -80,7 +80,7 @@ class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      * @param DesignPattern $tableToSort Le design pattern à lier.
      * @return bool True si le lien a été ajouté, FALSE sinon.
      */
-    public function addLink($tableToLink){
+    public function addLink($tableToLink) {
         return parent::addLinkSort($tableToLink, "Category");
     }
 
@@ -89,7 +89,7 @@ class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      * @param DesignPattern $tableToSort Le design pattern à délier.
      * @return bool True si le lien a été supprimer, FALSE sinon.
      */
-    public function removeLink($tableToLink){
+    public function removeLink($tableToLink) {
         return parent::removeLinkSort($tableToLink, "Category");
     }
 

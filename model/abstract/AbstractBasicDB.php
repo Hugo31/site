@@ -20,12 +20,12 @@ abstract class AbstractBasicDB{
         $this->setName($_name);
     }
     
-    public function getFromDB($donnees){
+    public function getFromDB($donnees) {
         $this->setID($donnees["id"]);
         $this->setName($donnees['name']);
     }
     
-    public function getID(){
+    public function getID() {
         return $this->identifiant;
     }
 
@@ -33,7 +33,7 @@ abstract class AbstractBasicDB{
         $this->identifiant = $_id;
     }
 
-    public function getName(){
+    public function getName() {
         return $this->name;
     }
 

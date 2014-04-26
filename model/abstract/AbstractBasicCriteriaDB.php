@@ -9,7 +9,7 @@ class AbstractBasicCriteriaDB extends AbstractBasicDB{
         $this->setDescription($_desc);
     }
     
-    public function getDescription(){
+    public function getDescription() {
         return $this->description;
     }
 

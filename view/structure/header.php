@@ -32,8 +32,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
         <script type="text/javascript" src="/site/controller/sign/ctrlSignin.js"></script>
         
         <script type="text/javascript">
-        function limite(textarea, max){
-            if(textarea.value.length >= max) {
+        function limite(textarea, max) {
+            if (textarea.value.length >= max) {
                 textarea.value = textarea.value.substring(0,max);
             }
             var reste = max - textarea.value.length;

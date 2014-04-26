@@ -24,7 +24,7 @@ function verifEmail($email) {
 
 function verifName($name) {
 
-    if (preg_match("#^([A-z]+([ |\-]{1}([A-z])+)*){2,30}$#i", $name)) {
+    if (preg_match("#^([A-z]+([ |\-]{1}([A-z])+)*) {2,30}$#i", $name)) {
         return true;
     }
 

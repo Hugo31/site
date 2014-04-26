@@ -14,8 +14,7 @@
         Project::addDB($pj);
         
         header('Location: /site/view/details.php?type=Project&id=' . $pj->getID());
-    }
-    else{
+    } else {
         echo '<h3>Error</h3>';
     }
     

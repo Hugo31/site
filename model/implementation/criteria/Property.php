@@ -9,7 +9,7 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
      * @param string $_name Le nom de la propriété.
      * @param string $_desc La description de la propriété
      */
-    public function __construct($_idSort, $_name, $_desc){
+    public function __construct($_idSort, $_name, $_desc) {
         parent::__construct($_idSort, $_name, $_desc);
     }
     
@@ -25,7 +25,7 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
             'name' => $object->getName(),
             'description' => $object->getDescription()
             ));
-        if($reussie == true){
+        if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
         }
         return $reussie;
@@ -39,7 +39,7 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
      */
     public static function getDB($id) { 
         $donnees = Database::getOneData('SELECT * FROM Property WHERE idProperty = '.$id.'');
-        if($donnees != false){
+        if ($donnees != false) {
             return new Property($donnees['idProperty'], $donnees['name'], $donnees['description']);
         }
         return false;
@@ -78,7 +78,7 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
      * @param DesignPattern $tableToSort Le design pattern à lier.
      * @return bool True si le lien a été ajouté, FALSE sinon.
      */
-    public function addLink($tableToLink, $note){
+    public function addLink($tableToLink, $note) {
         $bdd = Database::getConnection();
         $req = $bdd->prepare('INSERT INTO PropertyDesignPattern (idDesignPattern, idProperty, note) VALUES (:idDP, :idSort, :note)');
         $reussie = $req->execute(array(
@@ -94,7 +94,7 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
      * @param DesignPattern $tableToSort Le design pattern à délier.
      * @return bool True si le lien a été supprimer, FALSE sinon.
      */
-    public function removeLink($tableToLink){
+    public function removeLink($tableToLink) {
         $bdd = Database::getConnection();
         $nbSuppr = $bdd->exec('DELETE FROM PropertyDesignPattern WHERE idDesignPattern = '.$tableToLink->getID().' AND idProperty = '.$this->getID().'');
         return ($nbSuppr > 0);

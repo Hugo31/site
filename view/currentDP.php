@@ -9,7 +9,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 ?>
 
 <script type="text/javascript">
-    hideblock = function(a){
+    hideblock = function(a) {
         $(a).attr("onclick","return showblock($(this));");
         $(a).text("Show conflicts");
         $(a).parent().children("div").first().hide().end();
@@ -17,7 +17,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         return!1;
     };
     
-    showblock = function(a){
+    showblock = function(a) {
         $(a).attr("onclick","return hideblock($(this));");
         $(a).text("Hide conflicts");
         $(a).parent().children("div").first().show().end();
@@ -69,18 +69,18 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         $conf = array();
         $i = 0;
         $trouv = false;
-        foreach($result as $row){
-            foreach($save as $dps){
+        foreach ($result as $row) {
+            foreach ($save as $dps) {
                 $reqConf = "SELECT DISTINCT cdp.idConflict FROM conflictdesignpattern cdp, conflictdesignpattern cdp2 WHERE cdp.idDesignPattern = " . $dps[0] . " AND cdp2.idDesignPattern = " . $row[0];
                 $reponseConf = Database::getAllData($reqConf);
-                foreach($reponseConf as $conflicts){
-                    if (!$trouv){
+                foreach ($reponseConf as $conflicts) {
+                    if (!$trouv) {
                         echo '</br><cC>Warning! You may encounter conflicts between your Design Patterns. </cC></br><a href="#" onclick="return showblock(this)" style="text-decoration:none;" >Show conflicts</a>';
                         echo '<div id="conflictsCart" hidden = true>';
                         $trouv = true;
                     }
                     $reponseConf2 = Database::getAllData("SELECT * FROM Conflict WHERE idConflict = " . $conflicts['idConflict']. ";");
-                    foreach($reponseConf2 as $conflicts2){
+                    foreach ($reponseConf2 as $conflicts2) {
                         if (!in_array($conflicts2['idConflict'], $conf)) {
                             array_push($conf, $conflicts2['idConflict']);
                             $reponseConf3 = Database::getAllData("SELECT * FROM Conflict WHERE idConflict = " . $conflicts['idConflict']. ";");
@@ -93,7 +93,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             $save[$i] = $row[0];
             $i++;
         }
-        if ($trouv){
+        if ($trouv) {
             echo '</div>';
         }
         
@@ -101,8 +101,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         if ($reponse != false) {
             ToolKitDisplay::displayDesignPatternBox($reponse, true);
         }
-    } 
-    else {
+    } else {
         ?>
         <h1>My current Design Pattern</h1>
         <p id="cartDescription">
@@ -125,18 +124,18 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             $conf = array();
             $i = 0;
             $trouv = false;
-            foreach($result as $row){
-                foreach($save as $dps){
+            foreach ($result as $row) {
+                foreach ($save as $dps) {
                     $reqConf = "SELECT DISTINCT cdp.idConflict FROM conflictdesignpattern cdp, conflictdesignpattern cdp2 WHERE cdp.idDesignPattern = " . $dps[0] . " AND cdp2.idDesignPattern = " . $row[0];
                     $reponseConf = Database::getAllData($reqConf);
-                    foreach($reponseConf as $conflicts){
-                        if (!$trouv){
+                    foreach ($reponseConf as $conflicts) {
+                        if (!$trouv) {
                             echo '<cC>Warning! You may encounter conflicts between your Design Patterns. </cC></br><a href="#" onclick="return showblock(this)" style="text-decoration:none;" >Show conflicts</a>';
                             echo '<div id="conflictsCart" hidden = true>';
                             $trouv = true;
                         }
                         $reponseConf2 = Database::getAllData("SELECT * FROM Conflict WHERE idConflict = " . $conflicts['idConflict']. ";");
-                        foreach($reponseConf2 as $conflicts2){
+                        foreach ($reponseConf2 as $conflicts2) {
                             if (!in_array($conflicts2['idConflict'], $conf)) {
                                 array_push($conf, $conflicts2['idConflict']);
                                 $reponseConf3 = Database::getAllData("SELECT * FROM Conflict WHERE idConflict = " . $conflicts['idConflict']. ";");
@@ -149,7 +148,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
                 $save[$i] = $row[0];
                 $i++;
             }
-            if ($trouv){
+            if ($trouv) {
                 echo '</div></br>';
             }
             

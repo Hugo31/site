@@ -11,7 +11,7 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
      * @param string $_desc La description du système.
      * @param string $_icon L'icone associée.
      */
-    public function __construct($_idSort, $_name, $_desc, $_icon){
+    public function __construct($_idSort, $_name, $_desc, $_icon) {
         parent::__construct($_idSort, $_name, $_desc);
         $this->setIcon($_icon);
     }
@@ -29,7 +29,7 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
             'description' => $object->getDescription(), 
             'icon' => $object->getIcon()
         ));
-        if($reussie == true){
+        if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
         }
         return $reussie;
@@ -43,7 +43,7 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
      */
     public static function getDB($id) { 
         $donnees = Database::getOneData('SELECT * FROM System WHERE idSystem = '.$id.'');
-        if($donnees != false){
+        if ($donnees != false) {
             return new System($donnees['idSystem'], $donnees['name'], $donnees['description'], $donnees['icon']);
         }
         return false;
@@ -83,7 +83,7 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
      * @param DesignPattern $tableToSort Le design pattern à lier.
      * @return bool True si le lien a été ajouté, FALSE sinon.
      */
-    public function addLink($tableToLink){
+    public function addLink($tableToLink) {
         return parent::addLinkSort($tableToLink, "System");
     }
 
@@ -92,11 +92,11 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
      * @param DesignPattern $tableToSort Le design pattern à délier.
      * @return bool True si le lien a été supprimer, FALSE sinon.
      */
-    public function removeLink($tableToLink){
+    public function removeLink($tableToLink) {
         return parent::removeLinkSort($tableToLink, "System");
     }
     
-    public function setIcon($_icon){
+    public function setIcon($_icon) {
         $this->icon = $_icon; 
     }
     

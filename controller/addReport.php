@@ -10,7 +10,8 @@ $req->execute(array(
     'message' => $_POST['repportMessage'],
     'typeReported' => $_GET['type'],
     'idReported' => $_GET['id'],
-    'login' => $session->login));
+    'login' => $session->login)
+);
 
 header('Location: /site/index.php');
 

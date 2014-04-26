@@ -1,8 +1,8 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/Database.php");
-$bdd = Database::getConnection();   
+$bdd = Database::getConnection();
 
-if(isset($_POST['page']) && isset($_POST['table']) && isset($_POST['id'])) {
+if (isset($_POST['page']) && isset($_POST['table']) && isset($_POST['id'])) {
     $page = $_POST['page'];
     $table = $_POST['table'];
     $id = $_POST['id'];
@@ -97,7 +97,6 @@ if(isset($_POST['page']) && isset($_POST['table']) && isset($_POST['id'])) {
     }
     $goto = "<input type='text' class='goto' size='1' style='margin-top:-1px;margin-left:60px;'/><input type='button' id='go_btn' class='go_button' value='Go'/>";
     $total_string = "<span class='total' a='$no_of_paginations'>Page <b>" . $cur_page . "</b> of <b>$no_of_paginations</b></span>";
-    $msg = $msg . "</ul>" . $goto . $total_string . "</div>";  // Content for pagination
+    $msg = $msg . "</ul>" . $goto . $total_string . "</div>"; // Content for pagination
     echo $msg.'<br/><br/>';
 }
-

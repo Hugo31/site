@@ -10,7 +10,7 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
     private $codeSolution;
     private $idConflict;
 
-    public function __construct($_id, $_name, $_login, $_date, $_comment, $_codeSolution, $_idConflict) {
+    public function __construct($_id, $_name = "", $_login = "", $_date = null, $_comment = "", $_codeSolution = "", $_idConflict = null) {
         parent::__construct($_id, $_name, $_login, $_date);
         $this->setComment($_comment);
         $this->setCodeSolution($_codeSolution);
@@ -32,7 +32,7 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
             'idConflict' => $object->getIDConflict(),
             'login' => $object->getLogin()
         ));
-        if($reussie){
+        if ($reussie) {
             $object->setID((int) $bdd->lastInsertId());
         }
         return $reussie;
@@ -41,7 +41,7 @@ class Solution extends AbstractBasicRateDB implements IDatabase, IComment, IRate
     public static function getDB($id) {
         $donnees = Database::getOneData('SELECT * FROM Solution WHERE idSolution = ' . $id . '');
         
-        if($donnees != false){
+        if ($donnees != false) {
             $donnees['id'] = $id;
             $solution = new Solution($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['comment'], $donnees['codeSolution'], $donnees['idConflict']);
             $solution->getFromDB($donnees);

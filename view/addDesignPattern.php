@@ -16,22 +16,22 @@
     MAXSOURCES = 7;
     MAXIMAGES = 10;
     
-    function increasesizediv(div, size){//increase height by size
+    function increasesizediv(div, size) {//increase height by size
         var c = document.getElementById(div);
         var e = c.style.height;
         e = e.replace('px','');
         var $c = 1;
         var i = 0;
-        while($c===1){ i++; if(i===size){ break; } e++; c.style.height = e+'px'; }
+        while($c===1) { i++; if (i===size) { break; } e++; c.style.height = e+'px'; }
     }
     
-    function decreasesizediv(div, size){//decrease height by size
+    function decreasesizediv(div, size) {//decrease height by size
         var c = document.getElementById(div);
         var e = c.style.height;
         e = e.replace('px','');
         var $c = 1;
         var i = 0;
-        while($c===1){ i++; if(i===size){ break; } e--; c.style.height = e+'px'; }
+        while($c===1) { i++; if (i===size) { break; } e--; c.style.height = e+'px'; }
     }
     
     function addsources() {
@@ -39,7 +39,7 @@
         var originalFormLength = myForm.length;
         var tmpValues = new Array();
 
-        for(var i = 0; i < originalFormLength; i++){
+        for (var i = 0; i < originalFormLength; i++) {
            tmpValues[i] = myForm.item(i).value;
         }
 
@@ -53,7 +53,7 @@
             }
         }
         
-        for(var j = 0; j < originalFormLength; j++){
+        for (var j = 0; j < originalFormLength; j++) {
            myForm.item(j).value = tmpValues[j];
         }
     };
@@ -62,7 +62,7 @@
         var originalFormLength = myForm.length;
         var tmpValues = new Array();
 
-        for(var i = 0; i < originalFormLength; i++){
+        for (var i = 0; i < originalFormLength; i++) {
            tmpValues[i] = myForm.item(i).value;
         }
     
@@ -78,7 +78,7 @@
             }
         }
         
-        for(var j = 0; j < originalFormLength; j++){
+        for (var j = 0; j < originalFormLength; j++) {
            myForm.item(j).value = tmpValues[j];
         }
     };
@@ -88,7 +88,7 @@
         var originalFormLength = myForm.length;
         var tmpValues = new Array();
 
-        for(var i = 0; i < originalFormLength; i++){
+        for (var i = 0; i < originalFormLength; i++) {
            tmpValues[i] = myForm.item(i).value;
         }
     
@@ -104,12 +104,12 @@
             }
         }
         
-        for(var j = 0; j < originalFormLength; j++){
+        for (var j = 0; j < originalFormLength; j++) {
            myForm.item(j).value = tmpValues[j];
         }
     };
     
-    hideblock = function(a){
+    hideblock = function(a) {
         $(a).attr("onclick","return showblock($(this));");
         $(a).text("[+]");
         $(a).parent().children("p").first().hide().end();
@@ -119,7 +119,7 @@
         return!1;
     };
     
-    showblock = function(a){
+    showblock = function(a) {
         $(a).attr("onclick","return hideblock($(this));");
         $(a).text("[-]");
         $(a).parent().children("p").first().show().end();
@@ -134,10 +134,9 @@
 <section id="contenu">
     
     <?php
-    if(!isset($session->login)){//si utilisateur non connecté
+    if (!isset($session->login)) {//si utilisateur non connecté
         echo '<center><h3>You must be connected in order to use this page</h3></center>';
-    }
-    else{
+    } else {
         //$bdd = Database::getConnection();
     ?>
         <h2> Add a Design Pattern </h2>

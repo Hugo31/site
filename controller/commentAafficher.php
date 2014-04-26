@@ -50,10 +50,7 @@
 </style>
 
 <?php
-    require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
-    $session = Session::getInstance();
-
-    if(isset($_POST['table']) && isset($_POST['id'])){
+    if (isset($_POST['table']) && isset($_POST['id'])) {
 
         echo "Here is all comments about ".$_POST['table']." you have selected. You can change page thanks to bar at the bottom of the page.<br/><center><h3>Please also comment !!</h3></center><br/>";
         echo"<div id=\"containerComments\">
@@ -63,14 +60,14 @@
         echo 
         "<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js\"></script> 
             <script type=\"text/javascript\">
-                $(document).ready(function(){
-                    function loading_show(){
+                $(document).ready(function() {
+                    function loading_show() {
                     //    $('#loading').html(\"<img src='images/loading.gif'/>\").fadeIn('fast');
                     }
-                    function loading_hide(){
+                    function loading_hide() {
                         $('#loading').fadeOut('fast');
                     }                
-                    function loadData(page){
+                    function loadData(page) {
                         loading_show();                    
                         $.ajax
                         ({
@@ -88,17 +85,17 @@
                         });
                     }
                     loadData(1);  // For first time page load default results
-                    $('#containerComments .pagination li.active').live('click',function(){
+                    $('#containerComments .pagination li.active').live('click',function() {
                         var page = $(this).attr('p');
                         loadData(page);
 
                     });           
-                    $('#go_btn').live('click',function(){
+                    $('#go_btn').live('click',function() {
                         var page = parseInt($('.goto').val());
                         var no_of_pages = parseInt($('.total').attr('a'));
-                        if(page != 0 && page <= no_of_pages){
+                        if (page != 0 && page <= no_of_pages) {
                             loadData(page);
-                        }else{
+                        } else {
                             alert('Enter a PAGE between 1 and '+no_of_pages);
                             $('.goto').val(\"\").focus();
                             return false;

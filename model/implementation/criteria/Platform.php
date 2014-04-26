@@ -12,7 +12,7 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      * @param string $_desc La description de la plateforme.
      * @param string $_icon L'icone de la plateforme.
      */
-    public function __construct($_idSort, $_name, $_desc, $_icon){
+    public function __construct($_idSort, $_name, $_desc, $_icon) {
         parent::__construct($_idSort, $_name, $_desc);
         $this->setIcon($_icon);
     }
@@ -30,7 +30,7 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
             'description' => $object->getDescription(), 
             'icon' => $object->getIcon()
         ));
-        if($reussie == true){
+        if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
         }
         return $reussie;
@@ -43,7 +43,7 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      */
     public static function getDB($id) { 
         $donnees = Database::getOneData('SELECT * FROM Platform WHERE idPlatform = '.$id.'');
-        if($donnees != false){
+        if ($donnees != false) {
             return new Platform($donnees['idPlatform'], $donnees['name'], $donnees['description'], $donnees['icon']);
         }
         return false;
@@ -83,7 +83,7 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      * @param DesignPattern $tableToSort Le design pattern à lier.
      * @return bool True si le lien a été ajouté, FALSE sinon.
      */
-    public function addLink($tableToLink){
+    public function addLink($tableToLink) {
         return parent::addLinkSort($tableToLink, "Platform");
     }
 
@@ -92,11 +92,11 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      * @param DesignPattern $tableToSort Le design pattern à délier.
      * @return bool True si le lien a été supprimer, FALSE sinon.
      */
-    public function removeLink($tableToLink){
+    public function removeLink($tableToLink) {
         return parent::removeLinkSort($tableToLink, "Platform");
     }
     
-    public function setIcon($_icon){
+    public function setIcon($_icon) {
         $this->icon = $_icon; 
     }
     

@@ -14,8 +14,7 @@
         Solution::addDB($sol);
         
         header('Location: /site/view/details.php?type=Solution&id=' . $sol->getID());
-    }
-    else{
+    } else {
         echo '<h3>Error</h3>';
     }
     

@@ -9,7 +9,7 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
     private $description;
     private $typeConflict;
     
-    public function __construct($_id, $_name, $_login, $_date, $_description, $_typeConflict) {
+    public function __construct($_id, $_name = "", $_login = "", $_date = null, $_description = "", $_typeConflict = null) {
         parent::__construct($_id, $_name, $_login, $_date);
         $this->setDescription($_description);
         $this->setType($_typeConflict);
@@ -30,7 +30,7 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
             'nbComments' => $object->getNbComments(),
             'login' => $object->getLogin()
         ));
-        if($reussie){
+        if ($reussie) {
             $object->setID((int)$bdd->lastInsertId()); 
         }
         return $reussie;
@@ -42,7 +42,7 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
      */
     public static function getDB($id) {
         $donnees = Database::getOneData('SELECT * FROM Conflict WHERE idConflict = '.$id.'');
-        if($donnees != false){
+        if ($donnees != false) {
             $donnees['id'] = $id;
             $conflict = new Conflict($id, $donnees['name'], $donnees['login'], $donnees['date'], $donnees['description'], $donnees['idTypeConflict']);
             $conflict->getFromDB($donnees);
@@ -123,7 +123,7 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
         return ($nbSuppr > 0);
     }
 
-    public function getDescription(){
+    public function getDescription() {
         return $this->description;
     }
 
@@ -131,7 +131,7 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
         $this->description = $_description;
     }
     
-    public function getType(){
+    public function getType() {
         return $this->typeConflict;
     }
 

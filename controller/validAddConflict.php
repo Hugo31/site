@@ -13,13 +13,12 @@
         Conflict::addDB($cf);
 
         $cf->addLink($_POST['DP1']);
-        if (isset($_POST['listDP'])){foreach($_POST['listDP'] as $idDP) {
+        if (isset($_POST['listDP'])) {foreach ($_POST['listDP'] as $idDP) {
             $cf->addLink($idDP);
         }}
 
         header('Location: /site/view/details.php?type=Conflict&id=' . $cf->getID());
-    }
-    else{
+    } else {
         echo '<h3>Error</h3>';
     }
     

@@ -11,19 +11,18 @@ abstract class AbstractBasicRateDB extends AbstractBasicCommentDB{
         $this->setRate(0);
     }
     
-    public function getFromDB($donnees){
+    public function getFromDB($donnees) {
         $this->setRate($donnees['rate']);
         $this->setNbRates($donnees['nbRates']);
         parent::getFromDB($donnees);
     }
     
-    public function abstractAddRate($user, $note, $nameTable){
+    public function abstractAddRate($user, $note, $nameTable) {
         $bdd = Database::getConnection();
         $data = Database::getOneData('SELECT count(note) as nb FROM Note'.$nameTable.' WHERE id'.$nameTable.' = '.$this->getID().' AND login = "'.$user->getLogin().'";');
-        if($data['nb'] > 0){
+        if ($data['nb'] > 0) {
             $rqt = $bdd->prepare('UPDATE Note'.$nameTable.' SET note = :note WHERE id'.$nameTable.' = :id AND login = :login;');
-        }
-        else{
+        } else {
             $rqt = $bdd->prepare('INSERT INTO Note'.$nameTable.' (login, id'.$nameTable.', note) '
                             .'VALUES (:login, :id, :note)');
             
@@ -34,9 +33,9 @@ abstract class AbstractBasicRateDB extends AbstractBasicCommentDB{
             'note' => $note
         ));
         
-        if($reussie){
+        if ($reussie) {
             $requete = 'UPDATE '.$nameTable.' SET';
-            if($data['nb'] == 0){ $requete .= ' nbRates = nbRates + 1, ';}
+            if ($data['nb'] == 0) { $requete .= ' nbRates = nbRates + 1, ';}
             
             
             $rqt = $bdd->prepare($requete.''
@@ -49,13 +48,13 @@ abstract class AbstractBasicRateDB extends AbstractBasicCommentDB{
         return $reussie;
     }
      
-    public function abstractRemoveRate($user, $nameTable){
+    public function abstractRemoveRate($user, $nameTable) {
         $bdd = Database::getConnection();
         $nbLine = $bdd->exec('DELETE FROM Note'.$nameTable.' WHERE '
                     .'login = \''.$user->getLogin().'\' AND id'.$nameTable.' = '.$this->getID().'');
-        if($nbLine > 0){
+        if ($nbLine > 0) {
             $data = Database::getOneData('SELECT AVG(note) as avg FROM Note'.$nameTable.' WHERE id'.$nameTable.' = '.$this->getID().'');
-            if($data['avg'] == null){
+            if ($data['avg'] == null) {
                 $data['avg'] = 0;
             }
             $rqt = $bdd->prepare('UPDATE '.$nameTable.' SET nbRates = nbRates - 1, '
@@ -69,19 +68,19 @@ abstract class AbstractBasicRateDB extends AbstractBasicCommentDB{
         return $nbLine > 0;
     }
     
-    public function getRate(){
+    public function getRate() {
         return $this->rate;
     }
     
-    public function setRate($_rate){
+    public function setRate($_rate) {
         $this->rate = $_rate;
     }
     
-    public function getNbRates(){
+    public function getNbRates() {
         return $this->nbRates;
     }
     
-    public function setNbRates($_nbRates){
+    public function setNbRates($_nbRates) {
         $this->nbRates = $_nbRates;
     }
 }

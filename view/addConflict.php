@@ -31,7 +31,7 @@
         }).appendTo('#addConflict_form');
         
        NB_DP++;
-       if(NB_DP === 1){
+       if (NB_DP === 1) {
            document.getElementById('go').disabled=false;
            document.getElementById('go').title = "Send";
        }
@@ -40,13 +40,13 @@
        increasesizediv('main', 60);
      }
      
-    function increasesizediv(div, size){//increase height by size
+    function increasesizediv(div, size) {//increase height by size
         var c = document.getElementById(div);
         var e = c.style.height;
         e = e.replace('px','');
         var $c = 1;
         var i = 0;
-        while($c===1){ i++; if(i===size){ break; } e++; c.style.height = e+'px'; }
+        while($c===1) { i++; if (i===size) { break; } e++; c.style.height = e+'px'; }
     }
 
 </script>
@@ -56,10 +56,9 @@
 <section id="contenu">
     
     <?php
-    if(!isset($session->login)){//si utilisateur non connecté
+    if (!isset($session->login)) {//si utilisateur non connecté
         echo '<center><h3>You must be connected in order to use this page</h3></center>';
-    }
-    else{
+    } else {
         $bdd = Database::getConnection();
     ?>
     
@@ -69,7 +68,7 @@
             
             <h3>Design patterns in conflict</h3>
             <?php
-            if (isset($_GET['id'])){
+            if (isset($_GET['id'])) {
                 ToolkitAdds::displayDesignPatternMini($_GET['id']);
             }
             echo '<div id="DP2"></div>';
@@ -79,7 +78,7 @@
             echo "<h3>Select a Design pattern in this list to add it</h3>
                 <select style='width:300px' name='listDP' onchange='addDPInConflict(this)'>
                     <option selected disabled hidden>Choose</option>";
-                    foreach($result as $row){
+                    foreach ($result as $row) {
                         echo"<option value='$row[0]'>$row[1]</option>";
                     }
                 echo"</select>";
@@ -104,7 +103,7 @@
                             <?php
                                 $sql = " SELECT idTypeConflict, name FROM TypeConflict;";
                                 $result = $bdd->query($sql);
-                                foreach($result as $row){
+                                foreach ($result as $row) {
                                     echo"<option value='$row[0]'>$row[1]</option>";
                                 }
                             ?>

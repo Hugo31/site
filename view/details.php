@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDetails.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitAdmin.php");
 
 require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
 $session = Session::getInstance();
@@ -12,29 +13,22 @@ $session = Session::getInstance();
 <section id="contenu">
     <?php
         $bdd = Database::getConnection();
-        if($session->admin){
-            echo "<form action=\"/site/controller/deleteAdmin.php\" method=\"post\">";
-            echo "<input type=\"hidden\" name=\"type\" value=\"".$_GET['type']."\"/>";
-            echo "<input type=\"hidden\" name=\"id\" value=\"".$_GET['id']."\"/>";
-            echo "<input type=\"submit\" value=\"Remove\"/>";
-            echo "</form>";
+        if (isset($session->admin)) {
+            ToolkitAdmin::displayAdminBox($_GET['id'], $_GET['type']);
+            
         }
-        if($_GET['type'] == "Conflict"){
+        if ($_GET['type'] == "Conflict") {
             ToolkitDetails::displayDetailsConflict($_GET['id'], $session);
-        }
-        else{
-            if($_GET['type'] == "DesignPattern"){
+        } else {
+            if ($_GET['type'] == "DesignPattern") {
                 ToolkitDetails::displayDetailsDesignPattern($_GET['id'], $session);
-            }
-            else{
-                if($_GET['type'] == "Solution"){
+            } else {
+                if ($_GET['type'] == "Solution") {
                     ToolkitDetails::displayDetailsSolution($_GET['id'], $session);
-                }
-                else{
-                    if($_GET['type'] == "Project"){
+                } else {
+                    if ($_GET['type'] == "Project") {
                         ToolkitDetails::displayDetailsProject($_GET['id'], $session);
-                    }
-                    else{
+                    } else {
                         echo "Error 404 !!";
                     }
                 }

@@ -14,7 +14,7 @@ class User implements IDatabase{
     private $logo;
     private $typeUser;
     
-    public function __construct($login, $pwd, $lastname, $firstname, $mail, $logo){
+    public function __construct($login, $pwd = "", $lastname = "", $firstname = "", $mail = "", $logo = "") {
         $this->setLogin($login);
     	$this->setPwd($pwd);
     	$this->setLastName($lastname);
@@ -50,7 +50,7 @@ class User implements IDatabase{
     public static function getDB($id) {
         $donnees = Database::getOneData('SELECT * FROM User WHERE login = \''.$id.'\'');
         $user = null;
-        if($donnees != false){
+        if ($donnees != false) {
            $user = new User($id, $donnees['pwd'], $donnees['lastname'], $donnees['firstname'], $donnees['mail'], $donnees['logo']);
            $user->setTypeUser(ETypeUser::getValueEnum($donnees['typeUser']));
            return $user;
@@ -90,67 +90,67 @@ class User implements IDatabase{
         $bdd->exec('UPDATE Conflict SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
         $bdd->exec('UPDATE Solution SET login = "undefined" WHERE login = \''.$object->getLogin().'\'');
         $bdd->exec('UPDATE CommentDesignPattern SET login = "undefined" WHERE login = \''.$object->getLogin().'\''); //delete user comments
+        $bdd->exec('UPDATE CommentSolution SET login = "undefined" WHERE login = \''.$object->getLogin().'\''); //delete user comments
+        $bdd->exec('UPDATE CommentConflict SET login = "undefined" WHERE login = \''.$object->getLogin().'\''); //delete user comments
         
         //delete
         $bdd->exec('DELETE FROM NoteDesignPattern WHERE login = \''.$object->getLogin().'\''); //delete user notes on dp
         $bdd->exec('DELETE FROM Project WHERE login = \''.$object->getLogin().'\''); //delete user projects
-        $bdd->exec('DELETE FROM CommentConflit WHERE login = \''.$object->getLogin().'\''); //delete user comments on conflicts
-        $bdd->exec('DELETE FROM CommentSolution WHERE login = \''.$object->getLogin().'\''); //delete user comments on solutions
         $bdd->exec('DELETE FROM NoteSolution WHERE login = \''.$object->getLogin().'\''); //delete user notes on solutions
         $nbLine = $bdd->exec('DELETE FROM User WHERE login = \''.$object->getLogin().'\''); //delete User
         
         return $nbLine > 0;
     }
     
-    public function getLogin(){
+    public function getLogin() {
         return $this->login;
     }
 
-    public function setLogin($login){
+    public function setLogin($login) {
         $this->login = $login;
     }
 
-    public function getPwd(){
+    public function getPwd() {
         return $this->pwd;
     }
 
-    public function setPwd($pwd){
+    public function setPwd($pwd) {
         $this->pwd = $pwd;
     }
 
-    public function getLastName(){
+    public function getLastName() {
         return $this->lastname;
     }
 
-    public function setLastName($lastname){
+    public function setLastName($lastname) {
         $this->lastname = $lastname;
     }
 
-    public function getFirstName(){
+    public function getFirstName() {
         return $this->firstname;
     }
 
-    public function setFirstName($firstname){
+    public function setFirstName($firstname) {
         $this->firstname = $firstname;
     }
 
-    public function getMail(){
+    public function getMail() {
         return $this->mail;
     }
 
-    public function setMail($mail){
+    public function setMail($mail) {
         $this->mail = $mail;
     }
 
-    public function getLogo(){
+    public function getLogo() {
         return $this->logo;
     }
 
-    public function setLogo($logo){
+    public function setLogo($logo) {
         $this->logo = $logo;
     }
     
-    public function getTypeUser(){
+    public function getTypeUser() {
         return $this->typeUser;
     }
     

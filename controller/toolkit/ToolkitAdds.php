@@ -4,7 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
 
 class ToolKitAdds {
     
-    public static function displayDesignPatternMini($id){
+    public static function displayDesignPatternMini($id) {
         echo '<div id="miniDP">';
         
         $donnees = Database::getOneData('SELECT * FROM DesignPattern WHERE idDesignPattern = '.$id.'');
@@ -15,7 +15,7 @@ class ToolKitAdds {
 
     }
     
-    public static function displayConflictMini($id){
+    public static function displayConflictMini($id) {
         echo '<div id="miniConflict">';
         
         $donnees = Database::getOneData('SELECT * FROM Conflict WHERE idConflict = '.$id.'');
@@ -26,26 +26,25 @@ class ToolKitAdds {
 
     }
     
-    public static function displayCriteriaAddDP($name){
+    public static function displayCriteriaAddDP($name) {
         echo '<div style="display: block;">';
         $bdd = Database::getConnection();
         $sql = " SELECT id".$name.", name FROM ".$name;
         $result = $bdd->query($sql);
-        if($result->rowCount() != 0){
+        if ($result->rowCount() != 0) {
             echo '<a href="#" onclick="return showblock(this)" style="text-decoration:none;" >[+]</a>'.$name;
             echo '<p hidden style="padding-left: 130px;">';
-            foreach($result as $row){
+            foreach ($result as $row) {
                 echo '<input type="checkbox" name="'.$name.'DP[]" value='.$row[0].'>'.$row[1].'</br>';
             }
             echo '</p>';
-        }
-        else{
+        } else {
             echo 'No '.$name.' found';
         }
         echo '</div>';
     }
     
-    public static function displayReportMini($id, $type){
+    public static function displayReportMini($id, $type) {
         echo '<div id="miniConflict">';
         echo '<b>'.$type.'</b> - ';
         $data = Database::getOneData("SELECT name FROM ".$type." WHERE id".$type." = \"".$id."\";");
@@ -61,7 +60,7 @@ class ToolKitAdds {
         $result = $bdd->query($sql);
         echo '<div style="padding-left:5em;">';
         $count = 0;
-        foreach($result as $row){
+        foreach ($result as $row) {
             echo $row[0];
             echo '<a href="#" onclick="return showblock(this,'.$count.')" style="text-decoration:none;" >[+]</a>';
             echo '<p hidden>'.$row[1].'</p></br>';

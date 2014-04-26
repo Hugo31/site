@@ -139,11 +139,11 @@
             $(function() {
                 
                 
-                $(".classic").change(function(e){
+                $(".classic").change(function(e) {
                     enableCheckBoxChild($(this));
                 });
                 
-                $(".tri-state").change(function(e){
+                $(".tri-state").change(function(e) {
                     enableTriStateCheckBox($(this));
                 });
         
@@ -154,26 +154,26 @@
 
                 //$('body').html('Modification');
                 /*alert($('#titre').html());
-                $(':input').focus(function(){
+                $(':input').focus(function() {
                     $(this).css('background-color','#00f');
                 });
-                $(':input').blur(function(){
+                $(':input').blur(function() {
                     $(this).css('background-color','#f00');
                 });*/
-                $('#text').mouseenter(function(){
+                $('#text').mouseenter(function() {
                     $(this).css('background-color','#f00');
                 });
-                /*$(':input').change(function(){
+                /*$(':input').change(function() {
                     alert($(this).val());
                 });*/
                 //Sample de code pour faire du post en ajax.
-                $('#formtest').submit(function(){
+                $('#formtest').submit(function() {
                     $.post("testpage.php", {table: "Category", nom: "test", description: "description"}, 
                         function(data) {
-                            if(data === true){
+                            if (data === true) {
                                 $('body').prepend("Ok c'est ajouter ;)");
                             }
-                            else{
+                            } else {
                                 $('body').prepend("Il y a eu un problème :(");
                             }
                         }
@@ -182,7 +182,7 @@
                     
                     return false;
                 });
-                $('#formtest2').submit(function(){
+                $('#formtest2').submit(function() {
                     $.post("testpage2.php", {table: $("#formtest2 input[name=table]").val(), id: $("#formtest2 input[name=id]").val()}, 
                         function(data) {
                             $('body').prepend(data);
@@ -192,7 +192,7 @@
                     
                     return false;
                 });
-                $('#formtest3').submit(function(){
+                $('#formtest3').submit(function() {
                     $.post("testpage2.php", {
                             idCategory: "1|2|3", 
                             idProperty: "4|5", 
@@ -211,7 +211,7 @@
 
                 var tailles = {}, tailleMax = 0, tailleCourante;
                 $('#menu li.premier')
-                    .each(function(){
+                    .each(function() {
                         // enregistrer la hauteur du menu déroulé complètement
                         tailles[ $(this).attr('id') ] = tailleCourante = $(this).height();
                         // redéfinir la hauteur (par défaut) pour cacher le menu
@@ -220,35 +220,35 @@
                         $(this).height( 20 );
 
                         // enregistrer la taille maximale au fur et à mesure
-                        if( tailleCourante> tailleMax ){
+                        if ( tailleCourante> tailleMax ) {
                             tailleMax = tailleCourante;
                         }
                         // pour ne pas déborder sur le contenu (position:relative et pas absolute)
                         $('#menu').height( tailleMax );
                     })    
                     // la souris rentre..
-                    .click(function(){
+                    .click(function() {
                         $(this).stop().animate({
                             // hauteur du menu déroulé complètement
                             height: tailles[ $(this).attr('id') ]
                         },500);
                     })
                     // ..et sort
-                    .dblclick(function(){
+                    .dblclick(function() {
                         $(this).stop().animate({
                             height: '19px' // taille par défaut
                         },500);
                     })
                 ;
                 //Cache des commentaires.
-                hidecomment = function(a){
+                hidecomment = function(a) {
                     $(a).attr("onclick","return showcomment($(this));");
                     $(a).text("[+]");
                     $(a).parent().children("p").first().hide().end();
                     return!1;
                 };
                 //Affiche des commentaires.
-                showcomment = function(a){
+                showcomment = function(a) {
                     $(a).attr("onclick","return hidecomment($(this));");
                     $(a).text("[-]");
                     $(a).parent().children("p").first().show().end();
