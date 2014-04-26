@@ -1,5 +1,5 @@
 INSERT INTO `user` (`login`, `pwd`, `lastname`, `firstname`, `mail`, `logo`, `typeUser`) VALUES
-('lolo', 'd6581d542c7eaf801284f084478b5fcc', 'marmisse', 'laurine', 'laurine.marmisse@gmail.com', '/site/img/user/laurineMarmisse.jpg', 'Admin'),
+('laurineM', 'd6581d542c7eaf801284f084478b5fcc', 'marmisse', 'laurine', 'laurine.marmisse@gmail.com', '/site/img/user/laurineMarmisse.jpg', 'Admin'),
 ('undefined', '5e543256c480ac577d30f76f9120eb74', 'undefined', 'undefined', 'undefined@undefined.com', '/site/img/user/user.png', 'Classic');
 
 
@@ -8,10 +8,10 @@ INSERT INTO `designpattern` (`idDesignPattern`, `name`, `what`, `whenAndHow`, `l
 (2, 'Multi-Step Wizard', 'The goal of the procedure is reached through the accomplishment of a sequence of activites. This sequence of activities is guided by the sequence of screens but also by the navigation proposed which is limited to "next step" and "previous step" (eventually "cancell all").', 'Should be used when users are novice.\nShouldnt be used when the procedure.', '1. Use an advancement box to indicate the procedure advancement.\n2. Remove unnecessary links and content so focus is on the wizard, while reinforcing the brand.', 'Give you step a clear title, whose formulation is user-centred and contains a verb corresponding to the activity of the step.', '1. Make sure the back button always works.\n2. When going back to a previous step, auto complete the previous imput.', NULL, 0, 0, 0, 0, '2014-03-23 10:08:12', 'Designer', 'undefined');
 
 INSERT INTO `typeconflict` (`idTypeConflict`, `name`, `description`) VALUES
-(1, 'Conflict type', 'This conflict type is an example to test database.');
+(1, 'View conflict', 'This conflict type is an example to test database.');
 
 INSERT INTO `conflict` (`idConflict`, `name`, `description`, `date`, `nbComments`, `login`, `idTypeConflict`) VALUES
-(1, 'Conflict between 2 design pattern', 'This is signaled because there is a conflict between design ppatern 1 and 2.', '2014-03-27 00:00:00', 0, 'lolo', 1);
+(1, 'Conflict between 2 design pattern', 'This is signaled because there is a conflict between design pattern 1 and 2.', '2014-03-27 00:00:00', 0, 'laurineM', 1);
 
 
 
@@ -19,7 +19,7 @@ INSERT INTO `conflictdesignpattern` (`idConflict`, `idDesignPattern`) VALUES
 (1, 1),
 (1, 2);
 INSERT INTO `commentdesignpattern` (`idComment`, `login`, `idDesignPattern`, `date`, `comment`) VALUES
-(1, 'lolo', 1, '2014-03-01 00:00:00', 'I don''t know what I write...');
+(1, 'laurineM', 1, '2014-03-01 00:00:00', 'I think there might be a problem with this one');
 
 
 
@@ -35,14 +35,14 @@ INSERT INTO `source` (`idSource`, `idDesignPattern`, `author`, `link`) VALUES
 (3, 2, 'Undefined', 'http://harbinger.sims.berkeley.edu/ui_designpatterns/webpatterns2/webpatterns/pattern.php?id=7');
 
 INSERT INTO `notedesignpattern` (`login`, `idDesignPattern`, `note`) VALUES
-('lolo', 1, 4),
+('laurineM', 1, 4),
 ('undefined', 1, 3);
 
 INSERT INTO `platform` (`idPlatform`, `name`, `description`, `icon`) VALUES
-(1, 'Windows', 'This is a platform.', '/site/img/vrac/windows.png'),
-(2, 'Linux', 'No description', '/site/img/vrac/linux.png'),
-(3, 'Apple', 'Apple is fun !', '/site/img/vrac/apple.png'),
-(4, 'Android', 'Android is more bettern than Apple', '/site/img/vrac/android.png');
+(1, 'Windows', 'Windows Platform', '/site/img/vrac/windows.png'),
+(2, 'Linux', 'Linux Platform', '/site/img/vrac/linux.png'),
+(3, 'Apple', 'Apple Platform', '/site/img/vrac/apple.png'),
+(4, 'Android', 'Android Platform', '/site/img/vrac/android.png');
 
 INSERT INTO `platformdesignpattern` (`idDesignPattern`, `idPlatform`) VALUES
 (2, 1),
@@ -51,9 +51,9 @@ INSERT INTO `platformdesignpattern` (`idDesignPattern`, `idPlatform`) VALUES
 (2, 4);
 
 INSERT INTO `system` (`idSystem`, `name`, `description`, `icon`) VALUES
-(1, 'Tablet', 'No description.', '/site/img/vrac/tablet.png'),
-(2, 'Phone', 'This design pattern can be used on phone.', '/site/img/vrac/tel.png'),
-(3, 'Computer', 'Computer is one of system where design pattern are installed.', '/site/img/vrac/ordi.png');
+(1, 'Tablet', 'Tablet device', '/site/img/vrac/tablet.png'),
+(2, 'Phone', 'Phone device', '/site/img/vrac/tel.png'),
+(3, 'Computer', 'Computer device', '/site/img/vrac/ordi.png');
 
 INSERT INTO `systemdesignpattern` (`idDesignPattern`, `idSystem`) VALUES
 (1, 1),
@@ -63,8 +63,8 @@ INSERT INTO `systemdesignpattern` (`idDesignPattern`, `idSystem`) VALUES
 
 
 INSERT INTO `project` (`idProject`, `name`, `description`, `date`, `login`, `current`) VALUES
-(1, 'My first project', 'I didn''t want to give a description about this project.', '2014-03-03 00:00:00', 'lolo', 0),
-(2, 'Current Cart', '', '2014-03-03 00:00:00', 'lolo', 1),
+(1, 'LaurineM project', 'I didn''t want to give a description about this project.', '2014-03-03 00:00:00', 'laurineM', 0),
+(2, 'Current Cart', '', '2014-03-03 00:00:00', 'laurineM', 1),
 (3, 'Current Cart', '', '2014-03-03 00:00:00', 'undefined', 1);
 
 INSERT INTO `projectdesignpattern` (`idProject`, `idDesignPattern`) VALUES
@@ -72,4 +72,4 @@ INSERT INTO `projectdesignpattern` (`idProject`, `idDesignPattern`) VALUES
 (1, 2);
 
 INSERT INTO `solution` (`idSolution`, `name`, `comment`, `codeSolution`, `nbComments`, `nbRates`, `rate`, `date`, `idConflict`, `login`) VALUES
-(1, 'Solution', 'I propose this solution to this conflict.', NULL, 0, 0, 0, '2014-03-19 00:00:00', 1, 'lolo');
+(1, 'Solution', 'I propose this solution to this conflict.', 'vue = new Vue();vue.setVisible(false);', 0, 0, 0, '2014-03-19 00:00:00', 1, 'laurineM');

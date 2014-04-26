@@ -8,7 +8,7 @@ if(isset($_GET['idProject'])){
     $full_path = $_SERVER['DOCUMENT_ROOT']."/site/export/".$nameFile;
     $file = fopen($full_path, 'w+');
     
-    fputs($file, "<xml version=\"1.0\">\n"); 
+    fputs($file, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"); 
     fputs($file, "<Project>\n");
     fputs($file, "\t<name>".$project->getName()."</name>\n");
     fputs($file, "\t<description>".$project->getDescription()."</description>\n");
