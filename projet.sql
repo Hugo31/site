@@ -5,10 +5,39 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 CREATE SCHEMA IF NOT EXISTS `db_dpi` DEFAULT CHARACTER SET utf8 ;
 USE `db_dpi` ;
 
+
+DROP TABLE IF EXISTS `db_dpi`.`NoteSolution` ;
+DROP TABLE IF EXISTS `db_dpi`.`NoteDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`CommentDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`CommentConflict` ;
+DROP TABLE IF EXISTS `db_dpi`.`CommentSolution` ;
+DROP TABLE IF EXISTS `db_dpi`.`CategoryDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`ComponentRelatedDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`ComponentDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`PropertyDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`ProjectDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`PlatformDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`SystemDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`ImageDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`ConflictDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`Source` ;
+DROP TABLE IF EXISTS `db_dpi`.`Category` ;
+DROP TABLE IF EXISTS `db_dpi`.`Component` ;
+DROP TABLE IF EXISTS `db_dpi`.`Property` ;
+DROP TABLE IF EXISTS `db_dpi`.`Platform` ;
+DROP TABLE IF EXISTS `db_dpi`.`System` ;
+DROP TABLE IF EXISTS `db_dpi`.`TypeConflict` ;
+DROP TABLE IF EXISTS `db_dpi`.`Solution` ;
+DROP TABLE IF EXISTS `db_dpi`.`Conflict` ;
+DROP TABLE IF EXISTS `db_dpi`.`Project` ;
+DROP TABLE IF EXISTS `db_dpi`.`Reporting` ;
+DROP TABLE IF EXISTS `db_dpi`.`DesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`User` ;
+
 -- -----------------------------------------------------
 -- Table `db_dpi`.`Category`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`Category` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`Category` (
   `idCategory` INT(11) NOT NULL AUTO_INCREMENT,
@@ -22,7 +51,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`User`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`User` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`User` (
   `login` VARCHAR(30) NOT NULL,
@@ -40,7 +69,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`DesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`DesignPattern` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`DesignPattern` (
   `idDesignPattern` INT(11) NOT NULL AUTO_INCREMENT,
@@ -73,7 +102,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`CategoryDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`CategoryDesignPattern` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`CategoryDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
@@ -98,7 +127,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`TypeConflict`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`TypeConflict` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`TypeConflict` (
   `idTypeConflict` INT(11) NOT NULL,
@@ -112,7 +141,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`Conflict`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`Conflict` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`Conflict` (
   `idConflict` INT(11) NOT NULL AUTO_INCREMENT,
@@ -143,7 +172,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`CommentConflict`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`CommentConflict` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`CommentConflict` (
   `idComment` INT(11) NOT NULL AUTO_INCREMENT,
@@ -171,7 +200,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`CommentDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`CommentDesignPattern` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`CommentDesignPattern` (
   `idComment` INT(11) NOT NULL AUTO_INCREMENT,
@@ -200,7 +229,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`Solution`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`Solution` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`Solution` (
   `idSolution` INT(11) NOT NULL AUTO_INCREMENT,
@@ -234,7 +263,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`CommentSolution`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`CommentSolution` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`CommentSolution` (
   `idComment` INT(11) NOT NULL AUTO_INCREMENT,
@@ -262,7 +291,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`Component`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`Component` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`Component` (
   `idComponent` INT(11) NOT NULL AUTO_INCREMENT,
@@ -276,7 +305,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`ComponentDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`ComponentDesignPattern` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`ComponentDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
@@ -301,7 +330,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`ComponentRelatedDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`ComponentRelatedDesignPattern` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`ComponentRelatedDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
@@ -326,7 +355,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`ConflictDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`ConflictDesignPattern` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`ConflictDesignPattern` (
   `idConflict` INT(11) NOT NULL,
@@ -351,7 +380,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`ImageDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`ImageDesignPattern` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`ImageDesignPattern` (
   `idImage` INT(11) NOT NULL AUTO_INCREMENT,
@@ -373,7 +402,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`NoteDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`NoteDesignPattern` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`NoteDesignPattern` (
   `login` VARCHAR(30) NOT NULL,
@@ -399,7 +428,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`NoteSolution`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`NoteSolution` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`NoteSolution` (
   `login` VARCHAR(30) NOT NULL,
@@ -425,7 +454,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`Platform`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`Platform` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`Platform` (
   `idPlatform` INT(11) NOT NULL AUTO_INCREMENT,
@@ -441,7 +470,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`PlatformDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`PlatformDesignPattern` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`PlatformDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
@@ -466,7 +495,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`Project`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`Project` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`Project` (
   `idProject` INT(11) NOT NULL AUTO_INCREMENT,
@@ -490,7 +519,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`ProjectDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`ProjectDesignPattern` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`ProjectDesignPattern` (
   `idProject` INT(11) NOT NULL,
@@ -515,7 +544,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`Property`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`Property` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`Property` (
   `idProperty` INT(11) NOT NULL AUTO_INCREMENT,
@@ -529,7 +558,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`PropertyDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`PropertyDesignPattern` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`PropertyDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
@@ -555,7 +584,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`Source`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`Source` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`Source` (
   `idSource` INT(11) NOT NULL AUTO_INCREMENT,
@@ -577,7 +606,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`System`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`System` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`System` (
   `idSystem` INT(11) NOT NULL AUTO_INCREMENT,
@@ -593,7 +622,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`SystemDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`SystemDesignPattern` ;
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`SystemDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
@@ -618,7 +646,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `db_dpi`.`Reporting`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_dpi`.`Reporting` ;
+
 
 CREATE TABLE IF NOT EXISTS `db_dpi`.`Reporting` (
   `idReporting` INT NOT NULL AUTO_INCREMENT,

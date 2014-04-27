@@ -1,4 +1,0 @@
-- mot de passe modifié à 32 caractère
-- mail à 80 caractères
-- logo à 100
-- mis md5 dans password
