@@ -98,7 +98,7 @@ class User implements IDatabase{
         $bdd->exec('DELETE FROM Project WHERE login = \''.$object->getLogin().'\''); //delete user projects
         $bdd->exec('DELETE FROM NoteSolution WHERE login = \''.$object->getLogin().'\''); //delete user notes on solutions
         $nbLine = $bdd->exec('DELETE FROM User WHERE login = \''.$object->getLogin().'\''); //delete User
-        
+        var_dump($bdd->errorInfo());
         return $nbLine > 0;
     }
     

@@ -111,11 +111,12 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $bdd->exec('DELETE FROM CategoryDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM PropertyDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM ComponentDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
+        $bdd->exec('DELETE FROM ComponentRelatedDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM Source WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM ImageDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM NoteDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM ProjectDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
-        $bdd->exec('DELETE FROM Conflict WHERE idDesignPattern1 = \''.$object->getID().'\' OR idDesignPattern2 = \''.$object->getID().'\'');
+        $bdd->exec('DELETE FROM ConflictDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM CommentDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
 
 

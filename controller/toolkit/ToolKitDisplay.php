@@ -69,8 +69,12 @@ class ToolKitDisplay {
                 $dateConflict = new DateTime($row['date']);
                 echo "<br/><div id=\"lienDescr\">Date of reporting: ".$dateConflict->format('d/m/Y')." | Author: <a href=\"/site/view/user.php?user=".$row['login']."\">".$row['login']."</a>";
                 if (isset($session->login)) {
-                    echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/AddSolution.php?id=".$row['idConflict']."\">Propose a solution</a></div>";
+                    echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/AddSolution.php?id=".$row['idConflict']."\">Propose a solution</a>";
                 }
+                if (isset($session->admin)) {
+                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idConflict']."&type=Conflict\">Delete object</a>";
+                }
+                echo "</div>";
                 echo "</header>";
                 
                 $data = Database::getOneData("SELECT COUNT(*) as nb FROM Solution WHERE idconflict = ".$row['idConflict']);
@@ -124,7 +128,7 @@ class ToolKitDisplay {
                     echo " | <img src=\"../img/vrac/propose.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/view/addConflict.php?id=".$row['idDesignPattern']."\">Report a conflict</a>";
                 }
                 if (isset($session->admin)) {
-                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteContribution.php?id=".$row['idDesignPattern']."&type=DesignPattern\">Delete object</a>";
+                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idDesignPattern']."&type=DesignPattern\">Delete object</a>";
                 }
                 echo "</div>";
                 echo "</header>";
@@ -145,6 +149,7 @@ class ToolKitDisplay {
         if ($dataToDisplay->rowCount() == 0) {
             echo 'No solutions.';
         } else {
+            $session = Session::getInstance();
             $bdd = Database::getConnection();
             foreach ($dataToDisplay as $row) {
                 
@@ -154,7 +159,11 @@ class ToolKitDisplay {
                 echo "<header id='headerBox'>";
                 echo "<a href=\"details.php?type=Solution&id=".$row['idSolution']."\"><h2>".$row['name']."</h2></a>";
                 $dateS = new DateTime($row['date']);
-                echo "<br/><div id=\"lienDescr\">Date of last update: ".$dateS->format('d/m/Y')." | Author: <a href=\"/site/view/user.php?user=".$row['login']."\">".$row['login']."</a> </div>";
+                echo "<br/><div id=\"lienDescr\">Date of last update: ".$dateS->format('d/m/Y')." | Author: <a href=\"/site/view/user.php?user=".$row['login']."\">".$row['login']."</a>";
+                if (isset($session->admin)) {
+                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idSolution']."&type=Solution\">Delete object</a>";
+                }
+                echo "</div>";
                 echo "</header>";
                 
                 echo "<aside id='asideBox'>";
@@ -182,6 +191,7 @@ class ToolKitDisplay {
         if ($dataToDisplay->rowCount() == 0) {
             echo 'No existing projects.';
         } else {
+            $session = Session::getInstance();
             $bdd = Database::getConnection();
             foreach ($dataToDisplay as $row) {
                 
@@ -191,7 +201,11 @@ class ToolKitDisplay {
                 echo "<header id='headerBox'>";
                 echo "<a href=\"details.php?type=Project&id=".$row['idProject']."\"><h2>".$row['name']."</h2></a>";
                 $dateS = new DateTime($row['date']);
-                echo "<br/><div id=\"lienDescr\">Date of creation: ".$dateS->format('d/m/Y')." | Author: <a href=\"/site/view/user.php?user=".$row['login']."\">".$row['login']."</a> </div>";
+                echo "<br/><div id=\"lienDescr\">Date of creation: ".$dateS->format('d/m/Y')." | Author: <a href=\"/site/view/user.php?user=".$row['login']."\">".$row['login']."</a>";
+                if (isset($session->admin)) {
+                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idProject']."&type=Project\">Delete object</a>";
+                }
+                echo "</div>";
                 echo "</header>";
 
                 $data = Database::getOneData("SELECT COUNT(*) as nb FROM ProjectDesignPattern pdp WHERE pdp.idProject=".$row['idProject'].";");
@@ -328,7 +342,7 @@ class ToolKitDisplay {
                 echo "</div>";
             }
         }
-        $row = Database::getOneData("SELECT COUNT(*) AS count FROM comment".$tableAsk." WHERE id".$tableAsk." = ".$id."");
+        $row = Database::getOneData("SELECT COUNT(*) AS count FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id."");
         $count = $row['count'];   
         echo "<br/></article>";
         echo "<form action=\"comment.php\" method=\"POST\">";

@@ -2,15 +2,15 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `db_dpi` DEFAULT CHARACTER SET utf8 ;
+USE `db_dpi` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Category`
+-- Table `db_dpi`.`Category`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Category` ;
+DROP TABLE IF EXISTS `db_dpi`.`Category` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Category` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`Category` (
   `idCategory` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(100) NULL DEFAULT NULL,
@@ -20,11 +20,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`User`
+-- Table `db_dpi`.`User`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`User` ;
+DROP TABLE IF EXISTS `db_dpi`.`User` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`User` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`User` (
   `login` VARCHAR(30) NOT NULL,
   `pwd` VARCHAR(32) NOT NULL,
   `lastname` VARCHAR(30) NULL DEFAULT NULL,
@@ -38,11 +38,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`DesignPattern`
+-- Table `db_dpi`.`DesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`DesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`DesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`DesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`DesignPattern` (
   `idDesignPattern` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(150) NOT NULL,
   `what` TEXT NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`DesignPattern` (
   INDEX `fk_DesignPattern_User1_idx` (`login` ASC),
   CONSTRAINT `fk_DesignPattern_User1`
     FOREIGN KEY (`login`)
-    REFERENCES `mydb`.`User` (`login`)
+    REFERENCES `db_dpi`.`User` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -71,11 +71,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CategoryDesignPattern`
+-- Table `db_dpi`.`CategoryDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`CategoryDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`CategoryDesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`CategoryDesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`CategoryDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
   `idCategory` INT(11) NOT NULL,
   PRIMARY KEY (`idDesignPattern`, `idCategory`),
@@ -83,12 +83,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`CategoryDesignPattern` (
   INDEX `fk_DesignPattern_has_Categorie_DesignPattern1_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_DesignPattern_has_Categorie_Categorie1`
     FOREIGN KEY (`idCategory`)
-    REFERENCES `mydb`.`Category` (`idCategory`)
+    REFERENCES `db_dpi`.`Category` (`idCategory`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_DesignPattern_has_Categorie_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -96,11 +96,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`TypeConflict`
+-- Table `db_dpi`.`TypeConflict`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`TypeConflict` ;
+DROP TABLE IF EXISTS `db_dpi`.`TypeConflict` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`TypeConflict` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`TypeConflict` (
   `idTypeConflict` INT(11) NOT NULL,
   `name` VARCHAR(150) NOT NULL,
   `description` TEXT NULL DEFAULT NULL,
@@ -110,11 +110,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Conflict`
+-- Table `db_dpi`.`Conflict`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Conflict` ;
+DROP TABLE IF EXISTS `db_dpi`.`Conflict` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Conflict` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`Conflict` (
   `idConflict` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(150) NOT NULL,
   `description` TEXT NULL DEFAULT NULL,
@@ -127,12 +127,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Conflict` (
   INDEX `fk_Conflict_TypeConflict1_idx` (`idTypeConflict` ASC),
   CONSTRAINT `fk_Conflict_TypeConflict1`
     FOREIGN KEY (`idTypeConflict`)
-    REFERENCES `mydb`.`TypeConflict` (`idTypeConflict`)
+    REFERENCES `db_dpi`.`TypeConflict` (`idTypeConflict`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Conflit_User1`
     FOREIGN KEY (`login`)
-    REFERENCES `mydb`.`User` (`login`)
+    REFERENCES `db_dpi`.`User` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -141,11 +141,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CommentConflict`
+-- Table `db_dpi`.`CommentConflict`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`CommentConflict` ;
+DROP TABLE IF EXISTS `db_dpi`.`CommentConflict` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`CommentConflict` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`CommentConflict` (
   `idComment` INT(11) NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(30) NOT NULL,
   `idConflict` INT(11) NOT NULL,
@@ -156,12 +156,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`CommentConflict` (
   INDEX `fk_User_has_Conflit_User1_idx` (`login` ASC),
   CONSTRAINT `fk_User_has_Conflit_Conflit1`
     FOREIGN KEY (`idConflict`)
-    REFERENCES `mydb`.`Conflict` (`idConflict`)
+    REFERENCES `db_dpi`.`Conflict` (`idConflict`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_User_has_Conflit_User1`
     FOREIGN KEY (`login`)
-    REFERENCES `mydb`.`User` (`login`)
+    REFERENCES `db_dpi`.`User` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -169,11 +169,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CommentDesignPattern`
+-- Table `db_dpi`.`CommentDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`CommentDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`CommentDesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`CommentDesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`CommentDesignPattern` (
   `idComment` INT(11) NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(30) NOT NULL,
   `idDesignPattern` INT(11) NOT NULL,
@@ -184,12 +184,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`CommentDesignPattern` (
   INDEX `fk_User_has_DesignPattern_User2_idx` (`login` ASC),
   CONSTRAINT `fk_User_has_DesignPattern_DesignPattern2`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_User_has_DesignPattern_User2`
     FOREIGN KEY (`login`)
-    REFERENCES `mydb`.`User` (`login`)
+    REFERENCES `db_dpi`.`User` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -198,11 +198,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Solution`
+-- Table `db_dpi`.`Solution`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Solution` ;
+DROP TABLE IF EXISTS `db_dpi`.`Solution` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Solution` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`Solution` (
   `idSolution` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(150) NOT NULL,
   `comment` TEXT NULL DEFAULT NULL,
@@ -218,12 +218,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Solution` (
   INDEX `fk_Solution_User1_idx` (`login` ASC),
   CONSTRAINT `fk_Solution_Conflit1`
     FOREIGN KEY (`idConflict`)
-    REFERENCES `mydb`.`Conflict` (`idConflict`)
+    REFERENCES `db_dpi`.`Conflict` (`idConflict`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Solution_User1`
     FOREIGN KEY (`login`)
-    REFERENCES `mydb`.`User` (`login`)
+    REFERENCES `db_dpi`.`User` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -232,11 +232,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`CommentSolution`
+-- Table `db_dpi`.`CommentSolution`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`CommentSolution` ;
+DROP TABLE IF EXISTS `db_dpi`.`CommentSolution` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`CommentSolution` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`CommentSolution` (
   `idComment` INT(11) NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(30) NOT NULL,
   `idSolution` INT(11) NOT NULL,
@@ -247,12 +247,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`CommentSolution` (
   INDEX `fk_User_has_Solution_User1_idx` (`login` ASC),
   CONSTRAINT `fk_User_has_Solution_Solution1`
     FOREIGN KEY (`idSolution`)
-    REFERENCES `mydb`.`Solution` (`idSolution`)
+    REFERENCES `db_dpi`.`Solution` (`idSolution`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_User_has_Solution_User1`
     FOREIGN KEY (`login`)
-    REFERENCES `mydb`.`User` (`login`)
+    REFERENCES `db_dpi`.`User` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -260,11 +260,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Component`
+-- Table `db_dpi`.`Component`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Component` ;
+DROP TABLE IF EXISTS `db_dpi`.`Component` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Component` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`Component` (
   `idComponent` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(100) NULL DEFAULT NULL,
@@ -274,11 +274,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ComponentDesignPattern`
+-- Table `db_dpi`.`ComponentDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`ComponentDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`ComponentDesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`ComponentDesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`ComponentDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
   `idComponent` INT(11) NOT NULL,
   PRIMARY KEY (`idDesignPattern`, `idComponent`),
@@ -286,12 +286,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ComponentDesignPattern` (
   INDEX `fk_DesignPattern_has_Component_DesignPattern1_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_DesignPattern_has_Component_Component1`
     FOREIGN KEY (`idComponent`)
-    REFERENCES `mydb`.`Component` (`idComponent`)
+    REFERENCES `db_dpi`.`Component` (`idComponent`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_DesignPattern_has_Component_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -299,11 +299,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ComponentRelatedDesignPattern`
+-- Table `db_dpi`.`ComponentRelatedDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`ComponentRelatedDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`ComponentRelatedDesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`ComponentRelatedDesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`ComponentRelatedDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
   `idComponentRelated` INT(11) NOT NULL,
   PRIMARY KEY (`idDesignPattern`, `idComponentRelated`),
@@ -311,12 +311,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ComponentRelatedDesignPattern` (
   INDEX `fk_ComponentRelatedDesignPattern_Component1_idx` (`idComponentRelated` ASC),
   CONSTRAINT `fk_ComponentRelatedDesignPattern_Component1`
     FOREIGN KEY (`idComponentRelated`)
-    REFERENCES `mydb`.`Component` (`idComponent`)
+    REFERENCES `db_dpi`.`Component` (`idComponent`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ComponentRelatedDesignPattern_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -324,11 +324,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ConflictDesignPattern`
+-- Table `db_dpi`.`ConflictDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`ConflictDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`ConflictDesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`ConflictDesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`ConflictDesignPattern` (
   `idConflict` INT(11) NOT NULL,
   `idDesignPattern` INT(11) NOT NULL,
   PRIMARY KEY (`idConflict`, `idDesignPattern`),
@@ -336,12 +336,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ConflictDesignPattern` (
   INDEX `fk_ConflictDesignPattern_DesignPattern1_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_ConflictDesignPattern_Conflict1`
     FOREIGN KEY (`idConflict`)
-    REFERENCES `mydb`.`Conflict` (`idConflict`)
+    REFERENCES `db_dpi`.`Conflict` (`idConflict`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ConflictDesignPattern_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -349,11 +349,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ImageDesignPattern`
+-- Table `db_dpi`.`ImageDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`ImageDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`ImageDesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`ImageDesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`ImageDesignPattern` (
   `idImage` INT(11) NOT NULL AUTO_INCREMENT,
   `idDesignPattern` INT(11) NOT NULL,
   `link` VARCHAR(250) NOT NULL,
@@ -362,7 +362,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ImageDesignPattern` (
   INDEX `fk_ImageDesignPattern_DesignPattern_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_ImageDesignPattern_DesignPattern`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -371,11 +371,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`NoteDesignPattern`
+-- Table `db_dpi`.`NoteDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`NoteDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`NoteDesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`NoteDesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`NoteDesignPattern` (
   `login` VARCHAR(30) NOT NULL,
   `idDesignPattern` INT(11) NOT NULL,
   `note` INT(11) NOT NULL,
@@ -384,12 +384,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`NoteDesignPattern` (
   INDEX `fk_User_has_DesignPattern_User1_idx` (`login` ASC),
   CONSTRAINT `fk_User_has_DesignPattern_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_User_has_DesignPattern_User1`
     FOREIGN KEY (`login`)
-    REFERENCES `mydb`.`User` (`login`)
+    REFERENCES `db_dpi`.`User` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -397,11 +397,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`NoteSolution`
+-- Table `db_dpi`.`NoteSolution`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`NoteSolution` ;
+DROP TABLE IF EXISTS `db_dpi`.`NoteSolution` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`NoteSolution` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`NoteSolution` (
   `login` VARCHAR(30) NOT NULL,
   `idSolution` INT(11) NOT NULL,
   `note` INT(11) NULL DEFAULT NULL,
@@ -410,12 +410,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`NoteSolution` (
   INDEX `fk_User_has_Solution_User2_idx` (`login` ASC),
   CONSTRAINT `fk_User_has_Solution_Solution2`
     FOREIGN KEY (`idSolution`)
-    REFERENCES `mydb`.`Solution` (`idSolution`)
+    REFERENCES `db_dpi`.`Solution` (`idSolution`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_User_has_Solution_User2`
     FOREIGN KEY (`login`)
-    REFERENCES `mydb`.`User` (`login`)
+    REFERENCES `db_dpi`.`User` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -423,11 +423,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Platform`
+-- Table `db_dpi`.`Platform`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Platform` ;
+DROP TABLE IF EXISTS `db_dpi`.`Platform` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Platform` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`Platform` (
   `idPlatform` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(100) NULL DEFAULT NULL,
@@ -439,11 +439,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PlatformDesignPattern`
+-- Table `db_dpi`.`PlatformDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`PlatformDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`PlatformDesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`PlatformDesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`PlatformDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
   `idPlatform` INT(11) NOT NULL,
   PRIMARY KEY (`idDesignPattern`, `idPlatform`),
@@ -451,12 +451,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PlatformDesignPattern` (
   INDEX `fk_DesignPattern_has_Plateforme_DesignPattern1_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_DesignPattern_has_Plateforme_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_DesignPattern_has_Plateforme_Plateforme1`
     FOREIGN KEY (`idPlatform`)
-    REFERENCES `mydb`.`Platform` (`idPlatform`)
+    REFERENCES `db_dpi`.`Platform` (`idPlatform`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -464,11 +464,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Project`
+-- Table `db_dpi`.`Project`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Project` ;
+DROP TABLE IF EXISTS `db_dpi`.`Project` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Project` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`Project` (
   `idProject` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(100) NULL DEFAULT NULL,
@@ -479,7 +479,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Project` (
   INDEX `fk_Projet_User1_idx` (`login` ASC),
   CONSTRAINT `fk_Projet_User1`
     FOREIGN KEY (`login`)
-    REFERENCES `mydb`.`User` (`login`)
+    REFERENCES `db_dpi`.`User` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -488,11 +488,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ProjectDesignPattern`
+-- Table `db_dpi`.`ProjectDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`ProjectDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`ProjectDesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`ProjectDesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`ProjectDesignPattern` (
   `idProject` INT(11) NOT NULL,
   `idDesignPattern` INT(11) NOT NULL,
   PRIMARY KEY (`idProject`, `idDesignPattern`),
@@ -500,12 +500,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ProjectDesignPattern` (
   INDEX `fk_Projet_has_DesignPattern_Projet1_idx` (`idProject` ASC),
   CONSTRAINT `fk_Projet_has_DesignPattern_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Projet_has_DesignPattern_Projet1`
     FOREIGN KEY (`idProject`)
-    REFERENCES `mydb`.`Project` (`idProject`)
+    REFERENCES `db_dpi`.`Project` (`idProject`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -513,11 +513,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Property`
+-- Table `db_dpi`.`Property`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Property` ;
+DROP TABLE IF EXISTS `db_dpi`.`Property` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Property` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`Property` (
   `idProperty` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(100) NULL DEFAULT NULL,
@@ -527,11 +527,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`PropertyDesignPattern`
+-- Table `db_dpi`.`PropertyDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`PropertyDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`PropertyDesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`PropertyDesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`PropertyDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
   `idProperty` INT(11) NOT NULL,
   `note` INT(11) NULL DEFAULT NULL,
@@ -540,12 +540,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`PropertyDesignPattern` (
   INDEX `fk_DesignPattern_has_Propertie_DesignPattern1_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_DesignPattern_has_Propertie_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_DesignPattern_has_Propertie_Propertie1`
     FOREIGN KEY (`idProperty`)
-    REFERENCES `mydb`.`Property` (`idProperty`)
+    REFERENCES `db_dpi`.`Property` (`idProperty`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -553,11 +553,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Source`
+-- Table `db_dpi`.`Source`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Source` ;
+DROP TABLE IF EXISTS `db_dpi`.`Source` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Source` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`Source` (
   `idSource` INT(11) NOT NULL AUTO_INCREMENT,
   `idDesignPattern` INT(11) NOT NULL,
   `author` VARCHAR(30) NULL DEFAULT NULL,
@@ -566,7 +566,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Source` (
   INDEX `fk_Source_DesignPattern1_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_Source_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -575,11 +575,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`System`
+-- Table `db_dpi`.`System`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`System` ;
+DROP TABLE IF EXISTS `db_dpi`.`System` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`System` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`System` (
   `idSystem` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(100) NULL DEFAULT NULL,
@@ -591,11 +591,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`SystemDesignPattern`
+-- Table `db_dpi`.`SystemDesignPattern`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`SystemDesignPattern` ;
+DROP TABLE IF EXISTS `db_dpi`.`SystemDesignPattern` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`SystemDesignPattern` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`SystemDesignPattern` (
   `idDesignPattern` INT(11) NOT NULL,
   `idSystem` INT(11) NOT NULL,
   PRIMARY KEY (`idDesignPattern`, `idSystem`),
@@ -603,12 +603,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`SystemDesignPattern` (
   INDEX `fk_DesignPattern_has_Systeme_DesignPattern1_idx` (`idDesignPattern` ASC),
   CONSTRAINT `fk_DesignPattern_has_Systeme_DesignPattern1`
     FOREIGN KEY (`idDesignPattern`)
-    REFERENCES `mydb`.`DesignPattern` (`idDesignPattern`)
+    REFERENCES `db_dpi`.`DesignPattern` (`idDesignPattern`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_DesignPattern_has_Systeme_Systeme1`
     FOREIGN KEY (`idSystem`)
-    REFERENCES `mydb`.`System` (`idSystem`)
+    REFERENCES `db_dpi`.`System` (`idSystem`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -616,11 +616,11 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Reporting`
+-- Table `db_dpi`.`Reporting`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Reporting` ;
+DROP TABLE IF EXISTS `db_dpi`.`Reporting` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Reporting` (
+CREATE TABLE IF NOT EXISTS `db_dpi`.`Reporting` (
   `idReporting` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `message` TEXT NULL,
@@ -632,7 +632,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Reporting` (
   INDEX `fk_Reporting_User1_idx` (`login` ASC),
   CONSTRAINT `fk_Reporting_User1`
     FOREIGN KEY (`login`)
-    REFERENCES `mydb`.`User` (`login`)
+    REFERENCES `db_dpi`.`User` (`login`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB

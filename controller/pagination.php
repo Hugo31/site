@@ -16,7 +16,7 @@ if (isset($_POST['page']) && isset($_POST['table']) && isset($_POST['id'])) {
     $start = $page * $per_page;
 
 
-    $result_pag_data = Database::getAllData("SELECT * from comment".$table." WHERE id".$table." = ".$id." LIMIT ".$start.",".$per_page.";");
+    $result_pag_data = Database::getAllData("SELECT * from Comment".$table." WHERE id".$table." = ".$id." LIMIT ".$start.",".$per_page.";");
     $msg = "";
     foreach ($result_pag_data as $row) {
         echo "<div id=\"containerComment\">";
@@ -34,7 +34,7 @@ if (isset($_POST['page']) && isset($_POST['table']) && isset($_POST['id'])) {
     }
 
     /* --------------------------------------------- */
-    $row = Database::getOneData("SELECT COUNT(*) AS count FROM comment".$table." WHERE id".$table." = ".$id."");
+    $row = Database::getOneData("SELECT COUNT(*) AS count FROM Comment".$table." WHERE id".$table." = ".$id."");
     $count = $row['count'];
     $no_of_paginations = ceil($count / $per_page);
 
