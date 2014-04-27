@@ -13,23 +13,25 @@ class ToolkitAdmin{
     
     public static function displayUserBox($dataToDisplay) {
         if ($dataToDisplay->rowCount() == 0) {
-            echo 'No results.';
+            echo 'No conflicts.';
         } else {
             $session = Session::getInstance();
+            $bdd = Database::getConnection();
             foreach ($dataToDisplay as $row) {
                 echo "<article class=\"box\" id=\"article_".$row['login']."\">";
-                echo "<div id='headerAsideUser'>";
-                echo "<header id='headerBox'>";
-                echo "<a href=\"details.php?type=User&id=".$row['login']."\"><h2>".$row['login']."</h2></a>";
                 
+                echo "<div id='headerAside'>";
+                echo "<header id='headerBox'>";
+                echo "<a href=\"details.php?type=User&id=".$row['login']."\"><h2>".$row['login']."</h2></a>".$row['mail']."";
                 if (isset($session->admin)) {
                     echo "<br/><div id=\"lienDescr\"><img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteUser.php?login=".$row['login']."\">Remove user</a></div>";
                 }
                 echo "</header>";
                 echo "</div>";
-                echo "<article id=\"articleBox\">".$row['mail']."</article>";
                 echo "</article>";
             }
         }
     }
+    
+    
 }

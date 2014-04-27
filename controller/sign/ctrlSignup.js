@@ -27,7 +27,7 @@ function validSignup(form) {
 function verifFirstname(champ) {
     var champErreur = document.getElementById("errormsgsignup_firstname");
     var firstname = champ.prop("value");
-    var regex = new RegExp('^([A-z]+([ |\-]{1}([A-z])+)*){2,30}$');
+    var regex = new RegExp('^([A-z]+([ |\-]{1}([A-z])+)*) {2,30}$');
     // Verification de longueur
     if (firstname.length < 2 || firstname.length > 30) {
         champ.focus();
@@ -55,7 +55,7 @@ function verifFirstname(champ) {
 function verifLastname(champ) {
     var champErreur = document.getElementById("errormsgsignup_lastname");
     var lastname = champ.prop("value");
-    var regex = new RegExp('^([A-z]+([ |\-]{1}([A-z])+)*){2,30}$');
+    var regex = new RegExp('^([A-z]+([ |\-]{1}([A-z])+)*) {2,30}$');
     // Verification de longueur
     if (lastname.length < 2 || lastname.length > 30) {
         champ.focus();
