@@ -15,29 +15,30 @@
     
     function addDPInConflict(id) {
         $.ajax({
-           url:'../controller/miniDPTrigger.php',
-           type: 'post',
-           data: { "idDP": id.options[id.selectedIndex].value},
-           complete: function (response) {
+            url:'../controller/miniDPTrigger.php',
+            type: 'post',
+            data: { "idDP": id.options[id.selectedIndex].value},
+            complete: function (response) {
                $('#DP2').append(response.responseText);
-           },
-           error: function () {
+            },
+            error: function () {
                $('#DP2').append('Error!');
-           }
-       });
-       $('<input type="hidden">').attr({
+            }
+        });
+        $('<input type="hidden">').attr({
             name: 'listDP[]',
             value: id.options[id.selectedIndex].value
         }).appendTo('#addConflict_form');
         
-       NB_DP++;
-       if (NB_DP === 1) {
+        NB_DP++;
+        if (NB_DP === 1) {
            document.getElementById('go').disabled=false;
            document.getElementById('go').title = "Send";
-       }
-       id.remove(id.selectedIndex);
-       id.selectedIndex = 0;
-       increasesizediv('main', 60);
+        }
+        id.remove(id.selectedIndex);
+        id.selectedIndex = 0;
+        increasesizediv('main', 60);
+        displayMessage($('section[id=contenu]'), "Added to Design Pattern in conflict", "good");
      }
      
     function increasesizediv(div, size) {//increase height by size
