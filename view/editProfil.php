@@ -24,7 +24,7 @@ function verifEmail($email) {
 
 function verifName($name) {
 
-    if (preg_match("#^([A-z]+([ |\-]{1}([A-z])+)*) {2,30}$#i", $name)) {
+    if (preg_match("#^([a-zA-Z'éèêôùûç-]{2,30})$#i", $name)) {
         return true;
     }
 
@@ -145,10 +145,26 @@ if (!isset($session->login)) {
                 <input type="submit" value="Apply" class="applymodifyprofil" id="applymodifyprofil"/>
             </p>
         </form>
-        <h2>Delete your account</h2>
-        <a href="/site/controller/sign/delete.php" style="text-decoration: none">
-            <button id="deleteprofilbutton">DELETE</button>
-        </a>
+        
+        <div id="deleteprofilbuttonaffichage">
+            <h2>Delete your account</h2>
+            <button onclick="document.getElementById('deleteprofilconfirmationaffichage').style.display = 'block';
+                    document.getElementById('deleteprofilbuttonaffichage').style.display = 'none'" 
+                    id="deleteprofilbutton">
+                DELETE
+            </button>
+        </div>
+        
+        <div style="display: none;" id="deleteprofilconfirmationaffichage">
+            <h2>Are you really sure?</h2>
+            <a href="/site/controller/sign/deleteUser.php"><button class="button" style="margin-left: 30px;">Yes</button></a>
+            
+            <a href="#" onclick="document.getElementById('deleteprofilconfirmationaffichage').style.display = 'none';
+                document.getElementById('deleteprofilbuttonaffichage').style.display = 'block'" style="margin-left: 10px">
+                <button class="button">No</button>
+            </a>
+        </div>
+        
         <br/>
     </section>
 

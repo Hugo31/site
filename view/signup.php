@@ -22,48 +22,50 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             <label for="firstnamesignup" class="fname">Your firstname</label>
             <input type="text" id="firstnamesignup" name="firstnamesignup" 
                    required="required" size="30" maxlength="30" 
-                   placeholder="Jean" />
+                   placeholder="Emma" <?php if($_GET['fstn'] != "") {echo "value=\"".$_GET['fstn']."\"";} ?> />
         </p>
         <div id="errormsgsignup_firstname"></div>
         <p>
             <label for="lastnamesignup" class="lname">Your lastname</label>
             <input type="text" id="lastnamesignup" name="lastnamesignup" 
                    required="required" size="30" maxlength="30" 
-                   placeholder="Michel" />
+                   placeholder="Martin" <?php if($_GET['lstn'] != "") {echo "value=\"".$_GET['lstn']."\"";} ?> />
         </p>
         <div id="errormsgsignup_lastname"></div>
         <p>
             <label for="usernamesignup" class="uname">Your username</label>
             <input type="text" id="usernamesignup" name="usernamesignup" 
                    required="required" size="30" maxlength="30" 
-                   placeholder="JeanMichelDu31" />
+                   placeholder="EmMart" <?php if($_GET['usrn'] != "") {echo "value=\"".$_GET['usrn']."\"";} ?> />
         </p>
         <div id="errormsgsignup_username"></div>
         <p>
             <label for="emailsignup" class="uemail">Your email</label>
             <input type="email" id="emailsignup" name="emailsignup" 
                    required="required" size="30" maxlength="30" 
-                   placeholder="jeanmi31@univ-tlse.fr" />
+                   placeholder="e.martin@gmail.com" <?php if($_GET['mail'] != "") {echo "value=\"".$_GET['mail']."\"";} ?> />
         </p>
         <div id="errormsgsignup_email"></div>
         <p>
             <label for="passwordsignup" class="upasswd">Your password</label>
             <input type="password" id="passwordsignup" name="passwordsignup" 
                    required="required" size="30" maxlength="30"
-                   placeholder="ex : michmich31" />
+                   placeholder="ex : melodyMaker14" />
         </p>
         <p>
             <label for="passwordsignup_confirm" class="upasswd" data-icon="p">Please confirm your password</label>
             <input type="password" id="passwordsignup_confirm" name="passwordsignup_confirm" 
                    required="required" size="30" maxlength="30" 
-                   placeholder="ex : michmich31" />
+                   placeholder="ex : melodyMaker14" />
         </p>
         <div id="errormsgsignup_password"></div>
         <p>
             <img src="captcha.php" alt="Captcha" id="signinimagecaptcha" />
             <a style="cursor:pointer" onclick="document.images.signinimagecaptcha.src = 'captcha.php?id=' + Math.round(Math.random(0) * 1000) + 1"><br><i>Regenerate code</i></a><br/><br/>
             <label for="captchasignup" class="ucaptcha">Enter code</label>
-            <input type="text" id="captchasignup" name="captchasignup" size="5" pattern="[a-zA-Z0-9]{5}"><br/>
+            <input type="text" id="captchasignup" name="captchasignup" 
+                   size="5" pattern="[a-zA-Z0-9]{5}"
+                   required="required"><br/>
         </p>
         <p>
             <input type="submit" value="SIGN UP" class="signupform" />
