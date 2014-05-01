@@ -7,6 +7,7 @@
 ?>
 
 <section id="contenu">
+    
     <h1> About us </h1>
     <h2>Context</h2>
     As part of the Master 1 Computer Science at Paul Sabatier University, a group of four students was formed to achieve an IT project 

@@ -39,6 +39,15 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
             var reste = max - textarea.value.length;
             document.getElementById('max_desc').innerHTML = reste;
         }
+        <?php
+        if(isset($session->message) && isset($session->messageType)){
+        ?>
+        $(function() {
+            displayMessage($('section[id=contenu]'), <?php echo "\"".$session->message."\""; ?> , <?php echo "\"".$session->messageType."\""; ?>);
+        });
+        <?php
+        }
+        ?>
         </script>
     </head>
 

@@ -84,6 +84,9 @@ if (!isset($session->login)) {
     ?>
 
     <section id="contenu">
+        <?php
+        
+        ?>
         <h1>Edit your profil</h1>
 
         <h2><?php echo $user->getLogin() ?></h2>

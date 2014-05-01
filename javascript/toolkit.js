@@ -166,10 +166,13 @@ function displayMessage(selector, message, type) {
     else{
         selector.prepend("<div class=\"message message-bad\">" + message + "<a href=\"#\" onClick=\"return deleteMessage($(this).parent());\">Close</a></div>");
     }
-    
 }
 
 function deleteMessage(selector) {
+    $.post("/site/controller/removeMessage.php", {}, 
+    function(data){
+        
+    });
     selector.remove();
     return false;
 }

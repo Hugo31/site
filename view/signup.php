@@ -8,6 +8,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 <script type="text/javascript" src="/site/controller/sign/ctrlSignup.js"></script>
 
 <section id="contenu">
+    <?php
+    
+    ?>
     <h1>Sign up</h1><br/>
     Your personal space on www.uidesignpatterncommunity.com allows you to manage your projects, 
     add design patterns, report conflicts and propose solutions to these conflicts. 

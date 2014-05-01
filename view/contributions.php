@@ -10,7 +10,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 ?>
 
 <section id="contenu">
-
+    <?php
+    
+    ?>
     <?php
     if (!$user = User::getDB($session->login)) {
         echo '<center><h3>You must be connected in order to use this page</h3></center>';

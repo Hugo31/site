@@ -6,6 +6,9 @@
 ?>
 
 <section id="contenu">
+    <?php
+    
+    ?>
     <h1> Legal notice </h1>
 
 <h3>1. Site presentation.</h3>

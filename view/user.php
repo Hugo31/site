@@ -12,43 +12,46 @@ $user = User::getDB($_GET['user']);
 ?>
 
 <section id="contenu">
-        <h1><?php echo $user->getLogin() ?></h1>
-        <div id="profil">
-            <h2>Informations</h2>
-            <div id="profillogo">
-                Image de profil<br/>
-                <img src="<?php echo $user->getLogo() ?>" alt="Image profil" style="width: auto; height:100px">
+    <?php
+    
+    ?>
+    <h1><?php echo $user->getLogin() ?></h1>
+    <div id="profil">
+        <h2>Informations</h2>
+        <div id="profillogo">
+            Image de profil<br/>
+            <img src="<?php echo $user->getLogo() ?>" alt="Image profil" style="width: auto; height:100px">
+        </div>
+        <div id="profilcontent">
+            <div id="profilgauche">
+                Firstname<br/>
+                Lastname<br/>
+                Email<br/>
             </div>
-            <div id="profilcontent">
-                <div id="profilgauche">
-                    Firstname<br/>
-                    Lastname<br/>
-                    Email<br/>
-                </div>
-                <div id="profildroit">
-                    <?php echo $user->getFirstName() ?><br/>
-                    <?php echo $user->getLastName() ?><br/>
-                    <?php echo $user->getMail() ?><br/>
-                </div>
-            </div>
-            <br/>
-            <div id="profilReport" style="padding-left: 30px">
-                <?php
-                if (isset($session->login)) {
-                    echo "<img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=User&amp;name=".$user->getLogin()."&amp;id=1\">Report content</a>";
-                }
-                ?>
+            <div id="profildroit">
+                <?php echo $user->getFirstName() ?><br/>
+                <?php echo $user->getLastName() ?><br/>
+                <?php echo $user->getMail() ?><br/>
             </div>
         </div>
-        <h1>Contribution</h1>
-        <h2 style="margin:0 auto;">Design pattern</h2><hr>
-        <?php
-        $bdd = Database::getConnection();
-        $session->typeQuery = "DesignPattern";
-        $reponse = Database::getAllData("SELECT * FROM DesignPattern WHERE login = \"" . $user->getLogin() . "\";");
-        ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
-        ?>
-        <br/><br/>
+        <br/>
+        <div id="profilReport" style="padding-left: 30px">
+            <?php
+            if (isset($session->login)) {
+                echo "<img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=User&amp;name=".$user->getLogin()."&amp;id=1\">Report content</a>";
+            }
+            ?>
+        </div>
+    </div>
+    <h1>Contribution</h1>
+    <h2 style="margin:0 auto;">Design pattern</h2><hr>
+    <?php
+    $bdd = Database::getConnection();
+    $session->typeQuery = "DesignPattern";
+    $reponse = Database::getAllData("SELECT * FROM DesignPattern WHERE login = \"" . $user->getLogin() . "\";");
+    ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
+    ?>
+    <br/><br/>
 </section>
 <script>
     $("details").hide();

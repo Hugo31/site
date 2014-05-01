@@ -7,7 +7,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 ?> 
 
 <section id="contenu">
-
+    <?php
+    
+    ?>
     <h1> Welcome to UI Design Pattern Community </h1>
     <!--<br/><a href="/site/testJquery/testModelPage.php">Test Model</a>
     <br/><a href="/site/view/addDesignPattern.php">Page test ajout de DP</a>

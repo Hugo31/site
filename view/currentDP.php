@@ -28,8 +28,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 </script>
 
 <section id="contenu">
-
     <?php
+    
+    
     $reponse = false;
     $req = "";
 
