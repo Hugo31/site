@@ -141,7 +141,7 @@
         //$bdd = Database::getConnection();
     ?>
         <h2> Add a Design Pattern </h2>
-        <div id="main" style="width:780px;float:left;height:1250px;">
+        <div id="main" style="width:800px;float:left;height:1250px;">
             
             <div id="formulaireAddDP">
                 <form id="addDP_form" name="addDP_form" method="post" enctype="multipart/form-data">
@@ -150,7 +150,7 @@
                     
                     <table id="tableAddDP">
                         <tr>
-                            <td style="width:100px"><label for="namee">Name</label></td>
+                            <td style="width:150px"><label for="namee">Name</label></td>
                             <td><input style="width:400px" id="namee" type="text" value="" name="namee" size="40" required autofocus placeholder="Design Pattern title"></td>
                         </tr>
                         <tr>
@@ -158,20 +158,20 @@
                             <td><textarea id="what" name="what" style="width:400px;height:200px" required placeholder="Design Pattern description"></textarea></td>
                         </tr>
                         <tr>
-                            <td style="width:100px"><label for="wah">When And How</label></td>
-                            <td><textarea id="wah" name="wah" style="width:400px;height:80px" required placeholder=""></textarea></td>
+                            <td style="width:100px"><label for="wah">When And How (optional)</label></td>
+                            <td><textarea id="wah" name="wah" style="width:400px;height:80px" placeholder=""></textarea></td>
                         </tr>
                         <tr>
-                            <td style="width:100px"><label for="layout">Layout</label></td>
-                            <td><textarea id="layout" name="layout" style="width:400px;height:80px" required placeholder=""></textarea></td>
+                            <td style="width:100px"><label for="layout">Layout (optional)</label></td>
+                            <td><textarea id="layout" name="layout" style="width:400px;height:80px" placeholder=""></textarea></td>
                         </tr>
                         <tr>
-                            <td style="width:100px"><label for="copy">Copy</label></td>
-                            <td><textarea id="copy" name="copy" style="width:400px;height:80px" required placeholder=""></textarea></td>
+                            <td style="width:100px"><label for="copy">Copy (optional)</label></td>
+                            <td><textarea id="copy" name="copy" style="width:400px;height:80px" placeholder=""></textarea></td>
                         </tr>
                         <tr>
-                            <td style="width:100px"><label for="impl">Implementation</label></td>
-                            <td><textarea id="impl" name="impl" style="width:400px;height:80px" required placeholder=""></textarea></td>
+                            <td style="width:100px"><label for="impl">Implementation (optional)</label></td>
+                            <td><textarea id="impl" name="impl" style="width:400px;height:80px" placeholder=""></textarea></td>
                         </tr>                    
                         <tr>
                             <td style="width:100px"><label>Target</label></td>

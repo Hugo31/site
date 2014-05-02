@@ -13,6 +13,8 @@
         $bdd = Database::getConnection();
         Solution::addDB($sol);
         
+        $session->message = "Solution successfully added";
+        $session->messageType = "good";
         header('Location: /site/view/details.php?type=Solution&id=' . $sol->getID());
     } else {
         echo '<h3>Error</h3>';

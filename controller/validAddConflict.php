@@ -17,6 +17,8 @@
             $cf->addLink($idDP);
         }}
 
+        $session->message = "Conflict successfully reported";
+        $session->messageType = "good";
         header('Location: /site/view/details.php?type=Conflict&id=' . $cf->getID());
     } else {
         echo '<h3>Error</h3>';
