@@ -82,7 +82,11 @@ class Conflict extends AbstractBasicCommentDB implements IDatabase, IComment{
         
         $bdd->exec('DELETE FROM CommentConflict WHERE idConflict = \''.$object->getID().'\''); // comment du conflit
         $bdd->exec('DELETE FROM ConflictDesignPattern WHERE idConflict = \''.$object->getID().'\''); //conflit entre les design pattern
+        $bdd->exec('DELETE FROM CommentSolution WHERE idSolution = \''.$object->getID().'\'');
+        $bdd->exec('DELETE FROM NoteSolution WHERE idSolution = \'' . $object->getID() . '\'');
+        $bdd->exec('DELETE FROM Solution WHERE idConflict = \''.$object->getID().'\''); //conflit entre les design pattern
         $nbSuppr = $bdd->exec('DELETE FROM Conflict WHERE idConflict = \''.$object->getID().'\''); // le conflit lui mm
+        
         return ($nbSuppr > 0);
     }
 

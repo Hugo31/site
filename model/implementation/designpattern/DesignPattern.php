@@ -111,14 +111,26 @@ class DesignPattern extends AbstractBasicRateDB implements IDataBase, IComment, 
         $bdd->exec('DELETE FROM CategoryDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM PropertyDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM ComponentDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
+        $bdd->exec('DELETE FROM ComponentRelatedDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM Source WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM ImageDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM NoteDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM ProjectDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
-        $bdd->exec('DELETE FROM Conflict WHERE idDesignPattern1 = \''.$object->getID().'\' OR idDesignPattern2 = \''.$object->getID().'\'');
         $bdd->exec('DELETE FROM CommentDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
 
-
+        $bdd->exec('DELETE FROM ConflictDesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
+        
+        //on supprime les liens conflits->dp seuls
+        $bdd->exec('DELETE FROM conflictdesignpattern WHERE idConflict IN ((select * from (SELECT idConflict FROM conflictdesignpattern GROUP BY idConflict HAVING COUNT(*) < 2) as t))');
+        //on supprime les solutions aux conflits entre 0 DP
+        $bdd->exec('DELETE FROM solution WHERE idConflict IN(
+        SELECT idConflict FROM conflict WHERE idConflict NOT IN (
+        SELECT idConflict FROM conflictdesignpattern))');
+        //on supprime les conflits entre 0 DP
+        $bdd->exec('DELETE FROM conflict WHERE idConflict NOT IN (
+        SELECT idConflict FROM conflictdesignpattern)');
+        
+        
         $nbSuppr = $bdd->exec('DELETE FROM DesignPattern WHERE idDesignPattern = \''.$object->getID().'\'');
         return ($nbSuppr > 0);
     }

@@ -30,6 +30,9 @@ if (!empty($_REQUEST['userCode'])) {
 ?>
 
 <section id="contenu">
+    <?php
+    
+    ?>
     <h1> Contact </h1>
     <div style="width:540px;float:left;height:700px;">
         <h2>How can we help you?</h2>

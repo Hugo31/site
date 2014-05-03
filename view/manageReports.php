@@ -63,8 +63,9 @@
 </script>
 
 <section id="contenu">
-    
     <?php
+    
+    
     if (!isset($session->admin)) { //si utilisateur non connecté
         echo '<center><h3>You must be connected in order to use this page</h3></center>';
     } else {

@@ -62,8 +62,9 @@ function addToCart(idDP, selector, removeIt) {
             selector.text("Remove from my current Design Pattern");
             selector.attr("onclick", "return removeFromCart("+ idDP + ", $(this), " + removeIt.toString() + ");");
             selector.prev().attr("src", "/site/img/vrac/croix.png");
+            displayMessage($('section[id=contenu]'), "You have added a Design Pattern", "good");
         } else {
-            alert("An error occured when adding the design pattern");
+            displayMessage($('section[id=contenu]'), "An error occured when adding the design pattern", "bad");
         }
     });
     return false;
@@ -83,7 +84,9 @@ function removeFromCart(idDP, selector, removeIt) {
             if (removeIt) {
                 $('#article_' + idDP + '').remove();
             } 
+            displayMessage($('section[id=contenu]'), "You have remove a design pattern from your cart", "good");
         } else {
+            displayMessage($('section[id=contenu]'), "An error occured when removing the design pattern", "bad");
             alert("An error occured when removing the design pattern");
         }
         
@@ -102,9 +105,10 @@ function addRate(table, id, login, input) {
                 } else {
                     $('#contenuDroitSol').append(data);
                 }
+                displayMessage($('section[id=contenu]'), "You have rate a design pattern", "good");
             });
         } else {
-            alert("Impossible to rate");
+            displayMessage($('section[id=contenu]'), "An error occured when rating", "bad");
         }
     });
     return false;
@@ -120,9 +124,10 @@ function removeRate(table, id, login, input) {
                 } else {
                     $('#contenuDroitSol').append(data);
                 }
+                displayMessage($('section[id=contenu]'), "You have remove your rate for a design pattern", "good");
             });
         } else {
-            alert("Impossible to remove the rate");
+            displayMessage($('section[id=contenu]'), "An error occured when removing a design pattern", "bad");
         }
     });
     return false;
@@ -151,5 +156,23 @@ function addCommentToDP(comment, id, table, nbComments, articleComment, articleA
         }
         
     });
+    return false;
+}
+
+function displayMessage(selector, message, type) {
+    if(type == "good"){
+        selector.prepend("<div class=\"message message-good\">" + message + "<a href=\"#\" onClick=\"return deleteMessage($(this).parent());\">Close</a></div>");
+    }
+    else{
+        selector.prepend("<div class=\"message message-bad\">" + message + "<a href=\"#\" onClick=\"return deleteMessage($(this).parent());\">Close</a></div>");
+    }
+}
+
+function deleteMessage(selector) {
+    $.post("/site/controller/removeMessage.php", {}, 
+    function(data){
+        
+    });
+    selector.remove();
     return false;
 }

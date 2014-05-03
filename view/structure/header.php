@@ -39,6 +39,15 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
             var reste = max - textarea.value.length;
             document.getElementById('max_desc').innerHTML = reste;
         }
+        <?php
+        if(isset($session->message) && isset($session->messageType)){
+        ?>
+        $(function() {
+            displayMessage($('section[id=contenu]'), <?php echo "\"".$session->message."\""; ?> , <?php echo "\"".$session->messageType."\""; ?>);
+        });
+        <?php
+        }
+        ?>
         </script>
     </head>
 
@@ -90,10 +99,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
                             <a href="/site/index.php">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/manageUsers.php">Users</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/site/view/manageReports.php">Reports</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="">Design Patterns</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="">Conflicts</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="">Solutions</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="">Projects</a>
+                            <a href="/site/controller/redirectAdmin.php?type=DesignPattern">Design Patterns</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="/site/controller/redirectAdmin.php?type=Conflict">Conflicts</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="/site/controller/redirectAdmin.php?type=Solution">Solutions</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="/site/controller/redirectAdmin.php?type=Project">Projects</a>
                             <?php
                         } else {
                             ?>                   

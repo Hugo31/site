@@ -16,7 +16,6 @@
 ?>
 
 <section id="contenu">
-
     <h2> Propose a solution </h2>
     <h3>Solution to : </h3>
     <?php ToolkitAdds::displayConflictMini($_GET['id']); ?>

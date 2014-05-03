@@ -11,6 +11,9 @@ $session = Session::getInstance();
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');   
 ?>
 <section id="contenu">
+    <?php
+    
+    ?>
     A faire
     <?php
         

@@ -7,6 +7,9 @@
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');   
 ?>
 <section id="contenu">
+    <?php
+    
+    ?>
     <h1> Results </h1>
     <form id="sort_form">
         <label>Sort by: </label>

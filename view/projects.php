@@ -7,6 +7,9 @@
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');   
 ?>
 <section id="contenu">
+    <?php
+    
+    ?>
     <h1> My projects </h1>
     
     <br><br>

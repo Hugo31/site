@@ -6,6 +6,9 @@
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');
 ?>
 <section id="contenu">
+    <?php
+    
+    ?>
     <h1> Comments </h1>
     
     <?php

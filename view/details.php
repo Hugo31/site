@@ -12,6 +12,8 @@ $session = Session::getInstance();
 ?>
 <section id="contenu">
     <?php
+    
+    
         $bdd = Database::getConnection();
         if (isset($session->admin)) {
             ToolkitAdmin::displayAdminBox($_GET['id'], $_GET['type']);
