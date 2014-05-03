@@ -68,7 +68,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
                                     <?php echo $session->login; ?></a>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="/site/view/contributions.php" style="text-decoration: none">My contributions</a>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="/site/view/projects.php?id=<?php echo $session->login; ?>" style="text-decoration: none">My projects</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="/site/controller/sign/logout.php" style="text-decoration:none">
+                                <a onclick="return confirm('Do you want to disconnect ?')" href="/site/controller/sign/logout.php" style="text-decoration:none">
                                     <button>LOG OUT</button>
                                 </a>
                             </div>
