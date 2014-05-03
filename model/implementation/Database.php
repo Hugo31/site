@@ -8,7 +8,7 @@ class Database {
      */
     private static function connect() { 
         try{ 
-            return new PDO('mysql:host=localhost;dbname=mydb', 'admin', 'admin');
+            return new PDO('mysql:host=localhost;dbname=db_dpi', 'hl3_pack', 'hl3_pack');
         } catch (Exception $e) { 
             die('Erreur : ' . $e->getMessage()); 
         } 

@@ -176,9 +176,9 @@ class ToolkitDetails {
             echo "<article>";
             echo "<h1>".$project->getName()."</h1>";
             if ($session->login == $project->getLogin()) {
-                echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"#\">Re-open that project</a></div>";
+                echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"#\"><img src=\"/site/img/vrac/edit.png\" style=\"width:24px;vertical-align:middle;padding-right:5px;\">Re-open that project</a></div>";
             }
-            echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"/site/controller/exportXML.php?idProject=".$id."\" target=\"_blank\"><img src=\"/site/img/vrac/xml.png\" style=\"vertical-align:middle;padding-right:5px;\">Import that project</a></div><br/>";
+            echo "<br/><div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"/site/controller/exportXML.php?idProject=".$id."\" target=\"_blank\"><img src=\"/site/img/vrac/xml.png\" style=\"vertical-align:middle;padding-right:5px;\">Export that project</a></div><br/>";
             echo "<article id=\"h3Details\">";
             echo "<table>";
             echo "<tr><td><h3>Date:</h3></td><td>".$project->getDate()."</td></tr>";
