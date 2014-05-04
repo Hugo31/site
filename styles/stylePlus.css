@@ -147,6 +147,20 @@ input.reset:hover {
     padding:10px;
 }
 
+.boxUsers {
+    background-color:#eee;
+    margin-bottom:10px;
+    padding:5px;
+}
+
+.boxUsers h2 {
+    margin:0 auto;
+}
+
+.boxUsers h2:hover {
+    color:#FC40000;
+}
+
 #headerAside {
     min-height:100px;
 }

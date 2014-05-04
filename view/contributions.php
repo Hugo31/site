@@ -27,10 +27,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             $reponse = Database::getAllData("SELECT * FROM DesignPattern WHERE login = \"" . $session->login . "\";");
             ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
         ?>
-        <br/>
-        <a href="/site/view/addDesignPattern.php" style="text-decoration: none">
+        <br/><br/>
+        <center><a href="/site/view/addDesignPattern.php" style="text-decoration: none">
             <button id="profilAddDP">Create a new Design Pattern</button>
-        </a><br/><br/><br/>
+        </a></center><br/><br/>
    
         <h2 style="margin:0 auto;">My conflicts</h2><hr>
         <?php
@@ -39,7 +39,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             $reponse = Database::getAllData("SELECT * FROM Conflict WHERE login = \"" . $session->login . "\";");
             ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
         ?>
-        
+        <br/><br/>
         <h2 style="margin:0 auto;">My solutions</h2><hr>
         <?php
             $bdd = Database::getConnection();
@@ -48,6 +48,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
     }
         ?>
+        
+        <br/><br/><br/>
 </section>
 <script>
     $("details").hide();

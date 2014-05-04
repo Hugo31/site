@@ -147,34 +147,34 @@
                 <form id="addDP_form" name="addDP_form" method="post" enctype="multipart/form-data">
                     
                     <h3> Main informations </h3>
-                    
+                    <font style="color:#FF4C00">* Required fields.</font><br/><br/>
                     <table id="tableAddDP">
                         <tr>
-                            <td style="width:150px"><label for="namee">Name</label></td>
+                            <td style="width:150px"><label for="namee">Name: <font color="#FC40000">*</font></label></td>
                             <td><input style="width:400px" id="namee" type="text" value="" name="namee" size="40" required autofocus placeholder="Design Pattern title"></td>
                         </tr>
                         <tr>
-                            <td style="width:100px"><label for="what">What</label></td>
-                            <td><textarea id="what" name="what" style="width:400px;height:200px" required placeholder="Design Pattern description"></textarea></td>
+                            <td style="width:100px"><label for="what">What: <font color="#FC40000">*</font></label></td>
+                            <td><textarea id="what" name="what" style="min-width:400px;min-height:100px;max-width:500px;max-height:400px" required placeholder="Design Pattern description"></textarea></td>
                         </tr>
                         <tr>
-                            <td style="width:100px"><label for="wah">When And How (optional)</label></td>
-                            <td><textarea id="wah" name="wah" style="width:400px;height:80px" placeholder=""></textarea></td>
+                            <td style="width:100px"><label for="wah">When And How: </label></td>
+                            <td><textarea id="wah" name="wah" style="min-width:400px;min-height:80px;max-width:500px;max-height:400px" placeholder=""></textarea></td>
                         </tr>
                         <tr>
-                            <td style="width:100px"><label for="layout">Layout (optional)</label></td>
-                            <td><textarea id="layout" name="layout" style="width:400px;height:80px" placeholder=""></textarea></td>
+                            <td style="width:100px"><label for="layout">Layout: </label></td>
+                            <td><textarea id="layout" name="layout" style="min-width:400px;min-height:80px;max-width:500px;max-height:400px" placeholder=""></textarea></td>
                         </tr>
                         <tr>
-                            <td style="width:100px"><label for="copy">Copy (optional)</label></td>
-                            <td><textarea id="copy" name="copy" style="width:400px;height:80px" placeholder=""></textarea></td>
+                            <td style="width:100px"><label for="copy">Copy: </label></td>
+                            <td><textarea id="copy" name="copy" style="min-width:400px;min-height:80px;max-width:500px;max-height:400px" placeholder=""></textarea></td>
                         </tr>
                         <tr>
-                            <td style="width:100px"><label for="impl">Implementation (optional)</label></td>
-                            <td><textarea id="impl" name="impl" style="width:400px;height:80px" placeholder=""></textarea></td>
+                            <td style="width:100px"><label for="impl">Implementation: </label></td>
+                            <td><textarea id="impl" name="impl" style="min-width:400px;min-height:80px;max-width:500px;max-height:400px" placeholder=""></textarea></td>
                         </tr>                    
                         <tr>
-                            <td style="width:100px"><label>Target</label></td>
+                            <td style="width:100px"><label>Target: </label></td>
                             <td>
                                 <select id="subject" style="width:406px" name="thetarget" required>
                                     <option selected disabled hidden>Choose</option>

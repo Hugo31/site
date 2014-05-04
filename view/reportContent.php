@@ -23,7 +23,7 @@ Please report problem description in the next field...<br/><br/>
 <table>
 <tr>
 <td style="vertical-align:top;"><label for="repportMessage">Message&nbsp;&nbsp;</label></td>
-<td><textarea id="repportMessage" name="repportMessage" style="min-width:400px;max-width:600px;min-height:200px;max-height:400px" required placeholder="Repport Message"></textarea></td>
+<td><textarea id="repportMessage" name="repportMessage" style="min-width:400px;max-width:600px;min-height:200px;max-height:400px" autofocus required placeholder="Repport Message"></textarea></td>
 </tr>
 </table>
 <br/>

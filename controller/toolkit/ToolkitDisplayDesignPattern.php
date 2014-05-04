@@ -35,11 +35,15 @@ class ToolkitDisplayDesignPattern {
     
     public static function displaySources($id) {
         $reponse = Database::getAllData("SELECT link FROM Source WHERE idDesignPattern = ".$id.";");
-        echo '<ul>';
-        foreach ($reponse as $row) {
-            echo "<li><a href=\"".$row['link']."\" target='_blank'>".$row['link']."</a></li>";
+        if ($reponse->rowCount() != 0) {
+            echo '<ul>';
+            foreach ($reponse as $row) {
+                echo "<li><a href=\"".$row['link']."\" target='_blank'>".$row['link']."</a></li>";
+            }
+            echo '</ul>';
+        } else {
+            echo "<ul><li>Unsourced.</li></ul>";
         }
-        echo '</ul>';
         $reponse->closeCursor();
     }
     

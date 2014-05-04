@@ -215,7 +215,7 @@ class ToolKitDisplay {
 
                 $data = Database::getOneData("SELECT COUNT(*) as nb FROM ProjectDesignPattern pdp WHERE pdp.idProject=".$row['idProject'].";");
                 echo "<aside id='asideBox'>";
-                echo "<div id=\"otherInfo2\"><a href=\"\">".$data['nb']." Design Pattern(s)</a></div>";
+                echo "<div id=\"otherInfo2\">".$data['nb']." Design Pattern(s)</div>";
                 echo "</aside>";
                 echo "</div>";
                 
@@ -226,10 +226,10 @@ class ToolKitDisplay {
                         ."WHERE pdp.idProject=".$row['idProject']." AND dp.idDesignPattern = pdp.idDesignPattern;");
                 foreach ($rqtDPProjects as $res) {
                     if ($nombreDP > 1) {
-                        echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a> & ";
+                        echo "<a href=\"details.php?type=DesignPattern&id=".$res['idDesignPattern']."\">".$res['name']."</a> & ";
                         $nombreDP--;
                     } else {
-                        echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a>";
+                        echo "<a href=\"details.php?type=DesignPattern&id=".$res['idDesignPattern']."\">".$res['name']."</a>";
                     }
                 }
                 $rqtDPProjects->closeCursor();
@@ -345,7 +345,7 @@ class ToolKitDisplay {
                 echo "<form action=\"pbComment.php\" method=\"POST\">";
                 echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"".$id."\"/>";
                 echo "<input type=\"hidden\" id=\"table\" name=\"table\" value=\"".$tableAsk."\"/>";
-                echo "<input type=\"submit\" class=\"send\" style=\"float:right\" value=\"Signal a problem\"/>";
+                echo "<input type=\"submit\" class=\"reset\" style=\"float:right\" value=\"Signal a problem\"/>";
                 echo "</form>";
                 echo "</div>";
                 echo "<div class=\"clear\"></div> ";

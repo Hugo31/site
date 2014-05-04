@@ -64,7 +64,8 @@
     ?>
     
     <h2> Report conflicts </h2>
-    <div id="main" style="width:780px;float:left;height:570px;">
+    <div id="main" style="width:780px;float:left;height:600px;">
+        
         <form id="addConflict_form" method="post">
             
             <h3>Design patterns in conflict</h3>
@@ -87,6 +88,7 @@
             
             <br/><br/>
             <h3>Add informations</h3>
+            <font style="color:#FF4C00">> All fields are required.</font><br/><br/>
             <div id="formulaireAddConflict">
                 <table>
                     <tr>
@@ -117,6 +119,7 @@
                     <input id="go" type="submit" class="add" title="You need to select at least 2 DP" disabled value="Add Conflict" style="margin-left: 15px " onclick="this.form.action='../controller/validAddConflict.php'">
                 </center>
             </div>
+            
         </form>
     </div>
     

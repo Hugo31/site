@@ -9,7 +9,7 @@ if ($session->admin && $session->login != $_GET['login']) {
     $reussie = User::removeDB($user);
 }
 if($reussie){
-    $session->message = "You have remove an user";
+    $session->message = "You have removed an user";
     $session->messageType = "good";
 } else {
     $session->message = "An error occured when removing an user";
