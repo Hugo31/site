@@ -151,30 +151,30 @@
                     <table id="tableAddDP">
                         <tr>
                             <td style="width:150px"><label for="namee">Name: <font color="#FC40000">*</font></label></td>
-                            <td><input style="width:400px" id="namee" type="text" value="" name="namee" size="40" required autofocus placeholder="Design Pattern title"></td>
+                            <td><input style="width:400px" id="namee" type="text" value="" name="namee" size="40" required autofocus placeholder="Give a concise and clear name to the Design Pattern"></td>
                         </tr>
                         <tr>
                             <td style="width:100px"><label for="what">What: <font color="#FC40000">*</font></label></td>
-                            <td><textarea id="what" name="what" style="min-width:400px;min-height:100px;max-width:500px;max-height:400px" required placeholder="Design Pattern description"></textarea></td>
+                            <td><textarea id="what" name="what" style="min-width:400px;min-height:100px;max-width:500px;max-height:400px" required placeholder="Description of the pattern. A precise and large description will help users to clearly understand the pattern."></textarea></td>
                         </tr>
                         <tr>
                             <td style="width:100px"><label for="wah">When And How: </label></td>
-                            <td><textarea id="wah" name="wah" style="min-width:400px;min-height:80px;max-width:500px;max-height:400px" placeholder=""></textarea></td>
+                            <td><textarea id="wah" name="wah" style="min-width:400px;min-height:100px;max-width:500px;max-height:400px" placeholder="Examples and rationale for cases when this pattern must be applied, when it should, when it shouldn’t and when it mustn’t (anti-patterns)."></textarea></td>
                         </tr>
                         <tr>
                             <td style="width:100px"><label for="layout">Layout: </label></td>
-                            <td><textarea id="layout" name="layout" style="min-width:400px;min-height:80px;max-width:500px;max-height:400px" placeholder=""></textarea></td>
+                            <td><textarea id="layout" name="layout" style="min-width:400px;min-height:100px;max-width:500px;max-height:400px" placeholder="Advices about visual implementation of the pattern."></textarea></td>
                         </tr>
                         <tr>
                             <td style="width:100px"><label for="copy">Copy: </label></td>
-                            <td><textarea id="copy" name="copy" style="min-width:400px;min-height:80px;max-width:500px;max-height:400px" placeholder=""></textarea></td>
+                            <td><textarea id="copy" name="copy" style="min-width:400px;min-height:100px;max-width:500px;max-height:400px" placeholder="Advices about the copywriting."></textarea></td>
                         </tr>
                         <tr>
                             <td style="width:100px"><label for="impl">Implementation: </label></td>
-                            <td><textarea id="impl" name="impl" style="min-width:400px;min-height:80px;max-width:500px;max-height:400px" placeholder=""></textarea></td>
+                            <td><textarea id="impl" name="impl" style="min-width:400px;min-height:100px;max-width:500px;max-height:400px" placeholder="Technical advices."></textarea></td>
                         </tr>                    
                         <tr>
-                            <td style="width:100px"><label>Target: </label></td>
+                            <td style="width:100px"><label>Target: <font color="#FC40000">*</font></label></td>
                             <td>
                                 <select id="subject" style="width:406px" name="thetarget" required>
                                     <option selected disabled hidden>Choose</option>

@@ -17,25 +17,28 @@
 
 <section id="contenu">
     <h2> Propose a solution </h2>
-    <h3>Solution to : </h3>
+    <h3>Solution to the conflict: </h3>
     <?php ToolkitAdds::displayConflictMini($_GET['id']); ?>
     
     <div style="width:780px;float:left;height:700px;">
-        <br/><br/>
+        
+        <h3> Add informations </h3>
+        <font style="color:#FF4C00">* Required fields.</font><br/><br/>
+        
         <div id="formulaireAddSolution">
             <form id="addSolution_form" method="post">
                 <table>
                     <tr>
-                        <td style="width:100px"><label for="namee">Name</label></td>
-                        <td><input id="namee" style="width:400px" type="text" value="" name="namee" size="40" required autofocus placeholder="Name of the solution"></td>
+                        <td style="width:100px"><label for="namee">Name: <font color="#FC40000">*</font></label></td>
+                        <td><input id="namee" style="width:400px" type="text" value="" name="namee" size="40" required autofocus placeholder="Give a concise and clear name to the solution"></td>
                     </tr>
                     <tr>
-                        <td style="width:100px"><label for="comment">Comment</label></td>
-                        <td><textarea id="comment" name="comment" style="width:400px;height:200px" required placeholder="Comment your solution"></textarea></td>
+                        <td style="width:100px"><label for="comment">Comment: <font color="#FC40000">*</font></label></td>
+                        <td><textarea id="comment" name="comment" style="min-width:400px;min-height:100px;max-width:500px;max-height:400px" required placeholder="Add an useful and precise comment to describe the solution you found to this conflict"></textarea></td>
                     </tr>
                     <tr>
-                        <td style="width:100px"><label for="code">Code</label></td>
-                        <td><textarea id="code" name="code" style="width:400px;height:300px" required placeholder="Solution's code"></textarea></td>
+                        <td style="width:100px"><label for="code">Code: </label></td>
+                        <td><textarea id="code" name="code" style="min-width:400px;min-height:100px;max-width:500px;max-height:400px" placeholder="You can give code samples of the solution in this section"></textarea></td>
                     </tr>
                 </table>
                 <br/>
