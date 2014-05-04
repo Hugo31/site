@@ -441,3 +441,11 @@ input.logout:hover {
 #contentSol a h3:hover {
      color: #FF4C00;
 }
+
+#btn_up	{
+	position: fixed;
+	bottom: 15px;
+	right: 10px;
+	cursor: pointer;
+	display:none;
+}

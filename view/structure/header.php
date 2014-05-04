@@ -9,7 +9,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
 
 <html>
     <head>
-        <link rel="icon" type="image/png" href="/site/img/favicon.ico" />
+        <link rel="icon" type="image/png" href="/site/img/favicon.png" />
         <title> UI Design Pattern Community </title>
 
         <!-- meta -->
@@ -48,6 +48,22 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitSearch
         <?php
         }
         ?>
+        </script>
+        
+        <script>
+            $(function(){
+                $('#btn_up').click(function() {
+                    $('html,body').animate({scrollTop: 0}, 'slow');
+                });
+
+                $(window).scroll(function(){
+                    if($(window).scrollTop()<50){
+                        $('#btn_up').fadeOut();
+                    }else{
+                        $('#btn_up').fadeIn();
+                    }
+                });
+            });
         </script>
     </head>
 
