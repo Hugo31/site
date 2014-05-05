@@ -40,6 +40,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
         ?>
         <br/><br/>
+        <center><a href="/site/view/addTypeConflict.php" style="text-decoration: none">
+            <button id="profilAddDP">Create a new conflict type</button>
+        </a></center><br/><br/>
+        
         <h2 style="margin:0 auto;">My solutions</h2><hr>
         <?php
             $bdd = Database::getConnection();

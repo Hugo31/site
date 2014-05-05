@@ -6,7 +6,6 @@ $session = Session::getInstance();
 
 $reussie = false;
 if (isset($session->login)) {
-
     $req = $bdd->prepare('INSERT INTO Reporting(name, message, typeReported, idReported, login) VALUES(:name, :message, :typeReported, :idReported, :login)');
     $reussie = $req->execute(array(
         'name' => $_POST['name'],
