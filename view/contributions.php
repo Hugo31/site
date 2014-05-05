@@ -46,9 +46,13 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             $session->typeQuery = "Solution";
             $reponse = Database::getAllData("SELECT * FROM Solution WHERE login = \"" . $session->login . "\";");
             ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
-    }
         ?>
-        
+        <br/><br/>
+        <h2 style="margin:0 auto;">My search criteria</h2><hr>
+        <?php
+            
+        }
+        ?>
         <br/><br/><br/>
 </section>
 <script>

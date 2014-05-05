@@ -343,7 +343,7 @@ class ToolKitDisplay {
                 echo "<i>Posted ".$row['date']."</i><br>";
                 echo $row['comment'].'<br/><br/>';
                 echo "<form action=\"pbComment.php\" method=\"POST\">";
-                echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"".$id."\"/>";
+                echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"".$row['idComment']."\"/>";
                 echo "<input type=\"hidden\" id=\"table\" name=\"table\" value=\"".$tableAsk."\"/>";
                 echo "<input type=\"submit\" class=\"reset\" style=\"float:right\" value=\"Signal a problem\"/>";
                 echo "</form>";

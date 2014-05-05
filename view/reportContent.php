@@ -18,8 +18,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         ?>
 <h1>Report on <?php echo $_GET['type'] . ' : ' . $_GET['name']; ?></h1>
 Please report problem description in the next field...<br/><br/>
-<form id="formReportContent" name="formReportContent" method="post"
-<?php echo "action=\"../controller/addReport.php?type=" . $_GET['type'] . "&amp;name=" . $_GET['name'] . "&amp;id=" . $_GET['id']."\"" ?> >
+<form id="formReportContent" name="formReportContent" method="post" action="../controller/addReport.php">
+<?php
+      echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"".$_GET['id']."\"/>";
+      echo "<input type=\"hidden\" id=\"type\" name=\"type\" value=\"".$_GET['type']."\"/>";
+      echo "<input type=\"hidden\" id=\"name\" name=\"name\" value=\"".$_GET['name']."\"/>"; ?>
 <table>
 <tr>
 <td style="vertical-align:top;"><label for="repportMessage">Message&nbsp;&nbsp;</label></td>
