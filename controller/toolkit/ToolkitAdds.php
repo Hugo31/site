@@ -62,7 +62,7 @@ class ToolKitAdds {
         $count = 0;
         foreach ($result as $row) {
             echo $row[0];
-            echo '<a href="#" onclick="return showblock(this,'.$count.')" style="text-decoration:none;" >[+]</a>';
+            echo "<a href=\"/site/view/commentsDetails.php?table=".$type."&id=".$id."\" onclick=\"return showblock(this,'.$count.')\" style=\"text-decoration:none;\" >[+]</a>";
             echo '<p hidden>'.$row[1].'</p></br>';
             $count++;
         }
@@ -90,7 +90,7 @@ class ToolKitAdds {
         $count = 0;
         foreach ($result as $row) {
             echo $row[0];
-            echo '<a href="#" onclick="return showblock(this,'.$count.')" style="text-decoration:none;" >[+]</a>';
+            echo "<a href=\"#\" onclick=\"return showblock(this,'.$count.')\" style=\"text-decoration:none;\" >[+]</a>";
             echo '<p hidden>'.$row[1].'</p></br>';
             $count++;
         }

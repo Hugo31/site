@@ -30,7 +30,6 @@ if (isset($_POST['page']) && isset($_POST['table']) && isset($_POST['id'])) {
         echo "</div>";
         echo "<div class=\"clear\"></div> ";
         echo "</div>";
-
     }
 
     /* --------------------------------------------- */

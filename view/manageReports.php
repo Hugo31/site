@@ -85,10 +85,7 @@
         } else {
             echo 'No report found.';
         }
-        
-        
-        
-        
+               
     }?>  
 </section>
 
