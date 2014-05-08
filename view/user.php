@@ -35,13 +35,6 @@ $user = User::getDB($_GET['user']);
             </div>
         </div>
         <br/>
-        <div id="profilReport" style="padding-left: 30px">
-            <?php
-            if (isset($session->login)) {
-                echo "<img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=User&amp;name=".$user->getLogin()."&amp;id=1\">Report content</a>";
-            }
-            ?>
-        </div>
     </div>
     <h1>Contribution</h1>
     <h2 style="margin:0 auto;">Design pattern</h2><hr>

@@ -3,13 +3,14 @@
 class ToolkitAdmin{
     
     public static function displayAdminBox($id, $type) {
-        echo "<div class=\"message message-admin\">";
-        echo "<form action=\"/site/controller/modifyAdmin.php\" method=\"post\">";
+        echo "<div class=\"message message-admin admin-box-text\">";
+        echo "Admin Box - You can modify or delete this " . $type . "";
+        echo "<form action=\"/site/controller/modifyAdmin.php\" method=\"post\" class=\"admin-box-form\">";
         echo "<input type=\"hidden\" name=\"type\" value=\"".$type."\"/>";
         echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\"/>";
         echo "<input type=\"submit\" class=\"send\" value=\"MODIFY\"/>";
         echo "</form>";
-        echo "<form action=\"/site/controller/deleteAdmin.php\" method=\"post\">";
+        echo "<form action=\"/site/controller/deleteAdmin.php\" method=\"post\" class=\"admin-box-form\">";
         echo "<input type=\"hidden\" name=\"type\" value=\"".$type."\"/>";
         echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\"/>";
         echo "<input type=\"submit\" class=\"reset\" value=\"REMOVE\"/>";

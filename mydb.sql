@@ -1,8 +1,8 @@
 INSERT INTO `User` (`login`, `pwd`, `lastname`, `firstname`, `mail`, `logo`, `typeUser`) VALUES
 ('LaurineMarmisse', 'a929edb05103d7948d269c21b1a6ab8b', 'Marmisse', 'Laurine', 'laurine.marmisse@gmail.com', '/site/img/user/user.png', 'Admin'),
-('LoicViguier', 'a929edb05103d7948d269c21b1a6ab8b', 'Viguier', 'Loïc', 'loicviguier@gmail.com', '/site/img/user/user.png', 'Admin'),
+('LoicViguier', 'a929edb05103d7948d269c21b1a6ab8b', 'Viguier', 'Loic', 'loicviguier@gmail.com', '/site/img/user/user.png', 'Admin'),
 ('HugoGuignard', 'a929edb05103d7948d269c21b1a6ab8b', 'Guignard', 'Hugo', 'hugo.guignard@gmail.com', '/site/img/user/user.png', 'Admin'),
-('LoicFaure', 'a929edb05103d7948d269c21b1a6ab8b', 'Faure', 'Loïc', 'loicfaure@hotmail.fr', '/site/img/user/user.png', 'Admin'),
+('LoicFaure', 'a929edb05103d7948d269c21b1a6ab8b', 'Faure', 'Loic', 'loicfaure@hotmail.fr', '/site/img/user/user.png', 'Admin'),
 ('MarcoWinckler', 'a929edb05103d7948d269c21b1a6ab8b', 'Winckler', 'Marco', 'winckler@irit.fr', '/site/img/user/user.png', 'Admin'),
 ('undefined', '5e543256c480ac577d30f76f9120eb74', 'undefined', 'undefined', 'undefined@undefined.com', '/site/img/user/user.png', 'Classic');
 
@@ -62,8 +62,10 @@ INSERT INTO `NoteDesignPattern` (`login`, `idDesignPattern`, `note`) VALUES
 INSERT INTO `Platform` (`idPlatform`, `name`, `description`, `icon`) VALUES
 (1, 'Windows', 'Windows Platform', '/site/img/vrac/windows.png'),
 (2, 'Linux', 'Linux Platform', '/site/img/vrac/linux.png'),
-(3, 'Apple', 'Apple Platform', '/site/img/vrac/apple.png'),
-(4, 'Android', 'Android Platform', '/site/img/vrac/android.png');
+(3, 'MacOS', 'Apple Platform', '/site/img/vrac/apple.png'),
+(4, 'Android', 'Google mobile Platform', '/site/img/vrac/android.png'),
+(5, 'iOS', 'Apple mobile platform', '/site/img/vrac/ios.png'),
+(6, 'Windows Phone', 'Windows mobile platform', '/site/img/vrac/windowsphone.png');
 
 INSERT INTO `PlatformDesignPattern` (`idDesignPattern`, `idPlatform`) VALUES
 (1, 1),

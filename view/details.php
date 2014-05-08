@@ -40,7 +40,7 @@ $session = Session::getInstance();
     
 </section>
 <script>
-    
+    $("details").hide();
 </script>
 <?php
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/footer.php');   
