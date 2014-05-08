@@ -1,5 +1,8 @@
+
+
 INSERT INTO `User` (`login`, `pwd`, `lastname`, `firstname`, `mail`, `logo`, `typeUser`) VALUES
 ('laurineM', 'd6581d542c7eaf801284f084478b5fcc', 'marmisse', 'laurine', 'laurine.marmisse@gmail.com', '/site/img/user/laurineMarmisse.jpg', 'Admin'),
+('loicfaure', '6297acef06f732c289c27f5979497c6c', 'Faure', 'Loic', 'loicfaure@hotmail.fr', '/site/img/user/user.png', 'Admin'),
 ('undefined', '5e543256c480ac577d30f76f9120eb74', 'undefined', 'undefined', 'undefined@undefined.com', '/site/img/user/user.png', 'Classic');
 
 
@@ -73,3 +76,4 @@ INSERT INTO `ProjectDesignPattern` (`idProject`, `idDesignPattern`) VALUES
 
 INSERT INTO `Solution` (`idSolution`, `name`, `comment`, `codeSolution`, `nbComments`, `nbRates`, `rate`, `date`, `idConflict`, `login`) VALUES
 (1, 'Solution', 'I propose this solution to this conflict.', 'vue = new Vue();vue.setVisible(false);', 0, 0, 0, '2014-03-19 00:00:00', 1, 'laurineM');
+

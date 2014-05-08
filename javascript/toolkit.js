@@ -87,7 +87,6 @@ function removeFromCart(idDP, selector, removeIt) {
             displayMessage($('section[id=contenu]'), "You have remove a design pattern from your cart", "good");
         } else {
             displayMessage($('section[id=contenu]'), "An error occured when removing the design pattern", "bad");
-            alert("An error occured when removing the design pattern");
         }
         
     });
@@ -174,5 +173,15 @@ function deleteMessage(selector) {
         
     });
     selector.remove();
+    return false;
+}
+
+function deleteAdmin(id, type, selectionToRemove){
+    if(confirm("Do you want to remove that " + type)){
+        $.post("/site/controller/deleteAdmin.php", {id: id, type: type}, function(data){
+            
+        });
+    }
+       
     return false;
 }

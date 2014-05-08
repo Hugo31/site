@@ -73,7 +73,7 @@ class ToolKitDisplay {
                     echo " | <img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=Conflict&amp;name=".$row['name']."&amp;id=".$row['idConflict']."\">Report content</a>";
                 }
                 if (isset($session->admin)) {
-                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idConflict']."&type=Conflict\">Delete object</a>";
+                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idConflict']."&type=Conflict\" onClick=\"return deleteAdmin(".$row['idConflict'].", \"Conflict\", $('#article_".$row['idConflict']."')\">Delete object</a>";
                 }
                 echo "</div>";
                 echo "</header>";
@@ -130,7 +130,7 @@ class ToolKitDisplay {
                     echo " | <img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=DesignPattern&amp;name=".$row['name']."&amp;id=".$row['idDesignPattern']."\">Report content</a>";
                 }
                 if (isset($session->admin)) {
-                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idDesignPattern']."&type=DesignPattern\">Delete object</a>";
+                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idDesignPattern']."&type=DesignPattern\" onClick=\"return deleteAdmin(".$row['idDesignPattern'].", \"DesignPattern\", $('#article_".$row['idDesignPattern']."')\">Delete object</a>";
                 }
                 echo "</div>";
                 echo "</header>";
@@ -166,7 +166,7 @@ class ToolKitDisplay {
                     echo "<br/><img src=\"../img/vrac/interdit.png\" style=\"vertical-align:bottom;width:22px\"/>  <a href=\"/site/view/reportContent.php?type=Solution&amp;name=".$row['name']."&amp;id=".$row['idSolution']."\">Report content</a>";
                 }
                 if (isset($session->admin)) {
-                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idSolution']."&type=Solution\">Delete object</a>";
+                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idSolution']."&type=Solution\" onClick=\"return deleteAdmin(".$row['idSolution'].", \"Solution\", $('#article_".$row['idSolution']."')\">Delete object</a>";
                 }
                 echo "</div>";
                 echo "</header>";
@@ -208,7 +208,7 @@ class ToolKitDisplay {
                 $dateS = new DateTime($row['date']);
                 echo "<br/><div id=\"lienDescr\">Date of creation: ".$dateS->format('d/m/Y')." | Author: <a href=\"/site/view/user.php?user=".$row['login']."\">".$row['login']."</a>";
                 if (isset($session->admin)) {
-                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idProject']."&type=Project\">Delete object</a>";
+                    echo " | <img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteAdmin.php?id=".$row['idProject']."&type=Project\" onClick=\"return deleteAdmin(".$row['idProject'].", \"Project\", $('#article_".$row['idProject']."')\">Delete object</a>";
                 }
                 echo "</div>";
                 echo "</header>";
