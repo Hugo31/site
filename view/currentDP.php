@@ -42,23 +42,23 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         echo "This is your current cart where all previously selected Design Pattern has been save...<br/>";
         echo "To add a new Design Pattern you just need to clic on the link \"Add to ...\" in the description of any Design Pattern.<br/><br/>";
         if (count($session->currentDP)) {
-            echo "<p>";
-            echo "Your current cart when you weren't connected contains some design patterns. What do you want to do? ";
-            echo "Be aware that only your connected cart will be saved when you will create a new project.";
-            echo "</p>";
-            echo "<p>";
+            echo "<div style=\"border:1px solid #fc4000;padding:10px;\">";
+            echo "When you weren't connected your current cart contained some design patterns. What do you want to do? ";
+            echo "Be aware that only your connected cart will be saved when you will create a new project.<br/><br/>";
             echo "<form action=\"/site/controller/mergeProject.php\" method=\"post\">";
-            echo "<input type=\"radio\" name=\"merge\" value=\"mergeAll\">Merge current cart into your connected cart<br>";
+            echo "<div style=\"padding-left:10px\"> <input type=\"radio\" name=\"merge\" value=\"mergeAll\">Merge current cart into your connected cart<br>";
             echo "<input type=\"radio\" name=\"merge\" value=\"replaceCurrent\">Replace your current cart with your connected cart<br>";
             echo "<input type=\"radio\" name=\"merge\" value=\"replaceConnected\">Replace your connected cart with your current cart<br>";
-            echo "<input type=\"submit\" name=\"submit\" value=\"Execute\"/>";
-            echo"</form>";
-            echo "</p>";
+            echo "<br/><input type=\"submit\" class=\"send\" name=\"submit\" value=\"Execute\"/></div>";
+            echo"</form>"; 
+            echo "</div>";
         }
-        echo "<form action=\"/site/controller/saveProject.php\" method=\"post\">";
-        echo "<label>Name : </label><input name=\"name_project\" type=\"text\"/><br/>";
-        echo "<label>Description : </label><textarea name=\"desc_project\"></textarea><br/>";
-        echo "<input type=\"submit\" value=\"Save it\"/>";
+        echo "<h2>Save your Current Design Pattern</h2>";
+        echo "<font style=\"color:#FF4C00\">* Required fields.</font></br><form action=\"/site/controller/saveProject.php\" method=\"post\">";
+        echo "<br/><center><table><tr><td><label for=\"name\">Name: <font style=\"color:#FF4C00\">*</font></label></td><td><input name=\"name_project\" id=\"name\" type=\"text\" required/></td></tr>";
+        echo "<tr><td style=\"vertical-align:top\"><label for=\"description\">Description:</label></td><td><textarea id=\"description\" name=\"desc_project\" onkeyup=\"limite(this,500);\" 
+                            onkeydown=\"limite(this,500);\" style=\"min-width:400px;max-width:500px;min-height:100px;max-height:400px\"></textarea><br/><span id=\"max_desc\">500</span> remaining characters</td></tr></table>";
+        echo "<br/><br/><input type=\"submit\" class=\"send\" value=\"Save it\"/></center>";
         echo"</form>";
         
         $req = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern proj "
@@ -76,7 +76,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
                 $reponseConf = Database::getAllData($reqConf);
                 foreach ($reponseConf as $conflicts) {
                     if (!$trouv) {
-                        echo '</br><cC>Warning! You may encounter conflicts between your Design Patterns. </cC></br><a href="#" onclick="return showblock(this)" style="text-decoration:none;" >Show conflicts</a>';
+                        echo '</br><cC>Warning! You may encounter conflicts between your Design Patterns. </cC></br><img src="/site/img/vrac/clic.png" style="vertical-align:middle">&nbsp;&nbsp;<a href="#" style="font-size:1.3em" onclick="return showblock(this)" style="text-decoration:none;" >Show conflicts</a><br/><br/>';
                         echo '<div id="conflictsCart" hidden = true>';
                         $trouv = true;
                     }
@@ -98,10 +98,14 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             echo '</div>';
         }
         
-        echo "<article><h2>Description: </h2>" . $data['description'] . "<br/><br/></article>";
+        if ($data['description']!= null) {
+            echo "<article><h2>Description: </h2>" . $data['description'] . "</article>";
+        }
+        echo "<br/><br/>";
         if ($reponse != false) {
             ToolKitDisplay::displayDesignPatternBox($reponse, true);
         }
+        echo "<br/><br/>";
     } else {
         ?>
         <h1>My current Design Pattern</h1>
@@ -131,7 +135,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
                     $reponseConf = Database::getAllData($reqConf);
                     foreach ($reponseConf as $conflicts) {
                         if (!$trouv) {
-                            echo '<cC>Warning! You may encounter conflicts between your Design Patterns. </cC></br><a href="#" onclick="return showblock(this)" style="text-decoration:none;" >Show conflicts</a>';
+                            echo '<cC>Warning! You may encounter conflicts between your Design Patterns. </cC></br><img src="/site/img/vrac/clic.png" style="vertical-align:middle">&nbsp;&nbsp;<a href="#" style="font-size:1.3em" onclick="return showblock(this)" style="text-decoration:none;" >Show conflicts</a><br/><br/>';
                             echo '<div id="conflictsCart" hidden = true>';
                             $trouv = true;
                         }

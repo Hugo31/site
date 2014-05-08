@@ -36,9 +36,15 @@
            document.getElementById('go').title = "Send";
         }
         id.remove(id.selectedIndex);
-        id.selectedIndex = 0;
+        
+        if (id.length === 1){
+            id.style.display="none";
+            document.getElementById('inst').innerHTML = "All available Design Patterns have been added";
+        }
+        else{
+            id.selectedIndex = 0;
+        }
         increasesizediv('main', 60);
-        displayMessage($('section[id=contenu]'), "Added to Design Pattern in conflict", "good");
      }
      
     function increasesizediv(div, size) {//increase height by size
@@ -64,7 +70,8 @@
     ?>
     
     <h2> Report conflicts </h2>
-    <div id="main" style="width:780px;float:left;height:570px;">
+    <div id="main" style="width:780px;float:left;height:600px;">
+        
         <form id="addConflict_form" method="post">
             
             <h3>Design patterns in conflict</h3>
@@ -84,21 +91,22 @@
                     }
                 echo"</select>";
             ?>
-            
+            <div id='inst'></div>
             <br/><br/>
             <h3>Add informations</h3>
+            <font style="color:#FF4C00">> All fields are required.</font><br/><br/>
             <div id="formulaireAddConflict">
                 <table>
                     <tr>
-                        <td style="width:100px"><label for="namee">Name</label></td>
-                        <td><input style="width:400px" id="namee" type="text" value="" name="namee" size="40" required autofocus placeholder="Conflict title"></td>
+                        <td style="width:100px"><label for="namee">Name: </label></td>
+                        <td><input style="width:400px" id="namee" type="text" value="" name="namee" size="40" required autofocus placeholder="Give a concise and clear name to the conflict"></td>
                     </tr>
                     <tr>
-                        <td style="width:100px"><label for="description">Description</label></td>
-                        <td><textarea id="description" name="description" style="width:400px;height:100px" required placeholder="Conflict description"></textarea></td>
+                        <td style="width:100px"><label for="description">Description: </label></td>
+                        <td><textarea id="description" name="description" style="min-width:400px;min-height:100px;max-width:500px;max-height:400px" required placeholder="Description of the conflict you found. A precise description will help users to clearly understand the problem."></textarea></td>
                     </tr>
                     <tr>
-                        <td style="width:100px"><label for="typee">Type</label></td>
+                        <td style="width:100px"><label for="typee">Type: </label></td>
                         <td><select style="width:406px" id="typee" name="typee" required>
                             <option selected disabled hidden>Choose</option>
                             <?php
@@ -117,6 +125,7 @@
                     <input id="go" type="submit" class="add" title="You need to select at least 2 DP" disabled value="Add Conflict" style="margin-left: 15px " onclick="this.form.action='../controller/validAddConflict.php'">
                 </center>
             </div>
+            
         </form>
     </div>
     

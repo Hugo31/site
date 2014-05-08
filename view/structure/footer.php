@@ -37,8 +37,11 @@
                 </div>
             </footer>
 
-        </div>
+            <div id="btn_up" style="display: none;">
+                <img src="/site/img/vrac/up.png" title="Back on top"/>
+            </div>
 
+        </div>
     </body>
     
 </html>

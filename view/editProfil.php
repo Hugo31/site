@@ -63,6 +63,8 @@ if (!isset($session->login)) {
             if (verifPassword($pass1, $pass2)) {
                 $user->setPwd(md5($pass1));
                 User::modifyDB($user);
+                $session->message = "Your password has been changed";
+                $session->messageType = "good";
             }
         }
 
@@ -79,6 +81,8 @@ if (!isset($session->login)) {
             $user->setLastName($_POST['lastnameedit']);
             $usrNotification = "User informations has been changed";
             User::modifyDB($user);
+            $session->message = "Your profil has been changed";
+            $session->messageType = "good";
         }
     }
     ?>

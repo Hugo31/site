@@ -28,6 +28,8 @@ if (!empty($_POST['captchasignup'])) {
                 $proj = new Project(null, "Current Design Pattern", $_POST['usernamesignup'], date(), "");
                 $proj->setCurrent(true);
                 Project::addDB($proj);
+                $session->message = "Congratulations, you can now login to your new account!";
+                $session->messageType = "good";
                 header('Location: /site/index.php');
             } else {
                 $data = "/site/view/signup.php?";

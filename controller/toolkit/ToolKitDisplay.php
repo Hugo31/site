@@ -215,7 +215,7 @@ class ToolKitDisplay {
 
                 $data = Database::getOneData("SELECT COUNT(*) as nb FROM ProjectDesignPattern pdp WHERE pdp.idProject=".$row['idProject'].";");
                 echo "<aside id='asideBox'>";
-                echo "<div id=\"otherInfo2\"><a href=\"\">".$data['nb']." Design Pattern(s)</a></div>";
+                echo "<div id=\"otherInfo2\">".$data['nb']." Design Pattern(s)</div>";
                 echo "</aside>";
                 echo "</div>";
                 
@@ -226,10 +226,10 @@ class ToolKitDisplay {
                         ."WHERE pdp.idProject=".$row['idProject']." AND dp.idDesignPattern = pdp.idDesignPattern;");
                 foreach ($rqtDPProjects as $res) {
                     if ($nombreDP > 1) {
-                        echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a> & ";
+                        echo "<a href=\"details.php?type=DesignPattern&id=".$res['idDesignPattern']."\">".$res['name']."</a> & ";
                         $nombreDP--;
                     } else {
-                        echo "<a href=\"".$res['idDesignPattern']."\">".$res['name']."</a>";
+                        echo "<a href=\"details.php?type=DesignPattern&id=".$res['idDesignPattern']."\">".$res['name']."</a>";
                     }
                 }
                 $rqtDPProjects->closeCursor();
@@ -327,7 +327,7 @@ class ToolKitDisplay {
     }
     
     public static function displayCommentsLittles($id, $nbComments, $tableAsk, $session) {
-        $reponse = Database::getAllData("SELECT * FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id." ORDER BY DATE DESC LIMIT 0, 5");
+        $reponse = Database::getAllData("SELECT * FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id." ORDER BY DATE DESC LIMIT 0, 3");
         echo "<article id=\"commentsDetails\">";
         echo "<br/><h2 id=\"h2CommentsConflict\">Comments (".$nbComments.")</h2><hr/>";
         if ($reponse->rowCount() == 0) {
@@ -341,10 +341,16 @@ class ToolKitDisplay {
                 echo "</div>";
                 echo "<div id=\"textComment\">";
                 echo "<i>Posted ".$row['date']."</i><br>";
-                echo $row['comment'];
+                echo $row['comment'].'<br/><br/>';
+                echo "<form action=\"pbComment.php\" method=\"POST\">";
+                echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"".$row['idComment']."\"/>";
+                echo "<input type=\"hidden\" id=\"table\" name=\"table\" value=\"".$tableAsk."\"/>";
+                echo "<input type=\"submit\" class=\"reset\" style=\"float:right\" value=\"Signal a problem\"/>";
+                echo "</form>";
                 echo "</div>";
                 echo "<div class=\"clear\"></div> ";
                 echo "</div>";
+                
             }
         }
         $row = Database::getOneData("SELECT COUNT(*) AS count FROM Comment".$tableAsk." WHERE id".$tableAsk." = ".$id."");
@@ -354,7 +360,7 @@ class ToolKitDisplay {
         echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"".$id."\"/>";
         echo "<input type=\"hidden\" id=\"table\" name=\"table\" value=\"".$tableAsk."\"/>";
         if ($count != 0) {
-            echo "<center><input type=\"submit\" class=\"send\" value=\"See all comments about it\"/></center></form><br/><br/>";
+            echo "<center><input type=\"submit\" class=\"send\" value=\"See all comments about it\"/></center><br/><br/>";
         }
         echo "</form>";
         $reponse->closeCursor();

@@ -81,6 +81,12 @@ img {
     float: right;
 }
 
+.message-admin{
+    color : black;
+    background-color: #eee;
+    border-color: #555;
+}
+
 .message-good{
     color : #329000;
     background-color: #D0F5A9;

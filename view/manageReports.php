@@ -76,10 +76,14 @@
         $result = $bdd->query($sql);
         if ($result->rowCount() != 0) {
             foreach ($result as $row) {
-                ToolkitAdds::displayReportMini($row[0], $row[1]);
+                if (strpos($row[1],"omment") == false) {
+                    ToolkitAdds::displayReportMini($row[0], $row[1]);
+                } else {                
+                    ToolkitAdds::displayReportCommentMini($row[0], $row[1]);
+                }
             }
         } else {
-            echo 'No report found';
+            echo 'No report found.';
         }
         
         

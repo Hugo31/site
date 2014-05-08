@@ -3,16 +3,19 @@
 class ToolkitAdmin{
     
     public static function displayAdminBox($id, $type) {
-        echo "<form action=\"/site/controller/modifyAdmin.php\" method=\"post\">";
+        echo "<div class=\"message message-admin admin-box-text\">";
+        echo "Admin Box - You can modify or delete this " . $type . "";
+        echo "<form action=\"/site/controller/modifyAdmin.php\" method=\"post\" class=\"admin-box-form\">";
         echo "<input type=\"hidden\" name=\"type\" value=\"".$type."\"/>";
         echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\"/>";
-        echo "<input type=\"submit\" value=\"Modify\"/>";
+        echo "<input type=\"submit\" class=\"send\" value=\"MODIFY\"/>";
         echo "</form>";
-        echo "<form action=\"/site/controller/deleteAdmin.php\" method=\"post\">";
+        echo "<form action=\"/site/controller/deleteAdmin.php\" method=\"post\" class=\"admin-box-form\">";
         echo "<input type=\"hidden\" name=\"type\" value=\"".$type."\"/>";
         echo "<input type=\"hidden\" name=\"id\" value=\"".$id."\"/>";
-        echo "<input type=\"submit\" value=\"Remove\"/>";
+        echo "<input type=\"submit\" class=\"reset\" value=\"REMOVE\"/>";
         echo "</form>";
+        echo "</div>";
     }
     
     public static function displayUserBox($dataToDisplay) {
@@ -21,19 +24,31 @@ class ToolkitAdmin{
         } else {
             $session = Session::getInstance();
             $bdd = Database::getConnection();
+            
+            echo "<center><table style=\"text-align:center\">";
+            $i = 0;
             foreach ($dataToDisplay as $row) {
-                echo "<article class=\"box\" id=\"article_".$row['login']."\">";
-                
-                echo "<div id='headerAside'>";
-                echo "<header id='headerBox'>";
-                echo "<a href=\"details.php?type=User&id=".$row['login']."\"><h2>".$row['login']."</h2></a>".$row['mail']."";
-                if (isset($session->admin)) {
+                if ($i == 0) {
+                    echo "<tr><td width=\"300px\" style=\"padding-right:10px\">";
+                    echo "<article class=\"boxUsers\" id=\"article_".$row['login']."\">";
+                    echo "<h2><a href=\"user.php?user=".$row['login']."\">".$row['login']."</a></h2>".$row['mail']."";
                     echo "<br/><div id=\"lienDescr\"><img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteUser.php?login=".$row['login']."\">Remove user</a></div>";
-                }
-                echo "</header>";
-                echo "</div>";
-                echo "</article>";
+                    echo "</article></td>";
+                    $i++;
+                } else {
+                    echo "<td width=\"300px\">";
+                    echo "<article class=\"boxUsers\" id=\"article_".$row['login']."\">";
+                    echo "<h2><a href=\"user.php?user=".$row['login']."\">".$row['login']."</a></h2>".$row['mail']."";
+                    echo "<br/><div id=\"lienDescr\"><img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteUser.php?login=".$row['login']."\">Remove user</a></div>";
+                    echo "</article>";
+                    echo "</td></tr>";
+                    $i = 0;
+                } 
             }
+            if ($i != 0) {
+                echo "</tr>";
+            }
+            echo "</table></center>";
         }
     }
     

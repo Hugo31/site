@@ -72,5 +72,31 @@ class ToolKitAdds {
         echo '</div>';
 
     }
+    
+    public static function displayReportCommentMini($id, $type) {
+        echo '<div id="miniConflict">';
+        echo '<b>'.$type.'</b> - ';
+        echo "<a href=\"\">Voir le commentaire</a>";
+        
+        echo '<input type="button" id="deleteR" class="add" value="Delete Reports" style="float:right;" onclick="deleteReport('.$id.', \''.$type.'\')"/>';
+        echo '<input type="button" id="deleteO" class="add" value="Delete '.$type.'" style="float:right;" onclick="deleteReportedObject('.$id.', \''.$type.'\')"/>';
+
+        echo '</br> Reported by : </br>';
+        
+        $bdd = Database::getConnection();
+        $sql = "SELECT login, message FROM `reporting` WHERE idReported = \"".$id."\" AND typeReported = \"".$type."\";";
+        $result = $bdd->query($sql);
+        echo '<div style="padding-left:5em;">';
+        $count = 0;
+        foreach ($result as $row) {
+            echo $row[0];
+            echo '<a href="#" onclick="return showblock(this,'.$count.')" style="text-decoration:none;" >[+]</a>';
+            echo '<p hidden>'.$row[1].'</p></br>';
+            $count++;
+        }
+        echo '</div>';  
+        
+        echo '</div>';
+    }
 }
     

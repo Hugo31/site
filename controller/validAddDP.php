@@ -12,13 +12,13 @@
     require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/criteria/Property.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/criteria/System.php");
     
-    if (isset($_POST['namee']) AND isset($_POST['what']) AND isset($_POST['wah']) AND isset($_POST['layout']) AND isset($_POST['copy']) AND isset($_POST['impl']) AND isset($_POST['thetarget'])) {
+    if (isset($_POST['namee']) AND isset($_POST['what']) AND isset($_POST['thetarget'])) {
         
         $dp = new DesignPattern(-1, $_POST['namee'], $session->login, date("Y-m-d H:i:s"), $_POST['what'], 0, $_POST['thetarget']);
-        $dp->setWhenAndHow($_POST['wah']);
-        $dp->setLayout($_POST['layout']);
-        $dp->setCopy($_POST['copy']);
-        $dp->setImplementation($_POST['impl']);
+        if (isset($_POST['wah'])){ $dp->setWhenAndHow($_POST['wah']); }
+        if (isset($_POST['layout'])){ $dp->setLayout($_POST['layout']); }
+        if (isset($_POST['copy'])){ $dp->setCopy($_POST['copy']); }
+        if (isset($_POST['impl'])){ $dp->setImplementation($_POST['impl']); }
         
         DesignPattern::addDB($dp);
         
@@ -71,7 +71,8 @@
                 }
             }
         }}
-        
+        $session->message = "Design Pattern successfully added";
+        $session->messageType = "good";
         header('Location: /site/view/details.php?type=DesignPattern&id=' . $dp->getID());
     } else {
         echo '<h3>Error</h3>';

@@ -13,6 +13,8 @@
         $bdd = Database::getConnection();
         Project::addDB($pj);
         
+        $session->message = "Project successfully added";
+        $session->messageType = "good";
         header('Location: /site/view/details.php?type=Project&id=' . $pj->getID());
     } else {
         echo '<h3>Error</h3>';
