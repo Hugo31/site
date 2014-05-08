@@ -78,7 +78,7 @@
             foreach ($result as $row) {
                 if (strpos($row[1],"omment") == false) {
                     ToolkitAdds::displayReportMini($row[0], $row[1]);
-                } else {                
+                } else {    
                     ToolkitAdds::displayReportCommentMini($row[0], $row[1]);
                 }
             }

@@ -62,7 +62,7 @@ class ToolKitAdds {
         $count = 0;
         foreach ($result as $row) {
             echo $row[0];
-            echo "<a href=\"/site/view/commentsDetails.php?table=".$type."&id=".$id."\" onclick=\"return showblock(this,'.$count.')\" style=\"text-decoration:none;\" >[+]</a>";
+            echo "<a href=\"#\" onclick=\"return showblock(this,'.$count.')\" style=\"text-decoration:none;\" >[+]</a>";
             echo '<p hidden>'.$row[1].'</p></br>';
             $count++;
         }
@@ -76,7 +76,7 @@ class ToolKitAdds {
     public static function displayReportCommentMini($id, $type) {
         echo '<div id="miniConflict">';
         echo '<b>'.$type.'</b> - ';
-        echo "<a href=\"\">Voir le commentaire</a>";
+        echo "<a href=\"/site/view/commentDetails.php?table=".$type."&id=".$id."\">Voir le commentaire</a>";
         
         echo '<input type="button" id="deleteR" class="add" value="Delete Reports" style="float:right;" onclick="deleteReport('.$id.', \''.$type.'\')"/>';
         echo '<input type="button" id="deleteO" class="add" value="Delete '.$type.'" style="float:right;" onclick="deleteReportedObject('.$id.', \''.$type.'\')"/>';

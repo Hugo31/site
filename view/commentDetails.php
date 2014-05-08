@@ -13,16 +13,18 @@
     
     <?php
         $table = $_GET['table'];
+        echo $table;
         $id = $_GET['id'];
+        echo $id;
         echo "<div id=\"containerComment\">";
-        $row = Database::getAllData("SELECT * FROM ".$table." WHERE idComment = \"".$id."\"");
-        $data = Database::getOneData("SELECT logo FROM User WHERE login = \"".$row['login']."\"");
+        $resComment = Database::getOneData("SELECT * FROM ".$table." WHERE idComment = \"".$id."\"");
+        $data = Database::getOneData("SELECT logo FROM User WHERE login = \"".$resComment['login']."\"");
         echo "<div id=\"logoComment\">";
-        echo "<img src=\"".$data['logo']."\" style=\"width:50px;height:50px;\"/><br><a href=\"\">".$row['login']."</a>";
+        echo "<img src=\"".$data['logo']."\" style=\"width:50px;height:50px;\"/><br><a href=\"\">".$resComment['login']."</a>";
         echo "</div>";
         echo "<div id=\"textComment\">";
-        echo "<i>Posted ".$row['date']."</i><br>";
-        echo $row['comment'];
+        echo "<i>Posted ".$resComment['date']."</i><br>";
+        echo $resComment['comment'];
         echo "</div>";
         echo "<div class=\"clear\"></div> ";
         echo "</div>";    ?>
