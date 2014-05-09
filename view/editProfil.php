@@ -134,7 +134,7 @@ if (!isset($session->login)) {
                        required="required" size="30" maxlength="30" 
                        value=<?php echo $user->getMail() ?> />
             </p>
-            <div id="errormsgeditprofil_usr" style="color: red; margin-left: 150px">
+            <div id="errormsgeditprofil_usr" style="color: green; margin-left: 150px">
                 <?php echo $usrNotification ?>
             </div>
             <br/>
@@ -148,7 +148,7 @@ if (!isset($session->login)) {
                 <input type="password" id="passwordedit_confirm" name="passwordedit_confirm" 
                        size="30" maxlength="30" />
             </p>
-            <div id="errormsgeditprofil_pwd" style="color: red; margin-left: 150px">
+            <div id="errormsgeditprofil_pwd" style="color: green; margin-left: 150px">
                 <?php echo $pwdNotification ?>
             </div>
             <p>
