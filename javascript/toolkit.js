@@ -84,7 +84,7 @@ function removeFromCart(idDP, selector, removeIt) {
             if (removeIt) {
                 $('#article_' + idDP + '').remove();
             } 
-            displayMessage($('section[id=contenu]'), "You have remove a design pattern from your cart", "good");
+            displayMessage($('section[id=contenu]'), "You have removed a design pattern from your cart", "good");
         } else {
             displayMessage($('section[id=contenu]'), "An error occured when removing the design pattern", "bad");
         }
@@ -104,7 +104,7 @@ function addRate(table, id, login, input) {
                 } else {
                     $('#contenuDroitSol').append(data);
                 }
-                displayMessage($('section[id=contenu]'), "You have rate a design pattern", "good");
+                displayMessage($('section[id=contenu]'), "You have rated a design pattern", "good");
             });
         } else {
             displayMessage($('section[id=contenu]'), "An error occured when rating", "bad");
@@ -123,7 +123,7 @@ function removeRate(table, id, login, input) {
                 } else {
                     $('#contenuDroitSol').append(data);
                 }
-                displayMessage($('section[id=contenu]'), "You have remove your rate for a design pattern", "good");
+                displayMessage($('section[id=contenu]'), "You have removed your rate for a design pattern", "good");
             });
         } else {
             displayMessage($('section[id=contenu]'), "An error occured when removing a design pattern", "bad");

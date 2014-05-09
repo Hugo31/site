@@ -59,7 +59,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         echo "<br/><center><table><tr><td><label for=\"name\">Name: <font style=\"color:#FF4C00\">*</font></label></td><td><input name=\"name_project\" id=\"name\" type=\"text\" required/></td></tr>";
         echo "<tr><td style=\"vertical-align:top\"><label for=\"description\">Description:</label></td><td><textarea id=\"description\" name=\"desc_project\" onkeyup=\"limite(this,500);\" 
                             onkeydown=\"limite(this,500);\" style=\"min-width:400px;max-width:500px;min-height:100px;max-height:400px\">".$desc."</textarea><br/><span id=\"max_desc\">500</span> remaining characters</td></tr></table>";
-        echo "<br/><br/><input type=\"submit\" class=\"send\" value=\"Save it\"/></center>";
+        echo "<br/><br/><input type=\"submit\" class=\"send\" value=\"Save it\"/></center><br/><br/>";
         echo"</form>";
         
         $req = "SELECT DISTINCT dp.idDesignPattern, dp.name, dp.what, dp.rate, dp.nbRates, dp.nbComments, dp.nbUsage, dp.date, dp.login FROM DesignPattern dp, ProjectDesignPattern proj "
