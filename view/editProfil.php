@@ -51,7 +51,7 @@ function verifPassword($pass1, $pass2) {
 }
 
 if (!isset($session->login)) {
-    echo '<center><h3>You must be connected in order to use this page</h3></center>';
+    header('Location: 404.php');
 } else {
     $user = User::getDB($session->login);
     if (isset($_POST['firstnameedit']) && isset($_POST['lastnameedit']) && isset($_POST['emailedit']) && isset($_POST['passwordedit']) && isset($_POST['passwordedit_confirm'])) {

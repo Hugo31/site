@@ -9,11 +9,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 <section id="contenu">
     <?php
     
-    
     if (!isset($session->login)) {//si utilisateur non connecté
-        echo '<center><h3>You must be connected in order to use this page</h3></center>';
+        header('Location: 404.php');
     } else if (!(isset($_GET['type']) && isset($_GET['name']) && isset($_GET['id']))) {
-        echo '<center><h3>Error 400 : Bad request &nbsp;&nbsp; =(</h3></center>';
+        header('Location: 404.php');
     } else {
         ?>
 <h1>Report on <?php echo $_GET['type'] . ' : ' . $_GET['name']; ?></h1>

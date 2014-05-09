@@ -3,8 +3,10 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php"
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/designpattern/DesignPattern.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/Conflict.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/Solution.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/Session.php");
+$session = Session::getInstance();
 
-if (isset($_POST['idReported']) && isset($_POST['typeReported'])) {
+if (isset($session->admin) && isset($_POST['idReported']) && isset($_POST['typeReported'])) {
     $bdd = Database::getConnection();
     if ($_POST['typeReported'] == "DesignPattern") {
         $dp = new DesignPattern($_POST['idReported']);

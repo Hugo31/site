@@ -12,9 +12,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 <section id="contenu">
     <?php
     
-    
     if (!isset($session->login)) {
-        echo '<center><h3>You must be connected in order to use this page</h3></center>';
+        header('Location: 404.php');
     } else {
         $user = User::getDB($session->login);
         ?>

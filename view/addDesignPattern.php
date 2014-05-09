@@ -136,7 +136,7 @@
     
     
     if (!isset($session->login)) {//si utilisateur non connecté
-        echo '<center><h3>You must be connected in order to use this page</h3></center>';
+        header('Location: 404.php');
     } else {
         //$bdd = Database::getConnection();
     ?>

@@ -15,14 +15,13 @@ if (isset($session->login)) {
         'login' => $session->login,
         'date' => date("Y-m-d H:i:s"))
     );
+    if($reussie){
+        $session->message = "You have reported a problem.";
+        $session->messageType = "good";
+    } else {
+        $session->message = "An error occured when reporting a problem.";
+        $session->messageType = "bad";
+    }
 }
-if($reussie){
-    $session->message = "You have reported a problem.";
-    $session->messageType = "good";
-} else {
-    $session->message = "An error occured when reporting a problem.";
-    $session->messageType = "bad";
-}
-
 header('Location: /site/index.php');
 
