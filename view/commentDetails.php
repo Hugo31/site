@@ -13,9 +13,7 @@
     
     <?php
         $table = $_GET['table'];
-        echo $table;
         $id = $_GET['id'];
-        echo $id;
         echo "<div id=\"containerComment\">";
         $resComment = Database::getOneData("SELECT * FROM ".$table." WHERE idComment = \"".$id."\"");
         $data = Database::getOneData("SELECT logo FROM User WHERE login = \"".$resComment['login']."\"");

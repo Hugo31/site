@@ -41,7 +41,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         $desc = $data['description'];
         echo "<h1>" . $data['name'] . "</h1>";
         echo "This is your current cart where all previously selected Design Pattern has been save...<br/>";
-        echo "To add a new Design Pattern you just need to clic on the link \"Add to ...\" in the description of any Design Pattern.<br/><br/>";
+        echo "To add a new Design Pattern you just need to clic on the link \"Save it\" in the description of any Design Pattern.<br/><br/>";
         if (count($session->currentDP)) {
             echo "<div style=\"border:1px solid #fc4000;padding:10px;\">";
             echo "When you weren't connected your current cart contained some design patterns. What do you want to do? ";

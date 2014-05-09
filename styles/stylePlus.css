@@ -310,13 +310,13 @@ input.reset:hover {
 }
 
 #logoComment {
-    width:14%;
+    width:16%;
     float:left;
     text-align: center;
 }
 
 #textComment {
-    width:82%;
+    width:80%;
     float:right;
     border: 1px solid #FF4C00;
     padding: 10px;

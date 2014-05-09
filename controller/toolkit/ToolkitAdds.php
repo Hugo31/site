@@ -56,13 +56,13 @@ class ToolKitAdds {
         echo '</br> Reported by : </br>';
         
         $bdd = Database::getConnection();
-        $sql = "SELECT login, message FROM `reporting` WHERE idReported = \"".$id."\" AND typeReported = \"".$type."\";";
+        $sql = "SELECT login, message,date FROM `reporting` WHERE idReported = \"".$id."\" AND typeReported = \"".$type."\";";
         $result = $bdd->query($sql);
         echo '<div style="padding-left:5em;">';
         $count = 0;
         foreach ($result as $row) {
-            echo $row[0];
-            echo "<a href=\"#\" onclick=\"return showblock(this,'.$count.')\" style=\"text-decoration:none;\" >[+]</a>";
+            echo "> ".$row[0]." - ".$row[2]."&nbsp;&nbsp;";
+            echo '<a href="#" onclick="return showblock(this,'.$count.')" style="text-decoration:none;" >[+]</a>';
             echo '<p hidden>'.$row[1].'</p></br>';
             $count++;
         }
@@ -84,13 +84,13 @@ class ToolKitAdds {
         echo '</br> Reported by : </br>';
         
         $bdd = Database::getConnection();
-        $sql = "SELECT login, message FROM `reporting` WHERE idReported = \"".$id."\" AND typeReported = \"".$type."\";";
+        $sql = "SELECT login, message,date FROM `reporting` WHERE idReported = \"".$id."\" AND typeReported = \"".$type."\";";
         $result = $bdd->query($sql);
         echo '<div style="padding-left:5em;">';
         $count = 0;
         foreach ($result as $row) {
-            echo $row[0];
-            echo "<a href=\"#\" onclick=\"return showblock(this,'.$count.')\" style=\"text-decoration:none;\" >[+]</a>";
+            echo "> ".$row[0]." - ".$row[2]."&nbsp;&nbsp;";
+            echo '<a href="#" onclick="return showblock(this,'.$count.')" style="text-decoration:none;" >[+]</a>';
             echo '<p hidden>'.$row[1].'</p></br>';
             $count++;
         }
