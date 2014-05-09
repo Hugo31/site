@@ -57,7 +57,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             
         }
         ?>
-        <br/><br/><br/>
+        <br/><br/>
+        <center><a href="/site/view/addCriteria.php" style="text-decoration: none">
+            <button id="profilAddDP">Create a new search criteria</button>
+        </a></center><br/><br/>
 </section>
 <script>
     $("details").hide();
