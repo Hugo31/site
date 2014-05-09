@@ -79,6 +79,12 @@ if (!isset($session->login)) {
             $user->setMail($_POST['emailedit']);
             $user->setFirstName($_POST['firstnameedit']);
             $user->setLastName($_POST['lastnameedit']);
+            
+            if(isset($session->admin)){
+                echo "PASSAGE";
+                $user->setTypeUser(ETypeUser::Admin);
+            }
+            
             $usrNotification = "User informations has been changed";
             User::modifyDB($user);
             $session->message = "Your profil has been changed";

@@ -66,15 +66,14 @@ class User implements IDatabase{
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
         
-        $req = $bdd->prepare('UPDATE User SET pwd = :pwd, lastname = :lastname, firstname = :firstname, mail = :mail, logo = :logo, typeUser = :typeUser WHERE login = :login');
+        $req = $bdd->prepare('UPDATE User SET pwd = :pwd, lastname = :lastname, firstname = :firstname, mail = :mail, logo = :logo WHERE login = :login');
         $reussie = $req->execute(array(
             'login' => $object->getLogin(),
             'pwd' => $object->getPwd(),
             'lastname' => $object->getLastName(),
             'firstname' => $object->getFirstName(),
             'mail' => $object->getMail(),
-            'logo' => $object->getLogo(),
-            'typeUser' => ETypeUser::getNameEnum($object->getTypeUser())
+            'logo' => $object->getLogo()
             ));
         return $reussie;
     }
