@@ -40,9 +40,8 @@ $user = User::getDB($_GET['user']);
     <h2 style="margin:0 auto;">Design pattern</h2><hr>
     <?php
     $bdd = Database::getConnection();
-    $session->typeQuery = "DesignPattern";
     $reponse = Database::getAllData("SELECT * FROM DesignPattern WHERE login = \"" . $user->getLogin() . "\";");
-    ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
+    ToolKitDisplay::displayGenericBox("DesignPattern", $reponse);
     ?>
     <br/><br/>
 </section>

@@ -1,10 +1,36 @@
-
+DELETE FROM `db_dpi`.`NoteSolution` ;
+DELETE FROM `db_dpi`.`NoteDesignPattern` ;
+DELETE FROM `db_dpi`.`CommentDesignPattern` ;
+DELETE FROM `db_dpi`.`CommentConflict` ;
+DELETE FROM `db_dpi`.`CommentSolution` ;
+DELETE FROM `db_dpi`.`CategoryDesignPattern` ;
+DELETE FROM `db_dpi`.`ComponentRelatedDesignPattern` ;
+DELETE FROM `db_dpi`.`ComponentDesignPattern` ;
+DELETE FROM `db_dpi`.`PropertyDesignPattern` ;
+DELETE FROM `db_dpi`.`ProjectDesignPattern` ;
+DELETE FROM `db_dpi`.`PlatformDesignPattern` ;
+DELETE FROM `db_dpi`.`SystemDesignPattern` ;
+DELETE FROM `db_dpi`.`ImageDesignPattern` ;
+DELETE FROM `db_dpi`.`ConflictDesignPattern` ;
+DELETE FROM `db_dpi`.`Source` ;
+DELETE FROM `db_dpi`.`Category` ;
+DELETE FROM `db_dpi`.`Component` ;
+DELETE FROM `db_dpi`.`Property` ;
+DELETE FROM `db_dpi`.`Platform` ;
+DELETE FROM `db_dpi`.`System` ;
+DELETE FROM `db_dpi`.`Solution` ;
+DELETE FROM `db_dpi`.`Conflict` ;
+DELETE FROM `db_dpi`.`Project` ;
+DELETE FROM `db_dpi`.`Reporting` ;
+DELETE FROM `db_dpi`.`DesignPattern` ;
+DELETE FROM `db_dpi`.`TypeConflict` ;
+DELETE FROM `db_dpi`.`User` ;
 
 INSERT INTO `User` (`login`, `pwd`, `lastname`, `firstname`, `mail`, `logo`, `typeUser`) VALUES
 ('LaurineMarmisse', 'a929edb05103d7948d269c21b1a6ab8b', 'Marmisse', 'Laurine', 'laurine.marmisse@gmail.com', '/site/img/user/user.png', 'Admin'),
 ('LoicViguier', 'a929edb05103d7948d269c21b1a6ab8b', 'Viguier', 'Loic', 'loicviguier@gmail.com', '/site/img/user/user.png', 'Admin'),
 ('HugoGuignard', 'a929edb05103d7948d269c21b1a6ab8b', 'Guignard', 'Hugo', 'hugo.guignard@gmail.com', '/site/img/user/user.png', 'Admin'),
-('LoicFaure', 'a929edb05103d7948d269c21b1a6ab8b', 'Faure', 'Loic', 'loicfaure@hotmail.fr', '/site/img/user/user.png', 'Admin'),
+('LoicFaure', '6297acef06f732c289c27f5979497c6c', 'Faure', 'Loic', 'loicfaure@hotmail.fr', '/site/img/user/user.png', 'Admin'),
 ('MarcoWinckler', 'a929edb05103d7948d269c21b1a6ab8b', 'Winckler', 'Marco', 'winckler@irit.fr', '/site/img/user/user.png', 'Admin'),
 ('undefined', '5e543256c480ac577d30f76f9120eb74', 'undefined', 'undefined', 'undefined@undefined.com', '/site/img/user/user.png', 'Classic');
 
@@ -61,13 +87,13 @@ INSERT INTO `NoteDesignPattern` (`login`, `idDesignPattern`, `note`) VALUES
 ('undefined', 1, 3);
 */
 
-INSERT INTO `Platform` (`idPlatform`, `name`, `description`, `icon`) VALUES
-(1, 'Windows', 'Windows Platform', '/site/img/vrac/windows.png'),
-(2, 'Linux', 'Linux Platform', '/site/img/vrac/linux.png'),
-(3, 'MacOS', 'Apple Platform', '/site/img/vrac/apple.png'),
-(4, 'Android', 'Google mobile Platform', '/site/img/vrac/android.png'),
-(5, 'iOS', 'Apple mobile platform', '/site/img/vrac/ios.png'),
-(6, 'Windows Phone', 'Windows mobile platform', '/site/img/vrac/windowsphone.png');
+INSERT INTO `Platform` (`idPlatform`, `name`, `description`, `icon`, `login`) VALUES
+(1, 'Windows', 'Windows Platform', '/site/img/vrac/windows.png', 'MarcoWinckler'),
+(2, 'Linux', 'Linux Platform', '/site/img/vrac/linux.png', 'MarcoWinckler'),
+(3, 'MacOS', 'Apple Platform', '/site/img/vrac/apple.png', 'MarcoWinckler'),
+(4, 'Android', 'Google mobile Platform', '/site/img/vrac/android.png', 'MarcoWinckler'),
+(5, 'iOS', 'Apple mobile platform', '/site/img/vrac/ios.png', 'MarcoWinckler'),
+(6, 'Windows Phone', 'Windows mobile platform', '/site/img/vrac/windowsphone.png', 'MarcoWinckler');
 
 INSERT INTO `PlatformDesignPattern` (`idDesignPattern`, `idPlatform`) VALUES
 (1, 1),
@@ -91,10 +117,10 @@ INSERT INTO `PlatformDesignPattern` (`idDesignPattern`, `idPlatform`) VALUES
 (5, 3),
 (5, 4);
 
-INSERT INTO `System` (`idSystem`, `name`, `description`, `icon`) VALUES
-(1, 'Tablet', 'Tablet device', '/site/img/vrac/tablet.png'),
-(2, 'Phone', 'Phone device', '/site/img/vrac/tel.png'),
-(3, 'Computer', 'Computer device', '/site/img/vrac/ordi.png');
+INSERT INTO `System` (`idSystem`, `name`, `description`, `icon`, `login`) VALUES
+(1, 'Tablet', 'Tablet device', '/site/img/vrac/tablet.png', 'MarcoWinckler'),
+(2, 'Phone', 'Phone device', '/site/img/vrac/tel.png', 'MarcoWinckler'),
+(3, 'Computer', 'Computer device', '/site/img/vrac/ordi.png', 'MarcoWinckler');
 
 INSERT INTO `SystemDesignPattern` (`idDesignPattern`, `idSystem`) VALUES
 (1, 1),

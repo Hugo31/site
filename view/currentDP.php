@@ -37,7 +37,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
     if (isset($session->login)) {
         $reqP = "SELECT idProject, name, description FROM Project WHERE login = \"" . $session->login . "\" AND current = 1;";
         $data = Database::getOneData($reqP);
-
+        $name = $data['name'];
+        $desc = $data['description'];
         echo "<h1>" . $data['name'] . "</h1>";
         echo "This is your current cart where all previously selected Design Pattern has been save...<br/>";
         echo "To add a new Design Pattern you just need to clic on the link \"Add to ...\" in the description of any Design Pattern.<br/><br/>";
@@ -55,9 +56,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         }
         echo "<h2>Save your Current Design Pattern</h2>";
         echo "<font style=\"color:#FF4C00\">* Required fields.</font></br><form action=\"/site/controller/saveProject.php\" method=\"post\">";
-        echo "<br/><center><table><tr><td><label for=\"name\">Name: <font style=\"color:#FF4C00\">*</font></label></td><td><input name=\"name_project\" id=\"name\" type=\"text\" required/></td></tr>";
+        echo "<br/><center><table><tr><td><label for=\"name\">Name: <font style=\"color:#FF4C00\">*</font></label></td><td><input name=\"name_project\" id=\"name\" type=\"text\" value=\"".$name."\"required/></td></tr>";
         echo "<tr><td style=\"vertical-align:top\"><label for=\"description\">Description:</label></td><td><textarea id=\"description\" name=\"desc_project\" onkeyup=\"limite(this,500);\" 
-                            onkeydown=\"limite(this,500);\" style=\"min-width:400px;max-width:500px;min-height:100px;max-height:400px\"></textarea><br/><span id=\"max_desc\">500</span> remaining characters</td></tr></table>";
+                            onkeydown=\"limite(this,500);\" style=\"min-width:400px;max-width:500px;min-height:100px;max-height:400px\">".$desc."</textarea><br/><span id=\"max_desc\">500</span> remaining characters</td></tr></table>";
         echo "<br/><br/><input type=\"submit\" class=\"send\" value=\"Save it\"/></center>";
         echo"</form>";
         

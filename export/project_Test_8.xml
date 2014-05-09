@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project>
+	<name>Test</name>
+	<description>Test</description>
+	<DesignsPatterns>
+		<DesignPattern>
+			<name>Advancement Box</name>
+			<target>Designer</target>
+			<what>Display the user its current position in the procedure: where he is, what he has done, what is left to be done.</what>
+			<whenandhow>Must be used in multi-step wizard procedures holding three or more steps.</whenandhow>
+			<layout>1. Use 2 shades of 1 colour for the background of the box places, the deeper one signalizing the current step, the lighter for thesteps done or to be done. 2. Use three icons to show the state of a step. 3. Recall the step number in the header of the page. 4. Dont use checkboxes to indicate (completed) steps as this can give a false impression users can click on them.</layout>
+			<copy>Give each step a number.</copy>
+			<implementation>Put the box in the rigth-hand part of the screen, just as any non-critical information that can be missed by people holding a low screen resolution.</implementation>
+			<descriptionImage></descriptionImage>
+			<Images>
+				<Image>
+					<description></description>
+					<name>advancement_box1.png</name>
+				</Image>
+			</Images>
+			<Sources>
+				<Source>
+					<author>MarcoWinckler</author>
+					<link>http://www.welie.com/patterns/showPattern.php?patternID=purchase-process</link>
+				</Source>
+			</Sources>
+		</DesignPattern>
+		<DesignPattern>
+			<name>Multi-Step Wizard</name>
+			<target>Designer</target>
+			<what>The goal of the procedure is reached through the accomplishment of a sequence of activites. This sequence of activities is guided by the sequence of screens but also by the navigation proposed which is limited to "next step" and "previous step" (eventually "cancell all").</what>
+			<whenandhow>Should be used when users are novice.
+Shouldnt be used when the procedure.</whenandhow>
+			<layout>1. Use an advancement box to indicate the procedure advancement.
+2. Remove unnecessary links and content so focus is on the wizard, while reinforcing the brand.</layout>
+			<copy>Give you step a clear title, whose formulation is user-centred and contains a verb corresponding to the activity of the step.</copy>
+			<implementation>1. Make sure the back button always works.
+2. When going back to a previous step, auto complete the previous input.</implementation>
+			<descriptionImage></descriptionImage>
+			<Images>
+				<Image>
+					<description></description>
+					<name>multi-step_wizard1.png</name>
+				</Image>
+				<Image>
+					<description></description>
+					<name>multi-step_wizard2.png</name>
+				</Image>
+				<Image>
+					<description></description>
+					<name>multi-step_wizard3.png</name>
+				</Image>
+			</Images>
+			<Sources>
+				<Source>
+					<author>MarcoWinckler</author>
+					<link>http://www.designofsites.com/about_the_book/patternh1.pdf</link>
+				</Source>
+				<Source>
+					<author>MarcoWinckler</author>
+					<link>http://harbinger.sims.berkeley.edu/ui_designpatterns/webpatterns2/webpatterns/pattern.php?id=7</link>
+				</Source>
+			</Sources>
+		</DesignPattern>
+		<DesignPattern>
+			<name>Ratings</name>
+			<target>Designer</target>
+			<what>A user wants to leave an opinion quickly. Use in combination with reviews for richer experience. Use to quickly tap into the existing community of a product. Ratings are collected together to present an average rating of an object from the collective user set.</what>
+			<whenandhow>- WHEN : 1. A user wants to leave an opinion quickly. 2. Use in combination with reviews for richer experience. 3. Use to quickly tap into the existing community of a product. 4. Ratings are collected together to present an average rating of an object from the collective user set.     - HOW : 1. Show clickable items (most often used are stars) that light up on rollover to suggest clickability. 2. Initial state should be empty and show invitational text above to invite the user to rate the object. 3. As the mouse cursor moves over the icons, indicate the level of rating (through a color change) and display a text description of the rating at each point. 4. Once the user has clicked the rating (5th star, 3rd star etc.) the rating should be saved and added to the Average Rating which should be displayed separately. 5. The saved rating should be indicated with a change in final color of the items and a text indication that the rating is saved. 6. An aggregate or average rating should also be displayed. 7. Users should be able to change their rating later if they change their mind.</whenandhow>
+			<layout>Next to the object that you want to rate.</layout>
+			<copy></copy>
+			<implementation>http://rog.ie/blog/css-star-rater</implementation>
+			<descriptionImage></descriptionImage>
+			<Images>
+			</Images>
+			<Sources>
+			</Sources>
+		</DesignPattern>
+		<DesignPattern>
+			<name>Inline Edit</name>
+			<target>Designer</target>
+			<what>Consider using inline edit whenever there is text that the user might need to edit. Use it only when the user needs to edit the text occasionally. If the primary action on the page is to edit content, then it should always be in edit mode.</what>
+			<whenandhow>Consider using inline edit whenever there is text that the user might need to edit.
+ The inline edit process has usually four different states it can be in: non-edit state, invitation to edit, edit state, and ending state. The inline edit process has usually four different states it can be in: non-edit state, invitation to edit, edit state, and ending state.</whenandhow>
+			<layout>Where the text need to be change</layout>
+			<copy></copy>
+			<implementation>Non-edit state : The text is in view mode, no edit actions are available
+Invitation to edit : Invite the user to click the text providing a tooltip when the mouse is over the text the user wants to edit. Use phrase -Click to edit- or just word -Edit-. On hover, change the mouse cursor to an edit cursor. Highlight the element by changing the background of the element to yellow or add borders around it. See Hover invitation pattern for details on how to provide an invitation. An alternative way to invite the user to edit is to show an edit link beside the element the user needs to edit. If the edit link is always visible, the discoverability of this feature improves. If good readability if essential, show the link only on hover.
+Edit state : When the user clicks on the element / edit link, load the text into a text box in the same location as the original text to make the transition as smooth as possible. Show buttons for completing and canceling the edit. An alternative for the buttons is to save the changes when the user clicks outside the edit area or tabs away from it. It is visually simpler, but doesn't leave the user a chance to cancel the changes unless you use undo. This technique is most commonly used to edit values in a data table.
+Ending state : Let the user know that the text is being saved. During the progress, consider replacing the edited text with the text -Saving...- or show a progress indicator.</implementation>
+			<descriptionImage></descriptionImage>
+			<Images>
+			</Images>
+			<Sources>
+			</Sources>
+		</DesignPattern>
+	</DesignsPatterns>
+</Project>

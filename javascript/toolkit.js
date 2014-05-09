@@ -18,11 +18,11 @@ function requestDetails(identifiant, type, idSearch) {
             function(data) {
                 $(identifiant).empty();
                 $(identifiant).prepend(data);
-                $(identifiant).toggle('blind');
+                $(identifiant).show('blind');
             }
         );
     } else {
-        $(identifiant).toggle('blind', function(e) {
+        $(identifiant).hide('blind', function(e) {
             $(identifiant).empty();
         });
     }

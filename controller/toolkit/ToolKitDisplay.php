@@ -92,7 +92,7 @@ class ToolKitDisplay {
                 echo "</div><br/>";
                 
                 echo "<summary><a href=\"#\" onclick=\"requestDetails('#Conflict".$row['idConflict']."', 'Conflict', '".$row['idConflict']."');return false;\" style=\"float:right\">See description</a></summary><br/>";
-                echo "<details class=\"details\" id=\"Conflict".$row['idConflict']."\"></details>";
+                echo "<details class=\"details-box\" id=\"Conflict".$row['idConflict']."\"></details>";
                 echo "</article>";
             }
         }
@@ -141,7 +141,7 @@ class ToolKitDisplay {
                 echo "</div>";
                 echo "<article id=\"articleBox\">".$row['what']."</article>";
                 echo "<summary><a href=\"#\" onclick=\"requestDetails('#DesignPattern".$row['idDesignPattern']."', 'DesignPattern', '".$row['idDesignPattern']."');return false;\" style=\"float:right\">See a bit more</a></summary><br/>";
-                echo "<details class=\"details\" id=\"DesignPattern".$row['idDesignPattern']."\"></details>";
+                echo "<div class=\"details-box\" id=\"DesignPattern".$row['idDesignPattern']."\"></div>";
                 echo "</article>";
             }
         }
@@ -186,7 +186,7 @@ class ToolKitDisplay {
                 }                
                 echo "<article id=\"articleBox\">".$row['comment']."</article>";
                 echo "<summary><a href=\"#\" onclick=\"requestDetails('#Solution".$row['idSolution']."', 'Solution', '".$row['idSolution']."');return false;\" style=\"float:right\">See a bit more</a></summary><br/>";
-                echo "<details class=\"details\" id=\"Solution".$row['idSolution']."\"></details>";
+                echo "<details class=\"details-box\" id=\"Solution".$row['idSolution']."\"></details>";
                 echo "</article>";
             }
         }
@@ -236,7 +236,7 @@ class ToolKitDisplay {
                 echo "</div><br/>";  
                                 
                 echo "<summary><a href=\"#\" onclick=\"requestDetails('#Project".$row['idProject']."', 'Project', '".$row['idProject']."');return false;\" style=\"float:right\">See description</a></summary><br/>";
-                echo "<details class=\"details\" id=\"Project".$row['idProject']."\"></details>";
+                echo "<details class=\"details-box\" id=\"Project".$row['idProject']."\"></details>";
                 echo "</article>";
             }
         }

@@ -3,6 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/ToolkitDisplayDesignPattern.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/designpattern/DesignPattern.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/designpattern/ETarget.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Conflict.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Solution.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Project.php");
@@ -58,7 +59,7 @@ class ToolkitDetails {
             echo "<tr><td><h3>Date:</h3></td><td>".$dp->getDate()."</td></tr>";
             echo "<tr><td><h3>Author:</h3></td><td><a href=\"/site/view/user.php?user=".$dp->getLogin()."\">".$dp->getLogin()."</a></td></tr>";
             echo "<tr><td><h3>Used:</h3></td><td>".$dp->getNbUsage()." times</td></tr>";
-            echo "<tr><td><h3>For:</h3></td><td>".$dp->getTarget()."</td></tr>";
+            echo "<tr><td><h3>For:</h3></td><td>".ETarget::getNameEnum($dp->getTarget())."</td></tr>";
             echo "<tr><td><h3>Sources:</h3></td><td>";
             echo "</td></tr></table>";
             ToolkitDisplayDesignPattern::displaySources($id);  
@@ -176,7 +177,7 @@ class ToolkitDetails {
             echo "<article>";
             echo "<h1>".$project->getName()."</h1>";
             if ($session->login == $project->getLogin()) {
-                echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"#\"><img src=\"/site/img/vrac/edit.png\" style=\"width:24px;vertical-align:middle;padding-right:5px;\">Re-open that project</a></div>";
+                echo "<div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"/site/controller/reopenproject.php?project=".$project->getID()."\"><img src=\"/site/img/vrac/edit.png\" style=\"width:24px;vertical-align:middle;padding-right:5px;\">Re-open that project</a></div>";
             }
             echo "<br/><div style=\"font-weight:bold; font-size:1.1em;\"><a href=\"/site/controller/exportXML.php?idProject=".$id."\" target=\"_blank\"><img src=\"/site/img/vrac/xml.png\" style=\"vertical-align:middle;padding-right:5px;\">Export that project</a></div><br/>";
             echo "<article id=\"h3Details\">";

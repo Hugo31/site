@@ -82,6 +82,7 @@ class Project extends AbstractBasicPostedDB implements IDatabase/*, ILink*/{
         
         $bdd->exec('DELETE FROM ProjectDesignPattern WHERE idProject = \''.$object->getID().'\'');
         $nbSuppr = $bdd->exec('DELETE FROM Project WHERE idProject = \''.$object->getID().'\'');
+        
         return ($nbSuppr > 0);
     }
 
