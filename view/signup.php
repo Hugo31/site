@@ -9,10 +9,15 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 
 <section id="contenu">
     <?php
-    if (!isset($_GET['fstn'])) $_GET['fstn'] = "";
-    if (!isset($_GET['lstn'])) $_GET['lstn'] = "";
-    if (!isset($_GET['usrn'])) $_GET['usrn'] = "";
-    if (!isset($_GET['mail'])) $_GET['mail'] = "";
+    $fstn = "";
+    $lstn = "";
+    $usrn = "";
+    $mail = "";
+    
+    if (isset($_GET['fstn'])) $fstn = $_GET['fstn'];
+    if (isset($_GET['lstn'])) $lstn = $_GET['lstn'];
+    if (isset($_GET['usrn'])) $usrn = $_GET['usrn'];
+    if (isset($_GET['mail'])) $mail = $_GET['mail'];
     ?>
     <h1>Sign up</h1><br/>
     Your personal space on www.uidesignpatterncommunity.com allows you to manage your projects, 
@@ -25,28 +30,28 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
             <label for="firstnamesignup" class="fname">Your firstname</label>
             <input type="text" id="firstnamesignup" name="firstnamesignup" 
                    required="required" size="30" maxlength="30" 
-                   placeholder="Emma" <?php if($_GET['fstn'] != "") {echo "value=\"".$_GET['fstn']."\"";} ?> />
+                   placeholder="Emma" <?php if($_GET['fstn'] != "") {echo "value=\"".$fstn."\"";} ?> />
         </p>
         <div id="errormsgsignup_firstname"></div>
         <p>
             <label for="lastnamesignup" class="lname">Your lastname</label>
             <input type="text" id="lastnamesignup" name="lastnamesignup" 
                    required="required" size="30" maxlength="30" 
-                   placeholder="Martin" <?php if($_GET['lstn'] != "") {echo "value=\"".$_GET['lstn']."\"";} ?> />
+                   placeholder="Martin" <?php if($_GET['lstn'] != "") {echo "value=\"".$lstn."\"";} ?> />
         </p>
         <div id="errormsgsignup_lastname"></div>
         <p>
             <label for="usernamesignup" class="uname">Your username</label>
             <input type="text" id="usernamesignup" name="usernamesignup" 
                    required="required" size="30" maxlength="30" 
-                   placeholder="EmMart" <?php if($_GET['usrn'] != "") {echo "value=\"".$_GET['usrn']."\"";} ?> />
+                   placeholder="EmMart" <?php if($_GET['usrn'] != "") {echo "value=\"".$usrn."\"";} ?> />
         </p>
         <div id="errormsgsignup_username"></div>
         <p>
             <label for="emailsignup" class="uemail">Your email</label>
             <input type="email" id="emailsignup" name="emailsignup" 
                    required="required" size="30" maxlength="30" 
-                   placeholder="e.martin@gmail.com" <?php if($_GET['mail'] != "") {echo "value=\"".$_GET['mail']."\"";} ?> />
+                   placeholder="e.martin@gmail.com" <?php if($_GET['mail'] != "") {echo "value=\"".$mail."\"";} ?> />
         </p>
         <div id="errormsgsignup_email"></div>
         <p>
