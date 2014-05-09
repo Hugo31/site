@@ -9,10 +9,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 
 <section id="contenu">
     <?php
-    if ($_GET['fstn'] == "") $_GET['fstn'] = "";
-    if ($_GET['lstn'] == "") $_GET['lstn'] = "";
-    if ($_GET['usrn'] == "") $_GET['usrn'] = "";
-    if ($_GET['mail'] == "") $_GET['mail'] = "";
+    if (!isset($_GET['fstn'])) $_GET['fstn'] = "";
+    if (!isset($_GET['lstn'])) $_GET['lstn'] = "";
+    if (!isset($_GET['usrn'])) $_GET['usrn'] = "";
+    if (!isset($_GET['mail'])) $_GET['mail'] = "";
     ?>
     <h1>Sign up</h1><br/>
     Your personal space on www.uidesignpatterncommunity.com allows you to manage your projects, 
