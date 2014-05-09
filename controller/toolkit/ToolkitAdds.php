@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/controller/toolkit/Session.php");
+$session = Session::getInstance();
 
 class ToolKitAdds {
     
@@ -97,6 +98,74 @@ class ToolKitAdds {
         echo '</div>';  
         
         echo '</div>';
+    }
+    
+    public static function displayCriteriaBox($user) {
+        $reponse = Database::getAllData("SELECT * FROM Category WHERE login = \"" . $user . "\";");
+        if ($reponse->rowCount() != 0) {
+            echo "<h3 style=\"margin:0 auto;\">> Category</h3>";
+            echo "<ul style=\"margin-bottom:10px\">";
+            foreach ($reponse as $row) {
+                echo "<li style=\"color:black\">".$row['name'];
+                if ($row['description'] != "") {
+                    echo " : ".$row['description'];
+                }
+                echo "</li>";
+            }
+            echo "</ul>";
+        }
+        $reponse = Database::getAllData("SELECT * FROM Component WHERE login = \"" . $user . "\";");
+        if ($reponse->rowCount() != 0) {
+            echo "<h3 style=\"margin:0 auto;\">> Component</h3>";
+            echo "<ul style=\"margin-bottom:10px\">";
+            foreach ($reponse as $row) {
+                echo "<li style=\"color:black\">".$row['name'];
+                if ($row['description'] != "") {
+                    echo " : ".$row['description'];
+                }
+                echo "</li>";
+            }
+            echo "</ul>";
+        }
+        $reponse = Database::getAllData("SELECT * FROM Platform WHERE login = \"" . $user . "\";");
+        if ($reponse->rowCount() != 0) {
+            echo "<h3 style=\"margin:0 auto;\">> Platform</h3>";
+            echo "<ul style=\"margin-bottom:10px\">";
+            foreach ($reponse as $row) {
+                echo "<li style=\"color:black\">".$row['name'];
+                if ($row['description'] != "") {
+                    echo " : ".$row['description'];
+                }
+                echo "</li>";
+            }
+            echo "</ul>";
+        }
+        $reponse = Database::getAllData("SELECT * FROM Property WHERE login = \"" . $user . "\";");
+        if ($reponse->rowCount() != 0) {
+            echo "<h3 style=\"margin:0 auto;\">> Property</h3>";
+            echo "<ul style=\"margin-bottom:10px\">";
+            foreach ($reponse as $row) {
+                echo "<li style=\"color:black\">".$row['name'];
+                if ($row['description'] != "") {
+                    echo " : ".$row['description'];
+                }
+                echo "</li>";
+            }
+            echo "</ul>";
+        }
+        $reponse = Database::getAllData("SELECT * FROM System WHERE login = \"" . $user . "\";");
+        if ($reponse->rowCount() != 0) {
+            echo "<h3 style=\"margin:0 auto;\">> System</h3>";
+            echo "<ul style=\"margin-bottom:10px\">";
+            foreach ($reponse as $row) {
+                echo "<li style=\"color:black\">".$row['name'];
+                if ($row['description'] != "") {
+                    echo " : ".$row['description'];
+                }
+                echo "</li>";
+            }
+            echo "</ul>";
+        }
     }
 }
     

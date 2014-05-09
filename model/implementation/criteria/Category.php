@@ -24,7 +24,7 @@ class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('INSERT INTO Category (name, description, :login) VALUES(:name, :description, :login)');
+        $req = $bdd->prepare('INSERT INTO Category (name, description, login) VALUES(:name, :description, :login)');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(), 

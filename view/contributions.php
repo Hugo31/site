@@ -1,5 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/Session.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/site/controller/toolkit/ToolkitAdds.php");
+
 $session = Session::getInstance();
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/site/model/implementation/Database.php");
@@ -34,7 +36,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
    
         <h2 style="margin:0 auto;">My conflicts</h2><hr>
         <?php
-            $bdd = Database::getConnection();
             $session->typeQuery = "Conflict";
             $reponse = Database::getAllData("SELECT * FROM Conflict WHERE login = \"" . $session->login . "\";");
             ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
@@ -46,7 +47,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         
         <h2 style="margin:0 auto;">My solutions</h2><hr>
         <?php
-            $bdd = Database::getConnection();
             $session->typeQuery = "Solution";
             $reponse = Database::getAllData("SELECT * FROM Solution WHERE login = \"" . $session->login . "\";");
             ToolKitDisplay::displayGenericBox($session->typeQuery, $reponse);
@@ -54,7 +54,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
         <br/><br/>
         <h2 style="margin:0 auto;">My search criteria</h2><hr>
         <?php
-            
+            ToolkitAdds::displayCriteriaBox($session->login);
         }
         ?>
         <br/><br/>

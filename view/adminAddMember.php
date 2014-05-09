@@ -11,14 +11,15 @@ $session = Session::getInstance();
     include($_SERVER['DOCUMENT_ROOT'].'/site/view/structure/search.php');   
 ?>
 <section id="contenu">
-    <?php
-    
-    ?>
-    A faire
-    <?php
-        
-    ?>
-    
+   <h1> Add a new member </h1>
+   This part has not been implemented. You can just add a classic member (not an administrator) through the public part. <br/><br/>
+   <h2>Procedure</h3>
+   <ol>
+       <li>Log out.</li>
+       <li>Click on "Sign up" button</li>
+       <li>Fill all fields of the form.</li>
+       <li>You will receive an email to confirm the registration of the new member.</li>
+   </ol>
 </section>
 <script>
     

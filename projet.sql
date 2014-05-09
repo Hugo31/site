@@ -98,7 +98,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `db_dpi`.`TypeConflict`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_dpi`.`TypeConflict` (
-  `idTypeConflict` INT(11) NOT NULL,
+  `idTypeConflict` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(150) NOT NULL,
   `description` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`idTypeConflict`))

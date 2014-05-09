@@ -21,14 +21,11 @@
         <div id="manageUsers">
         <img src="/site/img/vrac/add.png" style="vertical-align:middle;">  <a href="adminAddMember.php">Add a new member</a>
         </div>
-        <br/>
-        
-        
+        <br/>    
     <?php 
-    ToolkitAdmin::displayUserBox(Database::getAllData("SELECT * FROM User order by typeUser desc, login asc"));
-    
-    
-    }  ?>
+        ToolkitAdmin::displayUserBox(Database::getAllData("SELECT * FROM User order by typeUser desc, login asc"));
+    }  
+    ?>
 </section>
 
 <?php
