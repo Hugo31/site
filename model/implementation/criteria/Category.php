@@ -2,16 +2,19 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicCriteriaDB.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/criteria/ILinkCriteria.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
+
 class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria{
-    
+    private $login;
     /**
      * Construit une categorie
      * @param int $_idSort L'identifiant dans la base de donnée.
      * @param string $_name Le nom de la catégorie.
      * @param string $_desc La description de la catégorie
      */
-    public function __construct($_id, $_name, $_desc) {
+    public function __construct($_id, $_name, $_desc, $_login) {
         parent::__construct($_id, $_name, $_desc);
+        $this->setLogin($_login);
     }
 
     /**
@@ -21,10 +24,11 @@ class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('INSERT INTO Category (name, description) VALUES(:name, :description)');
+        $req = $bdd->prepare('INSERT INTO Category (name, description, :login) VALUES(:name, :description, :login)');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
-            'description' => $object->getDescription()
+            'description' => $object->getDescription(), 
+            'login' => $object->getLogin()
             ));
         if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
@@ -42,7 +46,7 @@ class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
     public static function getDB($id) { 
         $donnees = Database::getOneData('SELECT * FROM Category WHERE idCategory = '.$id.'');
         if ($donnees != false) {
-            return new Category($donnees['idCategory'], $donnees['name'], $donnees['description']);
+            return new Category($donnees['idCategory'], $donnees['name'], $donnees['description'], $donnees['login']);
         }
         return false;
     }
@@ -54,10 +58,11 @@ class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('UPDATE Category SET name = :name, description = :description WHERE idCategory = :id');
+        $req = $bdd->prepare('UPDATE Category SET name = :name, description = :description, login = :login WHERE idCategory = :id');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),
+            'login' => $object->getLogin(),
             'id' => $object->getID()
         ));
         return $reussie;
@@ -91,6 +96,14 @@ class Category extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      */
     public function removeLink($tableToLink) {
         return parent::removeLinkSort($tableToLink, "Category");
+    }
+    
+    public function getLogin() {
+        return $this->login;
+    }
+    
+    public function setLogin($_login) {
+        $this->login = $_login;
     }
 
 }

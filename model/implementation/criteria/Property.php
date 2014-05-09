@@ -2,15 +2,18 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicCriteriaDB.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/criteria/ILinkProperty.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
 class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProperty{
+    private $login;
     /**
      * Construit une propriété
      * @param int $_idSort L'identifiant dans la base de donnée.
      * @param string $_name Le nom de la propriété.
      * @param string $_desc La description de la propriété
      */
-    public function __construct($_idSort, $_name, $_desc) {
+    public function __construct($_idSort, $_name, $_desc, $_login) {
         parent::__construct($_idSort, $_name, $_desc);
+        $this->setLogin($_login);
     }
     
     /**
@@ -20,10 +23,11 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('INSERT INTO Property (name, description) VALUES(:name, :description)');
+        $req = $bdd->prepare('INSERT INTO Property (name, description, login) VALUES(:name, :description, :login)');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
-            'description' => $object->getDescription()
+            'description' => $object->getDescription(), 
+            'login' => $object->getLogin()
             ));
         if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
@@ -40,7 +44,7 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
     public static function getDB($id) { 
         $donnees = Database::getOneData('SELECT * FROM Property WHERE idProperty = '.$id.'');
         if ($donnees != false) {
-            return new Property($donnees['idProperty'], $donnees['name'], $donnees['description']);
+            return new Property($donnees['idProperty'], $donnees['name'], $donnees['description'], $donnees['login']);
         }
         return false;
     }
@@ -52,10 +56,11 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
      */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('UPDATE Property SET name = :name, description = :description WHERE idProperty = :id');
+        $req = $bdd->prepare('UPDATE Property SET name = :name, description = :description, login = :login WHERE idProperty = :id');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),
+            'login' => $object->getLogin(), 
             'id' => $object->getID()
         ));
         return $reussie;
@@ -98,5 +103,13 @@ class Property extends AbstractBasicCriteriaDB implements IDatabase, ILinkProper
         $bdd = Database::getConnection();
         $nbSuppr = $bdd->exec('DELETE FROM PropertyDesignPattern WHERE idDesignPattern = '.$tableToLink->getID().' AND idProperty = '.$this->getID().'');
         return ($nbSuppr > 0);
+    }
+    
+    public function getLogin() {
+        return $this->login;
+    }
+    
+    public function setLogin($_login) {
+        $this->login = $_login;
     }
 }

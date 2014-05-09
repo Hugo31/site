@@ -2,8 +2,9 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicCriteriaDB.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/criteria/ILinkCriteria.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
 class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria{
-    
+    private $login;
     private $icon;
     /**
      * Construit une plateforme
@@ -12,9 +13,10 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      * @param string $_desc La description de la plateforme.
      * @param string $_icon L'icone de la plateforme.
      */
-    public function __construct($_idSort, $_name, $_desc, $_icon) {
+    public function __construct($_idSort, $_name, $_desc, $_icon, $_login) {
         parent::__construct($_idSort, $_name, $_desc);
         $this->setIcon($_icon);
+        $this->setLogin($_login);
     }
     
     /**
@@ -24,10 +26,11 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('INSERT INTO Platform (name, description, icon) VALUES(:name, :description, :icon)');
+        $req = $bdd->prepare('INSERT INTO Platform (name, description, icon, login) VALUES(:name, :description, :icon, :login)');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
-            'description' => $object->getDescription(), 
+            'description' => $object->getDescription(),
+            'login' => $object->getLogin(),
             'icon' => $object->getIcon()
         ));
         if ($reussie == true) {
@@ -44,7 +47,7 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
     public static function getDB($id) { 
         $donnees = Database::getOneData('SELECT * FROM Platform WHERE idPlatform = '.$id.'');
         if ($donnees != false) {
-            return new Platform($donnees['idPlatform'], $donnees['name'], $donnees['description'], $donnees['icon']);
+            return new Platform($donnees['idPlatform'], $donnees['name'], $donnees['description'], $donnees['icon'], $donnees['login']);
         }
         return false;
     }
@@ -56,11 +59,12 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
      */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('UPDATE Platform SET name = :name, description = :description, icon = :icon WHERE idPlatform = :id');
+        $req = $bdd->prepare('UPDATE Platform SET name = :name, description = :description, icon = :icon, login = :login WHERE idPlatform = :id');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),
             'icon' => $object->getIcon(),
+            'login' => $object->getLogin(),
             'id' => $object->getID()
         ));
         return $reussie;
@@ -102,5 +106,13 @@ class Platform extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriter
     
     public function getIcon() {
         return $this->icon;
+    }
+    
+    public function getLogin() {
+        return $this->login;
+    }
+    
+    public function setLogin($_login) {
+        $this->login = $_login;
     }
 }

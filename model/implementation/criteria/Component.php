@@ -2,17 +2,19 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicCriteriaDB.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/criteria/ILinkComponent.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
 
 class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkComponent{
-    
+    private $login;
     /**
      * Construit un composant
      * @param int $_idSort L'identifiant dans la base de donnée.
      * @param string $_name Le nom du composant.
      * @param string $_desc La description du composant
      */
-    public function __construct($_id, $_name, $_desc) {
+    public function __construct($_id, $_name, $_desc, $_login) {
         parent::__construct($_id, $_name, $_desc);
+        $this->setLogin($_login);
     }
     
     /**
@@ -22,10 +24,11 @@ class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkCompo
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('INSERT INTO Component (name, description) VALUES(:name, :description)');
+        $req = $bdd->prepare('INSERT INTO Component (name, description, login) VALUES(:name, :description, :login)');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
-            'description' => $object->getDescription()
+            'description' => $object->getDescription(),
+            'login' => $object->getLogin()
             ));
         if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
@@ -43,7 +46,7 @@ class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkCompo
         $donnees = Database::getOneData('SELECT * FROM Component WHERE idComponent = '.$id.'');
         
         if ($donnees != false) {
-            return new Component($donnees['idComponent'], $donnees['name'], $donnees['description']);
+            return new Component($donnees['idComponent'], $donnees['name'], $donnees['description'], $donnees['login']);
         }
         return false;
     }
@@ -55,10 +58,11 @@ class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkCompo
      */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('UPDATE Component SET name = :name, description = :description WHERE idComponent = :id');
+        $req = $bdd->prepare('UPDATE Component SET name = :name, description = :description, login = :login WHERE idComponent = :id');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),
+            'login' => $object->getLogin(),
             'id' => $object->getID()
         ));
         return $reussie;
@@ -110,5 +114,13 @@ class Component extends AbstractBasicCriteriaDB implements IDatabase, ILinkCompo
      */
     public function removeLinkRelated($tableToLink) {
         return parent::removeLinkSort($tableToLink, "ComponentRelated");
+    }
+    
+    public function getLogin() {
+        return $this->login;
+    }
+    
+    public function setLogin($_login) {
+        $this->login = $_login;
     }
 }

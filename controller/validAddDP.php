@@ -29,23 +29,23 @@
             Source::addSource($dp, "undefined", $src);//todo ajout auteur
         }}
         if (isset($_POST['CategoryDP'])) {foreach ($_POST['CategoryDP'] as $idcat) {
-            $category = new Category($idcat, "", "", "");
+            $category = new Category($idcat, "", "", "", "");
             $category->addLink($dp);
         }}
         if (isset($_POST['ComponentDP'])) {foreach ($_POST['ComponentDP'] as $idcompo) {
-            $component = new Component($idcompo, "", "", "");
+            $component = new Component($idcompo, "", "", "", "");
             $component->addLink($dp);
         }}
         if (isset($_POST['PlatformDP'])) {foreach ($_POST['PlatformDP'] as $idplat) {
-            $platform = new Platform($idplat, "", "", "");
+            $platform = new Platform($idplat, "", "", "", "");
             $platform->addLink($dp);
         }}
         if (isset($_POST['PropertyDP'])) {foreach ($_POST['PropertyDP'] as $idprop) {
-            $property = new Property($idprop, "", "", "");
+            $property = new Property($idprop, "", "", "", "");
             $property->addLink($dp);
         }}
         if (isset($_POST['SystemDP'])) {foreach ($_POST['SystemDP'] as $idsyst) {
-            $system = new System($idsyst, "", "", "");
+            $system = new System($idsyst, "", "", "", "");
             $system->addLink($dp);
         }}
         

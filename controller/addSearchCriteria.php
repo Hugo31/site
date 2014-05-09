@@ -17,19 +17,19 @@ if (isset($session->login)) {
         if ($vcriteria) {
             $bdd = Database::getConnection();
             if ($_POST['searchcriteria'] == "Category") {
-                $criteria = new Category(-1, $_POST['name'], $_POST['description']);
+                $criteria = new Category(-1, $_POST['name'], $_POST['description'], $session->login);
                 $reussie = Category::addDB($criteria);
             } else if ($_POST['searchcriteria'] == "Component") {
-                $criteria = new Component(-1, $_POST['name'], $_POST['description']);
+                $criteria = new Component(-1, $_POST['name'], $_POST['description'], $session->login);
                 $reussie = Component::addDB($criteria);
             } else if ($_POST['searchcriteria'] == "Platform") {
-                $criteria = new Platform(-1, $_POST['name'], $_POST['description'], $_POST['icon']);
+                $criteria = new Platform(-1, $_POST['name'], $_POST['description'], $_POST['icon'], $session->login);
                 $reussie = Platform::addDB($criteria);
             } else if ($_POST['searchcriteria'] == "Property") {
-                $criteria = new Property(-1, $_POST['name'], $_POST['description']);
+                $criteria = new Property(-1, $_POST['name'], $_POST['description'], $session->login);
                 $reussie = Property::addDB($criteria);
             } else {
-                $criteria = new System(-1, $_POST['name'], $_POST['description'],$_POST['icon']);
+                $criteria = new System(-1, $_POST['name'], $_POST['description'],$_POST['icon'], $session->login);
                 $reussie = System::addDB($criteria);
             }
             

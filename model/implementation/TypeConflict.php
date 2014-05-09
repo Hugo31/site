@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicCriteriaDB.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
 class TypeConflict extends AbstractBasicCriteriaDB implements IDatabase {
     
     public function __construct($_id, $_name, $_desc) {
@@ -23,7 +24,7 @@ class TypeConflict extends AbstractBasicCriteriaDB implements IDatabase {
     public static function getDB($id) { 
         $donnees = Database::getOneData('SELECT * FROM TypeConflict WHERE idTypeConflict = '.$id.'');
         if ($donnees != false) {
-            return new Category($donnees['idTypeConflict'], $donnees['name'], $donnees['description']);
+            return new TypeConflict($donnees['idTypeConflict'], $donnees['name'], $donnees['description']);
         }
         return false;
     }

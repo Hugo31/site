@@ -2,7 +2,9 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/abstract/AbstractBasicCriteriaDB.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/IDatabase.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/site/model/interfaces/criteria/ILinkCriteria.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/Database.php");
 class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria{
+    private $login;
     private $icon;
     /**
      * Construit un système
@@ -11,9 +13,10 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
      * @param string $_desc La description du système.
      * @param string $_icon L'icone associée.
      */
-    public function __construct($_idSort, $_name, $_desc, $_icon) {
+    public function __construct($_idSort, $_name, $_desc, $_icon, $_login) {
         parent::__construct($_idSort, $_name, $_desc);
         $this->setIcon($_icon);
+        $this->setLogin($_login);
     }
     
     /**
@@ -23,11 +26,12 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
      */
     public static function addDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('INSERT INTO System (name, description, icon) VALUES(:name, :description, :icon)');
+        $req = $bdd->prepare('INSERT INTO System (name, description, icon, login) VALUES(:name, :description, :icon, :login)');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(), 
-            'icon' => $object->getIcon()
+            'icon' => $object->getIcon(), 
+            'login' => $object->getLogin()
         ));
         if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
@@ -44,7 +48,7 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
     public static function getDB($id) { 
         $donnees = Database::getOneData('SELECT * FROM System WHERE idSystem = '.$id.'');
         if ($donnees != false) {
-            return new System($donnees['idSystem'], $donnees['name'], $donnees['description'], $donnees['icon']);
+            return new System($donnees['idSystem'], $donnees['name'], $donnees['description'], $donnees['icon'], $donnees['login']);
         }
         return false;
     }
@@ -56,11 +60,12 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
      */
     public static function modifyDB($object) {
         $bdd = Database::getConnection();
-        $req = $bdd->prepare('UPDATE System SET name = :name, description = :description, icon = :icon WHERE idSystem = :id');
+        $req = $bdd->prepare('UPDATE System SET name = :name, description = :description, icon = :icon, login = :login WHERE idSystem = :id');
         $reussie = $req->execute(array(
             'name' => $object->getName(),
             'description' => $object->getDescription(),
             'icon' => $object->getIcon(),
+            'login' => $object->getLogin(),
             'id' => $object->getID()
         ));
         return $reussie;
@@ -102,5 +107,13 @@ class System extends AbstractBasicCriteriaDB implements IDatabase, ILinkCriteria
     
     public function getIcon() {
         return $this->icon;
+    }
+    
+    public function getLogin() {
+        return $this->login;
+    }
+    
+    public function setLogin($_login) {
+        $this->login = $_login;
     }
 }

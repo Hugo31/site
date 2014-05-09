@@ -88,7 +88,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Prop
         
         
         
-        $component = new Component(0, "menu", "C'est un menu");
+        $component = new Component(0, "menu", "C'est un menu", "");
         echo "<tr><td>Component ajouté : </td><td>".Component::addDB($component)."</td></tr>";
         $otherComp = Component::getDB($component->getID());
         $otherComp->setDescription("C'est un menu opé");
@@ -100,7 +100,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Prop
         echo "<tr><td>Lien component supprimer</td><td>".$component->removeLink($dpFactory)."</td></tr>";
         echo "<tr><td>Lien component relatif supprimer</td><td>".$component->removeLinkRelated($dpFactory)."</td></tr>";
         
-        $category = new Category(0, "category", "C'est une category");
+        $category = new Category(0, "category", "C'est une category", "");
         echo "<tr><td>Category ajouté : </td><td>".Category::addDB($category)."</td></tr>";
         $otherCat = Category::getDB($category->getID());
         $otherCat->setDescription("C'est un menu opé");
@@ -110,7 +110,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Prop
         echo "<tr><td>Lien category ajouté</td><td>".$category->addLink($dpFactory)."</td></tr>";
         echo "<tr><td>Lien category supprimer</td><td>".$category->removeLink($dpFactory)."</td></tr>";
         
-        $platform = new Platform(0, "menu", "C'est un menu", "");
+        $platform = new Platform(0, "menu", "C'est un menu", "", "");
         echo "<tr><td>Platform ajouté : </td><td>".Platform::addDB($platform)."</td></tr>";
         $otherPlat = Platform::getDB($platform->getID());
         $otherPlat->setDescription("C'est un menu opé");
@@ -120,7 +120,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Prop
         echo "<tr><td>Lien platform ajouté</td><td>".$platform->addLink($dpFactory)."</td></tr>";
         echo "<tr><td>Lien platform supprimer</td><td>".$platform->removeLink($dpFactory)."</td></tr>";
         
-        $system = new System(0, "menu", "C'est un menu", "");
+        $system = new System(0, "menu", "C'est un menu", "", "");
         echo "<tr><td>System ajouté : </td><td>".System::addDB($system)."</td></tr>";
         $otherSys = System::getDB($system->getID());
         $otherSys->setDescription("C'est un menu opé");
@@ -130,7 +130,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/site/model/implementation/criteria/Prop
         echo "<tr><td>Lien system ajouté</td><td>".$system->addLink($dpFactory)."</td></tr>";
         echo "<tr><td>Lien system supprimer</td><td>".$system->removeLink($dpFactory)."</td></tr>";
         
-        $property = new Property(0, "menu", "C'est un menu");
+        $property = new Property(0, "menu", "C'est un menu", "");
         echo "<tr><td>Property ajouté : </td><td>".Property::addDB($property)."</td></tr>";
         $otherProp = Property::getDB($property->getID());
         $otherProp->setDescription("C'est un menu opé");
