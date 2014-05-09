@@ -70,7 +70,7 @@
     ?>
     
     <h2> Report conflicts </h2>
-    <div id="main" style="width:780px;float:left;height:600px;">
+    <div id="main" style="width:780px;float:left;height:700px;">
         
         <form id="addConflict_form" method="post">
             

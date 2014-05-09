@@ -17,13 +17,20 @@ if (isset($session->login)) {
     if ($data['nb'] > 0) {
         $projTemp = Project::getDB($data['idProject']);
         $proj = new Project(null, $_POST['name_project'], $session->login, $date, $_POST['desc_project']);
-        Project::addDB($proj);
+        $reussie = Project::addDB($proj);
         $response = Database::getAllData("SELECT idDesignPattern FROM ProjectDesignPattern pdp, Project p WHERE "
                                         ."pdp.idProject = p.idProject AND p.login = \"".$session->login."\" AND current = 1");
         foreach ($response as $row) {
             $dp = new DesignPattern($row['idDesignPattern'], "", "", "", "", "", "");
             $proj->addLink($dp);
             $projTemp->removeLink($dp);
+        }
+        if($reussie){
+            $session->message = "You have created a new project.";
+            $session->messageType = "good";
+        } else {
+            $session->message = "An error occured when creation our project.";
+            $session->messageType = "bad";
         }
     }
     
