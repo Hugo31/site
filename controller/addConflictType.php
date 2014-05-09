@@ -7,11 +7,9 @@ $session = Session::getInstance();
 
 $reussie = false;
 if (isset($session->login)) {
-    $req = $bdd->prepare('INSERT INTO TypeConflict(name, description) VALUES(:name, :description)');
-    $reussie = $req->execute(array(
-        'name' => $_POST['name'],
-        'description' => $_POST['description'])
-    );
+    $conflicType = new TypeConflict(-1, $_POST['name'], $_POST['description']);   
+    $bdd = Database::getConnection();
+    $reussie = TypeConflict::addDB($conflicType);
 }
 if($reussie){
     $session->message = "You have created a new conflict type.";

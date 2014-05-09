@@ -17,9 +17,7 @@ class TypeConflict extends AbstractBasicCriteriaDB implements IDatabase {
         if ($reussie == true) {
             $object->setID((int)$bdd->lastInsertId()); 
         }
-        
         return $reussie;
-        
     }
 
     public static function getDB($id) { 

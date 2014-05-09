@@ -20,13 +20,12 @@
         <h1> Manage users </h1>
         <div id="manageUsers">
         <img src="/site/img/vrac/add.png" style="vertical-align:middle;">  <a href="adminAddMember.php">Add a new member</a>
-        | <img src="/site/img/vrac/mail.png" style="vertical-align:middle;">  <a href="adminSendEmail.php">Send email to members</a>
         </div>
         <br/>
         
         
     <?php 
-    ToolkitAdmin::displayUserBox(Database::getAllData("SELECT * FROM User"));
+    ToolkitAdmin::displayUserBox(Database::getAllData("SELECT * FROM User order by typeUser desc, login asc"));
     
     
     }  ?>

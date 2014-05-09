@@ -31,14 +31,14 @@ class ToolkitAdmin{
                 if ($i == 0) {
                     echo "<tr><td width=\"300px\" style=\"padding-right:10px\">";
                     echo "<article class=\"boxUsers\" id=\"article_".$row['login']."\">";
-                    echo "<h2><a href=\"user.php?user=".$row['login']."\">".$row['login']."</a></h2>".$row['mail']."";
+                    echo "<h2><a href=\"user.php?user=".$row['login']."\">".$row['login']."</a></h2>".$row['mail']."<br/>".$row['typeUser'];
                     echo "<br/><div id=\"lienDescr\"><img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteUser.php?login=".$row['login']."\">Remove user</a></div>";
                     echo "</article></td>";
                     $i++;
                 } else {
                     echo "<td width=\"300px\">";
                     echo "<article class=\"boxUsers\" id=\"article_".$row['login']."\">";
-                    echo "<h2><a href=\"user.php?user=".$row['login']."\">".$row['login']."</a></h2>".$row['mail']."";
+                    echo "<h2><a href=\"user.php?user=".$row['login']."\">".$row['login']."</a></h2>".$row['mail']."<br/>".$row['typeUser'];
                     echo "<br/><div id=\"lienDescr\"><img src=\"../img/vrac/croix.png\" style=\"vertical-align:middle;width:20px\"/>  <a href=\"/site/controller/deleteUser.php?login=".$row['login']."\">Remove user</a></div>";
                     echo "</article>";
                     echo "</td></tr>";
