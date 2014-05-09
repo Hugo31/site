@@ -7,9 +7,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
 ?> 
 
 <section id="contenu">
-    <?php
-    
-    ?>
     <h1> Welcome to UI Design Pattern Community </h1>
     <div style="border:1px solid #fc4000;padding:10px;">
         <center><h3 style="margin:0 auto">This site is a beta version. Please, accept our apologies for various inconveniences that you could meet.</h3></center>
