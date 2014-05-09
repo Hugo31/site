@@ -11,9 +11,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/site/view/structure/search.php');
     
     ?>
     <h1> Welcome to UI Design Pattern Community </h1>
-    <!--<br/><a href="/site/testJquery/testModelPage.php">Test Model</a>
-    <br/><a href="/site/view/addDesignPattern.php">Page test ajout de DP</a>
-    <br/><a href="/site/view/addProject.php">Page test ajout de projet</a>-->
+    <div style="border:1px solid #fc4000;padding:10px;">
+        <center><h3 style="margin:0 auto">This is not the last version of our site. Please excuse us if some functionalities don't work properly.</h3></center>
+    </div>
     <h2>Website goals</h2>
     <p style="font-size: 1.05em">
         Hi ! This site allows sharing and community management of design patterns. It allows you to search design patterns based on several criteria
